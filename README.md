@@ -1,26 +1,26 @@
-# Discord Bot Name
+# 🤖 Discord Bot Name
 
 Discord Bot Name is a bot developed using the Disnake framework and the discord.py library. It is designed to provide specific functionalities to your Discord server.
 
-## Features
+## 🚀 Features
 
 - Custom Commands: The bot has several custom commands to interact with server users.
 - Member Management: The bot can perform actions such as kick, ban, and nickname modification for server members.
 - Server Statistics: The bot can display server information such as member count and channel count.
 - Automatic Updates: The bot can check for available updates and perform automatic updates.
 
-## Configuration
+## ⚙️ Configuration
 
 The bot is automatically configured using a `config.json` file. The configuration file will be created automatically when you run the bot for the first time. You can modify the configuration by editing the `config.json` file directly.
 
-## Installation
+## 🛠️ Installation
 
 1. Make sure you have Python 3.8 or higher installed on your system.
 2. Clone this repository or download the source files.
 3. Install the dependencies by running the following command:
 
-    ```shell
-    pip install -r requirements.txt
+   ```shell
+   pip install -r requirements.txt
     ```
 
 4. Start the bot with:
@@ -36,7 +36,7 @@ The bot is automatically configured using a `config.json` file. The configuratio
 5. Follow install step for the config
 6. Reload
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork this repository.
 2. Create a branch for your modifications:
@@ -59,7 +59,7 @@ The bot is automatically configured using a `config.json` file. The configuratio
 
 5. Open a Pull Request in this repository describing your modifications.
 
-### LICENSE
+### 📄 LICENSE
 
 ```
 MIT License
