@@ -23,7 +23,7 @@ class pingCommand(commands.Cog):
             embed = disnake.Embed(
                 title=f"Error during the ``/ping``",
                 description=f"```{e}```",
-                color=disnake.Color.random()
+                color=disnake.Color.red()
                 )
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
             await ctx.response.send_message(embed=embed)
