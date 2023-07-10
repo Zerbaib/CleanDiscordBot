@@ -14,7 +14,9 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def mute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            await member.edit(speak=False)
+            permissions = member.permissions
+            permissions.send_messages = False
+            await member.edit(permissions=permissions)
             embed = disnake.Embed(
                 title="Member Muted",
                 description=f"{member.mention} has been muted.",
@@ -34,7 +36,9 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def unmute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            await member.edit(speak=True)
+            permissions = member.permissions
+            permissions.send_messages = True
+            await member.edit(permissions=permissions)
             embed = disnake.Embed(
                 title="Member Unmuted",
                 description=f"{member.mention} has been unmuted.",
