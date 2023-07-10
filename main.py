@@ -3,8 +3,10 @@ from disnake.ext import commands
 import json
 import os
 import platform
+import requests
 
 config_file_path = "config.json"
+online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
@@ -42,9 +44,26 @@ async def on_ready():
     else:
         nbot = bot.user.name + "#" + bot.user.discriminator
 
-    print('===============================================')
+    response = requests.get(online_version)
+    if response.status_code == 200:
+        bot_repo_version = response.text.strip()
+    else:
+        bot_repo_version = "Unknown"
+
+    with open('version.txt', 'r') as version_file:
+        bot_version = version_file.read().strip()
+
+    if bot_version != bot_repo_version:
+        print('===============================================')
+        print('🛑 WARN')
+        print('🛑 You are not using the latest version!')
+        print('🛑 Please update the bot.')
+        print('🛑 Use "git fetch && git pull" to update your bot.')
+        print('===============================================')
     print(f"🔱 The bot is ready!")
     print(f'🔱 Logged in as {nbot} | {bot.user.id}')
+    print(f'🔱 Bot local version: {bot_version}')
+    print(f'🔱 Bot online version: {bot_repo_version}')
     print(f"🔱 Disnake version: {disnake.__version__}")
     print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
     print(f"🔱 Python version: {platform.python_version()}")
