@@ -59,7 +59,7 @@ async def on_ready():
         print('🛑 You are not using the latest version!')
         print('🛑 Please update the bot.')
         print('🛑 Use "git fetch && git pull" to update your bot.')
-        print('===============================================')
+    print('===============================================')    
     print(f"🔱 The bot is ready!")
     print(f'🔱 Logged in as {nbot} | {bot.user.id}')
     print(f'🔱 Bot local version: {bot_version}')
