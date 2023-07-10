@@ -9,12 +9,12 @@ class MuteCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /mute has been loaded')
         print('🔩 /unmute has been loaded')
-    
+
     @commands.slash_command(name="mute", description="Mute a member")
     @commands.has_permissions(manage_messages=True)
     async def mute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            await member.edit(mute=True)
+            await member.edit(speak=False)
             embed = disnake.Embed(
                 title="Member Muted",
                 description=f"{member.mention} has been muted.",
@@ -34,9 +34,9 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def unmute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            await member.edit(mute=True)
+            await member.edit(speak=True)
             embed = disnake.Embed(
-                title="Member unmuted",
+                title="Member Unmuted",
                 description=f"{member.mention} has been unmuted.",
                 color=disnake.Color.dark_red()
             )
