@@ -30,7 +30,7 @@ class MuteCommand(commands.Cog):
                 color=disnake.Color.dark_red()
             )
             embed.add_field(name="Reason", value=f"```{reason}```")
-            await ctx.response.send_message(embed=embed)
+            await ctx.send(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
                 title="Error during `/mute`",
