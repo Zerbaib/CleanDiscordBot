@@ -29,7 +29,6 @@ class updateCommand(commands.Cog):
                         embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar.url)
                         await ctx.send(embed=embed)
                         subprocess.call('cls')
-                        subprocess.call("git fetch", shell=True)
                         subprocess.call("git pull", shell=True)
                         subprocess.call([sys.executable, "main.py"])
                         sys.exit()
