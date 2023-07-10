@@ -14,9 +14,15 @@ class botinfoCommand(commands.Cog):
         try:
             embed = disnake.Embed(
                 title=f"Info of ``{self.bot.user.name}``",
-                description=f"The ping is around `{round(self.bot.latency * 1000)}ms`",
+                description=f"",
                 color=disnake.Color.random()
                 )
+            embed.add_field(
+                name=f"Bot profile:",
+                value=f"**Name**: ``{self.bot.user.name}``\n"
+                      f"**Prefix**: ``{self.bot.command_prefix}``\n"
+                      f"**Ping**: "
+            )
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
             await ctx.response.send_message(ephemeral=True, embed=embed)
         except Exception as e:
