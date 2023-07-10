@@ -18,11 +18,9 @@ class MuteCommand(commands.Cog):
             with open("config.json", 'r') as config_file:
                 config = json.load(config_file)
             role_id = config.get("MUTE_ROLE_ID")
-            
-            if role_id:
-                role = disnake.utils.get(ctx.guild.roles, id=role_id)
-                if role:
-                    await member.add_roles(role)
+
+            role = disnake.utils.get(ctx.guild.roles, id=role_id)
+            await member.add_roles(role)
 
             embed = disnake.Embed(
                 title="Member Muted",
@@ -47,10 +45,9 @@ class MuteCommand(commands.Cog):
                 config = json.load(config_file)
             role_id = config.get("MUTE_ROLE_ID")
             
-            if role_id:
-                role = disnake.utils.get(ctx.guild.roles, id=role_id)
-                if role and role in member.roles:
-                    await member.remove_roles(role)
+            role = disnake.utils.get(ctx.guild.roles, id=role_id)
+            if role and role in member.roles:
+                await member.remove_roles(role)
 
             embed = disnake.Embed(
                 title="Member Unmuted",
