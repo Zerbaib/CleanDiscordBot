@@ -1,6 +1,6 @@
-# 🤖 Discord Bot Name
+# 🤖 Clean Discord Bot
 
-Discord Bot Name is a bot developed using the Disnake framework and the discord.py library. It is designed to provide specific functionalities to your Discord server.
+Clean Discord Bot is a bot developed using the Disnake framework library. It is designed to provide specific functionalities to your Discord server.
 
 ## 🚀 Features
 
