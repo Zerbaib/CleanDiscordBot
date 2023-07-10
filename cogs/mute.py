@@ -20,7 +20,7 @@ class MuteCommand(commands.Cog):
             role_id = config.get("MUTE_ROLE_ID")
             
             if role_id:
-                role = ctx.guild.get_role(role_id)
+                role = disnake.utils.get(ctx.guild.roles, id=role_id)
                 if role:
                     await member.add_roles(role)
 
@@ -30,14 +30,14 @@ class MuteCommand(commands.Cog):
                 color=disnake.Color.dark_red()
             )
             embed.add_field(name="Reason", value=f"```{reason}```")
-            await ctx.send(embed=embed)
+            await ctx.response.send_message(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
                 title="Error during `/mute`",
                 description=f"```{e}```",
                 color=disnake.Color.dark_red()
             )
-            await ctx.send(embed=embed)
+            await ctx.response.send_message(embed=embed)
 
     @commands.slash_command(name="unmute", description="Unmute a member")
     @commands.has_permissions(manage_messages=True)
@@ -48,7 +48,7 @@ class MuteCommand(commands.Cog):
             role_id = config.get("MUTE_ROLE_ID")
             
             if role_id:
-                role = ctx.guild.get_role(role_id)
+                role = disnake.utils.get(ctx.guild.roles, id=role_id)
                 if role and role in member.roles:
                     await member.remove_roles(role)
 
@@ -65,7 +65,7 @@ class MuteCommand(commands.Cog):
                 description=f"```{e}```",
                 color=disnake.Color.dark_red()
             )
-            await ctx.send(embed=embed)
+            await ctx.response.send_message(embed=embed)
 
 def setup(bot):
     bot.add_cog(MuteCommand(bot))
