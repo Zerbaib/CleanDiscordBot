@@ -14,64 +14,27 @@ class updateCommand(commands.Cog):
         print(f'🔩 /update as been loaded')
 
     @commands.slash_command(name="update", description="Get the lasted update of the bot",)
-    async def update(ctx):
+    async def update(self, ctx):
+        with open("config.json", 'r') as config_file:
+            config = json.load(config_file)
+        if ctx.author.id == config["YOUR_ID"]:
+            await ctx.send("🛑 You are not authorised to use ``/update`` 🛑")
         try:
-            with open("config.json", 'r') as config_file:
-                config = json.load(config_file)
-            if ctx.author.id == config["YOUR_ID"]:
-                if platform.system() == "Windows":
-                    try:
-                        embed = disnake.Embed(
-                            title="Updating... (Windows)",
-                            description="Updating the bot from the Github Repo...",
-                            color=disnake.Color.random()
-                            )
-                        embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar.url)
-                        await ctx.send(embed=embed)
-                        subprocess.call('cls')
-                        subprocess.call("git pull", shell=True)
-                        subprocess.call([sys.executable, "main.py"])
-                        sys.exit()
-                    except:
-                        await ctx.send("Git failed to update the bot! Please try again later.")
+            embed = disnake.Embed(
+                title=f"Update of ``{self.bot.user.name}``",
+                description=f"Please wait ...",
+                color=disnake.Color.random()
+            )
+            await ctx.response.send_message(embed=embed)
 
-                elif platform.system() == "Linux":
-                    try:
-                        embed = disnake.Embed(
-                            title="Updating... (Linux)",
-                            description="Updating the bot from the Github Repo...",
-                            color=disnake.Color.random()
-                            )
-                        embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar.url)
-                        await ctx.send(embed=embed)
-                        subprocess.call('clear')
-                        subprocess.call(["git", "fetch"])
-                        subprocess.call(["git", "pull"])
-                        subprocess.call([sys.executable, "main.py"])
-                        sys.exit()
-                    except:
-                        await ctx.send("Git failed to update the bot! Please try again later.")
-                else:
-                    embed = disnake.Embed(
-                        title="Error",
-                        description="Your OS is not supported!",
-                        color=disnake.Color.dark_red()
-                        )
-                    await ctx.send(embed=embed)
-            else:
-                embed = disnake.Embed(
-                    title="Error",
-                    description="You are not allowed to use this command!",
-                    color=disnake.Color.dark_red()
-                    )
-                await ctx.send(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
-                title="Error",
-                description=f"An error occured while updating the bot! {e}",
-                color=disnake.Color.dark_red()
+                title=f"Error during the ``/update``",
+                description=f"```{e}```",
+                color=disnake.Color.red()
                 )
-            await ctx.send(embed=embed)
+            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
+            await ctx.response.send_message(embed=embed)
 
 def setup(bot):
     bot.add_cog(updateCommand(bot))
