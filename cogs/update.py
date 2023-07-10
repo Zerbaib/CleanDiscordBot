@@ -14,11 +14,10 @@ class updateCommand(commands.Cog):
         print(f'🔩 /update as been loaded')
 
     @commands.slash_command(name="update", description="Get the lasted update of the bot",)
+    @commands.has_permissions(administrator=True)
     async def update(self, ctx):
         with open("config.json", 'r') as config_file:
             config = json.load(config_file)
-        if ctx.author.id == config["YOUR_ID"]:
-            await ctx.send("🛑 You are not authorised to use ``/update`` 🛑")
         try:
             embed = disnake.Embed(
                 title=f"Update of ``{self.bot.user.name}``",
