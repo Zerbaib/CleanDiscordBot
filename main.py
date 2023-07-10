@@ -61,6 +61,7 @@ async def on_ready():
         bot_version = version_file.read().strip()
 
     if bot_version != bot_repo_version:
+        print()
         print('===============================================')
         print('🛑 You are not using the latest version!')
         print('🛑 Please update the bot.')
