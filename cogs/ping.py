@@ -7,7 +7,7 @@ class pingCommand(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f'🔩 /ping as been loaded')
+        print(f'🔩 /ping has been loaded')
     
     @commands.slash_command(name="ping", description="Get the bot's latency",)
     async def ping(self, ctx):
