@@ -43,11 +43,11 @@ async def on_ready():
         nbot = bot.user.name + "#" + bot.user.discriminator
 
     print('===============================================')
-    print("✅ The bot is ready!")
-    print(f'✅ Logged in as {nbot} | {bot.user.id}')
-    print(f"✅ Disnake version: {disnake.__version__}")
-    print(f"✅ Running on {platform.system()} {platform.release()} {os.name}")
-    print(f"✅ Python version: {platform.python_version()}")
+    print(f"🔱 The bot is ready!")
+    print(f'🔱 Logged in as {nbot} | {bot.user.id}')
+    print(f"🔱 Disnake version: {disnake.__version__}")
+    print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
+    print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
 
 for filename in os.listdir('./cogs'):
