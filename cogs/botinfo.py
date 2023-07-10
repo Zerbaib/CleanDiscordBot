@@ -13,7 +13,7 @@ class botinfoCommand(commands.Cog):
     async def botinfo(self, ctx):
         try:
             embed = disnake.Embed(
-                title=f"Info of {self.bot.user.name}",
+                title=f"Info of ``{self.bot.user.name}``",
                 description=f"The ping is around `{round(self.bot.latency * 1000)}ms`",
                 color=disnake.Color.random()
                 )
