@@ -10,7 +10,7 @@ class botinfoCommand(commands.Cog):
         print(f'🔩 /botinfo as been loaded')
     
     @commands.slash_command(name="botinfo", description="Get the bot's info",)
-    async def ping(self, ctx):
+    async def botinfo(self, ctx):
         try:
             embed = disnake.Embed(
                 title=f"Info of {self.bot.name}",
