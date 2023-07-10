@@ -62,7 +62,6 @@ async def on_ready():
 
     if bot_version != bot_repo_version:
         print('===============================================')
-        print('🛑 WARN')
         print('🛑 You are not using the latest version!')
         print('🛑 Please update the bot.')
         print('🛑 Use "git fetch && git pull" to update your bot.')
