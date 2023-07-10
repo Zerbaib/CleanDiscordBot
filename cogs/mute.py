@@ -26,7 +26,7 @@ class MuteCommand(commands.Cog):
                 title="Member Muted",
                 description=f"{member.mention} has been muted.",
                 color=disnake.Color.dark_red()
-            )
+            ) 
             embed.add_field(name="Reason", value=f"```{reason}```")
             await ctx.response.send_message(embed=embed)
         except Exception as e:
