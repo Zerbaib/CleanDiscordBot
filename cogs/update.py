@@ -14,7 +14,7 @@ class updateCommand(commands.Cog):
         print(f'🔩 /update has been loaded')
 
     @commands.slash_command(name="update", description="Get the latest update of the bot")
-    @commands.has_permissions(administrator=True)
+    @commands.is_owner()
     async def update(self, ctx):
         with open("config.json", 'r') as config_file:
             config = json.load(config_file)
