@@ -56,6 +56,6 @@ for filename in os.listdir('./cogs'):
         try:
             bot.load_extension(f'cogs.{cog_name}')
         except Exception as e:
-            print(f"🌪️  Erreur dans le chargement de l'extension '{cog_name}': {e}")
+            print(f"🌪️  Erreur dans le chargement de l'extension '{cog_name}':\n\n{e}")
 
 bot.run(token)
