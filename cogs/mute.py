@@ -1,5 +1,6 @@
 import disnake
 from disnake.ext import commands
+import json
 
 class MuteCommand(commands.Cog):
     def __init__(self, bot):
@@ -14,9 +15,15 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def mute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            permissions = member.permissions
-            permissions.send_messages = False
-            await member.edit(permissions=permissions)
+            with open("config.json", 'r') as config_file:
+                config = json.load(config_file)
+            role_id = config.get("MUTE_ROLE_ID")
+            
+            if role_id:
+                role = ctx.guild.get_role(role_id)
+                if role:
+                    await member.add_roles(role)
+
             embed = disnake.Embed(
                 title="Member Muted",
                 description=f"{member.mention} has been muted.",
@@ -36,9 +43,15 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def unmute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
         try:
-            permissions = member.permissions
-            permissions.send_messages = True
-            await member.edit(permissions=permissions)
+            with open("config.json", 'r') as config_file:
+                config = json.load(config_file)
+            role_id = config.get("MUTE_ROLE_ID")
+            
+            if role_id:
+                role = ctx.guild.get_role(role_id)
+                if role and role in member.roles:
+                    await member.remove_roles(role)
+
             embed = disnake.Embed(
                 title="Member Unmuted",
                 description=f"{member.mention} has been unmuted.",
