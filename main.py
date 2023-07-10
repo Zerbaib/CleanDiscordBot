@@ -100,7 +100,7 @@ async def update_status():
         )
         await asyncio.sleep(4)
 
-for filename in os.listdir('./cogs'):
+for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
         cog_name = filename[:-3]
         try:
