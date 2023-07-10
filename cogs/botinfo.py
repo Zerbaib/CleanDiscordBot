@@ -34,6 +34,7 @@ class botinfoCommand(commands.Cog):
                       f"**Python version**: ``{platform.python_version()}``",
                 inline=False
             )
+            embed.set_thumbnail(url=self.bot.user.avatar.url)
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
             await ctx.response.send_message(ephemeral=True, embed=embed)
         except Exception as e:
