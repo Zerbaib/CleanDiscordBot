@@ -21,7 +21,7 @@ class botinfoCommand(commands.Cog):
             await ctx.response.send_message(ephemeral=True, embed=embed)
         except Exception as e:
             embed = disnake.Embed(
-                title=f"Error during the ``/ping``",
+                title=f"Error during the ``/botinfo``",
                 description=f"```{e}```",
                 color=disnake.Color.red()
                 )
