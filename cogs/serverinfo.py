@@ -20,6 +20,9 @@ class ServerInfoCommand(commands.Cog):
         created_at = guild.created_at
         member_count = guild.member_count
         channel_count = len(guild.channels)
+        role_count = len(guild.roles)
+        boost_count = guild.premium_subscription_count
+        boost_tier = guild.premium_tier
         date = "%d-%m-%Y %H:%M:%S"
 
         embed = disnake.Embed(title="Server Information", color=disnake.Color.blurple())
@@ -32,6 +35,9 @@ class ServerInfoCommand(commands.Cog):
         embed.add_field(name="Created At", value=f"```{created_at.strftime(date)}```", inline=False)
         embed.add_field(name="Member Count", value=f"```{str(member_count)}```", inline=True)
         embed.add_field(name="Channel Count", value=f"```{str(channel_count)}```", inline=True)
+        embed.add_field(name="Role Count", value=f"```{str(role_count)}```", inline=True)
+        embed.add_field(name="Boost Count", value=f"```{str(boost_count)}```", inline=True)
+        embed.add_field(name="Boost Tier", value=f"```{str(boost_tier)}```", inline=True)
 
         await ctx.response.send_message(embed=embed)
 
