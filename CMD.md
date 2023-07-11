@@ -36,6 +36,24 @@
     Create a poll
     ```
 
+- **`/balance`**:
+
+    ```
+    Show your money for casino
+    ```
+
+- **`/earn`**:
+
+    ```
+    Claim 100 coin everyday
+    ```
+
+- **`/bet <coin>`**:
+
+    ```
+    Play coin if you win x2 if you lost it's -coin
+    ```
+
 ## 🔱 For staffs
 - **`/nick {user} <nick>`**:
 
