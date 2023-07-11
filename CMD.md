@@ -54,6 +54,12 @@
     Play coin if you win x2 if you lost it's -coin
     ```
 
+- **`/caster <option> <coin>`**:
+
+    ```
+    Select your choice between: red, black, even, odd and try to win x2 your bet
+    ```
+
 ## 🔱 For staffs
 - **`/nick {user} <nick>`**:
 
