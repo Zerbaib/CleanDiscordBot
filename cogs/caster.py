@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 import random
+import asyncio
 import json
 
 class CasterCommand(commands.Cog):
@@ -66,13 +67,13 @@ class CasterCommand(commands.Cog):
 
         embed = disnake.Embed(
             title="Caster",
-            description=f"The caster rolls...\n\nThe result is {self.bet_options[result]}!",
+            description=f"The caster rolls...",
             color=disnake.Color.blue()
         )
         try:
-            await ctx.response.send_message(embed=embed)
+            message = await ctx.response.send_message(embed=embed)
         except disnake.errors.InteractionResponded:
-            pass
+            return
 
         if result == bet_option:
             winnings = bet_amount * payout
@@ -82,10 +83,6 @@ class CasterCommand(commands.Cog):
                 description=f"Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
                 color=disnake.Color.green()
             )
-            try:
-                await ctx.followup.edit(embed=embed)
-            except disnake.errors.InteractionResponded:
-                pass
         else:
             balance -= bet_amount
             embed = disnake.Embed(
@@ -93,10 +90,9 @@ class CasterCommand(commands.Cog):
                 description=f"Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
                 color=disnake.Color.red()
             )
-            try:
-                await ctx.followup.edit(embed=embed)
-            except disnake.errors.InteractionResponded:
-                pass
+
+        asyncio.sleep(2)
+        await message.edit(embed=embed)
 
         data[user_id] = balance
 
