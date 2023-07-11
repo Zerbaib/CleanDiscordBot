@@ -83,7 +83,7 @@ class CasterCommand(commands.Cog):
                 color=disnake.Color.green()
             )
             try:
-                await ctx.followup.send(embed=embed)
+                await ctx.followup.edit(embed=embed)
             except disnake.errors.InteractionResponded:
                 pass
         else:
@@ -94,7 +94,7 @@ class CasterCommand(commands.Cog):
                 color=disnake.Color.red()
             )
             try:
-                await ctx.followup.send(embed=embed)
+                await ctx.followup.edit(embed=embed)
             except disnake.errors.InteractionResponded:
                 pass
 
