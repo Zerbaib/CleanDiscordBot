@@ -16,8 +16,8 @@ class CasterCommand(commands.Cog):
         self.payouts = {
             "red": 2,
             "black": 2,
-            "even": 3,
-            "odd": 3
+            "even": 2,
+            "odd": 2
         }
 
     @commands.Cog.listener()
@@ -69,7 +69,10 @@ class CasterCommand(commands.Cog):
             description=f"The caster rolls... The result is {self.bet_options[result]}!",
             color=disnake.Color.blue()
         )
-        await ctx.response.send_message(embed=embed)
+        try:
+            await ctx.response.send_message(embed=embed)
+        except disnake.errors.InteractionResponded:
+            pass
 
         if result == bet_option:
             winnings = bet_amount * payout
@@ -79,7 +82,10 @@ class CasterCommand(commands.Cog):
                 description=f"Congratulations! You won {self.bet_options[result]} and **`{winnings}`** coins!",
                 color=disnake.Color.green()
             )
-            await ctx.response.send_message(embed=embed)
+            try:
+                await ctx.followup.send(embed=embed)
+            except disnake.errors.InteractionResponded:
+                pass
         else:
             balance -= bet_amount
             embed = disnake.Embed(
@@ -87,7 +93,10 @@ class CasterCommand(commands.Cog):
                 description=f"Sorry, you lost your bet. The caster rolled {self.bet_options[result]}.",
                 color=disnake.Color.red()
             )
-            await ctx.response.send_message(embed=embed)
+            try:
+                await ctx.followup.send(embed=embed)
+            except disnake.errors.InteractionResponded:
+                pass
 
         data[user_id] = balance
 
