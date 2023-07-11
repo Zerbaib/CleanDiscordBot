@@ -1,4 +1,3 @@
 *.pyc
 config.json
-data/casino.json
-data/cooldown.json
+data/*
