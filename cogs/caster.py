@@ -7,7 +7,12 @@ class CasterCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.data_file = "data/casino.json"
-        self.bet_options = ["red", "black", "even", "odd"]
+        self.bet_options = {
+            "red": "🔴",
+            "black": "⚫️",
+            "even": "🔵",
+            "odd": "🟡"
+        }
         self.payouts = {
             "red": 2,
             "black": 2,
@@ -26,7 +31,7 @@ class CasterCommand(commands.Cog):
 
         if bet_option not in self.bet_options:
             embed = disnake.Embed(
-                title="Roulette",
+                title="Caster",
                 description="Invalid bet option. Please choose from 'red', 'black', 'even', 'odd'.",
                 color=disnake.Color.red()
             )
@@ -35,7 +40,7 @@ class CasterCommand(commands.Cog):
 
         if bet_amount <= 0:
             embed = disnake.Embed(
-                title="Roulette",
+                title="Caster",
                 description="Invalid bet amount. Please enter a positive value.",
                 color=disnake.Color.red()
             )
@@ -49,19 +54,19 @@ class CasterCommand(commands.Cog):
 
         if balance < bet_amount:
             embed = disnake.Embed(
-                title="Roulette",
+                title="Caster",
                 description="Insufficient balance. You don't have enough coins to place this bet.",
                 color=disnake.Color.red()
             )
             await ctx.response.send_message(embed=embed)
             return
 
-        result = random.choice(self.bet_options)
+        result = random.choice(list(self.bet_options.keys()))
         payout = self.payouts.get(bet_option, 0)
 
         embed = disnake.Embed(
-            title="Roulette",
-            description=f"The roulette wheel spins... The result is **{result}**!",
+            title="Caster",
+            description=f"The caster rolls... The result is {self.bet_options[result]}!",
             color=disnake.Color.blue()
         )
         await ctx.response.send_message(embed=embed)
@@ -70,16 +75,16 @@ class CasterCommand(commands.Cog):
             winnings = bet_amount * payout
             balance += winnings
             embed = disnake.Embed(
-                title="Roulette",
-                description=f"Congratulations! You won **{winnings}** coins!",
+                title="Caster",
+                description=f"Congratulations! You won {self.bet_options[result]} and **{winnings}** coins!",
                 color=disnake.Color.green()
             )
             await ctx.response.send_message(embed=embed)
         else:
             balance -= bet_amount
             embed = disnake.Embed(
-                title="Roulette",
-                description="Sorry, you lost your bet.",
+                title="Caster",
+                description=f"Sorry, you lost your bet. The caster rolled {self.bet_options[result]}.",
                 color=disnake.Color.red()
             )
             await ctx.response.send_message(embed=embed)
