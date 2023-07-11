@@ -28,7 +28,7 @@ class PollCommand(commands.Cog):
 
             embed = disnake.Embed(
                 title="New Poll",
-                description=question,
+                description=f"```{question}```",
                 color=disnake.Color.blurple()
             )
             embed.set_footer(text=f"New poll from {ctx.author}")
