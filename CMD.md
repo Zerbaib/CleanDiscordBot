@@ -1,5 +1,34 @@
 # 🚀 Commands
 ## ⚜️ For users
+- **`/nick <nick>`**:
+
+    ```
+    Change your nick
+    ```
+
+- **`/botinfo`**:
+
+    ```
+    Show info about the bot
+    ```
+
+- **`/serverinfo`**:
+
+    ```
+    Show info about the server
+    ```
+
+- **`/ping`**:
+
+    ```
+    Show the ping of the bot
+    ```
+
+- **`/poll <text>`**:
+
+    ```
+    Create a poll
+    ```
 
 ## 🔱 For staffs
 - **`/nick {user} <nick>`**:
