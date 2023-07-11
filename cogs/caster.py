@@ -32,7 +32,7 @@ class CasterCommand(commands.Cog):
         if bet_option not in self.bet_options:
             embed = disnake.Embed(
                 title="Caster",
-                description="Invalid bet option. Please choose from 'red', 'black', 'even', 'odd'.",
+                description="Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
                 color=disnake.Color.red()
             )
             await ctx.response.send_message(embed=embed)
@@ -41,7 +41,7 @@ class CasterCommand(commands.Cog):
         if bet_amount <= 0:
             embed = disnake.Embed(
                 title="Caster",
-                description="Invalid bet amount. Please enter a positive value.",
+                description="Invalid bet amount.\nPlease enter a positive value.",
                 color=disnake.Color.red()
             )
             await ctx.response.send_message(embed=embed)
@@ -55,7 +55,7 @@ class CasterCommand(commands.Cog):
         if balance < bet_amount:
             embed = disnake.Embed(
                 title="Caster",
-                description="Insufficient balance. You don't have enough coins to place this bet.",
+                description="Insufficient balance.\nYou don't have enough coins to place this bet.",
                 color=disnake.Color.red()
             )
             await ctx.response.send_message(embed=embed)
@@ -66,7 +66,7 @@ class CasterCommand(commands.Cog):
 
         embed = disnake.Embed(
             title="Caster",
-            description=f"The caster rolls... The result is {self.bet_options[result]}!",
+            description=f"The caster rolls...\n\nThe result is {self.bet_options[result]}!",
             color=disnake.Color.blue()
         )
         try:
@@ -79,7 +79,7 @@ class CasterCommand(commands.Cog):
             balance += winnings
             embed = disnake.Embed(
                 title="Caster",
-                description=f"Congratulations! You won {self.bet_options[result]} and **`{winnings}`** coins!",
+                description=f"Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
                 color=disnake.Color.green()
             )
             try:
@@ -90,7 +90,7 @@ class CasterCommand(commands.Cog):
             balance -= bet_amount
             embed = disnake.Embed(
                 title="Caster",
-                description=f"Sorry, you lost your bet. The caster rolled {self.bet_options[result]}.",
+                description=f"Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
                 color=disnake.Color.red()
             )
             try:
