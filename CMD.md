@@ -2,6 +2,36 @@
 ## ⚜️ For users
 
 ## 🔱 For staffs
+- **`/nick {user} <nick>`**:
+
+    ```
+    Change the nick of a member, if user is none that change your nick
+    ```
+
+- **`/clear <number>`**:
+
+    ```
+    Clear message in channel
+    ```
+
+- **`/mute <user> {reason}`**:
+
+    ```
+    Mute a member, if reason is none that will be "No reason provided"
+    ```
+
+- **`/kick <user> {reason}`**:
+
+    ```
+    Kick a member, if reason is none that will be "No reason provided"
+    ```
+
+- **`/ban <user> {reason}`**:
+
+    ```
+    Ban a member, if reason is none that will be "No reason provided"
+    ```
+
 
 ## 🛑 For owner
 - **`/check`**:

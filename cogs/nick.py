@@ -10,7 +10,7 @@ class NicknameCommand(commands.Cog):
         print('🔩 /nick has been loaded')
 
     @commands.slash_command(name="nick", description="Change the nickname of a member")
-    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str = None):
+    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str):
         try:
             if member is None:
                 member = ctx.author
