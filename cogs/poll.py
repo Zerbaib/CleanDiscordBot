@@ -38,7 +38,7 @@ class PollCommand(commands.Cog):
             await message.add_reaction("◻️")
             await message.add_reaction("👎")
 
-            await ctx.send("Poll created successfully.")
+            await ctx.response.send_message("Poll created successfully.", ephemeral=True)
         except Exception as e:
             embed = disnake.Embed(
                 title="Error during `/poll`",
