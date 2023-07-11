@@ -32,7 +32,11 @@ class EarnCommand(commands.Cog):
 
             if current_time - last_earn_time >= cooldown_time:
                 with open(self.data_file, 'r+') as data_file:
-                    data = json.load(data_file) if data_file.read() else {}
+                    if data_file.read() == '':
+                        data_file.write('{}')
+                        data_file.seek(0)
+
+                    data = json.load(data_file)
                     data.setdefault(user_id, 0)
 
                     earnings = data[user_id] + 100
