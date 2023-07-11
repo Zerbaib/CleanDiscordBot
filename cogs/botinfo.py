@@ -27,10 +27,16 @@ class botinfoCommand(commands.Cog):
                 online_version = "Unknown"
 
             response = requests.get(f'{github_repo}/commits')
-            commit_count = len(response.json()) if response.status_code == 200 else "Unknown"
+            if response.status_code == 200 and response.headers.get('content-type') == 'application/json':
+                commit_count = len(response.json())
+            else:
+                commit_count = "Unknown"
             
             response = requests.get(f'{github_repo}/stargazers')
-            stargazer_count = len(response.json()) if response.status_code == 200 else "Unknown"
+            if response.status_code == 200 and response.headers.get('content-type') == 'application/json':
+                stargazer_count = len(response.json())
+            else:
+                stargazer_count = "Unknown"
 
             embed = disnake.Embed(
                 title=f"Info of ``{self.bot.user.name}``",
