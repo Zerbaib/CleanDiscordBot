@@ -9,7 +9,7 @@ import asyncio
 
 config_file_path = "config.json"
 casino_data_file_path = "data/casino.json"
-casino_cooldown_data_file_path = "data/casino.json"
+casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
 if not os.path.exists(casino_data_file_path):
