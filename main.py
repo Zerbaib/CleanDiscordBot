@@ -19,12 +19,14 @@ if not os.path.exists(config_file_path):
         token = input("Enter the bot's token:\n")
         prefix = input("Enter the bot's prefix:\n")
         log_id = int(input("Enter the log's channel ID:\n"))
+        poll_id = int(input("Enter the pull's channel ID:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         mute_id = int(input("Enter role id of muted role:\n"))
         config_data = {
             "TOKEN": token,
             "PREFIX": prefix,
             "LOG_ID": log_id,
+            "POLL_ID": poll_id,
             "YOUR_ID": id_client,
             "MUTE_ROLE_ID": mute_id,
             "del_time": 3
