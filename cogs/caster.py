@@ -16,8 +16,8 @@ class CasterCommand(commands.Cog):
         self.payouts = {
             "red": 2,
             "black": 2,
-            "even": 2,
-            "odd": 2
+            "even": 3,
+            "odd": 3
         }
 
     @commands.Cog.listener()
@@ -76,7 +76,7 @@ class CasterCommand(commands.Cog):
             balance += winnings
             embed = disnake.Embed(
                 title="Caster",
-                description=f"Congratulations! You won {self.bet_options[result]} and **{winnings}** coins!",
+                description=f"Congratulations! You won {self.bet_options[result]} and **`{winnings}`** coins!",
                 color=disnake.Color.green()
             )
             await ctx.response.send_message(embed=embed)
