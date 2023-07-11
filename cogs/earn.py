@@ -21,8 +21,8 @@ class EarnCommand(commands.Cog):
         user_id = str(ctx.author.id)
         current_time = int(time.time())
 
-        with open(self.cooldown_file, 'r+') as cooldown_file:
-            cooldown_data = cooldown_file.read()
+        with open(self.cooldown_file, 'r') as cooldown_file:
+            cooldown_data = json.load(cooldown_file)
             if not cooldown_data:
                 cooldown_data = {}
             else:
@@ -43,9 +43,9 @@ class EarnCommand(commands.Cog):
                     data_file.seek(0)
                     json.dump(data, data_file, indent=4)
 
-                cooldown_file.seek(0)
-                cooldown_file.truncate()
-                json.dump(cooldown_data, cooldown_file, indent=4)
+                with open(self.cooldown_file, 'w') as cooldown_file:
+                    cooldown_data[user_id] = current_time
+                    json.dump(cooldown_data, cooldown_file, indent=4)
 
                 embed = disnake.Embed(
                     title="Earn Coins",
