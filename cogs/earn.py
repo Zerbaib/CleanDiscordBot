@@ -51,7 +51,7 @@ class EarnCommand(commands.Cog):
 
                 embed = disnake.Embed(
                     title="Earn Coins",
-                    description=f"You earned 100 coins!\nYour total balance: {earnings} coins.",
+                    description=f"You earned 100 coins!\nYour total balance: ``{earnings}`` coins.",
                     color=disnake.Color.green()
                 )
                 await ctx.response.send_message(embed=embed)

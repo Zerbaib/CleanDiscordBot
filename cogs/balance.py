@@ -23,7 +23,7 @@ class BalanceCommand(commands.Cog):
 
         embed = disnake.Embed(
             title="Balance",
-            description=f"Your balance: {balance} coins",
+            description=f"Your balance: ``{balance}`` coins",
             color=disnake.Color.blue()
         )
         await ctx.response.send_message(embed=embed)

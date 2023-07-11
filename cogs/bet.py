@@ -26,7 +26,7 @@ class BetCommand(commands.Cog):
                 return
             if balance < self.min_balance:
                 embed = disnake.Embed(title="Insufficient Balance", color=disnake.Color.red())
-                embed.add_field(name="Error", value=f"You need at least {self.min_balance} coins to play!")
+                embed.add_field(name="Error", value=f"You need at least ``{self.min_balance}`` coins to play!")
                 await ctx.response.send_message(embed=embed)
                 return
 
@@ -38,8 +38,8 @@ class BetCommand(commands.Cog):
                 winnings = amount * 2
                 data[user_id] += winnings
                 embed = disnake.Embed(title="You Won!", color=disnake.Color.green())
-                embed.add_field(name="Outcome", value="Congratulations! You won the bet.")
-                embed.add_field(name="Winnings", value=f"You won {winnings} coins!")
+                embed.add_field(name="Outcome", value="Congratulations! You won the bet.", inline=False)
+                embed.add_field(name="Winnings", value=f"You won ``{winnings}`` coins!", inline=False)
                 await ctx.response.send_message(embed=embed)
             else:
                 data[user_id] -= amount
