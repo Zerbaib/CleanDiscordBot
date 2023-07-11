@@ -18,6 +18,12 @@
     Show info about the server
     ```
 
+- **`/userinfo {user}`**:
+
+    ```
+    Show info about you or other user
+    ```
+
 - **`/ping`**:
 
     ```
