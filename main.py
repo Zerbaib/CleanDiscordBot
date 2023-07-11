@@ -14,10 +14,10 @@ online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main
 
 if not os.path.exists(casino_data_file_path):
     with open(casino_data_file_path, 'w') as casino_file:
-        json.dump("{}", casino_file)
+        json.dump({}, casino_file)
 if not os.path.exists(casino_cooldown_data_file_path):
     with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
-        json.dump("{}", casino_cooldown_file)
+        json.dump({}, casino_cooldown_file)
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
