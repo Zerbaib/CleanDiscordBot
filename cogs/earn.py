@@ -32,9 +32,11 @@ class EarnCommand(commands.Cog):
 
             if current_time - last_earn_time >= cooldown_time:
                 with open(self.data_file, 'r+') as data_file:
-                    if data_file.read() == '':
-                        data_file.write('{}')
-                        data_file.seek(0)
+                    file_content = data_file.read()
+                    if file_content:
+                        data = json.loads(file_content)
+                    else:
+                        data = {}
 
                     data = json.load(data_file)
                     data.setdefault(user_id, 0)
