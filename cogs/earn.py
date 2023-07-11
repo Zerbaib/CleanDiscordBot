@@ -22,7 +22,12 @@ class EarnCommand(commands.Cog):
         current_time = int(time.time())
 
         with open(self.cooldown_file, 'r+') as cooldown_file:
-            cooldown_data = json.load(cooldown_file)
+            cooldown_data = cooldown_file.read()
+            if not cooldown_data:
+                cooldown_data = {}
+            else:
+                cooldown_data = json.loads(cooldown_data)
+
             last_earn_time = cooldown_data.get(user_id, 0)
 
             if current_time - last_earn_time >= cooldown_time:
@@ -39,6 +44,7 @@ class EarnCommand(commands.Cog):
                     json.dump(data, data_file, indent=4)
 
                 cooldown_file.seek(0)
+                cooldown_file.truncate()
                 json.dump(cooldown_data, cooldown_file, indent=4)
 
                 embed = disnake.Embed(
