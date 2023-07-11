@@ -4,7 +4,7 @@ import json
 import time
 import datetime
 
-cooldown_time = 24 * 60 * 60
+cooldown_time = 60 * 60 * 2
 
 class EarnCommand(commands.Cog):
     def __init__(self, bot):
