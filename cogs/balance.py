@@ -21,7 +21,12 @@ class BalanceCommand(commands.Cog):
                 data[user_id] = 0
                 balance = 0
 
-        await ctx.response.send_message(content=f"Your balance: {balance} coins")
+        embed = disnake.Embed(
+            title="Balance",
+            description=f"Your balance: {balance} coins",
+            color=disnake.Color.blue()
+        )
+        await ctx.response.send_message(embed=embed)
 
         with open(self.data_file, 'w') as file:
             json.dump(data, file, indent=4)
