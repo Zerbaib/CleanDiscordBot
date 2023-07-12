@@ -1,4 +1,21 @@
 # 🚀 Commands
+- [For users](#⚜️-for-users):
+- - General:
+- - - [/nick](#nick-nick)
+- - - [/ping](#ping)
+- - - [/poll](#poll-text)
+- - Info:
+- - - [/botinfo](#botinfo)
+- - - [/serverinfo](#serverinfo)
+- - - [/userinfo](#userinfo-user)
+- - Casino:
+- - - [/balance](#balance)
+- - - [/earn](#earn)
+- - - [/bet](#bet-coin)
+- - - [/dice](#dice-coin)
+- - - [/caster](#caster-option-coin)
+- [For staffs](#🔱-for-staffs):
+- [For owner](#🛑-for-owner):
 ## ⚜️ For users
 ### **`/nick <nick>`**:
 
