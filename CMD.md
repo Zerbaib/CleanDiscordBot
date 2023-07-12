@@ -2,12 +2,12 @@
 - __**[For users](#⚜️-for-users)**:__
   - **🔷 General**:
     - [``/nick``](#nick-nick)
-    - [``/ping``](#ping)
     - [``/poll``](#poll-text)
+    - [``/ping``](#ping)
   - **🔎 Info**:
     - [``/botinfo``](#botinfo)
-    - [``/serverinfo``](#serverinfo)
     - [``/userinfo``](#userinfo-user)
+    - [``/serverinfo``](#serverinfo)
   - **🪙 Casino**:
     - [``/balance``](#balance)
     - [``/earn``](#earn)
