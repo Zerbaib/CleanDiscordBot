@@ -1,5 +1,5 @@
 # 🚀 Commands
-- __**[For users](#⚜️-for-users)**:__
+- __**[For users](#%EF%B8%8F-for-users)**:__
   - **🔷 General**:
     - [``/nick``](#nick-nick)
     - [``/poll``](#poll-text)
@@ -14,8 +14,19 @@
     - [``/bet``](#bet-coin)
     - [``/dice``](#dice-coin)
     - [``/caster``](#caster-option-coin)
-- __**[For staffs](#🔱-for-staffs)**:__
-- __**[For owner](#🛑-for-owner)**:__
+- __**[For staffs](#-for-staffs)**:__
+  - **🔨 Moderation**:
+    - [``/nick``](#nick-user-nick)
+    - [``/clear``](#clear-number)
+    - [``/mute``](#mute-user-reason)
+    - [``/kick``](#kick-user-reason)
+    - [``/ban``](#ban-user-reason)
+- __**[For owner](#-for-owner)**:__
+  - **🔧 Power**:
+    - [``/check``](#check)
+    - [``/update``](#update)
+    - [``/restart``](#restart)
+    - [``/stop``](#stop)
 
 ## ⚜️ For users
 ### **`/nick <nick>`**:
