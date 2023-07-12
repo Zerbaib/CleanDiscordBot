@@ -65,16 +65,6 @@ class CasterCommand(commands.Cog):
         result = random.choice(list(self.bet_options.keys()))
         payout = self.payouts.get(bet_option, 0)
 
-        embed = disnake.Embed(
-            title="Caster",
-            description=f"The caster rolls...",
-            color=disnake.Color.blue()
-        )
-        try:
-            message = await ctx.message.send(embed=embed)
-        except disnake.errors.InteractionResponded:
-            return
-
         if result == bet_option:
             winnings = bet_amount * payout
             balance += winnings
@@ -90,9 +80,8 @@ class CasterCommand(commands.Cog):
                 description=f"Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
                 color=disnake.Color.red()
             )
-
-        await asyncio.sleep(2)
-        await message.edit(embed=embed)
+        
+        await ctx.send(embed=embed)
 
         data[user_id] = balance
 
