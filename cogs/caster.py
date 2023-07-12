@@ -71,7 +71,7 @@ class CasterCommand(commands.Cog):
             color=disnake.Color.blue()
         )
         try:
-            message = await ctx.response.send_message(embed=embed)
+            message = await ctx.response.send_message(embed=embed, allowed_mentions=disnake.AllowedMentions.none())
         except disnake.errors.InteractionResponded:
             return
 
