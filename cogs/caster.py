@@ -91,7 +91,7 @@ class CasterCommand(commands.Cog):
                 color=disnake.Color.red()
             )
 
-        asyncio.sleep(2)
+        await asyncio.sleep(2)
         await message.edit(embed=embed)
 
         data[user_id] = balance
