@@ -1,6 +1,7 @@
 import random
 import disnake
 from disnake.ext import commands
+import json
 
 class DiceCommand(commands.Cog):
     def __init__(self, bot):
@@ -12,6 +13,9 @@ class DiceCommand(commands.Cog):
 
     @commands.slash_command(name="dice", description="Play the dice game")
     async def dice(self, ctx, bet: int):
+        user_id = str(ctx.author.id)
+        with open(self.data_file, 'r+') as file:
+            data = json.load(file)
         dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
         
         dice1 = random.randint(1, 6)
@@ -26,12 +30,18 @@ class DiceCommand(commands.Cog):
         embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
 
         if payout > 0:
+            data[user_id] += payout
             embed.add_field(name="Result", value=f"You won `{payout}` coin!")
             embed.color = disnake.Color.green()
         else:
+            data[user_id] -= bet
             embed.add_field(name="Bet", value=f"`{bet}`")
             embed.add_field(name="Result", value="You lost your bet.")
             embed.color = disnake.Color.red()
+
+        file.seek(0)
+        json.dump(data, file, indent=4)
+        file.truncate()
 
         await ctx.send(embed=embed)
 
