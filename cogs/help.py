@@ -11,17 +11,11 @@ class HelpCommand(commands.Cog):
 
     @commands.slash_command(name="help", description="Show the list of available commands")
     async def help(self, ctx):
-        embed = disnake.Embed(title="Help menu", color=disnake.Color.blue())
-
-        sorted_commands = sorted(self.bot.slash_commands, key=lambda cmd: cmd.name)
-
-        for command in sorted_commands:
-            name = command.name
-            description = command.description
-
-            embed.add_field(name=f"/{name}", value=f"```{description}```", inline=False)
-
-        await ctx.response.send_message(ephemeral=True, embed=embed)
+        embed = disnake.Embed(title="Need Help ?", color=disnake.Color.blurple())
+        embed.description = f"📚  Welcome to the command list of **{self.bot.user.name}**!\nHere you can find all the available commands and their usage."
+        embed.add_field(name="Commands List", value="🔗  To view the list of commands, click [**here**](https://github.com/Zerbaib/CleanDiscordBot/blob/main/CMD.md)", inline=False)
+        embed.set_footer(text="Clean Discord Bot", icon_url=self.bot.user.avatar.url)
+        await ctx.send(ephemeral=True, embed=embed)
 
 def setup(bot):
     bot.add_cog(HelpCommand(bot))
