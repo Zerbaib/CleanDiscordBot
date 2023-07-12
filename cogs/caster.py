@@ -23,7 +23,7 @@ class CasterCommand(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🎰 /caster has been loaded')
+        print('🔩 /caster has been loaded')
 
     @commands.slash_command(name="caster", description="Play a game of caster")
     async def caster(self, ctx, bet_option: str, bet_amount: int):
