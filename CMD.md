@@ -54,6 +54,12 @@
     Play coin if you win x2 if you lost it's -coin
     ```
 
+- **`/dice <coin>`**:
+
+    ```
+    Play with dice try to multiply your bet
+    ```
+
 - **`/caster <option> <coin>`**:
 
     ```
