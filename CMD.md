@@ -1,97 +1,97 @@
 # 🚀 Commands
 ## ⚜️ For users
-- **`/nick <nick>`**:
+### **`/nick <nick>`**:
 
     ```
     Change your nick
     ```
 
-- **`/botinfo`**:
+### **`/botinfo`**:
 
     ```
     Show info about the bot
     ```
 
-- **`/serverinfo`**:
+### **`/serverinfo`**:
 
     ```
     Show info about the server
     ```
 
-- **`/userinfo {user}`**:
+### **`/userinfo {user}`**:
 
     ```
     Show info about you or other user
     ```
 
-- **`/ping`**:
+### **`/ping`**:
 
     ```
     Show the ping of the bot
     ```
 
-- **`/poll <text>`**:
+### **`/poll <text>`**:
 
     ```
     Create a poll
     ```
 
-- **`/balance`**:
+### **`/balance`**:
 
     ```
     Show your money for casino
     ```
 
-- **`/earn`**:
+### **`/earn`**:
 
     ```
     Claim 100 coin everyday
     ```
 
-- **`/bet <coin>`**:
+### **`/bet <coin>`**:
 
     ```
     Play coin if you win x2 if you lost it's -coin
     ```
 
-- **`/dice <coin>`**:
+### **`/dice <coin>`**:
 
     ```
     Play with dice try to multiply your bet
     ```
 
-- **`/caster <option> <coin>`**:
+### **`/caster <option> <coin>`**:
 
     ```
     Select your choice between: red, black, even, odd and try to win x2 your bet
     ```
 
 ## 🔱 For staffs
-- **`/nick {user} <nick>`**:
+### **`/nick {user} <nick>`**:
 
     ```
     Change the nick of a member, if user is none that change your nick
     ```
 
-- **`/clear <number>`**:
+### **`/clear <number>`**:
 
     ```
     Clear message in channel
     ```
 
-- **`/mute <user> {reason}`**:
+### **`/mute <user> {reason}`**:
 
     ```
     Mute a member, if reason is none that will be "No reason provided"
     ```
 
-- **`/kick <user> {reason}`**:
+### **`/kick <user> {reason}`**:
 
     ```
     Kick a member, if reason is none that will be "No reason provided"
     ```
 
-- **`/ban <user> {reason}`**:
+### **`/ban <user> {reason}`**:
 
     ```
     Ban a member, if reason is none that will be "No reason provided"
@@ -99,25 +99,25 @@
 
 
 ## 🛑 For owner
-- **`/check`**:
+### **`/check`**:
 
     ```
     Check if the bot as the last version
     ```
 
-- **`/update`**:
+### **`/update`**:
 
     ```
     Fetch and pull last version of the bot.
     ```
 
-- **`/restart`**:
+### **`/restart`**:
 
     ```
     Restart the bot.
     ```
 
-- **`/stop`**:
+### **`/stop`**:
 
     ```
     Stop the bot

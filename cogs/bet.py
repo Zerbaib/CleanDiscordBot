@@ -39,7 +39,7 @@ class BetCommand(commands.Cog):
                 data[user_id] += winnings
                 embed = disnake.Embed(title="💰 You Won!", color=disnake.Color.green())
                 embed.add_field(name="Outcome", value="Congratulations! You won the bet.", inline=False)
-                embed.add_field(name="Winnings", value=f"You won {winnings} coins!", inline=False)
+                embed.add_field(name="Winnings", value=f"You won `{winnings}` coins!", inline=False)
                 await ctx.response.send_message(embed=embed)
             else:
                 data[user_id] -= amount
