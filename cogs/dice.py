@@ -15,10 +15,10 @@ class DiceCommand(commands.Cog):
     @commands.slash_command(name="dice", description="Play the dice game")
     async def dice(self, ctx, bet: int):
         user_id = str(ctx.author.id)
-        with open(self.data_file, 'r+') as file:
+        with open(self.data_file, 'r') as file:
             data = json.load(file)
-        dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
         
+        dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
         dice1 = random.randint(1, 6)
         dice2 = random.randint(1, 6)
 
@@ -40,9 +40,8 @@ class DiceCommand(commands.Cog):
             embed.add_field(name="Result", value="You lost your bet.")
             embed.color = disnake.Color.red()
 
-        file.seek(0)
-        json.dump(data, file, indent=4)
-        file.truncate()
+        with open(self.data_file, 'w') as file:
+            json.dump(data, file, indent=4)
 
         await ctx.send(embed=embed)
 
