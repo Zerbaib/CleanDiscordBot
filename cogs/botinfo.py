@@ -60,7 +60,7 @@ class BotInfoCommand(commands.Cog):
             embed.add_field(
                 name=f"__Bot profile:__",
                 value=f"**Name**: ``{self.bot.user.name}``\n"
-                      f"**Prefix**: ``{self.bot.command_prefix}`` and ``/``\n"
+                      f"**Prefix**: ``{self.bot.command_prefix}``\n"
                       f"**Ping**: ``{round(self.bot.latency * 1000)}ms``",
                 inline=False
             )
