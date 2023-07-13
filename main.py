@@ -25,6 +25,7 @@ if not os.path.exists(config_file_path):
         prefix = input("Enter the bot's prefix:\n")
         log_id = int(input("Enter the log's channel ID:\n"))
         poll_id = int(input("Enter the pull's channel ID:\n"))
+        voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         mute_id = int(input("Enter role id of muted role:\n"))
         config_data = {
@@ -32,6 +33,7 @@ if not os.path.exists(config_file_path):
             "PREFIX": prefix,
             "LOG_ID": log_id,
             "POLL_ID": poll_id,
+            "AUTO_VOICE_ID": voice_id,
             "YOUR_ID": id_client,
             "MUTE_ROLE_ID": mute_id,
             "del_time": 3
