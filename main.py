@@ -9,6 +9,7 @@ import asyncio
 
 config_file_path = "config.json"
 casino_data_file_path = "data/casino.json"
+rank_data_file_path = "data/rank.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
@@ -18,6 +19,9 @@ if not os.path.exists(casino_data_file_path):
 if not os.path.exists(casino_cooldown_data_file_path):
     with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
         json.dump({}, casino_cooldown_file)
+if not os.path.exists(rank_data_file_path):
+    with open(rank_data_file_path, 'w') as rank_file:
+        json.dump({}, rank_file)
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
