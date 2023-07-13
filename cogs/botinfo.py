@@ -75,7 +75,8 @@ class BotInfoCommand(commands.Cog):
                 name=f"__GitHub Repository:__",
                 value=f"**Commits**: ``{commit_count}``\n"
                       f"**Stars**: ``{stargazer_count}``\n"
-                      f"**Online Version**: ``{online_version}``",
+                      f"**Online Version**: ``{online_version}\n``"
+                      f"**Repo link**: [**`here`**]({github_repo})",
                 inline=False
             )
             embed.set_thumbnail(url=self.bot.user.avatar.url)
