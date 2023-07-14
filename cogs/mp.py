@@ -10,7 +10,6 @@ class MPCommand(commands.Cog):
         print('🔩 /mp command has been loaded')
 
     @commands.slash_command(name="mp", description="Send a private message to a user")
-    @commands.has_permissions(manage_messages=True)
     async def send_mp(self, ctx, user: disnake.User, *, message: str):
         author = ctx.author
 
