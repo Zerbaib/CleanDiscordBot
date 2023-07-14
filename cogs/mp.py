@@ -24,7 +24,7 @@ class MPCommand(commands.Cog):
             await user.send(embed=embed)
             response_embed = disnake.Embed(
                 title="Message Sent",
-                description=f"The message has been sent to {user.name}.",
+                description=f"The message has been sent to `{user.name}`.",
                 color=disnake.Color.green()
             )
         except disnake.HTTPException:
