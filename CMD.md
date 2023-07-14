@@ -22,7 +22,7 @@
     - [``/kick``](#kick-user-reason)
     - [``/ban``](#ban-user-reason)
   - **💬 Contact**:
-    - [``/mp``]()
+    - [``/mp``](#mp-user-message)
 - __**[For owner](#-for-owner)**:__
   - **🔧 Power**:
     - [``/check``](#check)
