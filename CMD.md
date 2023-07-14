@@ -21,6 +21,8 @@
     - [``/mute``](#mute-user-reason)
     - [``/kick``](#kick-user-reason)
     - [``/ban``](#ban-user-reason)
+  - **💬 Contact**:
+    - [``/mp``]()
 - __**[For owner](#-for-owner)**:__
   - **🔧 Power**:
     - [``/check``](#check)
@@ -126,6 +128,11 @@
     Ban a member, if reason is none that will be "No reason provided"
     ```
 
+## **`/mp <user> <message>`**:
+
+    ```
+    Use the bot to pm a user.
+    ```
 
 ## 🛑 For owner
 ### **`/check`**:
