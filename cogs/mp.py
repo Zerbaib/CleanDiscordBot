@@ -16,10 +16,11 @@ class MPCommand(commands.Cog):
 
         try:
             embed = disnake.Embed(
-                title=f"New Message from {author}",
+                title=f"New Message from `{author}`",
                 description=message,
                 color=disnake.Color.old_blurple()
             )
+            embed.set_footer(text=f"Posted by: {author}", icon_url=ctx.author.avatar.url)
             await user.send(embed=embed)
             response_embed = disnake.Embed(
                 title="Message Sent",
