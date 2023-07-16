@@ -11,7 +11,7 @@ class Emoji(commands.Cog):
 
     @commands.slash_command(name='addemoji', description="Add emoji to the server.")
     @commands.has_permissions(manage_emojis=True)
-    async def add_emoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
+    async def addemoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
         if name is None:
             name = emoji.name
 
