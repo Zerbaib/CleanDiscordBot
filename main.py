@@ -89,7 +89,6 @@ async def on_ready():
     print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
-    bot.loop.create_task(status.update_status(bot))
 
 for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
@@ -99,4 +98,5 @@ for filename in os.listdir('cogs'):
         except Exception as e:
             print(f"🌪️  Erreur dans le chargement de l'extension '{cog_name}':\n\n{e}")
 
+bot.loop.create_task(status.update_status(bot))
 bot.run(token)
