@@ -1,4 +1,5 @@
 import disnake
+import aiohttp
 from disnake.ext import commands
 
 class Emoji(commands.Cog):
@@ -17,13 +18,17 @@ class Emoji(commands.Cog):
 
         guild = ctx.guild
         try:
-            new_emoji = await guild.create_custom_emoji(name=name, image=emoji.url)
-            embed = disnake.Embed(
-                title='Emoji ajouté',
-                description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
-                color=disnake.Color.green()
-            )
-            await ctx.send(embed=embed)
+            async with aiohttp.ClientSession() as session:
+                async with session.get(str(emoji.url)) as resp:
+                    if resp.status == 200:
+                        image_data = await resp.read()
+                        new_emoji = await guild.create_custom_emoji(name=name, image=image_data)
+                        embed = disnake.Embed(
+                            title='Emoji ajouté',
+                            description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
+                            color=disnake.Color.green()
+                        )
+                        await ctx.send(embed=embed)
         except disnake.HTTPException:
             embed = disnake.Embed(
                 title='Erreur',
