@@ -5,7 +5,6 @@ import json
 import os
 import platform
 import requests
-import asyncio
 
 config_file_path = "config.json"
 casino_data_file_path = "data/casino.json"
