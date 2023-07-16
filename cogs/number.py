@@ -23,12 +23,12 @@ class FindTheNumber(commands.Cog):
             await ctx.send(embed=embed)
         else:
             # Génère un nombre aléatoire entre 1 et 100
-            number = random.randint(1, 100)
+            number = random.randint(1, 10000)
             self.games[ctx.author.id] = number
 
             embed = disnake.Embed(
                 title="Find the Number",
-                description="I have chosen a number between 1 and 100. Try to guess it!",
+                description="I have chosen a number between 1 and 10000. Try to guess it!",
                 color=disnake.Color.blurple()
             )
             embed.set_footer(text="Type /guess <number> to make a guess.")
