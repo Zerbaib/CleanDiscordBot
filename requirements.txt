@@ -1,2 +1,2 @@
-disnake
-requests
+disnake==2.9
+aiohttp==3.2.1
