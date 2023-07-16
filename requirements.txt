@@ -1,2 +1,2 @@
 disnake==2.9
-aiohttp==3.2.1
+aiohttp==3.7.0
