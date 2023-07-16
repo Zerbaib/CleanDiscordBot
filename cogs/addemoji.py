@@ -5,6 +5,10 @@ class Emoji(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print('🔩 /addemoji has been loaded')
+
     @commands.command(name='addemoji')
     @commands.has_permissions(manage_emojis=True)
     async def add_emoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
