@@ -1,1 +1,1 @@
-BETA v3.41.5
+BETA v3.41.8 | BUG
