@@ -23,7 +23,10 @@ class FindTheNumber(commands.Cog):
             await ctx.send(embed=embed)
         else:
             number = random.randint(1, 10000)
-            self.games[ctx.author.id] = number
+            self.games[ctx.author.id] = {
+                "number": number,
+                "attempts": 0
+            }
 
             embed = disnake.Embed(
                 title="Find the Number",
