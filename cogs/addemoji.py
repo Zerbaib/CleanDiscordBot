@@ -9,7 +9,7 @@ class Emoji(commands.Cog):
     async def on_ready(self):
         print('🔩 /addemoji has been loaded')
 
-    @commands.command(name='addemoji')
+    @commands.slash_command(name='addemoji', description="Add emoji to the server.")
     @commands.has_permissions(manage_emojis=True)
     async def add_emoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
         if name is None:
