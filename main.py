@@ -2,6 +2,7 @@ import os
 import json
 import platform
 import requests
+import disnake
 from disnake.ext import commands
 from utils import status
 
