@@ -21,6 +21,8 @@
     - [``/mute``](#mute-user-reason)
     - [``/kick``](#kick-user-reason)
     - [``/ban``](#ban-user-reason)
+  - **🔧 Management**:
+    - [``/addemoji``]
 - __**[For owner](#-for-owner)**:__
   - **🔧 Power**:
     - [``/check``](#check)
@@ -124,6 +126,12 @@
 
     ```
     Ban a member, if reason is none that will be "No reason provided"
+    ```
+
+### **`/addemoji <emoji> {name}`**:
+
+    ```
+    Add emoji to your server, you can set the name if th ename is None this is th name of old emoji.
     ```
 
 ## 🛑 For owner
