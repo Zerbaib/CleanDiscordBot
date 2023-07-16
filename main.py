@@ -1,7 +1,7 @@
 import os
 import json
 import platform
-import requests
+import aiohttp
 import disnake
 from disnake.ext import commands
 from utils import status
@@ -65,11 +65,12 @@ async def on_ready():
     else:
         nbot = bot.user.name + "#" + bot.user.discriminator
 
-    response = requests.get(online_version)
-    if response.status_code == 200:
-        bot_repo_version = response.text.strip()
-    else:
-        bot_repo_version = "Unknown"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(online_version) as response:
+            if response.status == 200:
+                bot_repo_version = await response.text()
+            else:
+                bot_repo_version = "Unknown"
 
     with open('version.txt', 'r') as version_file:
         bot_version = version_file.read().strip()
@@ -80,7 +81,7 @@ async def on_ready():
         print('🛑 You are not using the latest version!')
         print('🛑 Please update the bot.')
         print('🛑 Use "git fetch && git pull" to update your bot.')
-    print('===============================================')    
+    print('===============================================')
     print(f"🔱 The bot is ready!")
     print(f'🔱 Logged in as {nbot} | {bot.user.id}')
     print(f'🔱 Bot local version: {bot_version}')
