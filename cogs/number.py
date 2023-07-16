@@ -17,7 +17,7 @@ class FindTheNumber(commands.Cog):
         if ctx.author.id in self.games:
             embed = disnake.Embed(
                 title="Error",
-                description="You are already playing a game. Use /guess to make a guess.",
+                description="You are already playing a game. Use ``/guess`` to make a guess.",
                 color=disnake.Color.red()
             )
             await ctx.send(embed=embed)
@@ -30,12 +30,12 @@ class FindTheNumber(commands.Cog):
 
             embed = disnake.Embed(
                 title="Find the Number",
-                description="I have chosen a number between 1 and 10000. Try to guess it!",
+                description="I have chosen a number between ``1`` and ``10000``. Try to guess it!",
                 color=disnake.Color.blurple()
             )
-            embed.set_footer(text="Type /guess <number> to make a guess.")
+            embed.set_footer(text="Type ``/guess <number>`` to make a guess.")
             embed.add_field(name="Instructions:", value="Guess the correct number within the given range.", inline=False)
-            embed.add_field(name="Attempts:", value="0/50", inline=False)
+            embed.add_field(name="Attempts:", value="``0/50``", inline=False)
 
             await ctx.send(embed=embed)
 
@@ -44,7 +44,7 @@ class FindTheNumber(commands.Cog):
         if ctx.author.id not in self.games:
             embed = disnake.Embed(
                 title="Error",
-                description="You are not currently playing a game. Use /findnumber to start a new game.",
+                description="You are not currently playing a game. Use **``/findnumber``** to start a new game.",
                 color=disnake.Color.red()
             )
             await ctx.send(embed=embed)
@@ -60,8 +60,8 @@ class FindTheNumber(commands.Cog):
                     description="You guessed the correct number!",
                     color=disnake.Color.green()
                 )
-                embed.add_field(name="Your Guess:", value=f"{number}", inline=False)
-                embed.add_field(name="Correct Number:", value=f"{correct_number}", inline=False)
+                embed.add_field(name="Your Guess:", value=f"`{number}`", inline=False)
+                embed.add_field(name="Correct Number:", value=f"``{correct_number}``", inline=False)
                 del self.games[ctx.author.id]
             elif attempts >= 50:
                 embed = disnake.Embed(
@@ -69,27 +69,25 @@ class FindTheNumber(commands.Cog):
                     description="You have reached the maximum number of attempts.",
                     color=disnake.Color.red()
                 )
-                embed.add_field(name="Your Guess:", value=f"{number}", inline=False)
-                embed.add_field(name="Correct Number:", value=f"{correct_number}", inline=False)
+                embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
+                embed.add_field(name="Correct Number:", value=f"`{correct_number}`", inline=False)
                 del self.games[ctx.author.id]
             elif number < correct_number:
                 embed = disnake.Embed(
                     title="Too low! ⬆️",
                     description="Try a higher number.",
-                    color=disnake.Color.red()
+                    color=disnake.Color.old_blurple()
                 )
-                embed.add_field(name="Your Guess:", value=f"{number}", inline=False)
-                embed.add_field(name="Correct Number:", value=f"{correct_number}", inline=False)
-                embed.add_field(name="Attempts:", value=f"{attempts}/50", inline=False)
+                embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
+                embed.add_field(name="Attempts:", value=f"``{attempts}/50``", inline=False)
             else:
                 embed = disnake.Embed(
                     title="Too high! ⬇️",
                     description="Try a lower number.",
-                    color=disnake.Color.red()
+                    color=disnake.Color.old_blurple()
                 )
-                embed.add_field(name="Your Guess:", value=f"{number}", inline=False)
-                embed.add_field(name="Correct Number:", value=f"{correct_number}", inline=False)
-                embed.add_field(name="Attempts:", value=f"{attempts}/50", inline=False)
+                embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
+                embed.add_field(name="Attempts:", value=f"``{attempts}/50``", inline=False)
 
             await ctx.send(embed=embed)
 
