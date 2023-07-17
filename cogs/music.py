@@ -1,5 +1,7 @@
 import disnake
 from disnake.ext import commands
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
 import youtube_dl
 import asyncio
 from collections import deque
@@ -9,6 +11,7 @@ class Music(commands.Cog):
         self.bot = bot
         self.queue = deque()
         self.voice = None
+        self.spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -42,18 +45,60 @@ class Music(commands.Cog):
             await ctx.send(embed=embed)
             return
 
-        self.queue.append(song)
-
-        if self.voice.is_playing():
+        # Use spotipy to search for the song on Spotify
+        results = self.spotify.search(q=song, type='track')
+        if len(results['tracks']['items']) > 0:
+            track = results['tracks']['items'][0]
+            artist = track['artists'][0]['name']
+            track_name = track['name']
+            youtube_link = self.get_youtube_link(artist, track_name)
+            if youtube_link:
+                self.queue.append(youtube_link)
+                if self.voice.is_playing():
+                    embed = disnake.Embed(
+                        title="Song Added",
+                        description=f"The song '{track_name}' by '{artist}' has been added to the queue.",
+                        color=disnake.Color.blurple()
+                    )
+                    await ctx.response.defer()
+                    await ctx.send(embed=embed)
+                else:
+                    await self.play_song(ctx)
+            else:
+                embed = disnake.Embed(
+                    title="Error",
+                    description="Failed to retrieve the YouTube link for the song.",
+                    color=disnake.Color.red()
+                )
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
+        else:
             embed = disnake.Embed(
-                title="Song Added",
-                description=f"The song '{song}' has been added to the queue.",
-                color=disnake.Color.blurple()
+                title="Error",
+                description="No results found for the specified song.",
+                color=disnake.Color.red()
             )
             await ctx.response.defer()
             await ctx.send(embed=embed)
-        else:
-            await self.play_song(ctx)
+
+    # Helper function to get the YouTube link for a song
+    def get_youtube_link(self, artist, track_name):
+        query = f"{artist} {track_name} official audio"
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'default_search': 'auto',
+            'quiet': True,
+        }
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            try:
+                info = ydl.extract_info(query, download=False)
+                if 'entries' in info:
+                    # Take the first video from the search results
+                    video_url = info['entries'][0]['webpage_url']
+                    return video_url
+            except youtube_dl.DownloadError as e:
+                print(f"Error extracting YouTube link: {e}")
+        return None
 
     @commands.slash_command(name='skip', description='Skip the current song')
     async def skip(self, ctx):
@@ -101,7 +146,7 @@ class Music(commands.Cog):
             )
             await ctx.send(embed=embed)
 
-            ydl_opts = {'format': 'bestaudio', 'default_search': 'ytsearch'}
+            ydl_opts = {'format': 'bestaudio'}
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(song, download=False)
                 url2 = info['formats'][0]['url']

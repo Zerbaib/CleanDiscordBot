@@ -2,3 +2,4 @@ disnake
 requests
 youtube_dl
 ffmpeg
+spotipy
