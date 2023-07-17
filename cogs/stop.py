@@ -13,7 +13,6 @@ class StopCommand(commands.Cog):
     @commands.is_owner()
     async def stop(self, ctx):
         try:
-            await ctx.response.defer()
             await ctx.send("Stopping the bot...", ephemeral=True)
             await self.bot.close()
         except Exception as e:
