@@ -12,6 +12,7 @@ class StopCommand(commands.Cog):
     @commands.slash_command(name="stop", description="Stop the bot")
     @commands.is_owner()
     async def stop(self, ctx):
+        await ctx.response.defer()
         try:
             await ctx.response.send_message("Stopping the bot...", ephemeral=True)
             await self.bot.close()
