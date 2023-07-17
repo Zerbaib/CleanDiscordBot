@@ -24,7 +24,8 @@ class updateCommand(commands.Cog):
                 description=f"Please wait...",
                 color=disnake.Color.random()
             )
-            await ctx.response.send_message(embed=embed)
+            await ctx.response.defer()
+            await ctx.send(embed=embed)
 
             # Exécuter la commande de mise à jour du bot
             update_process = subprocess.Popen(["git", "pull"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -34,7 +35,8 @@ class updateCommand(commands.Cog):
             if update_process.returncode == 0:
                 embed.title = f"Update of ``{self.bot.user.name}``"
                 embed.description = "Update successful! Restarting the bot..."
-                await ctx.followup.send(embed=embed)
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
 
                 # Redémarrer le bot
                 python = sys.executable
@@ -44,7 +46,8 @@ class updateCommand(commands.Cog):
                 embed.title = f"Error during the ``/update``"
                 embed.description = f"```{error_message}```"
                 embed.color = disnake.Color.red()
-                await ctx.followup.send(embed=embed)
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
 
         except Exception as e:
             embed = disnake.Embed(

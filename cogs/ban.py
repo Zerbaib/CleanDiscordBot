@@ -21,6 +21,7 @@ class BanCommand(commands.Cog):
                 color=disnake.Color.dark_red()
             )
             embed.add_field(name="Reason", value=f"```{reason}```")
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
         except Exception as e:

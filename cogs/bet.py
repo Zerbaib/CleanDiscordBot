@@ -40,12 +40,14 @@ class BetCommand(commands.Cog):
                 embed = disnake.Embed(title="💰 You Won!", color=disnake.Color.green())
                 embed.add_field(name="Outcome", value="Congratulations! You won the bet.", inline=False)
                 embed.add_field(name="Winnings", value=f"You won `{winnings}` coins!", inline=False)
-                await ctx.response.send_message(embed=embed)
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
             else:
                 data[user_id] -= amount
                 embed = disnake.Embed(title="😢 You Lost", color=disnake.Color.red())
                 embed.add_field(name="Outcome", value="Better luck next time. You lost the bet.")
-                await ctx.response.send_message(embed=embed)
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
 
             file.seek(0)
             json.dump(data, file, indent=4)

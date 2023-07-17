@@ -39,7 +39,8 @@ class ServerInfoCommand(commands.Cog):
         embed.add_field(name="Boost Count", value=f"```{str(boost_count)}```", inline=True)
         embed.add_field(name="Boost Tier", value=f"```{str(boost_tier)}```", inline=True)
 
-        await ctx.response.send_message(embed=embed)
+        await ctx.response.defer()
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(ServerInfoCommand(bot))

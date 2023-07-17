@@ -81,6 +81,7 @@ class CasterCommand(commands.Cog):
                 color=disnake.Color.red()
             )
         
+        await ctx.response.defer()
         await ctx.send(embed=embed)
 
         data[user_id] = balance

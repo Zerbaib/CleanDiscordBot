@@ -32,7 +32,8 @@ class UpdateCommand(commands.Cog):
 
                 embed.add_field(name="Local Version", value=f"```{local_version}```", inline=True)
                 embed.add_field(name="Online Version", value=f"```{online_version}```", inline=True)
-                await ctx.response.send_message(embed=embed)
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
 
         except Exception as e:
             embed = disnake.Embed(

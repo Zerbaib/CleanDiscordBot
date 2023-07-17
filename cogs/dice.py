@@ -50,6 +50,7 @@ class DiceCommand(commands.Cog):
             with open(self.data_file, 'w') as file:
                 json.dump(data, file, indent=4)
 
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
 def setup(bot):

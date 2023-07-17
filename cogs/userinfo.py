@@ -36,7 +36,8 @@ class UserInfoCommand(commands.Cog):
         embed.add_field(name="Bot", value=f"```{user.bot}```", inline=True)
         embed.add_field(name="Created At", value=f"```{user.created_at.strftime(time)}```", inline=True)
 
-        await ctx.response.send_message(embed=embed)
+        await ctx.response.defer()
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(UserInfoCommand(bot))

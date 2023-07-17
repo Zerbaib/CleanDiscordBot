@@ -26,7 +26,8 @@ class BalanceCommand(commands.Cog):
             description=f"Your balance: ``{balance}`` coins",
             color=disnake.Color.blue()
         )
-        await ctx.response.send_message(embed=embed)
+        await ctx.response.defer()
+        await ctx.send(embed=embed)
 
         with open(self.data_file, 'w') as file:
             json.dump(data, file, indent=4)

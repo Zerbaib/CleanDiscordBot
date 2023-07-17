@@ -28,6 +28,7 @@ class Emoji(commands.Cog):
                             description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
                             color=disnake.Color.green()
                         )
+                        await ctx.response.defer()
                         await ctx.send(embed=embed)
         except disnake.HTTPException:
             embed = disnake.Embed(

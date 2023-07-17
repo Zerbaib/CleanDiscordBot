@@ -20,7 +20,8 @@ class ClearCommand(commands.Cog):
                 description=f"``{amount}`` messages have been cleared in this channel.",
                 color=disnake.Color.dark_green()
             )
-            await ctx.response.send_message(ephemeral=True, embed=embed)
+            await ctx.response.defer()
+            await ctx.send(ephemeral=True, embed=embed)
 
         except Exception as e:
             embed = disnake.Embed(

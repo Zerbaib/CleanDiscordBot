@@ -31,6 +31,7 @@ class NicknameCommand(commands.Cog):
                         description=f"No nickname specified. The nickname remains unchanged.",
                         color=disnake.Color.orange()
                     )
+                await ctx.response.defer()
                 await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
@@ -38,6 +39,7 @@ class NicknameCommand(commands.Cog):
                     description="You do not have the permission to change nicknames of other members.",
                     color=disnake.Color.red()
                 )
+                await ctx.response.defer()
                 await ctx.send(embed=embed)
 
         except Exception as e:

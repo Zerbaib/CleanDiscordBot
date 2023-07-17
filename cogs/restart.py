@@ -20,7 +20,8 @@ class RestartCog(commands.Cog):
                 description="The bot is restarting. Please wait...",
                 color=disnake.Color.random()
             )
-            await ctx.response.send_message(embed=embed)
+            await ctx.response.defer()
+            await ctx.send(embed=embed)
 
             # Exécuter une nouvelle instance du script bot
             python = sys.executable
@@ -35,7 +36,7 @@ class RestartCog(commands.Cog):
                 description=f"```{e}```",
                 color=disnake.Color.red()
             )
-            await ctx.response.send_message(embed=embed)
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(RestartCog(bot))

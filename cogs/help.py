@@ -15,6 +15,7 @@ class HelpCommand(commands.Cog):
         embed.description = f"📚  Welcome to the command list of **{self.bot.user.name}**!\nHere you can find all the available commands and their usage."
         embed.add_field(name="Commands List", value="🔗  To view the list of commands, click [**here**](https://github.com/Zerbaib/CleanDiscordBot/blob/main/CMD.md)", inline=False)
         embed.set_footer(text="Clean Discord Bot", icon_url=self.bot.user.avatar.url)
+        await ctx.response.defer()
         await ctx.send(ephemeral=True, embed=embed)
 
 def setup(bot):
