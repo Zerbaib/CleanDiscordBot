@@ -14,7 +14,7 @@ class StopCommand(commands.Cog):
     async def stop(self, ctx):
         try:
             await ctx.response.defer()
-            await ctx.response.send_message("Stopping the bot...", ephemeral=True)
+            await ctx.send("Stopping the bot...", ephemeral=True)
             await self.bot.close()
         except Exception as e:
             embed = disnake.Embed(
@@ -22,7 +22,6 @@ class StopCommand(commands.Cog):
                 description=f"```{e}```",
                 color=disnake.Color.red()
             )
-            await ctx.response.defer()
             await ctx.send(embed=embed)
 
 def setup(bot):
