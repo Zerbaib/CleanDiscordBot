@@ -106,7 +106,7 @@ class Music(commands.Cog):
             await ctx.send(embed=embed)
 
     async def play_song(self, ctx):
-        if self.queue:
+        if self.voice and self.voice.is_connected() and self.queue:
             song = self.queue.pop(0)
 
             embed = disnake.Embed(
@@ -120,11 +120,12 @@ class Music(commands.Cog):
             if results and 'tracks' in results and results['tracks']['items']:
                 track = results['tracks']['items'][0]
                 url = track['external_urls']['spotify']
-                await self.voice.play(disnake.FFmpegPCMAudio(url), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_song(ctx), self.bot.loop))
+                self.voice.play(disnake.FFmpegPCMAudio(url), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_song(ctx), self.bot.loop))
 
         else:
-            await self.voice.disconnect()
-            self.voice = None
+            if self.voice:
+                await self.voice.disconnect()
+                self.voice = None
 
 def setup(bot):
     bot.add_cog(Music(bot))
