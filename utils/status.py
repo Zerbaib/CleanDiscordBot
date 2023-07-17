@@ -4,7 +4,8 @@ import asyncio
 status_messages = [
     {"name": "Version", "value": "", "type": disnake.ActivityType.watching},
     {"name": "Users", "value": "", "type": disnake.ActivityType.listening},
-    {"name": "Commands", "value": "", "type": disnake.ActivityType.playing}
+    {"name": "Commands", "value": "", "type": disnake.ActivityType.playing},
+    {"name": "Love", "value": "", "type": disnake.ActivityType.playing}
 ]
 
 async def update_status(bot):
@@ -19,6 +20,8 @@ async def update_status(bot):
                 status["value"] = f"{len(bot.users)} users"
             elif status["name"] == "Commands":
                 status["value"] = f"{len(bot.slash_commands)} commands"
+            elif status["name"] == "Love":
+                status["value"] = f"Love U <3"
 
         current_status = status_messages.pop(0)
         status_messages.append(current_status)
