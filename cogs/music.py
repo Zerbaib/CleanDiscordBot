@@ -101,12 +101,12 @@ class Music(commands.Cog):
             )
             await ctx.send(embed=embed)
 
-            ydl_opts = {'format': 'bestaudio'}
+            ydl_opts = {'format': 'bestaudio', 'default_search': 'ytsearch'}
             with youtube_dl.YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(song, download=False)
                 url2 = info['formats'][0]['url']
 
-            self.voice.play(disnake.FFmpegPCMAudio(url2, **FFMPEG_OPTIONS), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_song(ctx), self.bot.loop))
+            self.voice.play(disnake.FFmpegPCMAudio(url2), after=lambda e: asyncio.run_coroutine_threadsafe(self.play_song(ctx), self.bot.loop))
 
         else:
             await self.voice.disconnect()
