@@ -18,13 +18,13 @@ class Music(commands.Cog):
 
     @commands.slash_command(name='play', description='Play a song')
     async def play(self, ctx, song: str):
-        await ctx.defer()
         if not ctx.author.voice:
             embed = disnake.Embed(
                 title="Error",
                 description="You must be in a voice channel to use this command.",
                 color=disnake.Color.red()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
             return
 
@@ -38,6 +38,7 @@ class Music(commands.Cog):
                 description="I'm already playing music in another voice channel.",
                 color=disnake.Color.red()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
             return
 
@@ -49,6 +50,7 @@ class Music(commands.Cog):
                 description=f"The song '{song}' has been added to the queue.",
                 color=disnake.Color.blurple()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
         else:
             await self.play_song(ctx)
@@ -64,6 +66,7 @@ class Music(commands.Cog):
                 description="There is no song currently playing.",
                 color=disnake.Color.red()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='queue', description='Display the song queue')
@@ -74,6 +77,7 @@ class Music(commands.Cog):
                 description="The song queue is currently empty.",
                 color=disnake.Color.blurple()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
         else:
             embed = disnake.Embed(
@@ -83,6 +87,7 @@ class Music(commands.Cog):
             )
             for i, song in enumerate(self.queue, start=1):
                 embed.add_field(name=f"Song {i}", value=song, inline=False)
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
     async def play_song(self, ctx):
