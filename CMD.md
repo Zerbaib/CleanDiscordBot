@@ -14,6 +14,9 @@
     - [``/bet``](#bet-coin)
     - [``/dice``](#dice-coin)
     - [``/caster``](#caster-option-coin)
+  - **🪅 Other games**:
+    - [``/findnumber``](#findnumber)
+    - [``/guess``](#guess-number)
 - __**[For staffs](#-for-staffs)**:__
   - **🔨 Moderation**:
     - [``/nick``](#nick-user-nick)
@@ -22,7 +25,7 @@
     - [``/kick``](#kick-user-reason)
     - [``/ban``](#ban-user-reason)
   - **🔧 Management**:
-    - [``/addemoji``]
+    - [``/addemoji``](#addemoji-emoji-name)
 - __**[For owner](#-for-owner)**:__
   - **🔧 Power**:
     - [``/check``](#check)
@@ -95,6 +98,18 @@
 
     ```
     Select your choice between: red, black, even, odd and try to win x2 your bet
+    ```
+
+### **`/findnumber`**:
+
+    ```
+    Start a game of the number finder.
+    ```
+
+### **`/guess <number>`**:
+
+    ```
+    Try to find the number.
     ```
 
 ## 🔱 For staffs
