@@ -54,6 +54,7 @@ class EarnCommand(commands.Cog):
                     description=f"You earned 100 coins!\nYour total balance: ``{earnings}`` coins.",
                     color=disnake.Color.green()
                 )
+                await ctx.response.defer()
                 await ctx.response.send_message(embed=embed)
             else:
                 remaining_time = cooldown_time - (current_time - last_earn_time)
@@ -65,6 +66,7 @@ class EarnCommand(commands.Cog):
                     description=f"You are on cooldown.\nTry again in ``{remaining_time_str}``.",
                     color=disnake.Color.red()
                 )
+                await ctx.response.defer()
                 await ctx.response.send_message(embed=embed)
 
 def setup(bot):
