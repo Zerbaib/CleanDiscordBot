@@ -22,7 +22,7 @@ class Music(commands.Cog):
     async def on_connect(self):
         with open('config.json', 'r') as config_file:
             config = json.load(config_file)
-            spotify_client_id = config.get('spotify_client_id')
+            spotify_client_id = config.get('SPOTIFY_API')
 
         if spotify_client_id:
             self.spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=spotify_client_id))
