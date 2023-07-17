@@ -82,7 +82,7 @@ class BotInfoCommand(commands.Cog):
             embed.set_thumbnail(url=self.bot.user.avatar.url)
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
             
-            await ctx.response.defer()
+            # await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
             embed = disnake.Embed(
