@@ -12,8 +12,8 @@ class StopCommand(commands.Cog):
     @commands.slash_command(name="stop", description="Stop the bot")
     @commands.is_owner()
     async def stop(self, ctx):
-        await ctx.response.defer()
         try:
+            await ctx.response.defer()
             await ctx.response.send_message("Stopping the bot...", ephemeral=True)
             await self.bot.close()
         except Exception as e:
@@ -22,6 +22,7 @@ class StopCommand(commands.Cog):
                 description=f"```{e}```",
                 color=disnake.Color.red()
             )
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
 def setup(bot):
