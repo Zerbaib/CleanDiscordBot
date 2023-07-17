@@ -37,6 +37,7 @@ class FindTheNumber(commands.Cog):
             embed.add_field(name="Instructions:", value="Guess the correct number within the given range.", inline=False)
             embed.add_field(name="Attempts:", value="``0/25``", inline=False)
 
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='guess', description="Guess the number!")
@@ -89,6 +90,7 @@ class FindTheNumber(commands.Cog):
                 embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
                 embed.add_field(name="Attempts:", value=f"``{attempts}/25``", inline=False)
 
+            await ctx.response.defer()
             await ctx.send(embed=embed)
 
 def setup(bot):
