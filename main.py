@@ -42,7 +42,7 @@ if not os.path.exists(config_file_path):
             "YOUR_ID": id_client,
             "MUTE_ROLE_ID": mute_id,
             "SPOTIFY_API_ID": api_spo_id,
-            "SPOTIFY_API": api_spo,
+            "SPOTIFY_API_SECRET": api_spo,
             "del_time": 3
         }
         json.dump(config_data, config_file, indent=4)

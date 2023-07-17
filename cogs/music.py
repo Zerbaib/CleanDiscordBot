@@ -23,7 +23,7 @@ class Music(commands.Cog):
         with open('config.json', 'r') as config_file:
             config = json.load(config_file)
             spotify_client_id = config.get('SPOTIFY_API_ID')
-            spotify_client_secret = config.get('SPOTIFY_API')
+            spotify_client_secret = config.get('SPOTIFY_API_SECRET')
 
         if spotify_client_id and spotify_client_secret:
             auth_manager = SpotifyClientCredentials(client_id=spotify_client_id, client_secret=spotify_client_secret)
