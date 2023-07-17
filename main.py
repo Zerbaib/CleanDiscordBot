@@ -31,7 +31,8 @@ if not os.path.exists(config_file_path):
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         mute_id = int(input("Enter role id of muted role:\n"))
-        api_spo = input("Enter Client Id of your Spotify app:\n")
+        api_spo_id = input("Enter Client Id of your Spotify app:\n")
+        api_spo = input("Enter Client secret of your Spotify app:\n")
         config_data = {
             "TOKEN": token,
             "PREFIX": prefix,
@@ -40,6 +41,7 @@ if not os.path.exists(config_file_path):
             "AUTO_VOICE_ID": voice_id,
             "YOUR_ID": id_client,
             "MUTE_ROLE_ID": mute_id,
+            "SPOTIFY_API_ID": api_spo_id,
             "SPOTIFY_API": api_spo,
             "del_time": 3
         }

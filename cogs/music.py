@@ -22,12 +22,14 @@ class Music(commands.Cog):
     async def on_connect(self):
         with open('config.json', 'r') as config_file:
             config = json.load(config_file)
-            spotify_client_id = config.get('SPOTIFY_API')
+            spotify_client_id = config.get('SPOTIFY_API_ID')
+            spotify_client_secret = config.get('SPOTIFY_API')
 
-        if spotify_client_id:
-            self.spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id=spotify_client_id))
+        if spotify_client_id and spotify_client_secret:
+            auth_manager = SpotifyClientCredentials(client_id=spotify_client_id, client_secret=spotify_client_secret)
+            self.spotify = spotipy.Spotify(auth_manager=auth_manager)
         else:
-            print("Error: Spotify client ID not found in config.json")
+            print("Error: Spotify client ID or client secret not found in config.json")
 
     @commands.slash_command(name='play', description='Play a song')
     async def play(self, ctx, song: str):
@@ -114,7 +116,7 @@ class Music(commands.Cog):
             )
             await ctx.send(embed=embed)
 
-            results = self.spotify.search(q=song, limit=1)
+            results = self.spotify.search(q=song, limit=1, type='track')
             if results and 'tracks' in results and results['tracks']['items']:
                 track = results['tracks']['items'][0]
                 url = track['external_urls']['spotify']
