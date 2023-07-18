@@ -48,9 +48,22 @@ class SlotMachine(commands.Cog):
         for _ in range(3):
             symbol = random.choice(reels)  # Select a random symbol for each reel
             result.append(symbol)
-
+        random.shuffle(reels)
+        ligne1 = []
+        for _ in range(3):
+            symbol = random.choice(reels)  # Select a random symbol for each reel
+            ligne1.append(symbol)
+        ligne2 = []
+        for _ in range(3):
+            symbol = random.choice(reels)  # Select a random symbol for each reel
+            ligne2.append(symbol)
         embed = disnake.Embed(title="Slot Machine", color=disnake.Color.blurple())
-        embed.add_field(name="Reels", value=f"``{result[0]} | {result[1]} | {result[2]}``", inline=False)
+        embed.add_field(name="Reels",
+                        value=f"< ``{ligne1[0]} | {ligne1[1]} | {ligne1[2]}`` >"
+                              f"**>** ``{result[0]} | {result[1]} | {result[2]}`` **<**"
+                              f"< ``{ligne2[0]} | {ligne2[1]} | {ligne2[2]}`` ",
+                        inline=False
+                        )
 
         if result[0] == result[1] == result[2]:
             win_amount = bet * 10  # Win 10 times the bet amount for matching all 3 reels
