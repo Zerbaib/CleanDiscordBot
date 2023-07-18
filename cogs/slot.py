@@ -60,7 +60,7 @@ class SlotMachine(commands.Cog):
         embed = disnake.Embed(title="Slot Machine", color=disnake.Color.blurple())
         embed.add_field(name="Reels",
                         value=f"| ``{ligne1[0]} | {ligne1[1]} | {ligne1[2]}`` |\n"
-                              f"**> ``{result[0]} | {result[1]} | {result[2]}`` <**\n"
+                              f"**>** **``{result[0]} | {result[1]} | {result[2]}``** **<**\n"
                               f"| ``{ligne2[0]} | {ligne2[1]} | {ligne2[2]}`` |",
                         inline=False
                         )
