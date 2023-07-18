@@ -7,7 +7,7 @@ class SlotMachine(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='slot', description='Joue à la machine à sous')
+    @commands.slash_command(name='slot', description='Joue à la machine à sous')
     async def slot(self, ctx, bet: int):
         if bet <= 0:
             embed = disnake.Embed(
