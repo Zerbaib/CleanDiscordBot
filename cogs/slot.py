@@ -7,12 +7,12 @@ class SlotMachine(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(name='slot', description='Joue à la machine à sous')
+    @commands.slash_command(name='slot', description='Play the slot machine')
     async def slot(self, ctx, bet: int):
         if bet <= 0:
             embed = disnake.Embed(
-                title="Machine à sous",
-                description="La mise doit être supérieure à zéro.",
+                title="Slot Machine",
+                description="The bet must be greater than zero.",
                 color=disnake.Color.red()
             )
             await ctx.send(embed=embed)
@@ -24,8 +24,8 @@ class SlotMachine(commands.Cog):
         user_id = str(ctx.author.id)
         if user_id not in data:
             embed = disnake.Embed(
-                title="Machine à sous",
-                description="Vous n'êtes pas enregistré dans le casino. Utilisez la commande `/earn` pour vous inscrire.",
+                title="Slot Machine",
+                description="You are not registered in the casino. Use the `/earn` command to sign up.",
                 color=disnake.Color.red()
             )
             await ctx.send(embed=embed)
@@ -34,38 +34,38 @@ class SlotMachine(commands.Cog):
         balance = data[user_id]
         if balance < bet:
             embed = disnake.Embed(
-                title="Machine à sous",
-                description="Solde insuffisant pour effectuer la mise.",
+                title="Slot Machine",
+                description="Insufficient balance to place the bet.",
                 color=disnake.Color.red()
             )
             await ctx.send(embed=embed)
             return
 
-        reels = ["🍒", "🍊", "🍋", "🍇", "🔔", "💎", "🍀", "🍎"]  # Symboles des rouleaux
-        random.shuffle(reels)  # Mélanger les symboles
+        reels = ["🍒", "🍊", "🍋", "🍇", "🔔", "💎", "🍀", "🍎"]  # Reel symbols
+        random.shuffle(reels)  # Shuffle the symbols
 
         result = []
         for _ in range(3):
-            symbol = random.choice(reels)  # Sélectionner un symbole aléatoire pour chaque rouleau
+            symbol = random.choice(reels)  # Select a random symbol for each reel
             result.append(symbol)
 
-        embed = disnake.Embed(title="Machine à sous", color=disnake.Color.blurple())
-        embed.add_field(name="Rouleaux", value=f"``{result[0]} | {result[1]} | {result[2]}``", inline=False)
+        embed = disnake.Embed(title="Slot Machine", color=disnake.Color.blurple())
+        embed.add_field(name="Reels", value=f"``{result[0]} | {result[1]} | {result[2]}``", inline=False)
 
         if result[0] == result[1] == result[2]:
-            win_amount = bet * 10  # Gagner 10 fois la mise en cas de correspondance sur les 3 rouleaux
+            win_amount = bet * 10  # Win 10 times the bet amount for matching all 3 reels
             balance += win_amount
-            embed.add_field(name="Résultat", value=f"Félicitations ! Vous avez gagné ``{win_amount}`` pièces.", inline=False)
+            embed.add_field(name="Result", value=f"Congratulations! You won ``{win_amount}`` coins.", inline=False)
         else:
             balance -= bet
-            embed.add_field(name="Résultat", value="Dommage ! Vous n'avez pas obtenu de correspondance.", inline=False)
+            embed.add_field(name="Result", value="Sorry! You didn't get a match.", inline=False)
 
         data[user_id] = balance
 
         with open('data/casino.json', 'w') as file:
             json.dump(data, file, indent=4)
 
-        embed.add_field(name="Solde", value=f"Solde restant : ``{balance}`` pièces.", inline=False)
+        embed.add_field(name="Balance", value=f"Remaining balance: ``{balance}`` coins.", inline=False)
         await ctx.send(embed=embed)
     
 def setup(bot):
