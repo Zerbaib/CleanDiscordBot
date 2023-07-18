@@ -50,12 +50,12 @@ class SlotMachine(commands.Cog):
             result.append(symbol)
 
         embed = disnake.Embed(title="Machine à sous", color=disnake.Color.blurple())
-        embed.add_field(name="Rouleaux", value=f"{result[0]} | {result[1]} | {result[2]}", inline=False)
+        embed.add_field(name="Rouleaux", value=f"``{result[0]} | {result[1]} | {result[2]}``", inline=False)
 
         if result[0] == result[1] == result[2]:
             win_amount = bet * 10  # Gagner 10 fois la mise en cas de correspondance sur les 3 rouleaux
             balance += win_amount
-            embed.add_field(name="Résultat", value=f"Félicitations ! Vous avez gagné {win_amount} pièces.", inline=False)
+            embed.add_field(name="Résultat", value=f"Félicitations ! Vous avez gagné ``{win_amount}`` pièces.", inline=False)
         else:
             balance -= bet
             embed.add_field(name="Résultat", value="Dommage ! Vous n'avez pas obtenu de correspondance.", inline=False)
@@ -65,7 +65,7 @@ class SlotMachine(commands.Cog):
         with open('data/casino.json', 'w') as file:
             json.dump(data, file, indent=4)
 
-        embed.add_field(name="Solde", value=f"Solde restant : {balance} pièces.", inline=False)
+        embed.add_field(name="Solde", value=f"Solde restant : ``{balance}`` pièces.", inline=False)
         await ctx.send(embed=embed)
     
 def setup(bot):
