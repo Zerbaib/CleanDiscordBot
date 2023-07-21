@@ -27,7 +27,7 @@ if not os.path.exists(config_file_path):
         token = input("Enter the bot's token:\n")
         prefix = input("Enter the bot's prefix:\n")
         log_id = int(input("Enter the log's channel ID:\n"))
-        poll_id = int(input("Enter the pull's channel ID:\n"))
+        poll_id = int(input("Enter the poll's channel ID:\n"))
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         mute_id = int(input("Enter role id of muted role:\n"))
