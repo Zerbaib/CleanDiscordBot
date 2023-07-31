@@ -20,6 +20,7 @@ class RankCog(commands.Cog):
         print('========== ⚙️ Rank ⚙️ ==========')
         print('🔩 /rank has been loaded')
         print('🔩 /leaderboard has been loaded')
+        print()
 
     def load_data(self):
         if os.path.exists(self.data_path):

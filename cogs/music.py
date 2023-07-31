@@ -18,6 +18,7 @@ class MusicCog(commands.Cog):
         print('🔩 /play has been loaded')
         print('🔩 /skip has been loaded')
         print('🔩 /queue has been loaded')
+        print()
 
     @commands.Cog.listener()
     async def on_connect(self):

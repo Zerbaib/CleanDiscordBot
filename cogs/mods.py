@@ -17,6 +17,7 @@ class ModsCog(commands.Cog):
         print('🔩 /kick has been loaded')
         print('🔩 /ban has been loaded')
         print('🔩 /addemoji has been loaded')
+        print()
 
     @commands.slash_command(name="clear", description="Clear a specified number of messages in the channel")
     @commands.has_permissions(manage_messages=True)

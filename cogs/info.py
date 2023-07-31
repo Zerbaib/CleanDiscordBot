@@ -16,6 +16,7 @@ class InfoCog(commands.Cog):
         print('🔩 /botinfo has been loaded')
         print('🔩 /userinfo has been loaded')
         print('🔩 /serverinfo has been loaded')
+        print()
     
     @commands.slash_command(name="botinfo", description="Get the bot's info")
     async def botinfo(self, ctx):
