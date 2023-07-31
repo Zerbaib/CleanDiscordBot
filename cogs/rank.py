@@ -5,7 +5,7 @@ import os
 import random
 
 class RankCog(commands.Cog):
-    def __init__(self, bot, embed_color, base_level, level_factor):
+    def __init__(self, bot, base_level, level_factor):
         self.bot = bot
         self.data_path = 'data/ranks.json'
         self.config_path = 'config.json'
