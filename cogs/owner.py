@@ -5,6 +5,7 @@ import requests
 import subprocess
 import sys
 import os
+from utils import error
 
 class OwnerCog(commands.Cog):
     def __init__(self, bot):
@@ -52,20 +53,15 @@ class OwnerCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title=f"Error during the `/check`",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-            )
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
-            await ctx.response.send_message(embed=embed)
+            error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="update", description="Get the latest update of the bot")
     @commands.is_owner()
     async def update(self, ctx):
-        with open("config.json", 'r') as config_file:
-            config = json.load(config_file)
         try:
+            with open("config.json", 'r') as config_file:
+                config = json.load(config_file)
             embed = disnake.Embed(
                 title=f"Update of ``{self.bot.user.name}``",
                 description=f"Please wait...",
@@ -97,13 +93,8 @@ class OwnerCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title=f"Error during the ``/update``",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-            )
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
-            await ctx.response.send_message(embed=embed)
+            error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="restart", description="Restart the bot")
     @commands.is_owner()  # Exige que l'auteur de la commande soit le propriétaire du bot
@@ -125,11 +116,7 @@ class OwnerCog(commands.Cog):
             sys.exit()
 
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during restart",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-            )
+            error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="stop", description="Stop the bot")
@@ -139,11 +126,7 @@ class OwnerCog(commands.Cog):
             await ctx.send("Stopping the bot...", ephemeral=True)
             await self.bot.close()
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/stop`",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-            )
+            error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

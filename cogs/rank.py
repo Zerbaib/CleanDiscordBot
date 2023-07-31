@@ -3,6 +3,7 @@ from disnake.ext import commands
 import json
 import os
 import random
+from utils import error
 
 class RankCog(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
@@ -81,41 +82,49 @@ class RankCog(commands.Cog):
 
     @commands.slash_command(name='rank', description='Displays your current rank or the rank of a user')
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
-        if user is None:
-            user_id = str(inter.author.id)
-            user_name = str(inter.author.name)
-        else:
-            user_id = str(user.id)
-            user_name = str(user)
-        
-        if user_id in self.ranks:
-            xp = self.ranks[user_id]["xp"]
-            level = self.ranks[user_id]["level"]
-            xp_required = 5 * (level ** 2) + 10 * level + 10
-            user_rank = self.get_user_rank(user_id)
-            embed = disnake.Embed(
-                title=f"{user_name}'s rank -> #{user_rank}",
-                description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
-                color=disnake.Color.old_blurple()
-            )
+        try:
+            if user is None:
+                user_id = str(inter.author.id)
+                user_name = str(inter.author.name)
+            else:
+                user_id = str(user.id)
+                user_name = str(user)
+            
+            if user_id in self.ranks:
+                xp = self.ranks[user_id]["xp"]
+                level = self.ranks[user_id]["level"]
+                xp_required = 5 * (level ** 2) + 10 * level + 10
+                user_rank = self.get_user_rank(user_id)
+                embed = disnake.Embed(
+                    title=f"{user_name}'s rank -> #{user_rank}",
+                    description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
+                    color=disnake.Color.old_blurple()
+                )
 
-            await inter.response.send_message(embed=embed)
-        else:
-            await inter.response.send_message(f'{user_name} does not have a rank yet.')
+                await inter.response.send_message(embed=embed)
+            else:
+                await inter.response.send_message(f'{user_name} does not have a rank yet.')
+        except Exception as e:
+            error.error_embed(e)
+            await inter.send(embed=embed)
 
     @commands.slash_command(name='leaderboard', description='Show the top 10 xp leaderboard')
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
-        sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-        embed = disnake.Embed(title="Leaderboard", color=disnake.Color.old_blurple())
-        for i, (user_id, user_data) in enumerate(sorted_users):
-            try:
-                user = await self.bot.fetch_user(int(user_id))
-                embed.add_field(name=f"{i+1}. {user.name}", value=f"```Level: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
-            except disnake.NotFound:
-                pass
-            if i == 9:
-                break
-        await inter.send(embed=embed)
+        try:
+            sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
+            embed = disnake.Embed(title="Leaderboard", color=disnake.Color.old_blurple())
+            for i, (user_id, user_data) in enumerate(sorted_users):
+                try:
+                    user = await self.bot.fetch_user(int(user_id))
+                    embed.add_field(name=f"{i+1}. {user.name}", value=f"```Level: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
+                except disnake.NotFound:
+                    pass
+                if i == 9:
+                    break
+            await inter.send(embed=embed)
+        except Exception as e:
+            error.error_embed(e)
+            await inter.send(embed=embed)
 
     def get_user_rank(self, user_id):
         sorted_ranks = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
