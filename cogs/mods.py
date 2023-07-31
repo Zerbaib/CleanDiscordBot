@@ -31,7 +31,7 @@ class ModsCog(commands.Cog):
                 color=disnake.Color.dark_green()
             )
             await ctx.response.defer()
-            await ctx.send(ephemeral=True, embed=embed)
+            await ctx.send(embed=embed, ephemeral=True)
 
         except Exception as e:
             embed = disnake.Embed(
