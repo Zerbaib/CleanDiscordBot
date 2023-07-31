@@ -9,6 +9,7 @@ from utils import status
 config_file_path = "config.json"
 casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
+give_data_file_path = "data/giveaway.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
@@ -21,6 +22,9 @@ if not os.path.exists(casino_cooldown_data_file_path):
 if not os.path.exists(rank_data_file_path):
     with open(rank_data_file_path, 'w') as rank_file:
         json.dump({}, rank_file)
+if not os.path.exists(give_data_file_path):
+    with open(give_data_file_path, 'w') as give_file:
+        json.dump({}, give_file)
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
