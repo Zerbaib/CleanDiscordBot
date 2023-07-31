@@ -2,13 +2,15 @@ import random
 import disnake
 from disnake.ext import commands
 
-class FindTheNumber(commands.Cog):
+class GameCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.games = {}
 
     @commands.Cog.listener()
     async def on_ready(self):
+        print('========== ⚙️ Game ⚙️ ==========')
+        print('===== 🔗 Numbers')
         print('🔩 /findnumber has been loaded')
         print('🔩 /guess has been loaded')
 
@@ -94,4 +96,4 @@ class FindTheNumber(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(FindTheNumber(bot))
+    bot.add_cog(GameCog(bot))
