@@ -59,25 +59,25 @@ class RankCog(commands.Cog):
             lvl = lvl + 1
             self.ranks[user_id]["level"] = lvl
             self.save_data()
-            await self.check_level_roles(message.author, lvl)  # Vérifier les rôles pour le niveau atteint
             xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
             embed = disnake.Embed(
                 title=f'Congratulations, {message.author.name}!',
                 description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
                 color=disnake.Color.brand_green()
             )
+            
+            if 'level_roles' in self.config:
+                for level_threshold, role_id in self.config['level_roles'].items():
+                    if lvl >= int(level_threshold):
+                        role = message.author.guild.get_role(role_id)
+                        if role:
+                            await message.author.add_roles(role)
+                            embed.add_field(name="Nice you get a new role !", value=f"You win {role.mention} !")
+
             msg = await message.channel.send(embed=embed)
-            await msg.delete(delay=5)  # Supprimer le message après 5 secondes
+            await msg.delete(delay=5)
 
         self.save_data()
-
-    async def check_level_roles(self, user, level):
-        if 'level_roles' in self.config:
-            for level_threshold, role_id in self.config['level_roles'].items():
-                if level >= int(level_threshold):
-                    role = user.guild.get_role(role_id)
-                    if role:
-                        await user.add_roles(role)
 
     @commands.slash_command(name='rank', description='Displays your current rank or the rank of a user')
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
