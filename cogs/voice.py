@@ -31,11 +31,8 @@ class CustomVoiceCog(commands.Cog):
                 member: disnake.PermissionOverwrite(connect=True, manage_channels=True)
             }
 
-            channel = await guild.create_voice_channel(name=member.display_name, overwrites=overwrites, category=category)
+            channel = await guild.create_voice_channel(name=member.display_name, overwrites=overwrites, category=category, user_limit=10)
             await member.move_to(channel)
-
-            # Définir la limite de membre du canal vocal
-            await channel.edit(user_limit=10)
 
             # Ajouter le canal vocal temporaire au dictionnaire avec le temps de création actuel
             self.temp_channels[channel.id] = asyncio.get_event_loop().time()
