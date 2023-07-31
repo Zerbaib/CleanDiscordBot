@@ -35,7 +35,7 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed, ephemeral=True)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="mute", description="Mute a member")
@@ -58,7 +58,7 @@ class ModsCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="unmute", description="Unmute a member")
@@ -82,7 +82,7 @@ class ModsCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="nick", description="Change the nickname of a member")
@@ -119,7 +119,7 @@ class ModsCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="kick", description="Kick a user from the server")
@@ -138,7 +138,7 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="ban", description="Ban a user from the server")
@@ -157,7 +157,7 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='addemoji', description="Add emoji to the server.")
@@ -189,7 +189,7 @@ class ModsCog(commands.Cog):
                 )
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

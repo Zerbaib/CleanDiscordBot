@@ -60,7 +60,7 @@ class CasinoCog(commands.Cog):
             with open(self.data_file, 'w') as file:
                 json.dump(data, file, indent=4)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="earn", description="Earn coins")
@@ -117,7 +117,7 @@ class CasinoCog(commands.Cog):
                     await ctx.response.defer()
                     await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="bet", description="Bet coins | x2 or lost")
@@ -161,7 +161,7 @@ class CasinoCog(commands.Cog):
                 json.dump(data, file, indent=4)
                 file.truncate()
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="dice", description="Play the dice game")
@@ -206,7 +206,7 @@ class CasinoCog(commands.Cog):
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="caster", description="Play a game of caster")
@@ -274,7 +274,7 @@ class CasinoCog(commands.Cog):
             with open(self.data_file, 'w') as file:
                 json.dump(data, file, indent=4)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='slot', description='Play the slot machine')
@@ -352,7 +352,7 @@ class CasinoCog(commands.Cog):
             embed.add_field(name="Balance", value=f"Remaining balance: ``{balance}`` coins.", inline=False)
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

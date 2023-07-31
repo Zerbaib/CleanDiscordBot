@@ -25,7 +25,7 @@ class OtherCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(ephemeral=True, embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="ping", description="Get the bot's latency",)
@@ -40,7 +40,7 @@ class OtherCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(ephemeral=True, embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="poll", description="Create a poll")
@@ -74,7 +74,7 @@ class OtherCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send("Poll created successfully.", ephemeral=True)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

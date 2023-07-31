@@ -53,7 +53,7 @@ class OwnerCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="update", description="Get the latest update of the bot")
@@ -93,7 +93,7 @@ class OwnerCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="restart", description="Restart the bot")
@@ -116,7 +116,7 @@ class OwnerCog(commands.Cog):
             sys.exit()
 
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="stop", description="Stop the bot")
@@ -126,7 +126,7 @@ class OwnerCog(commands.Cog):
             await ctx.send("Stopping the bot...", ephemeral=True)
             await self.bot.close()
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

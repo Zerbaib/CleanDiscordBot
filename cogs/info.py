@@ -89,7 +89,7 @@ class InfoCog(commands.Cog):
             # await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="userinfo", description="Get user information")
@@ -123,7 +123,7 @@ class InfoCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="serverinfo", description="Display server information")
@@ -160,7 +160,7 @@ class InfoCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):

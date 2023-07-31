@@ -74,7 +74,7 @@ class MusicCog(commands.Cog):
             else:
                 await self.play_song(ctx)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='skip', description='Skip the current song')
@@ -92,7 +92,7 @@ class MusicCog(commands.Cog):
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='queue', description='Display the song queue')
@@ -117,7 +117,7 @@ class MusicCog(commands.Cog):
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     async def play_song(self, ctx):

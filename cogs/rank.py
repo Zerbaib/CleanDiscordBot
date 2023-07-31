@@ -105,7 +105,7 @@ class RankCog(commands.Cog):
             else:
                 await inter.response.send_message(f'{user_name} does not have a rank yet.')
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await inter.send(embed=embed)
 
     @commands.slash_command(name='leaderboard', description='Show the top 10 xp leaderboard')
@@ -123,7 +123,7 @@ class RankCog(commands.Cog):
                     break
             await inter.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await inter.send(embed=embed)
 
     def get_user_rank(self, user_id):

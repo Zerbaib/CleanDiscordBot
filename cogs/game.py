@@ -48,7 +48,7 @@ class GameCog(commands.Cog):
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='guess', description="Guess the number!")
@@ -105,7 +105,7 @@ class GameCog(commands.Cog):
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="rps", description="Play rock-paper-scissors versus the bot.")
@@ -178,7 +178,7 @@ class GameCog(commands.Cog):
                 # Use original_response() here without await
                 await original_response.edit(embed=timeout_embed)
         except Exception as e:
-            error.error_embed(e)
+            embed = error.error_embed(e)
             await inter.send(embed=embed)
 
 def setup(bot):
