@@ -8,7 +8,7 @@ from utils import status
 
 config_file_path = "config.json"
 casino_data_file_path = "data/casino.json"
-rank_data_file_path = "data/rank.json"
+rank_data_file_path = "data/ranks.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
@@ -31,6 +31,9 @@ if not os.path.exists(config_file_path):
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         mute_id = int(input("Enter role id of muted role:\n"))
+        rank1 = int(input("Enter role id of level 10 role:\n"))
+        rank2 = int(input("Enter role id of level 25 role:\n"))
+        rank3 = int(input("Enter role id of level 50 role:\n"))
         api_spo_id = input("Enter Client Id of your Spotify app:\n")
         api_spo = input("Enter Client secret of your Spotify app:\n")
         config_data = {
@@ -43,7 +46,12 @@ if not os.path.exists(config_file_path):
             "MUTE_ROLE_ID": mute_id,
             "SPOTIFY_API_ID": api_spo_id,
             "SPOTIFY_API_SECRET": api_spo,
-            "del_time": 3
+            "del_time": 3,
+            "level_roles": {
+                "10": rank1,
+                "25": rank2,
+                "50": rank3
+            }
         }
         json.dump(config_data, config_file, indent=4)
     with open(config_file_path, 'r') as config_file:

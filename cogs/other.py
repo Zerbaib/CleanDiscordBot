@@ -12,6 +12,7 @@ class OtherCog(commands.Cog):
         print('🔩 /help has been loaded')
         print('🔩 /ping has been loaded')
         print('🔩 /poll has been loaded')
+        print()
 
     @commands.slash_command(name="help", description="Show the list of available commands")
     async def help(self, ctx):

@@ -13,6 +13,7 @@ class GameCog(commands.Cog):
         print('===== 🔗 Numbers')
         print('🔩 /findnumber has been loaded')
         print('🔩 /guess has been loaded')
+        print()
 
     @commands.slash_command(name='findnumber', description="Find the hidden number!")
     async def findnumber(self, ctx):

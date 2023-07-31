@@ -18,6 +18,7 @@ class OwnerCog(commands.Cog):
         print('🔩 /update has been loaded')
         print('🔩 /restart has been loaded')
         print('🔩 /stop has been loaded')
+        print()
 
     def get_local_version(self):
         with open("version.txt", "r") as version_file:

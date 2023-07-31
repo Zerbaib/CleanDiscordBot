@@ -35,6 +35,7 @@ class CasinoCog(commands.Cog):
         print('🔩 /dice has been loaded')
         print('🔩 /caster has been loaded')
         print('🔩 /slot has been loaded')
+        print()
 
     @commands.slash_command(name="balance", description="Check your balance")
     async def balance(self, ctx):
