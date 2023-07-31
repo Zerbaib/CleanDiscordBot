@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import json
 import asyncio
 
-class Music(commands.Cog):
+class MusicCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.queue = []
@@ -14,6 +14,7 @@ class Music(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
+        print('========== ⚙️ Music ⚙️ ==========')
         print('🔩 /play has been loaded')
         print('🔩 /skip has been loaded')
         print('🔩 /queue has been loaded')
@@ -128,4 +129,4 @@ class Music(commands.Cog):
                 self.voice = None
 
 def setup(bot):
-    bot.add_cog(Music(bot))
+    bot.add_cog(MusicCog(bot))
