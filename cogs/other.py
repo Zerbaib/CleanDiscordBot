@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 import json
+from utils import error
 
 class OtherCog(commands.Cog):
     def __init__(self, bot):
@@ -16,12 +17,16 @@ class OtherCog(commands.Cog):
 
     @commands.slash_command(name="help", description="Show the list of available commands")
     async def help(self, ctx):
-        embed = disnake.Embed(title="Need Help ?", color=disnake.Color.blurple())
-        embed.description = f"📚  Welcome to the command list of **{self.bot.user.name}**!\nHere you can find all the available commands and their usage."
-        embed.add_field(name="Commands List", value="🔗  To view the list of commands, click [**here**](https://github.com/Zerbaib/CleanDiscordBot/blob/main/CMD.md)", inline=False)
-        embed.set_footer(text="Clean Discord Bot", icon_url=self.bot.user.avatar.url)
-        await ctx.response.defer()
-        await ctx.send(ephemeral=True, embed=embed)
+        try:
+            embed = disnake.Embed(title="Need Help ?", color=disnake.Color.blurple())
+            embed.description = f"📚  Welcome to the command list of **{self.bot.user.name}**!\nHere you can find all the available commands and their usage."
+            embed.add_field(name="Commands List", value="🔗  To view the list of commands, click [**here**](https://github.com/Zerbaib/CleanDiscordBot/blob/main/CMD.md)", inline=False)
+            embed.set_footer(text="Clean Discord Bot", icon_url=self.bot.user.avatar.url)
+            await ctx.response.defer()
+            await ctx.send(ephemeral=True, embed=embed)
+        except Exception as e:
+            error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="ping", description="Get the bot's latency",)
     async def ping(self, ctx):
@@ -35,13 +40,8 @@ class OtherCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(ephemeral=True, embed=embed)
         except Exception as e:
-            embed = disnake.Embed(
-                title=f"Error during the ``/ping``",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-                )
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
-            await ctx.response.send_message(embed=embed)
+            error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="poll", description="Create a poll")
     async def poll(self, ctx, question: str):
@@ -74,11 +74,7 @@ class OtherCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send("Poll created successfully.", ephemeral=True)
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/poll`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
+            error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):
