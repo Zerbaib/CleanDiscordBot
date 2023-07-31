@@ -116,7 +116,8 @@ class GameCog(commands.Cog):
         embed.set_author(name=inter.author.display_name, icon_url=inter.author.avatar.url)
 
         # Send the initial embed in the interaction response and store the response
-        original_response = await inter.respond(embed=embed)
+        original_response = await inter.send(embed=embed)
+        original_response = await inter.original_response()
 
         for emoji in reactions:
             await original_response.add_reaction(emoji)
@@ -142,19 +143,19 @@ class GameCog(commands.Cog):
 
             if user_choice_index == bot_choice_index:
                 result_embed.description = f"**It's a tie!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
-                result_embed.colour = 0xE8C02A
+                result_embed.colour = disnake.Color.blurple()
             elif user_choice_index == 0 and bot_choice_index == 2:
                 result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
-                result_embed.colour = 0xE8C02A
+                result_embed.colour = disnake.Color.brand_green()
             elif user_choice_index == 1 and bot_choice_index == 0:
                 result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
-                result_embed.colour = 0xE8C02A
+                result_embed.colour = disnake.Color.brand_green()
             elif user_choice_index == 2 and bot_choice_index == 1:
                 result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
-                result_embed.colour = 0xE8C02A
+                result_embed.colour = disnake.Color.brand_green()
             else:
                 result_embed.description = f"**I won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
-                result_embed.colour = 0xE02B2B
+                result_embed.colour = disnake.Color.brand_red()
 
             # Use original_response() here without await
             await original_response.edit(embed=result_embed)
