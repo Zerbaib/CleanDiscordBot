@@ -71,12 +71,16 @@ class RankCog(commands.Cog):
                 for level_threshold, role_id in self.config['level_roles'].items():
                     if lvl >= int(level_threshold):
                         role = message.author.guild.get_role(role_id)
-                        if role:
+                        if role and role not in message.author.roles:
                             await message.author.add_roles(role)
                             embed.add_field(name="Nice you get a new role !", value=f"You win {role.mention} !")
+                            role_added = True
 
             msg = await message.channel.send(embed=embed)
-            await msg.delete(delay=5)
+            if role_added == True:
+                await msg.delete(delay=15)
+            else:
+                await msg.delete(delay=10)
 
         self.save_data()
 
