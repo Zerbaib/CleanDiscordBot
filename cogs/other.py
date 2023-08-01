@@ -9,7 +9,7 @@ class OtherCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('========== ⚙️ Music ⚙️ ==========')
+        print('========== ⚙️ Other ⚙️ ==========')
         print('🔩 /help has been loaded')
         print('🔩 /ping has been loaded')
         print('🔩 /poll has been loaded')
