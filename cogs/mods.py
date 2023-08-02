@@ -2,6 +2,7 @@ import disnake
 from disnake.ext import commands
 import json
 import aiohttp
+from utils import error
 
 class ModsCog(commands.Cog):
     def __init__(self, bot):
@@ -34,12 +35,8 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed, ephemeral=True)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/clear`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
-            await ctx.response.send_message(ephemeral=True, embed=embed)
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="mute", description="Mute a member")
     @commands.has_permissions(manage_messages=True)
@@ -61,12 +58,8 @@ class ModsCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/mute`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
-            await ctx.response.send_message(embed=embed)
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="unmute", description="Unmute a member")
     @commands.has_permissions(manage_messages=True)
@@ -89,12 +82,8 @@ class ModsCog(commands.Cog):
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/unmute`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
-            await ctx.response.send_message(embed=embed)
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name="nick", description="Change the nickname of a member")
     async def nick(self, ctx, member: disnake.Member = None, *, nickname: str):
@@ -130,11 +119,7 @@ class ModsCog(commands.Cog):
                 await ctx.send(embed=embed)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/nick`",
-                description=f"```{e}```",
-                color=disnake.Color.red()
-            )
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="kick", description="Kick a user from the server")
@@ -153,11 +138,7 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/kick`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="ban", description="Ban a user from the server")
@@ -176,39 +157,39 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
         except Exception as e:
-            embed = disnake.Embed(
-                title="Error during `/ban`",
-                description=f"```{e}```",
-                color=disnake.Color.dark_red()
-            )
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
     @commands.slash_command(name='addemoji', description="Add emoji to the server.")
     @commands.has_permissions(manage_emojis=True)
     async def addemoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
-        if name is None:
-            name = emoji.name
-
-        guild = ctx.guild
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(str(emoji.url)) as resp:
-                    if resp.status == 200:
-                        image_data = await resp.read()
-                        new_emoji = await guild.create_custom_emoji(name=name, image=image_data)
-                        embed = disnake.Embed(
-                            title='Emoji ajouté',
-                            description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
-                            color=disnake.Color.green()
-                        )
-                        await ctx.response.defer()
-                        await ctx.send(embed=embed)
-        except disnake.HTTPException:
-            embed = disnake.Embed(
-                title='Erreur',
-                description="Une erreur s'est produite lors de l'ajout de l'emoji :x:",
-                color=disnake.Color.red()
-            )
+            if name is None:
+                name = emoji.name
+
+            guild = ctx.guild
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(str(emoji.url)) as resp:
+                        if resp.status == 200:
+                            image_data = await resp.read()
+                            new_emoji = await guild.create_custom_emoji(name=name, image=image_data)
+                            embed = disnake.Embed(
+                                title='Emoji ajouté',
+                                description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
+                                color=disnake.Color.green()
+                            )
+                            await ctx.response.defer()
+                            await ctx.send(embed=embed)
+            except disnake.HTTPException:
+                embed = disnake.Embed(
+                    title='Erreur',
+                    description="Une erreur s'est produite lors de l'ajout de l'emoji :x:",
+                    color=disnake.Color.red()
+                )
+                await ctx.send(embed=embed)
+        except Exception as e:
+            embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
 def setup(bot):
