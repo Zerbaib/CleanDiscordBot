@@ -72,7 +72,7 @@ class GiveawayCog(commands.Cog):
         self.giveaways[giveaway_message.id] = {
             "prize": prize,
             "winners": winners,
-            "end_time": ctx.interaction.created_at.timestamp() + duration_seconds,
+            "end_time": ctx.interaction.created_at.timestemp() + duration_seconds,
             "participants": []
         }
         save_giveaway_data(self.giveaways)
