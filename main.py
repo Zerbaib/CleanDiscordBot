@@ -102,8 +102,11 @@ async def on_ready():
     print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
-    bot.loop.create_task(status.update_status(bot))
-    bot.load_extension('utils.logger')
+
+
+bot.load_extension('utils.logger')
+bot.load_extension('utils.status')
+bot.load_extension('utils.voice')
 
 for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
