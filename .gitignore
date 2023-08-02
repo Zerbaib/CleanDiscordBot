@@ -1,4 +1,5 @@
 *.pyc
-*.json
+config.json
+data/*.json
 .venv/*
 log.txt
