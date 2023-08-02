@@ -16,9 +16,9 @@ class MusicCog(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Music ⚙️ ==========')
-        print('🔩 /play has been loaded')
-        print('🔩 /skip has been loaded')
-        print('🔩 /queue has been loaded')
+        print('⚠️ 🔩 /play has been loaded ⚠️')
+        print('⚠️ 🔩 /skip has been loaded ⚠️')
+        print('⚠️ 🔩 /queue has been loaded ⚠️')
         print()
 
     @commands.Cog.listener()
