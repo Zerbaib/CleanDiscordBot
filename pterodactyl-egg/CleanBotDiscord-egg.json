@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-08-02T21:43:57+02:00",
+    "exported_at": "2023-08-02T21:56:32+02:00",
     "name": "CleanBotDiscord",
     "author": "zerbaib@proton.me",
     "description": "Clean Discord Bot is a bot developed using the Disnake framework library. It is designed to provide specific functionalities to your Discord server.",
@@ -13,7 +13,7 @@
         "Python 3.11": "ghcr.io\/parkervcp\/yolks:python_3.11"
     },
     "file_denylist": [],
-    "startup": "if [ ! -d \"bot\" ]; then git clone https:\/\/github.com\/Zerbaib\/CleanDiscordBot.git bot && cd bot && pip install -r requirements.txt && python main.py; else cd bot && pip install -r requirements.txt && python main.py; fi",
+    "startup": "if [ ! -d \"bot\" ]; then git clone https:\/\/github.com\/Zerbaib\/CleanDiscordBot.git bot && cd bot && pip install -r requirements.txt && python main.py; else cd bot && git fetch && git pull && pip install -r requirements.txt && python main.py; fi",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"change this part\"\r\n}",
