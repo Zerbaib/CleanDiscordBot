@@ -103,6 +103,7 @@ async def on_ready():
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
     bot.loop.create_task(status.update_status(bot))
+    bot.load_extension('utils.logger')
 
 for filename in os.listdir('cogs'):
     if filename.endswith('.py'):
