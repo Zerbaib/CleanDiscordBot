@@ -1,8 +1,10 @@
 import disnake
 from disnake.ext import commands
-from termcolor import colored  # Import colored from the termcolor library
+from termcolor import colored
+import time
+import datetime
 
-class Logger(commands.Cog):
+class LoggerUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -18,13 +20,16 @@ class Logger(commands.Cog):
             user = message.author
             content = message.content
 
+            current_time = datetime.datetime.utcnow()
+            time_str = current_time.strftime("%d/%m/%Y, %H:%M:%S")
+
             # Color the parts of the log_message
-            log_printed_message = f"#{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
-            log_message = f"#{channel} >>> @{user} >> {content}"
-            print(log_printed_message)  # You can replace this with your desired logging mechanism
+            log_printed_message = f"UTC - {time_str} > #{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
+            log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
+            print(log_printed_message)
             
             with open('log.txt', 'a') as log_file:
                 log_file.write(log_message + '\n')
 
 def setup(bot):
-    bot.add_cog(Logger(bot))
+    bot.add_cog(LoggerUtils(bot))
