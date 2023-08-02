@@ -75,6 +75,8 @@ class RankCog(commands.Cog):
                             await message.author.add_roles(role)
                             embed.add_field(name="Nice you get a new role !", value=f"You win {role.mention} !")
                             role_added = True
+                        else:
+                            role_added = False
 
             msg = await message.channel.send(embed=embed)
             if role_added == True:
