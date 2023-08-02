@@ -34,7 +34,7 @@ class OtherCog(commands.Cog):
             embed = disnake.Embed(
                 title=f"Pong!",
                 description=f"The ping is around `{round(self.bot.latency * 1000)}ms`",
-                color=disnake.Color.random()
+                color=disnake.Color.blurple()
                 )
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
             await ctx.response.defer()
