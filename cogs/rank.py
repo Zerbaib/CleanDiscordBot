@@ -79,10 +79,13 @@ class RankCog(commands.Cog):
                             role_added = False
 
             msg = await message.channel.send(embed=embed)
+            
             if role_added == True:
                 await msg.delete(delay=15)
-            else:
+            elif role_added == False:
                 await msg.delete(delay=10)
+            else:
+                await msg.delete(delay=3)
 
         self.save_data()
 
