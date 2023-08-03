@@ -32,8 +32,8 @@ class OtherCog(commands.Cog):
     async def ping(self, ctx):
         try:
             embed = disnake.Embed(
-                title=f"Pong!",
-                description=f"The ping is around `{round(self.bot.latency * 1000)}ms`",
+                title=f"🏓 Pong!",
+                description=f"The ping is around `{round(self.bot.latency * 1000)}ms` ⏳",
                 color=disnake.Color.blurple()
                 )
             embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
@@ -60,7 +60,7 @@ class OtherCog(commands.Cog):
                 return
 
             embed = disnake.Embed(
-                title="New Poll",
+                title="🗳 New Poll 🗳",
                 description=f"```{question}```",
                 color=disnake.Color.blurple()
             )
@@ -68,7 +68,7 @@ class OtherCog(commands.Cog):
             
             message = await channel.send(embed=embed)
             await message.add_reaction("👍")
-            await message.add_reaction("◻️")
+            await message.add_reaction("⬜️")
             await message.add_reaction("👎")
 
             await ctx.response.defer()
