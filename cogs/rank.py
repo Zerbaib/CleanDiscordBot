@@ -62,7 +62,7 @@ class RankCog(commands.Cog):
             self.save_data()
             xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
             embed = disnake.Embed(
-                title=f'Congratulations, {message.author.name}!',
+                title=f'👏 Congratulations, {message.author.name}! 👏',
                 description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
                 color=disnake.Color.brand_green()
             )
@@ -73,7 +73,7 @@ class RankCog(commands.Cog):
                         role = message.author.guild.get_role(role_id)
                         if role and role not in message.author.roles:
                             await message.author.add_roles(role)
-                            embed.add_field(name="Nice you get a new role !", value=f"You win {role.mention} !")
+                            embed.add_field(name="Nice you get a new role !", value=f"You win ✨ {role.mention} ! ✨")
                             role_added = True
                         else:
                             role_added = False
@@ -102,7 +102,7 @@ class RankCog(commands.Cog):
                 xp_required = 5 * (level ** 2) + 10 * level + 10
                 user_rank = self.get_user_rank(user_id)
                 embed = disnake.Embed(
-                    title=f"{user_name}'s rank -> #{user_rank}",
+                    title=f"🔰 {user_name}'s rank -> #{user_rank} 🔰",
                     description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
                     color=disnake.Color.old_blurple()
                 )
@@ -118,7 +118,7 @@ class RankCog(commands.Cog):
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
             sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-            embed = disnake.Embed(title="Leaderboard", color=disnake.Color.old_blurple())
+            embed = disnake.Embed(title="💯 Leaderboard 💯", color=disnake.Color.old_blurple())
             for i, (user_id, user_data) in enumerate(sorted_users):
                 try:
                     user = await self.bot.fetch_user(int(user_id))

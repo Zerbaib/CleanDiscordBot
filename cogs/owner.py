@@ -38,13 +38,13 @@ class OwnerCog(commands.Cog):
                 local_version = self.get_local_version()  # Méthode pour obtenir la version locale
 
                 embed = disnake.Embed(
-                    title=f"Check of {self.bot.user.name}",
+                    title=f"🔎 Check of {self.bot.user.name}",
                 )
                 if online_version == local_version:
-                    embed.description = "The bot is up to date."
+                    embed.description = "The bot is up to date. 👍"
                     embed.colour = disnake.Color.brand_green()
                 else:
-                    embed.description = "An update is available."
+                    embed.description = "An update is available. 👎"
                     embed.colour = disnake.Color.brand_red()
 
                 embed.add_field(name="Local Version", value=f"```{local_version}```", inline=True)
@@ -63,7 +63,7 @@ class OwnerCog(commands.Cog):
             with open("config.json", 'r') as config_file:
                 config = json.load(config_file)
             embed = disnake.Embed(
-                title=f"Update of ``{self.bot.user.name}``",
+                title=f"⤴️ Update of ``{self.bot.user.name}``",
                 description=f"Please wait...",
                 color=disnake.Color.random()
             )
@@ -76,8 +76,8 @@ class OwnerCog(commands.Cog):
 
             # Vérifier si la mise à jour a réussi
             if update_process.returncode == 0:
-                embed.title = f"Update of ``{self.bot.user.name}``"
-                embed.description = "Update successful! Restarting the bot..."
+                embed.title = f"⤴️ Update of ``{self.bot.user.name}``"
+                embed.description = "✅ Update successful! Restarting the bot..."
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
 
@@ -86,7 +86,7 @@ class OwnerCog(commands.Cog):
                 os.execl(python, python, *sys.argv)
             else:
                 error_message = stderr.decode("utf-8")
-                embed.title = f"Error during the ``/update``"
+                embed.title = f"↩️ Error during the ``/update``"
                 embed.description = f"```{error_message}```"
                 embed.color = disnake.Color.red()
                 await ctx.response.defer()
@@ -101,7 +101,7 @@ class OwnerCog(commands.Cog):
     async def restart(self, ctx):
         try:
             embed = disnake.Embed(
-                title="Restarting...",
+                title="🔄 Restarting... 🔄",
                 description="The bot is restarting. Please wait...",
                 color=disnake.Color.random()
             )
@@ -123,7 +123,7 @@ class OwnerCog(commands.Cog):
     @commands.is_owner()
     async def stop(self, ctx):
         try:
-            await ctx.send("Stopping the bot...", ephemeral=True)
+            await ctx.send("🛑 Stopping the bot... 🛑", ephemeral=True)
             await self.bot.close()
         except Exception as e:
             embed = error.error_embed(e)

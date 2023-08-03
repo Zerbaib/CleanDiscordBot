@@ -58,7 +58,7 @@ class InfoCog(commands.Cog):
                 stargazer_count = "Unknown"
 
             embed = disnake.Embed(
-                title=f"Info of ``{self.bot.user.name}``",
+                title=f"Info of ``{self.bot.user.name}`` 🤖",
                 color=disnake.Color.old_blurple()
             )
             embed.add_field(
@@ -100,7 +100,7 @@ class InfoCog(commands.Cog):
                 user = ctx.author
 
             embed = disnake.Embed(
-                title="User Information",
+                title="User Information 👤",
                 color=disnake.Color.blue()
             )
             
@@ -143,7 +143,7 @@ class InfoCog(commands.Cog):
             boost_tier = guild.premium_tier
             date = "%d-%m-%Y %H:%M:%S"
 
-            embed = disnake.Embed(title="Server Information", color=disnake.Color.blurple())
+            embed = disnake.Embed(title="💾 Server Information 💾", color=disnake.Color.blurple())
             if logo:
                 embed.set_thumbnail(url=logo)
             embed.add_field(name="Name", value=f"```{name}```", inline=False)
