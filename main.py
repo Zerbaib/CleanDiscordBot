@@ -7,6 +7,7 @@ from disnake.ext import commands
 from utils import status
 
 config_file_path = "config.json"
+badWord_file_path = "bad_words.json"
 casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
@@ -21,6 +22,16 @@ if not os.path.exists(casino_cooldown_data_file_path):
 if not os.path.exists(rank_data_file_path):
     with open(rank_data_file_path, 'w') as rank_file:
         json.dump({}, rank_file)
+if not os.path.exists(badWord_file_path):
+    badword_data = {
+        "bad_words": [
+            "badword1",
+            "badword2",
+            "badword3"
+        ]
+    }
+    with open(badWord_file_path, 'w') as badword_file:
+        json.dump(badword_data, badword_file, indent=4)
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
@@ -102,7 +113,12 @@ async def on_ready():
     print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
-    bot.loop.create_task(status.update_status(bot))
+
+
+bot.load_extension('utils.logger')
+bot.load_extension('utils.automod')
+bot.load_extension('utils.status')
+bot.load_extension('utils.voice')
 
 for filename in os.listdir('cogs'):
     if filename.endswith('.py'):

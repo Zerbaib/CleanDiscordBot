@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-08-03T02:04:15+02:00",
+    "name": "CleanBotDiscord",
+    "author": "zerbaib@proton.me",
+    "description": "Clean Discord Bot is a bot developed using the Disnake framework library. It is designed to provide specific functionalities to your Discord server.",
+    "features": null,
+    "docker_images": {
+        "Python 3.11": "ghcr.io\/parkervcp\/yolks:python_3.11"
+    },
+    "file_denylist": [],
+    "startup": "if [ ! -d \"bot\" ]; then git clone https:\/\/github.com\/Zerbaib\/CleanDiscordBot.git bot && cd bot && pip install --upgrade pip && pip install -r requirements.txt && python main.py; else cd bot && git fetch && git pull && pip install --upgrade pip && pip install -r requirements.txt && python main.py; fi",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"change this part\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": null,
+            "container": "alpine:3.4",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "BRANCH",
+            "description": "",
+            "env_variable": "BRANCH",
+            "default_value": "main",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|string|max:25",
+            "field_type": "text"
+        }
+    ]
+}

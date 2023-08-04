@@ -1,3 +1,6 @@
 *.pyc
-*.json
+config.json
+bad_words.json
+data/*.json
 .venv/*
+log.txt

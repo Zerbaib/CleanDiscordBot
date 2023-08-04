@@ -27,12 +27,12 @@ class ModsCog(commands.Cog):
             await ctx.channel.purge(limit=amount)
 
             embed = disnake.Embed(
-                title="Messages Cleared",
+                title="🌪 Messages Cleared 🌪",
                 description=f"``{amount}`` messages have been cleared in this channel.",
                 color=disnake.Color.dark_green()
             )
             await ctx.response.defer()
-            await ctx.send(embed=embed, ephemeral=True)
+            await ctx.send(embed=embed, delay=3)
 
         except Exception as e:
             embed = error.error_embed(e)
@@ -50,7 +50,7 @@ class ModsCog(commands.Cog):
             await member.add_roles(role)
 
             embed = disnake.Embed(
-                title="Member Muted",
+                title="😶 Member Muted 😶",
                 description=f"{member.mention} has been muted.",
                 color=disnake.Color.dark_red()
             ) 
@@ -74,7 +74,7 @@ class ModsCog(commands.Cog):
                 await member.remove_roles(role)
 
             embed = disnake.Embed(
-                title="Member Unmuted",
+                title="😐 Member Unmuted 😐",
                 description=f"{member.mention} has been unmuted.",
                 color=disnake.Color.dark_red()
             )
@@ -97,7 +97,7 @@ class ModsCog(commands.Cog):
 
                 if nickname is not None:
                     embed = disnake.Embed(
-                        title="Nickname Changed",
+                        title="🥸 Nickname Changed 🥸",
                         description=f"The nickname of {member.mention} has been changed to ``{nickname}``.",
                         color=disnake.Color.green()
                     )
@@ -129,7 +129,7 @@ class ModsCog(commands.Cog):
             await user.kick(reason=reason)
 
             embed = disnake.Embed(
-                title="User Kicked",
+                title="🏌️‍♀️ User Kicked 🏌️‍♀️",
                 description=f"**{user.name}** *aka ``{user.display_name}``* has been kicked from the server.",
                 color=disnake.Color.dark_red()
             )
@@ -148,7 +148,7 @@ class ModsCog(commands.Cog):
             await ctx.guild.ban(user, reason=reason)
 
             embed = disnake.Embed(
-                title="User Banned",
+                title="🔨 User Banned 🔨",
                 description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
                 color=disnake.Color.dark_red()
             )
@@ -175,7 +175,7 @@ class ModsCog(commands.Cog):
                             image_data = await resp.read()
                             new_emoji = await guild.create_custom_emoji(name=name, image=image_data)
                             embed = disnake.Embed(
-                                title='Emoji ajouté',
+                                title='✨ Emoji ajouté ✨',
                                 description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
                                 color=disnake.Color.green()
                             )

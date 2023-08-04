@@ -50,8 +50,8 @@ class CasinoCog(commands.Cog):
                     balance = 0
 
             embed = disnake.Embed(
-                title="Balance",
-                description=f"Your balance: ``{balance}`` coins",
+                title="💰 Balance💰 ",
+                description=f"Your balance: ``{balance}`` coins 🪙",
                 color=disnake.Color.blue()
             )
             await ctx.response.defer()
@@ -98,8 +98,8 @@ class CasinoCog(commands.Cog):
                         json.dump(cooldown_data, cooldown_file, indent=4)
 
                     embed = disnake.Embed(
-                        title="Earn Coins",
-                        description=f"You earned 100 coins!\nYour total balance: ``{earnings}`` coins.",
+                        title="💸 Earn Coins💸 ",
+                        description=f"You earned 100 coins 🪙!\nYour total balance: ``{earnings}`` coins.",
                         color=disnake.Color.green()
                     )
                     await ctx.response.defer()
@@ -110,8 +110,8 @@ class CasinoCog(commands.Cog):
                     remaining_time_str = str(remaining_time_delta)
 
                     embed = disnake.Embed(
-                        title="Earn Coins",
-                        description=f"You are on cooldown.\nTry again in ``{remaining_time_str}``.",
+                        title="🕰 Earn Coins 🕰",
+                        description=f"You are on cooldown.\nTry again in ``{remaining_time_str}`` ⏳.",
                         color=disnake.Color.red()
                     )
                     await ctx.response.defer()
@@ -187,7 +187,7 @@ class CasinoCog(commands.Cog):
                 if dice1 == dice2:  # Pair
                     payout = bet * dice1
 
-                embed = disnake.Embed(title="Dice Game", color=disnake.Color.blue())
+                embed = disnake.Embed(title="🎲 Dice Game 🎲", color=disnake.Color.blue())
                 embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
 
                 if payout > 0:
@@ -328,7 +328,7 @@ class CasinoCog(commands.Cog):
             for _ in range(3):
                 symbol = random.choice(reels)  # Select a random symbol for each reel
                 ligne2.append(symbol)
-            embed = disnake.Embed(title="Slot Machine", color=disnake.Color.blurple())
+            embed = disnake.Embed(title="🎰 Slot Machine 🎰", color=disnake.Color.blurple())
             embed.add_field(name="Reels",
                             value=f"| ``{ligne1[0]} | {ligne1[1]} | {ligne1[2]}`` |\n\n"
                                 f"**>** **``{result[0]} | {result[1]} | {result[2]}``** **<**\n\n"
