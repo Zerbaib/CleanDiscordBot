@@ -25,7 +25,7 @@ class GiveawayCog(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Giveaway ⚙️ ==========')
-        print('🔩 /giveaway has been loaded')
+        print('⚠️ 🔩 /giveaway has been loaded ⚠️')
         print()
 
     @commands.slash_command(name='giveaway', description="Start a giveaway.")
