@@ -14,7 +14,7 @@ def error_embed(e):
     issue_link = "https://github.com/Zerbaib/CleanDiscordBot/issues/new"
     embed = disnake.Embed(
         title=f"A error as poped !",
-        description=f"The exeption is\n\n```{e}```",
+        description=f"The exception is\n\n```{e}```",
         color=disnake.Color.red()
     )
     embed.add_field(
