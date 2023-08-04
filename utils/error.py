@@ -19,6 +19,6 @@ def error_embed(e):
     )
     embed.add_field(
         name="You can now create a Issue on GitHub",
-        value=f"Tell us wath command and the exeption [**here**]({issue_link})"
+        value=f"Tell us what command and the exeption [**here**]({issue_link})"
     )
     return embed
