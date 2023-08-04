@@ -32,7 +32,7 @@ class ModsCog(commands.Cog):
                 color=disnake.Color.brand_green()
             )
             await ctx.response.defer()
-            msg = await ctx.response.edit(embed=embed)
+            msg = await ctx.response.send(embed=embed)
             await msg.delete(delay=3)
 
         except Exception as e:
