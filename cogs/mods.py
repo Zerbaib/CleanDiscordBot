@@ -31,8 +31,8 @@ class ModsCog(commands.Cog):
                 description=f"``{amount}`` messages have been cleared in this channel.",
                 color=disnake.Color.brand_green()
             )
-            await ctx.response.defer()
-            msg = await ctx.channel.send(embed=embed)
+            msg = await ctx.response.defer()
+            msg = await msg.edit(embed=embed)
             await msg.delete(delay=3)
 
         except Exception as e:
