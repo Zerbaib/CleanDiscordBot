@@ -41,7 +41,7 @@ class MusicCog(commands.Cog):
                 embed = disnake.Embed(
                     title="Error",
                     description="You must be in a voice channel to use this command.",
-                    color=disnake.Color.red()
+                    color=disnake.Color.brand_red()
                 )
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
@@ -55,7 +55,7 @@ class MusicCog(commands.Cog):
                 embed = disnake.Embed(
                     title="Error",
                     description="I'm already playing music in another voice channel.",
-                    color=disnake.Color.red()
+                    color=disnake.Color.brand_red()
                 )
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
@@ -87,7 +87,7 @@ class MusicCog(commands.Cog):
                 embed = disnake.Embed(
                     title="Error",
                     description="There is no song currently playing.",
-                    color=disnake.Color.red()
+                    color=disnake.Color.brand_red()
                 )
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
