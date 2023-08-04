@@ -107,7 +107,7 @@ class RankCog(commands.Cog):
                 embed = disnake.Embed(
                     title=f"🔰 {user_name}'s rank -> #{user_rank} 🔰",
                     description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
-                    color=disnake.Color.old_blurple()
+                    color=disnake.Color.blurple()
                 )
 
                 await inter.response.send_message(embed=embed)
@@ -121,7 +121,7 @@ class RankCog(commands.Cog):
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
             sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-            embed = disnake.Embed(title="💯 Leaderboard 💯", color=disnake.Color.old_blurple())
+            embed = disnake.Embed(title="💯 Leaderboard 💯", color=disnake.Color.blurple())
             for i, (user_id, user_data) in enumerate(sorted_users):
                 try:
                     user = await self.bot.fetch_user(int(user_id))

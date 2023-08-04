@@ -65,7 +65,7 @@ class OwnerCog(commands.Cog):
             embed = disnake.Embed(
                 title=f"⤴️ Update of ``{self.bot.user.name}``",
                 description=f"Please wait...",
-                color=disnake.Color.random()
+                color=disnake.Color.old_blurple()
             )
             await ctx.response.defer()
             await ctx.send(embed=embed)
@@ -88,7 +88,7 @@ class OwnerCog(commands.Cog):
                 error_message = stderr.decode("utf-8")
                 embed.title = f"↩️ Error during the ``/update``"
                 embed.description = f"```{error_message}```"
-                embed.color = disnake.Color.red()
+                embed.color = disnake.Color.brand_red()
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
 
@@ -103,7 +103,7 @@ class OwnerCog(commands.Cog):
             embed = disnake.Embed(
                 title="🔄 Restarting... 🔄",
                 description="The bot is restarting. Please wait...",
-                color=disnake.Color.random()
+                color=disnake.Color.old_blurple()
             )
             await ctx.response.defer()
             await ctx.send(embed=embed)
