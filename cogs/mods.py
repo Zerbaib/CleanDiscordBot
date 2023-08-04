@@ -31,9 +31,7 @@ class ModsCog(commands.Cog):
                 description=f"``{amount}`` messages have been cleared in this channel.",
                 color=disnake.Color.brand_green()
             )
-            if amount > 50:
-                await ctx.response.defer()
-            
+            await ctx.response.defer()
             msg = await ctx.send(embed=embed)
             await msg.delete(delay=3)
 
