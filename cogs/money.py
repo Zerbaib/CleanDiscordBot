@@ -20,7 +20,7 @@ class TradeViewCog(commands.Cog):
             
             if history.empty:
                 # Find closest matches
-                stock_symbols = fetch_stock_symbols()  # You need to implement fetch_stock_symbols function
+                stock_symbols = fetch_stock_symbols()
                 close_matches = get_close_matches(choice, stock_symbols)
                 if close_matches:
                     suggestion_list = "\n".join(close_matches[:3])
