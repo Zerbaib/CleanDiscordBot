@@ -5,3 +5,5 @@ ffmpeg
 spotipy
 colored
 termcolor
+yfinance
+matplotlib
