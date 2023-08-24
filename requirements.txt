@@ -7,3 +7,4 @@ colored
 termcolor
 yfinance
 matplotlib
+finnhub-python
