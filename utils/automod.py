@@ -12,7 +12,7 @@ class AutoModUtils(commands.Cog):
         with open('bad_words.json', 'r') as bad_words_file:
             self.bad_words = json.load(bad_words_file)["bad_words"]
             self.bad_word_patterns = [re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE) for word in self.bad_words]
-            self.link_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+            self.link_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+])+')
             self.tenor_link = re.compile(r'tenor.com')
             self.media_link = re.compile(r'cdn.discordapp.com')
 
