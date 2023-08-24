@@ -14,6 +14,7 @@ class AutoModUtils(commands.Cog):
             self.bad_word_patterns = [re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE) for word in self.bad_words]
             self.link_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
             self.tenor_link = re.compile(r'tenor.com')
+            self.media_link = re.compile(r'cdn.discordapp.com')
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -46,6 +47,10 @@ class AutoModUtils(commands.Cog):
                 
                 if self.link_pattern.search(message.content):
                     if not self.tenor_link.search(message.content):
+                        pass
+                    elif not self.media_link.search(message.content):
+                        pass
+                    else:
                         log_channel = self.bot.get_channel(config["LOG_ID"])
                         if log_channel:
                             embed = disnake.Embed(title="Link Detected",
