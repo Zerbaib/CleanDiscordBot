@@ -78,14 +78,10 @@ class OwnerCog(commands.Cog):
             if update_process.returncode == 0:
                 success_embed = disnake.Embed(
                     title=f"⤴️ Update of ``{self.bot.user.name}``",
-                    description="✅ Update successful! Restarting the bot...",
+                    description="✅ Update successful!\nYou just need a restart to apply the update.",
                     color=disnake.Color.brand_green()
                 )
                 await ctx.send(embed=success_embed)
-
-                # Redémarrer le bot
-                python = sys.executable
-                os.execl(python, python, *sys.argv)
             else:
                 error_message = stderr.decode("utf-8")
                 error_embed = disnake.Embed(
