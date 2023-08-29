@@ -77,9 +77,9 @@ class CasinoCog(commands.Cog):
             for idx, (user_id, balance) in enumerate(top_users, start=1):
                 user = self.bot.get_user(int(user_id))
                 if user:
-                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Balance: {balance} coins", inline=False)
+                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Balance: `{balance}` coins", inline=False)
                 else:
-                    embed.add_field(name=f"{idx}. User Not Found", value=f"Balance: {balance} coins", inline=False)
+                    embed.add_field(name=f"{idx}. User Not Found", value=f"Balance: `{balance}` coins", inline=False)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
