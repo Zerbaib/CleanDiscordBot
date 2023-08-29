@@ -11,7 +11,7 @@ def error_embed(e):
     Returns:
         disnake.Embed: The error embed.
     """
-    issue_link = "https://github.com/Zerbaib/CleanDiscordBot/issues/new"
+    issue_link = "https://github.com/Zerbaib/CleanDiscordBot/issues/new?assignees=Zerbaib&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D"
     embed = disnake.Embed(
         title=f"A error as poped !",
         description=f"The exception is\n\n```{e}```",
