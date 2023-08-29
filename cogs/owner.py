@@ -67,7 +67,6 @@ class OwnerCog(commands.Cog):
                 description=f"Please wait...",
                 color=disnake.Color.old_blurple()
             )
-            await ctx.response.defer()
             await ctx.send(embed=embed)
 
             # Exécuter la commande de mise à jour du bot
