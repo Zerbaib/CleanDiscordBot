@@ -31,6 +31,7 @@ class CasinoCog(commands.Cog):
     async def on_ready(self):
         print('========== ⚙️ Casino ⚙️ ==========')
         print('🔩 /balance has been loaded')
+        print('🔩 /baltop has been loaded')
         print('🔩 /earn has been loaded')
         print('🔩 /bet has been loaded')
         print('🔩 /dice has been loaded')
@@ -59,6 +60,29 @@ class CasinoCog(commands.Cog):
 
             with open(self.data_file, 'w') as file:
                 json.dump(data, file, indent=4)
+        except Exception as e:
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
+
+    @commands.slash_command(name="baltop", description="Top 10 richest users")
+    async def baltop(self, ctx):
+        try:
+            with open(self.data_file, 'r') as file:
+                data = json.load(file)
+
+            sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
+            top_users = sorted_data[:10]
+
+            embed = disnake.Embed(title="💰 Top 10 Richest Users 💰", color=disnake.Color.gold())
+            for idx, (user_id, balance) in enumerate(top_users, start=1):
+                user = self.bot.get_user(int(user_id))
+                if user:
+                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Balance: {balance} coins", inline=False)
+                else:
+                    embed.add_field(name=f"{idx}. User Not Found", value=f"Balance: {balance} coins", inline=False)
+
+            await ctx.response.defer()
+            await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
