@@ -13,6 +13,7 @@ class RankCog(commands.Cog):
         self.base_level = base_level
         self.level_factor = level_factor
         self.data = {}
+        self.role_added = None
         self.load_data()
         self.load_config()
 
@@ -74,15 +75,15 @@ class RankCog(commands.Cog):
                         if role and role not in message.author.roles:
                             await message.author.add_roles(role)
                             embed.add_field(name="Nice you get a new role !", value=f"You win ✨ {role.mention} ! ✨")
-                            role_added = True
+                            self.role_added = True
                         else:
-                            role_added = False
+                            self.role_added = False
 
             msg = await message.channel.send(embed=embed)
             
-            if role_added == True:
+            if self.role_added == True:
                 await msg.delete(delay=15)
-            elif role_added == False:
+            elif self.role_added == False:
                 await msg.delete(delay=10)
             else:
                 await msg.delete(delay=3)

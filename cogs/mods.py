@@ -29,10 +29,10 @@ class ModsCog(commands.Cog):
             embed = disnake.Embed(
                 title="🌪 Messages Cleared 🌪",
                 description=f"``{amount}`` messages have been cleared in this channel.",
-                color=disnake.Color.dark_green()
+                color=disnake.Color.brand_green()
             )
             await ctx.response.defer()
-            await ctx.send(embed=embed, delay=3)
+            await ctx.send(embed=embed, delete_after=3)
 
         except Exception as e:
             embed = error.error_embed(e)

@@ -62,12 +62,12 @@ class OwnerCog(commands.Cog):
         try:
             with open("config.json", 'r') as config_file:
                 config = json.load(config_file)
+            
             embed = disnake.Embed(
                 title=f"⤴️ Update of ``{self.bot.user.name}``",
                 description=f"Please wait...",
                 color=disnake.Color.old_blurple()
             )
-            await ctx.response.defer()
             await ctx.send(embed=embed)
 
             # Exécuter la commande de mise à jour du bot
@@ -76,25 +76,25 @@ class OwnerCog(commands.Cog):
 
             # Vérifier si la mise à jour a réussi
             if update_process.returncode == 0:
-                embed.title = f"⤴️ Update of ``{self.bot.user.name}``"
-                embed.description = "✅ Update successful! Restarting the bot..."
-                await ctx.response.defer()
-                await ctx.send(embed=embed)
-
-                # Redémarrer le bot
-                python = sys.executable
-                os.execl(python, python, *sys.argv)
+                success_embed = disnake.Embed(
+                    title=f"⤴️ Update of ``{self.bot.user.name}``",
+                    description="✅ Update successful!\nYou just need a restart to apply the update.",
+                    color=disnake.Color.brand_green()
+                )
+                await ctx.send(embed=success_embed)
             else:
                 error_message = stderr.decode("utf-8")
-                embed.title = f"↩️ Error during the ``/update``"
-                embed.description = f"```{error_message}```"
-                embed.color = disnake.Color.brand_red()
-                await ctx.response.defer()
-                await ctx.send(embed=embed)
+                error_embed = disnake.Embed(
+                    title=f"↩️ Error during the ``/update``",
+                    description=f"```{error_message}```",
+                    color=disnake.Color.brand_red()
+                )
+                await ctx.send(embed=error_embed)
 
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
+
 
     @commands.slash_command(name="restart", description="Restart the bot")
     @commands.is_owner()  # Exige que l'auteur de la commande soit le propriétaire du bot

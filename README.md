@@ -18,21 +18,10 @@ The bot is automatically configured using a `config.json` file. The configuratio
 ## 🛠️ Installation
 
 1. Make sure you have Python 3.8 or higher installed on your system.
-2. Clone this repository or download the source files.
-3. Install the dependencies by running the following command:
+3. Only one command for install/launch:
 
    ```shell
-   pip install -r requirements.txt
-    ```
-
-4. Start the bot with:
-
-    ```shell
-    python main.py
-    ```
-    or
-    ```shell
-    python3 main.py
+   if [ ! -d "bot" ]; then git clone https://github.com/Zerbaib/CleanDiscordBot.git bot && cd bot && git checkout main && pip install --upgrade pip && pip install -r requirements.txt && python main.py; else cd bot && git checkout main && git fetch && git pull && pip install --upgrade pip && pip install -r requirements.txt && python main.py; fi
     ```
 
 5. Follow install step for the config
