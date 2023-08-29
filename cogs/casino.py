@@ -71,9 +71,9 @@ class CasinoCog(commands.Cog):
                 data = json.load(file)
 
             sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
-            top_users = sorted_data[:11]
+            top_users = sorted_data[:10]
 
-            embed = disnake.Embed(title="💰 Top 10 Richest Users 💰", color=disnake.Color.gold())
+            embed = disnake.Embed(title="💰 Top 10 Richest Users 💰", color=disnake.Color.blurple())
             for idx, (user_id, balance) in enumerate(top_users, start=1):
                 user = self.bot.get_user(int(user_id))
                 if user:
