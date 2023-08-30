@@ -6,7 +6,7 @@ from utils import error
 class EconomyCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_file = "data/economy.json"
+        self.data_file = "data/casino.json"
 
     @commands.Cog.listener()
     async def on_ready(self):
