@@ -34,8 +34,8 @@ class OtherCog(commands.Cog):
                 embed = disnake.Embed(title=f"{self.bot.user.display_name} Help", description=f"All command:", color=disnake.Color.blurple())
                 embed.add_field(name=f"Commands for {cog_name.capitalize()}", value=help_text, inline=False)
                 embeds.append(embed)
-            
-            await ctx.send(embed=embed)
+            for embed in embeds:
+                await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
