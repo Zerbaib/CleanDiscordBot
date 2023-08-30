@@ -25,7 +25,7 @@ class OtherCog(commands.Cog):
 
             await ctx.response.defer()
             for cog_name, cog in self.bot.cogs.items():
-                commands = cog.get_commands()
+                commands = cog.get_slash_commands()
                 if not commands:
                     continue
 
