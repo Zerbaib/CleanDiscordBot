@@ -24,7 +24,10 @@ class OtherCog(commands.Cog):
                 prefix = prefix[0]
 
             for cog_name, cog in self.bot.cogs.items():
-                commands = cog.get_commands()
+                commands = cog.get_slash_commands()
+                if not commands:
+                    continue
+
                 command_list = [command.name for command in commands]
                 command_description = [command.help for command in commands]
                 help_text = '\n'.join(f'{prefix}{n} - {h}' for n, h in zip(command_list, command_description))
