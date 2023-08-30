@@ -5,7 +5,7 @@ import os
 import random
 from utils import error
 
-class RankCog(commands.Cog):
+class RankCommands(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
         self.bot = bot
         self.data_path = 'data/ranks.json'
@@ -145,4 +145,4 @@ class RankCog(commands.Cog):
         return -1
 
 def setup(bot):
-    bot.add_cog(RankCog(bot, base_level=1, level_factor=0.1))
+    bot.add_cog(RankCommands(bot, base_level=1, level_factor=0.1))

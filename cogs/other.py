@@ -3,7 +3,7 @@ from disnake.ext import commands
 import json
 from utils import error
 
-class OtherCog(commands.Cog):
+class OtherCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -90,4 +90,4 @@ class OtherCog(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(OtherCog(bot))
+    bot.add_cog(OtherCommands(bot))

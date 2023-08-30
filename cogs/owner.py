@@ -7,7 +7,7 @@ import sys
 import os
 from utils import error
 
-class OwnerCog(commands.Cog):
+class OwnerCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.online_version_url = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
@@ -130,4 +130,4 @@ class OwnerCog(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(OwnerCog(bot))
+    bot.add_cog(OwnerCommands(bot))

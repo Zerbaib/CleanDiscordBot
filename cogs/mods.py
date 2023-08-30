@@ -4,7 +4,7 @@ import json
 import aiohttp
 from utils import error
 
-class ModsCog(commands.Cog):
+class ModsCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -193,4 +193,4 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(ModsCog(bot))
+    bot.add_cog(ModsCommands(bot))

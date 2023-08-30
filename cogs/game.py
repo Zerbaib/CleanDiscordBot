@@ -4,7 +4,7 @@ import disnake
 from disnake.ext import commands
 from utils import error
 
-class GameCog(commands.Cog):
+class GameCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.games = {}
@@ -182,4 +182,4 @@ class GameCog(commands.Cog):
             await inter.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(GameCog(bot))
+    bot.add_cog(GameCommands(bot))
