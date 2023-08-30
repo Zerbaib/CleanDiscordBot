@@ -86,10 +86,12 @@ class ModsCommands(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="nick", description="Change the nickname of a member")
-    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str):
+    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str = None):
         try:
             if member is None:
                 member = ctx.author
+            if nickname is None:
+                nickname = member.name
 
             if member == ctx.author or ctx.author.guild_permissions.manage_nicknames:
                 if nickname is not None:
