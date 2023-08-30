@@ -18,12 +18,24 @@ class OtherCog(commands.Cog):
     @commands.slash_command(name="help", description="Show the list of available commands")
     async def help(self, ctx):
         try:
-            embed = disnake.Embed(title="Need Help ?", color=disnake.Color.blurple())
-            embed.description = f"📚  Welcome to the command list of **{self.bot.user.name}**!\nHere you can find all the available commands and their usage."
-            embed.add_field(name="Commands List", value="🔗  To view the list of commands, click [**here**](https://github.com/Zerbaib/CleanDiscordBot/blob/main/CMD.md)", inline=False)
-            embed.set_footer(text="Clean Discord Bot", icon_url=self.bot.user.avatar.url)
+            embeds = []
+            prefix = self.bot.command_prefix
+            if not isinstance(prefix, str):
+                prefix = prefix[0]
+
+            for cog_name, cog in self.bot.cogs.items():
+                commands = cog.get_commands()
+                command_list = [command.name for command in commands]
+                command_description = [command.help for command in commands]
+                help_text = '\n'.join(f'{prefix}{n} - {h}' for n, h in zip(command_list, command_description))
+                
+                embed = disnake.Embed(title="Help", description=f"Liste des commandes disponibles dans {cog_name.capitalize()} :", color=0xE8C02A)
+                embed.add_field(name="Commandes :", value=f'```{help_text}```', inline=False)
+                embeds.append(embed)
+
             await ctx.response.defer()
-            await ctx.send(ephemeral=True, embed=embed)
+            for embed in embeds:
+                await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
