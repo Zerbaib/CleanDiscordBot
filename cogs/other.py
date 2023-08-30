@@ -24,14 +24,12 @@ class OtherCog(commands.Cog):
                 prefix = prefix[0]
 
             for cog_name, cog in self.bot.cogs.items():
-                commands = cog.get_slash_commands()
+                commands = cog.get_commands()
                 if not commands:
                     continue
 
-                command_list = [command.name for command in commands]
-                command_description = [command.help for command in commands]
-                help_text = '\n'.join(f'{prefix}{n} - {h}' for n, h in zip(command_list, command_description))
-                
+                help_text = '\n'.join(f'{prefix}{command.name} - {command.description}' for command in commands)
+
                 embed = disnake.Embed(title="Help", description=f"Liste des commandes disponibles dans {cog_name.capitalize()} :", color=0xE8C02A)
                 embed.add_field(name="Commandes :", value=f'```{help_text}```', inline=False)
                 embeds.append(embed)
