@@ -23,6 +23,7 @@ class OtherCog(commands.Cog):
             if not isinstance(prefix, str):
                 prefix = prefix[0]
 
+            await ctx.response.defer()
             for cog_name, cog in self.bot.cogs.items():
                 commands = cog.get_commands()
                 if not commands:
@@ -33,9 +34,6 @@ class OtherCog(commands.Cog):
                 embed = disnake.Embed(title="Help", description=f"Liste des commandes disponibles dans {cog_name.capitalize()} :", color=0xE8C02A)
                 embed.add_field(name="Commandes :", value=f'```{help_text}```', inline=False)
                 embeds.append(embed)
-
-            await ctx.response.defer()
-            for embed in embeds:
                 await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
