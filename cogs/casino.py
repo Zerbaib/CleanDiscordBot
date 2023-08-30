@@ -8,7 +8,7 @@ from utils import error
 
 cooldown_time = 60 * 60 * 2
 
-class CasinoCog(commands.Cog):
+class CasinoCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.data_file = "data/casino.json"
@@ -380,4 +380,4 @@ class CasinoCog(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(CasinoCog(bot))
+    bot.add_cog(CasinoCommands(bot))
