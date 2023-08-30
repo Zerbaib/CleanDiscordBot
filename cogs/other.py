@@ -31,7 +31,7 @@ class OtherCog(commands.Cog):
 
                 help_text = '\n'.join(f'**`{prefix}{command.name}`** - ```{command.description}```' for command in commands)
 
-                embed = disnake.Embed(title=f"{self.bot.name} Help", description=f"All command:", color=disnake.Color.blurple())
+                embed = disnake.Embed(title=f"{self.bot.user.display_name} Help", description=f"All command:", color=disnake.Color.blurple())
                 embed.add_field(name=f"Commands for {cog_name.capitalize()}", value=help_text, inline=False)
                 embeds.append(embed)
             
