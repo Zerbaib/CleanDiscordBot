@@ -29,12 +29,13 @@ class OtherCog(commands.Cog):
                 if not commands:
                     continue
 
-                help_text = '\n'.join(f'{prefix}{command.name} - {command.description}' for command in commands)
+                help_text = '\n'.join(f'**`{prefix}{command.name}`** - ```{command.description}```' for command in commands)
 
-                embed = disnake.Embed(title="Help", description=f"Liste des commandes disponibles dans {cog_name.capitalize()} :", color=0xE8C02A)
-                embed.add_field(name="Commandes :", value=f'```{help_text}```', inline=False)
+                embed = disnake.Embed(title=f"{self.bot.display_name} Help", description=f"All command:", color=0xE8C02A)
+                embed.add_field(name=f"Commands for {cog_name.capitalize()}", value=help_text, inline=False)
                 embeds.append(embed)
-                await ctx.send(embed=embed)
+            
+            await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
