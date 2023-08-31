@@ -25,7 +25,8 @@ class WelcomeCog(commands.Cog):
                 description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
                 color=disnake.Color.brand_green()
                 )
-            await join_channel.send(embed=embed)
+            msg = await join_channel.send(embed=embed)
+            await msg.add_reaction("👋")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
