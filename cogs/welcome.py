@@ -5,7 +5,7 @@ import os
 import random
 from utils import error
 
-class RankCommands(commands.Cog):
+class WelcomeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -45,4 +45,4 @@ class RankCommands(commands.Cog):
             await leave_channel.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(RankCommands(bot))
+    bot.add_cog(WelcomeCog(bot))
