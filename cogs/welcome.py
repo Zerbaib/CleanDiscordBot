@@ -49,9 +49,11 @@ class WelcomeCog(commands.Cog):
                     description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
                     color=disnake.Color.blurple()
                     )
-                embed.set_image(url="attachment://" + filename)
-                msg = await join_channel.send(embed=embed)
-                await msg.add_reaction("👋")
+                with open(filename, 'rb') as f:
+                    file = disnake.File(f, filename=filename)
+                    embed.set_image(url="attachment://" + filename)
+                    msg = await join_channel.send(file=file, embed=embed)
+                    await msg.add_reaction("👋")
             try:
                 os.remove(filename)
             except:
