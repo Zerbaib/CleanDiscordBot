@@ -36,7 +36,7 @@ class WelcomeCog(commands.Cog):
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
             pfp = Image.open(data).convert("RGBA")
-            pfp = self.circle(pfp)
+            pfp = WelcomeCog.circle(pfp)
             background.paste(pfp, (29, 12), pfp)
             background.save(filename)
 
