@@ -1,10 +1,22 @@
-import disnake
 from disnake.ext import commands
-import json
+from PIL import Image, ImageChops, ImageDraw
+from io import BytesIO
+import disnake, json, os
 
 class WelcomeCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+    def circle(self, pfp, size=(75, 75)):
+        pfp = pfp.resize(size, Image.LANCZOS).convert("RGBA")
+        bigsize = (pfp.size[0] * 3, pfp.size[1] * 3)
+        mask = Image.new('L', bigsize, 0)
+        draw = ImageDraw.Draw(mask)
+        draw.ellipse((0, 0) + bigsize, fill=255)
+        mask = mask.resize(pfp.size, Image.LANCZOS)
+        mask = ImageChops.darker(mask, pfp.split()[-1])
+        pfp.putalpha(mask)
+        return pfp
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -15,18 +27,35 @@ class WelcomeCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        with open('config.json', 'r') as config_file:
-            config = json.load(config_file)
-        join_channel_id = config["JOIN_ID"]
-        join_channel = self.bot.get_channel(join_channel_id)
-        if join_channel:
-            embed = disnake.Embed(
-                title=f"Say welcome to {member.display_name}!",
-                description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
-                color=disnake.Color.blurple()
-                )
-            msg = await join_channel.send(embed=embed)
-            await msg.add_reaction("👋")
+        if not member.bot:
+            with open('config.json', 'r') as config_file:
+                config = json.load(config_file)
+
+            filename = "image_file.png"
+            background = Image.open("welcome_background.png")
+            asset = member.display_avatar.with_size(1024)
+            data = BytesIO(await asset.read())
+            pfp = Image.open(data).convert("RGBA")
+            pfp = self.circle(pfp)
+            background.paste(pfp, (82, 93), pfp)
+            background.save(filename)
+
+
+            join_channel_id = config["JOIN_ID"]
+            join_channel = self.bot.get_channel(join_channel_id)
+            if join_channel:
+                embed = disnake.Embed(
+                    title=f"Say welcome to {member.display_name}!",
+                    description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
+                    color=disnake.Color.blurple()
+                    )
+                embed.set_image(url="attachment://" + filename)
+                msg = await join_channel.send(embed=embed)
+                await msg.add_reaction("👋")
+            try:
+                os.remove(filename)
+            except:
+                pass
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
