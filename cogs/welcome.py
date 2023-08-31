@@ -23,7 +23,7 @@ class WelcomeCog(commands.Cog):
             embed = disnake.Embed(
                 title=f"Say welcome to {member.display_name}!",
                 description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
-                color=disnake.Color.brand_green()
+                color=disnake.Color.blurple()
                 )
             msg = await join_channel.send(embed=embed)
             await msg.add_reaction("👋")
