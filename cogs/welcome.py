@@ -40,19 +40,18 @@ class WelcomeCog(commands.Cog):
             background.paste(pfp, (29, 12), pfp)
             background.save(filename)
 
-
             join_channel_id = config["JOIN_ID"]
             join_channel = self.bot.get_channel(join_channel_id)
             if join_channel:
-                embed = disnake.Embed(
-                    title=f"Say welcome to {member.display_name}!",
-                    description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
-                    color=disnake.Color.blurple()
-                    )
                 with open(filename, 'rb') as f:
                     file = disnake.File(f, filename=filename)
-                    embed.set_image(url="attachment://" + filename)
-                    msg = await join_channel.send(file=file, embed=embed)
+                    embed = disnake.Embed(
+                        title=f"Say welcome to {member.display_name}!",
+                        description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
+                        color=disnake.Color.blurple()
+                        )
+                    embed.set_image(url=f"attachment://{filename}")
+                    msg = await join_channel.send(content=member.mention, file=file, embed=embed)
                     await msg.add_reaction("👋")
             try:
                 os.remove(filename)
