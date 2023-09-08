@@ -80,7 +80,7 @@ class OtherCommands(commands.Cog):
             
             message = await channel.send(embed=embed)
             await message.add_reaction("👍")
-            await message.add_reaction("⬜️")
+            await message.add_reaction("⬜")
             await message.add_reaction("👎")
 
             await ctx.response.defer()
