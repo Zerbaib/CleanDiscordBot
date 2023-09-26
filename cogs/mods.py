@@ -150,7 +150,7 @@ class ModsCommands(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
         try:
-            if not ctx.guild.me.permissions.ban_members:
+            if not ctx.guild.self.permissions.ban_members:
                 embed = disnake.Embed(
                     title="Error",
                     description="I don't have the permission to ban users.",
