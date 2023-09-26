@@ -146,6 +146,13 @@ class ModsCommands(commands.Cog):
     @commands.slash_command(name="ban", description="Ban a user from the server")
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
+        if not ctx.guild.me.permissions.ban_members:
+            embed = disnake.Embed(
+                title="Error",
+                description="I don't have the permission to ban users.",
+                color=disnake.Color.red()
+            )
+            await ctx.send(embed=embed)
         try:
             await ctx.guild.ban(user, reason=reason)
 
@@ -154,7 +161,7 @@ class ModsCommands(commands.Cog):
                 description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
                 color=disnake.Color.dark_red()
             )
-            embed.add_field(name="Reason", value=f"```{reason}```")
+            embed.add_field(name="Reason", value=f"`{reason}`")
             await ctx.response.defer()
             await ctx.send(embed=embed)
 
