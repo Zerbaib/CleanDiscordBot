@@ -146,33 +146,33 @@ class ModsCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-@commands.slash_command(name="ban", description="Ban a user from the server")
-@commands.has_permissions(ban_members=True)
-async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
-    try:
-        member = ctx.guild.get_member(ctx.author.id)  # Obtenir le membre de l'auteur de la commande
-        if not member.guild_permissions.ban_members:
-            embed = disnake.Embed(
-                title="Error",
-                description="You don't have the permission to ban users.",
-                color=disnake.Color.red()
-            )
-            await ctx.send(embed=embed)
-        else:
-            await ctx.guild.ban(user, reason=reason)
+    @commands.slash_command(name="ban", description="Ban a user from the server")
+    @commands.has_permissions(ban_members=True)
+    async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
+        try:
+            member = ctx.guild.get_member(ctx.author.id)  # Obtenir le membre de l'auteur de la commande
+            if not member.guild_permissions.ban_members:
+                embed = disnake.Embed(
+                    title="Error",
+                    description="You don't have the permission to ban users.",
+                    color=disnake.Color.red()
+                )
+                await ctx.send(embed=embed)
+            else:
+                await ctx.guild.ban(user, reason=reason)
 
-            embed = disnake.Embed(
-                title="🔨 User Banned 🔨",
-                description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
-                color=disnake.Color.dark_red()
-            )
-            embed.add_field(name="Reason", value=f"`{reason}`")
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
+                embed = disnake.Embed(
+                    title="🔨 User Banned 🔨",
+                    description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
+                    color=disnake.Color.dark_red()
+                )
+                embed.add_field(name="Reason", value=f"`{reason}`")
+                await ctx.response.defer()
+                await ctx.send(embed=embed)
 
-    except Exception as e:
-        embed = error.error_embed(e)
-        await ctx.send(embed=embed)
+        except Exception as e:
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
 
     @commands.slash_command(name='addemoji', description="Add emoji to the server.")
     @commands.has_permissions(manage_emojis=True)
