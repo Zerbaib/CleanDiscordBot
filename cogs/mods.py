@@ -147,7 +147,6 @@ class ModsCommands(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="ban", description="Ban a user from the server")
-    @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
         try:
             member = ctx.guild.get_member(ctx.author.id)  # Obtenir le membre de l'auteur de la commande
