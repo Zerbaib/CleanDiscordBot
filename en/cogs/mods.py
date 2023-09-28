@@ -4,7 +4,7 @@ import aiohttp
 import disnake
 from disnake.ext import commands
 
-from utils import error
+from en.utils import error
 
 
 class ModsCommands(commands.Cog):
