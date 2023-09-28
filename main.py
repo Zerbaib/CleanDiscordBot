@@ -45,6 +45,7 @@ if not os.path.exists(config_file_path):
         leave_id = int(input("Enter the leave's channel ID:\n"))
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
+        print("Available languages is English, the french is not done yet")
         lang_choice = input("Enter the bot's language (en / fr):\n")
         if lang_choice == "en" or "fr" or "EN" or "FR":
             lang_choice = lang_choice.lower()
