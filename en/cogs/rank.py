@@ -3,7 +3,7 @@ from disnake.ext import commands
 import json
 import os
 import random
-from utils import error
+from en.utils import error
 
 class RankCommands(commands.Cog):
     def __init__(self, bot, base_level, level_factor):

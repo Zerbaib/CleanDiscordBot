@@ -2,7 +2,7 @@ import disnake
 from disnake.ext import commands
 import requests
 import platform
-from utils import error
+from en.utils import error
 
 class InfoCommands(commands.Cog):
     def __init__(self, bot):

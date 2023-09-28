@@ -1,7 +1,7 @@
 import disnake
 from disnake.ext import commands
 import json
-from utils import error
+from en.utils import error
 
 class EconomyCommands(commands.Cog):
     def __init__(self, bot):

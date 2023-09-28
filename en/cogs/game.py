@@ -2,7 +2,7 @@ import random
 import asyncio
 import disnake
 from disnake.ext import commands
-from utils import error
+from en.utils import error
 
 class GameCommands(commands.Cog):
     def __init__(self, bot):
