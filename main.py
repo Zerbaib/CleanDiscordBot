@@ -8,6 +8,7 @@ from disnake.ext import commands
 
 from utils import status
 
+
 config_file_path = "config.json"
 badWord_file_path = "bad_words.json"
 casino_data_file_path = "data/casino.json"
@@ -127,22 +128,22 @@ async def on_ready():
     print('===============================================')
 
 if ln == "en":
-    bot.load_extension('en.utils.logger')
-    bot.load_extension('en.utils.automod')
+    bot.load_extension('lang.en.utils.logger')
+    bot.load_extension('lang.en.utils.automod')
     bot.load_extension('utils.status')
-    bot.load_extension('en.utils.voice')
+    bot.load_extension('lang.en.utils.voice')
 else:
-    bot.load_extension('fr.utils.logger')
-    bot.load_extension('fr.utils.automod')
+    bot.load_extension('lang.fr.utils.logger')
+    bot.load_extension('lang.fr.utils.automod')
     bot.load_extension('utils.status')
-    bot.load_extension('fr.utils.voice')
+    bot.load_extension('lang.fr.utils.voice')
 
 
-for filename in os.listdir(f'{ln}/cogs'):
+for filename in os.listdir(f'lang/{ln}/cogs'):
     if filename.endswith('.py'):
         cog_name = filename[:-3]
         try:
-            bot.load_extension(f'{ln}.cogs.{cog_name}')
+            bot.load_extension(f'lang.{ln}.cogs.{cog_name}')
         except Exception as e:
             print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
 
