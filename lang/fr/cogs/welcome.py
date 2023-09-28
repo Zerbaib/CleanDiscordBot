@@ -36,7 +36,7 @@ class WelcomeCog(commands.Cog):
                 config = json.load(config_file)
 
             filename = "assets/banner_finish.png"
-            background = Image.open("assets/banner.png")
+            background = Image.open("assets/join_banner.png")
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
             pfp = Image.open(data).convert("RGBA")
@@ -50,8 +50,8 @@ class WelcomeCog(commands.Cog):
                 with open(filename, 'rb') as f:
                     file = disnake.File(f, filename=filename)
                     embed = disnake.Embed(
-                        title=f"Say welcome to {member.display_name}!",
-                        description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
+                        title=f"Dites bonjour a {member.display_name} !",
+                        description=f"On est heureux de t'avoir ici **{member.mention}**!\n\nGrace a toi on est `{len(member.guild.members)}` membres !\n\nSoyez **heureux** et **profitez** du serveur !",
                         color=disnake.Color.blurple()
                         )
                     embed.set_image(url=f"attachment://{filename}")
@@ -70,8 +70,8 @@ class WelcomeCog(commands.Cog):
         leave_channel = self.bot.get_channel(leave_channel_id)
         if leave_channel:
             embed = disnake.Embed(
-                title=f"Say goodbye to {member.display_name}",
-                description=f"We are sad to see you leave {member.mention}!\n\nWith you, we are now {len(member.guild.members)} members!\n\nWe hope to see you again lat",
+                title=f"Dites au revoir a {member.display_name}",
+                description=f"Nous sommes tristes de te voir partir {member.mention}!\n\nSans toi, nous sommes maintenant {len(member.guild.members)} membres!\n\nNous espérons vous revoir tard",
                 color=disnake.Color.brand_red()
                 )
             await leave_channel.send(embed=embed)
