@@ -6,8 +6,6 @@ import aiohttp
 import disnake
 from disnake.ext import commands
 
-from utils import status
-
 
 config_file_path = "config.json"
 badWord_file_path = "bad_words.json"
@@ -130,12 +128,12 @@ async def on_ready():
 if ln == "en":
     bot.load_extension('lang.en.utils.logger')
     bot.load_extension('lang.en.utils.automod')
-    bot.load_extension('utils.status')
+    bot.load_extension('lang.en.utils.status')
     bot.load_extension('lang.en.utils.voice')
 else:
     bot.load_extension('lang.fr.utils.logger')
     bot.load_extension('lang.fr.utils.automod')
-    bot.load_extension('utils.status')
+    bot.load_extension('lang.fr.utils.status')
     bot.load_extension('lang.fr.utils.voice')
 
 
