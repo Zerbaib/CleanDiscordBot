@@ -15,16 +15,16 @@ class CasinoCommands(commands.Cog):
         self.cooldown_file = "data/cooldown.json"
         self.min_balance = 50
         self.bet_options = {
-            "red": "🔴",
-            "black": "⚫️",
-            "even": "🔵",
-            "odd": "🟡"
+            "rouge": "🔴",
+            "noir": "⚫️",
+            "pair": "🔵",
+            "impair": "🟡"
         }
         self.payouts = {
-            "red": 2,
-            "black": 2,
-            "even": 2,
-            "odd": 2
+            "rouge": 2,
+            "noir": 2,
+            "pair": 2,
+            "impair": 2
         }
 
     @commands.Cog.listener()
@@ -126,7 +126,7 @@ class CasinoCommands(commands.Cog):
                 else:
                     data[user_id] -= amount
                     embed = disnake.Embed(title="😢 Tu as perdu", color=disnake.Color.red())
-                    embed.add_field(name="Résultat", value="Plus de chance la prochaine fois. Vous avez perdu le pari.")
+                    embed.add_field(name="Résultat", value="Better luck next time. You lost the bet.")
                     await ctx.response.defer()
                     await ctx.send(embed=embed)
 
@@ -137,7 +137,7 @@ class CasinoCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="dice", description="Play the dice game")
+    @commands.slash_command(name="dice", description="Jouez au jeu de dés")
     async def dice(self, ctx, bet: int):
         try:
             user_id = str(ctx.author.id)
@@ -147,8 +147,8 @@ class CasinoCommands(commands.Cog):
             bal = data[user_id]
 
             if bal < bet:
-                embed = disnake.Embed(title="Dice Game", color=disnake.Color.red())
-                embed.add_field(name="You cant play !", value=f"You don't have money to play ``{bet}`` coin try with less.", inline=False)
+                embed = disnake.Embed(title="Jeu de dés", color=disnake.Color.red())
+                embed.add_field(name="Tu ne peux pas jouer !", value=f"Vous n'avez pas d'argent pour jouer à ``{bet}`` esseye avec moins.", inline=False)
                 await ctx.send(embed=embed)
             else:
                 dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
@@ -160,17 +160,17 @@ class CasinoCommands(commands.Cog):
                 if dice1 == dice2:  # Pair
                     payout = bet * dice1
 
-                embed = disnake.Embed(title="🎲 Dice Game 🎲", color=disnake.Color.blue())
-                embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
+                embed = disnake.Embed(title="🎲 Jeu de dés 🎲", color=disnake.Color.blue())
+                embed.add_field(name="Résultat du lancer de dés", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
 
                 if payout > 0:
                     data[user_id] += payout
-                    embed.add_field(name="Result", value=f"You won `{payout}` coin!")
+                    embed.add_field(name="Résultat", value=f"Vous avez gagné la pièce `{payout}` !")
                     embed.color = disnake.Color.green()
                 else:
                     data[user_id] -= bet
-                    embed.add_field(name="Bet", value=f"`{bet}`")
-                    embed.add_field(name="Result", value="You lost your bet.")
+                    embed.add_field(name="Pari", value=f"`{bet}`")
+                    embed.add_field(name="Résultat", value="Vous avez perdu votre pari.")
                     embed.color = disnake.Color.red()
 
                 with open(self.data_file, 'w') as file:
@@ -182,70 +182,67 @@ class CasinoCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="caster", description="Play a game of caster")
+    @commands.slash_command(name="caster", description="Jouez à la roulette")
     async def caster(self, ctx, bet_option: str, bet_amount: int):
         try:
             user_id = str(ctx.author.id)
             bet_option = bet_option.lower()
 
-            if bet_option not in self.bet_options:
-                embed = disnake.Embed(
-                    title="Caster",
-                    description="Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
-                    color=disnake.Color.red()
-                )
-                await ctx.response.send_message(embed=embed)
-                return
+            if bet_option in self.bet_options:
+                if bet_amount < 0:
+                    with open(self.data_file, 'r') as file:
+                        data = json.load(file)
+                    balance = data.get(user_id, 0)
+                    if balance > bet_amount:
+                        result = random.choice(list(self.bet_options.keys()))
+                        payout = self.payouts.get(bet_option, 0)
+                        if result == bet_option:
+                            winnings = bet_amount * payout
+                            balance += winnings
+                            embed = disnake.Embed(
+                                title="Roulette",
+                                description=f"Toutes nos félicitations! Vous avez gagné {self.bet_options[result]}\net **`{winnings}`** pièces !",
+                                color=disnake.Color.green()
+                            )
+                        else:
+                            balance -= bet_amount
+                            embed = disnake.Embed(
+                                title="Roulette",
+                                description=f"Désolé, vous avez perdu votre pari.\nLe lanceur a lancé {self.bet_options[result]}.",
+                                color=disnake.Color.red()
+                            )
+                        
+                        await ctx.response.defer()
+                        await ctx.send(embed=embed)
 
-            if bet_amount <= 0:
-                embed = disnake.Embed(
-                    title="Caster",
-                    description="Invalid bet amount.\nPlease enter a positive value.",
-                    color=disnake.Color.red()
-                )
-                await ctx.response.send_message(embed=embed)
-                return
+                        data[user_id] = balance
 
-            with open(self.data_file, 'r') as file:
-                data = json.load(file)
-
-            balance = data.get(user_id, 0)
-
-            if balance < bet_amount:
-                embed = disnake.Embed(
-                    title="Caster",
-                    description="Insufficient balance.\nYou don't have enough coins to place this bet.",
-                    color=disnake.Color.red()
-                )
-                await ctx.response.send_message(embed=embed)
-                return
-
-            result = random.choice(list(self.bet_options.keys()))
-            payout = self.payouts.get(bet_option, 0)
-
-            if result == bet_option:
-                winnings = bet_amount * payout
-                balance += winnings
-                embed = disnake.Embed(
-                    title="Caster",
-                    description=f"Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
-                    color=disnake.Color.green()
-                )
+                        with open(self.data_file, 'w') as file:
+                            json.dump(data, file, indent=4)
+                    else:
+                        embed = disnake.Embed(
+                            title="Roulette",
+                            description="Solde insuffisant.\nVous n'avez pas assez de pièces pour placer ce pari.",
+                            color=disnake.Color.red()
+                        )
+                        await ctx.response.send_message(embed=embed)
+                        return
+                else:
+                    embed = disnake.Embed(
+                        title="Roulette",
+                        description="Montant de pari invalide.\nVeuillez saisir une valeur positive.",
+                        color=disnake.Color.red()
+                    )
+                    await ctx.response.send_message(embed=embed)
+                    return
             else:
-                balance -= bet_amount
                 embed = disnake.Embed(
-                    title="Caster",
-                    description=f"Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
+                    title="Roulette",
+                    description="Option de pari invalide.\n\nVeuillez choisir entre ``rouge``, ``noir``, ``pair`` et ``impair``.",
                     color=disnake.Color.red()
                 )
-            
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
-
-            data[user_id] = balance
-
-            with open(self.data_file, 'w') as file:
-                json.dump(data, file, indent=4)
+                await ctx.response.send_message(embed=embed)
+                return
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
