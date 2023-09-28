@@ -28,11 +28,11 @@ class StatusUtils(commands.Cog):
                         bot_version = version_file.read().strip()
                     status["value"] = f"{bot_version}"
                 elif status["name"] == "Users":
-                    status["value"] = f"{len(self.bot.users)} users"
+                    status["value"] = f"{len(self.bot.users)} utilisateurs"
                 elif status["name"] == "Commands":
-                    status["value"] = f"{len(self.bot.slash_commands)} commands"
+                    status["value"] = f"{len(self.bot.slash_commands)} commandes"
                 elif status["name"] == "Love":
-                    status["value"] = f"Love U <3"
+                    status["value"] = f"Love you <3"
 
             current_status = status_messages.pop(0)
             status_messages.append(current_status)
