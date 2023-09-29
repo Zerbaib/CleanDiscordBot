@@ -89,7 +89,7 @@ class InfoCommands(commands.Cog):
             embed.set_thumbnail(url=self.bot.user.avatar.url)
             embed.set_footer(text=f'Commandes demander par {ctx.author}', icon_url=ctx.author.avatar.url)
             
-            # await ctx.response.defer()
+            await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
