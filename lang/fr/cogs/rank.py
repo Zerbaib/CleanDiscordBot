@@ -66,8 +66,8 @@ class RankCommands(commands.Cog):
             self.save_data()
             xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
             embed = disnake.Embed(
-                title=f'👏 Congratulations, {message.author.name}! 👏',
-                description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
+                title=f'👏 Bravo, {message.author.name}! 👏',
+                description=f'**Tu est au niveau **```{lvl}```\n*Il te faut ``{xp_required}`` xp pour le prochain niveau*',
                 color=disnake.Color.brand_green()
             )
             
@@ -77,7 +77,7 @@ class RankCommands(commands.Cog):
                         role = message.author.guild.get_role(role_id)
                         if role and role not in message.author.roles:
                             await message.author.add_roles(role)
-                            embed.add_field(name="Nice you get a new role !", value=f"You win ✨ {role.mention} ! ✨")
+                            embed.add_field(name="Tu viens d'avoir un nouveau role !", value=f"Tu a gagner ✨ {role.mention} ! ✨")
                             self.role_added = True
                         else:
                             self.role_added = False
@@ -93,7 +93,7 @@ class RankCommands(commands.Cog):
 
         self.save_data()
 
-    @commands.slash_command(name='rank', description='Displays your current rank or the rank of a user')
+    @commands.slash_command(name='rank', description="Regarde ton rank ou celui d'un autre utilisateur")
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
         try:
             if user is None:
@@ -109,19 +109,19 @@ class RankCommands(commands.Cog):
                 xp_required = 5 * (level ** 2) + 10 * level + 10
                 user_rank = self.get_user_rank(user_id)
                 embed = disnake.Embed(
-                    title=f"🔰 {user_name}'s rank -> #{user_rank} 🔰",
-                    description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
+                    title=f"🔰 {user_name} top -> #{user_rank} 🔰",
+                    description=f'**Niveaux:** ```{level}```\n**XP:** ``{xp}``\n*Il te faut* ``{xp_required}`` *pour gagner un niveau*',
                     color=disnake.Color.blurple()
                 )
 
                 await inter.response.send_message(embed=embed)
             else:
-                await inter.response.send_message(f'{user_name} does not have a rank yet.')
+                await inter.response.send_message(f"{user_name} n'a pas de niveau pour le moment.")
         except Exception as e:
             embed = error.error_embed(e)
             await inter.send(embed=embed)
 
-    @commands.slash_command(name='leaderboard', description='Show the top 10 xp leaderboard')
+    @commands.slash_command(name='leaderboard', description="Montre le leaderboard")
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
             sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
@@ -129,7 +129,7 @@ class RankCommands(commands.Cog):
             for i, (user_id, user_data) in enumerate(sorted_users):
                 try:
                     user = await self.bot.fetch_user(int(user_id))
-                    embed.add_field(name=f"{i+1}. {user.name}", value=f"```Level: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
+                    embed.add_field(name=f"{i+1}. {user.name}", value=f"```Niveaux: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
                 except disnake.NotFound:
                     pass
                 if i == 9:
