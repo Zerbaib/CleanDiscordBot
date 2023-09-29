@@ -30,7 +30,7 @@ class OwnerCommands(commands.Cog):
         return local_version
 
 
-    @commands.slash_command(name="check", description="Check if the bot is up to date")
+    @commands.slash_command(name="check", description="Regarde si une mise à jour est disponible")
     @commands.is_owner()
     async def check(self, ctx):
         try:
@@ -41,17 +41,17 @@ class OwnerCommands(commands.Cog):
                 local_version = self.get_local_version()  # Méthode pour obtenir la version locale
 
                 embed = disnake.Embed(
-                    title=f"🔎 Check of {self.bot.user.name}",
+                    title=f"🔎 Verifiquation de {self.bot.user.name}",
                 )
                 if online_version == local_version:
-                    embed.description = "The bot is up to date. 👍"
+                    embed.description = "Le bot est a jour. 👍"
                     embed.colour = disnake.Color.brand_green()
                 else:
-                    embed.description = "An update is available. 👎"
+                    embed.description = "Une mise a jour est disponible. 👎"
                     embed.colour = disnake.Color.brand_red()
 
-                embed.add_field(name="Local Version", value=f"```{local_version}```", inline=True)
-                embed.add_field(name="Online Version", value=f"```{online_version}```", inline=True)
+                embed.add_field(name="Version Local", value=f"```{local_version}```", inline=True)
+                embed.add_field(name="Version En Ligne", value=f"```{online_version}```", inline=True)
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
 
@@ -59,7 +59,7 @@ class OwnerCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="update", description="Get the latest update of the bot")
+    @commands.slash_command(name="update", description="Optien la dernière version du bot")
     @commands.is_owner()
     async def update(self, ctx):
         try:
@@ -67,8 +67,8 @@ class OwnerCommands(commands.Cog):
                 config = json.load(config_file)
             
             embed = disnake.Embed(
-                title=f"⤴️ Update of ``{self.bot.user.name}``",
-                description=f"Please wait...",
+                title=f"⤴️ Mise a jour de ``{self.bot.user.name}``",
+                description=f"Merci de patienter pendant que je met a jour le bot. ⏳",
                 color=disnake.Color.old_blurple()
             )
             await ctx.send(embed=embed)
@@ -80,15 +80,15 @@ class OwnerCommands(commands.Cog):
             # Vérifier si la mise à jour a réussi
             if update_process.returncode == 0:
                 success_embed = disnake.Embed(
-                    title=f"⤴️ Update of ``{self.bot.user.name}``",
-                    description="✅ Update successful!\nYou just need a restart to apply the update.",
+                    title=f"⤴️ Mise a jour de ``{self.bot.user.name}``",
+                    description="✅ La mise a jours n'a pas eu de probleme.\nIl est recommandé de redémarrer le bot.",
                     color=disnake.Color.brand_green()
                 )
                 await ctx.send(embed=success_embed)
             else:
                 error_message = stderr.decode("utf-8")
                 error_embed = disnake.Embed(
-                    title=f"↩️ Error during the ``/update``",
+                    title=f"↩️ Une erreur c'est produite durant le ``/update``",
                     description=f"```{error_message}```",
                     color=disnake.Color.brand_red()
                 )
@@ -99,34 +99,30 @@ class OwnerCommands(commands.Cog):
             await ctx.send(embed=embed)
 
 
-    @commands.slash_command(name="restart", description="Restart the bot")
-    @commands.is_owner()  # Exige que l'auteur de la commande soit le propriétaire du bot
+    @commands.slash_command(name="restart", description="Redémarre le bot")
+    @commands.is_owner()
     async def restart(self, ctx):
         try:
             embed = disnake.Embed(
-                title="🔄 Restarting... 🔄",
-                description="The bot is restarting. Please wait...",
+                title="🔄 Redémarage ... 🔄",
+                description="Le bot va redémarrer ...",
                 color=disnake.Color.old_blurple()
             )
             await ctx.response.defer()
             await ctx.send(embed=embed)
 
-            # Exécuter une nouvelle instance du script bot
             python = sys.executable
             subprocess.Popen([python, "main.py"])
-
-            # Terminer le processus actuel du bot
             sys.exit()
-
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="stop", description="Stop the bot")
+    @commands.slash_command(name="stop", description="Arrête le bot")
     @commands.is_owner()
     async def stop(self, ctx):
         try:
-            await ctx.send("🛑 Stopping the bot... 🛑", ephemeral=True)
+            await ctx.send("🛑 Arret du bot 🛑", ephemeral=True)
             await self.bot.close()
         except Exception as e:
             embed = error.error_embed(e)
