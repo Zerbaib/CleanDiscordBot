@@ -22,7 +22,7 @@ class InfoCommands(commands.Cog):
         print('🔩 /serverinfo has been loaded')
         print()
     
-    @commands.slash_command(name="botinfo", description="Get the bot's info")
+    @commands.slash_command(name="botinfo", description="Optient les informations du bot")
     async def botinfo(self, ctx):
         try:
             with open('version.txt', 'r') as version_file:
@@ -61,33 +61,33 @@ class InfoCommands(commands.Cog):
                 stargazer_count = "Unknown"
 
             embed = disnake.Embed(
-                title=f"Info of ``{self.bot.user.name}`` 🤖",
+                title=f"Info de ``{self.bot.user.name}`` 🤖",
                 color=disnake.Color.old_blurple()
             )
             embed.add_field(
-                name=f"__Bot profile:__",
-                value=f"**Name**: ``{self.bot.user.name}``\n"
+                name=f"__Profile du Bot:__",
+                value=f"**Prénom**: ``{self.bot.user.name}``\n"
                       f"**Prefix**: ``{self.bot.command_prefix}``\n"
-                      f"**Ping**: ``{round(self.bot.latency * 1000)}ms``",
+                      f"**Latence**: ``{round(self.bot.latency * 1000)}ms``",
                 inline=False
             )
             embed.add_field(
-                name=f"__Bot info:__",
-                value=f"**Bot version**: ``{bot_version}``\n"
-                      f"**API version**: ``{disnake.__version__}``\n"
-                      f"**Python version**: ``{platform.python_version()}``",
+                name=f"__Info du Bot:__",
+                value=f"**Version du Bot**: ``{bot_version}``\n"
+                      f"**Version de l'API**: ``{disnake.__version__}``\n"
+                      f"**Version de Python**: ``{platform.python_version()}``",
                 inline=False
             )
             embed.add_field(
                 name=f"__GitHub Repository:__",
                 value=f"**Commits**: ``{commit_count}``\n"
                       f"**Stars**: ``{stargazer_count}``\n"
-                      f"**Online Version**: ``{online_version}\n``"
+                      f"**Version en Ligne**: ``{online_version}\n``"
                       f"**Repo link**: [**`here`**]({self.github_repo})",
                 inline=False
             )
             embed.set_thumbnail(url=self.bot.user.avatar.url)
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
+            embed.set_footer(text=f'Commandes demander par {ctx.author}', icon_url=ctx.author.avatar.url)
             
             # await ctx.response.defer()
             await ctx.send(embed=embed)
@@ -95,7 +95,7 @@ class InfoCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="userinfo", description="Get user information")
+    @commands.slash_command(name="userinfo", description="Optient les informations d'un utilisateur")
     async def userinfo(self, ctx, user: disnake.User = None):
         try:
             time = "%H:%M:%S %Y-%m-%d"
@@ -112,16 +112,16 @@ class InfoCommands(commands.Cog):
             else:
                 embed.set_thumbnail(url=user.default_avatar.url)
             
-            embed.add_field(name="Username", value=f"```{user.name}```", inline=True)
+            embed.add_field(name="Pseudo", value=f"```{user.name}```", inline=True)
             
             if user.discriminator != '0':
-                embed.add_field(name="Discriminator", value=f"```{user.discriminator}```", inline=True)
+                embed.add_field(name="Discriminateur", value=f"```{user.discriminator}```", inline=True)
             else:
-                embed.add_field(name="Display Name", value=f"```{user.display_name}```", inline=True)
+                embed.add_field(name="Pseudo Afficher", value=f"```{user.display_name}```", inline=True)
             
             embed.add_field(name="ID", value=f"```{user.id}```", inline=False)
             embed.add_field(name="Bot", value=f"```{user.bot}```", inline=True)
-            embed.add_field(name="Created At", value=f"```{user.created_at.strftime(time)}```", inline=True)
+            embed.add_field(name="Crée le", value=f"```{user.created_at.strftime(time)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
@@ -129,11 +129,10 @@ class InfoCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="serverinfo", description="Display server information")
+    @commands.slash_command(name="serverinfo", description="Regarde les informations du serveur")
     async def serverinfo(self, ctx):
         try:
             guild = ctx.guild
-
             name = guild.name
             logo = guild.icon.url if guild.icon else None
             description = guild.description
@@ -146,19 +145,19 @@ class InfoCommands(commands.Cog):
             boost_tier = guild.premium_tier
             date = "%d-%m-%Y %H:%M:%S"
 
-            embed = disnake.Embed(title="💾 Server Information 💾", color=disnake.Color.blurple())
+            embed = disnake.Embed(title="💾 Information du Serveur 💾", color=disnake.Color.blurple())
             if logo:
                 embed.set_thumbnail(url=logo)
-            embed.add_field(name="Name", value=f"```{name}```", inline=False)
+            embed.add_field(name="Nom", value=f"```{name}```", inline=False)
             if description:
                 embed.add_field(name="Description", value=f"```{description}```", inline=False)
-            embed.add_field(name="Owner", value=f"{owner.mention}", inline=False)
-            embed.add_field(name="Created At", value=f"```{created_at.strftime(date)}```", inline=False)
-            embed.add_field(name="Member Count", value=f"```{str(member_count)}```", inline=True)
-            embed.add_field(name="Channel Count", value=f"```{str(channel_count)}```", inline=True)
-            embed.add_field(name="Role Count", value=f"```{str(role_count)}```", inline=True)
-            embed.add_field(name="Boost Count", value=f"```{str(boost_count)}```", inline=True)
-            embed.add_field(name="Boost Tier", value=f"```{str(boost_tier)}```", inline=True)
+            embed.add_field(name="Proprietaire", value=f"{owner.mention}", inline=False)
+            embed.add_field(name="Crée le", value=f"```{created_at.strftime(date)}```", inline=False)
+            embed.add_field(name="Nombre de Membres", value=f"```{str(member_count)}```", inline=True)
+            embed.add_field(name="Nombre de Channels", value=f"```{str(channel_count)}```", inline=True)
+            embed.add_field(name="Nombre de Role", value=f"```{str(role_count)}```", inline=True)
+            embed.add_field(name="Nombre de Boosts", value=f"```{str(boost_count)}```", inline=True)
+            embed.add_field(name="iveau des Boosts", value=f"```{str(boost_tier)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
