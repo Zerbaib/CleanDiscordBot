@@ -22,13 +22,13 @@ class GameCommands(commands.Cog):
         print('🔩 /rps has been loaded')
         print()
 
-    @commands.slash_command(name='findnumber', description="Find the hidden number!")
+    @commands.slash_command(name='findnumber', description="Essayer de trouver le nombre !")
     async def findnumber(self, ctx):
         try:
             if ctx.author.id in self.games:
                 embed = disnake.Embed(
-                    title="Error",
-                    description="You are already playing a game. Use ``/guess`` to make a guess.",
+                    title="Erreur",
+                    description="Tu joues déjà au jeu. Utilise **``/guess``** pour continuer.",
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -40,13 +40,15 @@ class GameCommands(commands.Cog):
                 }
 
                 embed = disnake.Embed(
-                    title="Find the Number",
-                    description="I have chosen a number between ``1`` and ``10000``. Try to guess it!",
+                    title="Trouver le nombre! 🔢",
+                    description="J'ai choisi un nombre entre `1` et `10000`. Devine le nombre!",
                     color=disnake.Color.blurple()
                 )
-                embed.set_footer(text="Type ``/guess <number>`` to make a guess.")
-                embed.add_field(name="Instructions:", value="Guess the correct number within the given range.", inline=False)
-                embed.add_field(name="Attempts:", value="``0/25``", inline=False)
+                embed.set_footer(text="Utilise `/guess <nombre>` pour deviner le nombre.")
+                embed.add_field(name="Instructions:",
+                                value="Trouvez le nombre que j'ai choisi. Vous avez 25 tentatives.",
+                                inline=False)
+                embed.add_field(name="Tentatives", value="``0/25``", inline=False)
 
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
@@ -54,13 +56,13 @@ class GameCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name='guess', description="Guess the number!")
+    @commands.slash_command(name='guess', description="Trouver le nombre !")
     async def guess(self, ctx, number: int):
         try:
             if ctx.author.id not in self.games:
                 embed = disnake.Embed(
-                    title="Error",
-                    description="You are not currently playing a game. Use **``/findnumber``** to start a new game.",
+                    title="Erreur",
+                    description="Tu n'a pas commencé le jeu. Utilise **``/findnumber``** pour commencer.",
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -72,38 +74,38 @@ class GameCommands(commands.Cog):
 
                 if number == correct_number:
                     embed = disnake.Embed(
-                        title="Congratulations! 🎉",
-                        description="You guessed the correct number!",
+                        title="Bravo ! 🎉",
+                        description="Tu as trouvé le bon nombre !",
                         color=disnake.Color.green()
                     )
-                    embed.add_field(name="Your Guess:", value=f"`{number}`", inline=False)
-                    embed.add_field(name="Correct Number:", value=f"``{correct_number}``", inline=False)
+                    embed.add_field(name="Ton nombre:", value=f"`{number}`", inline=False)
+                    embed.add_field(name="Mon nombre:", value=f"``{correct_number}``", inline=False)
                     del self.games[ctx.author.id]
                 elif attempts >= 25:
                     embed = disnake.Embed(
-                        title="Game Over",
-                        description="You have reached the maximum number of attempts.",
+                        title="Perdu ! 😢",
+                        description="Tu as dépassé le nombre de tentatives. Tu as perdu.",
                         color=disnake.Color.red()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Correct Number:", value=f"`{correct_number}`", inline=False)
+                    embed.add_field(name="Ton nombre:", value=f"``{number}``", inline=False)
+                    embed.add_field(name="Mon nombre:", value=f"`{correct_number}`", inline=False)
                     del self.games[ctx.author.id]
                 elif number < correct_number:
                     embed = disnake.Embed(
-                        title="Too low! ⬆️",
-                        description="Try a higher number.",
+                        title="Trop bas! ⬆️",
+                        description="Essaye un nombre plus grand.",
                         color=disnake.Color.old_blurple()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Attempts:", value=f"``{attempts}/25``", inline=False)
+                    embed.add_field(name="Ton nombre:", value=f"``{number}``", inline=False)
+                    embed.add_field(name="Mon nombre:", value=f"``{attempts}/25``", inline=False)
                 else:
                     embed = disnake.Embed(
-                        title="Too high! ⬇️",
-                        description="Try a lower number.",
+                        title="Très haut! ⬇️",
+                        description="Essaye un nombre plus petit.",
                         color=disnake.Color.old_blurple()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Attempts:", value=f"``{attempts}/25``", inline=False)
+                    embed.add_field(name="Ton nombre:", value=f"``{number}``", inline=False)
+                    embed.add_field(name="Mon nombre:", value=f"``{attempts}/25``", inline=False)
 
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
@@ -111,7 +113,7 @@ class GameCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="rps", description="Play rock-paper-scissors versus the bot.")
+    @commands.slash_command(name="rps", description="Joue à pierre feuille ciseaux !")
     async def rock_paper_scissors(self, inter: disnake.ApplicationCommandInteraction):
         try:
             choices = {
@@ -124,7 +126,7 @@ class GameCommands(commands.Cog):
                 "📜": 1,
                 "✂️": 2
             }
-            embed = disnake.Embed(title="Set your choice, please.")
+            embed = disnake.Embed(title="Faite votre choix !")
             embed.color = disnake.Color.blurple()
             embed.set_author(name=inter.author.display_name, icon_url=inter.author.avatar.url)
 
@@ -155,19 +157,19 @@ class GameCommands(commands.Cog):
                 await original_response.clear_reactions()
 
                 if user_choice_index == bot_choice_index:
-                    result_embed.description = f"**It's a tie!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = f"**C'est une égalité !**\nNous avons tous les deux choisi {user_choice_emote}."
                     result_embed.colour = disnake.Color.blurple()
                 elif user_choice_index == 0 and bot_choice_index == 2:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = f"**Tu as gagné !**\nTu as choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}."
                     result_embed.colour = disnake.Color.brand_green()
                 elif user_choice_index == 1 and bot_choice_index == 0:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = f"**Tu as gagné !**\nTu as choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}."
                     result_embed.colour = disnake.Color.brand_green()
                 elif user_choice_index == 2 and bot_choice_index == 1:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = f"**Tu as gagné !**\nTu as choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}."
                     result_embed.colour = disnake.Color.brand_green()
                 else:
-                    result_embed.description = f"**I won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = f"**J'ai gagné !**\nTu as choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}."
                     result_embed.colour = disnake.Color.brand_red()
 
                 # Use original_response() here without await

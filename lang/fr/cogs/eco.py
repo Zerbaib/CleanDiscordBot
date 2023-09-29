@@ -19,7 +19,7 @@ class EconomyCommands(commands.Cog):
         print('🔩 /pay has been loaded')
         print()
 
-    @commands.slash_command(name="balance", description="Check your balance")
+    @commands.slash_command(name="balance", description="Regarde ton porte-monnaie")
     async def balance(self, ctx):
         try:
             user_id = str(ctx.author.id)
@@ -28,8 +28,8 @@ class EconomyCommands(commands.Cog):
                 balance = data.get(user_id, 0)
             
             embed = disnake.Embed(
-                title="💰 Balance 💰",
-                description=f"Your balance: ``{balance}`` coins 🪙",
+                title="💰 Pore-monnaie 💰",
+                description=f"Ton solde: ``{balance}`` pieces 🪙",
                 color=disnake.Color.blue()
             )
             await ctx.response.defer()
@@ -38,7 +38,7 @@ class EconomyCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="baltop", description="Top 10 richest users")
+    @commands.slash_command(name="baltop", description="Top 10 des utilisateurs les plus riches")
     async def baltop(self, ctx):
         try:
             with open(self.data_file, 'r') as file:
@@ -47,13 +47,13 @@ class EconomyCommands(commands.Cog):
             sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
             top_users = sorted_data[:10]
 
-            embed = disnake.Embed(title="💰 Top 10 Richest Users 💰", color=disnake.Color.blurple())
+            embed = disnake.Embed(title="💰 Top 10 des plus riches 💰", color=disnake.Color.blurple())
             for idx, (user_id, balance) in enumerate(top_users, start=1):
                 user = self.bot.get_user(int(user_id))
                 if user:
-                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Balance: `{balance}` coins", inline=False)
+                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Solde: `{balance}` pieces", inline=False)
                 else:
-                    embed.add_field(name=f"{idx}. User Not Found", value=f"Balance: `{balance}` coins", inline=False)
+                    embed.add_field(name=f"{idx}. Utilisateur pas trouver", value=f"Solde: `{balance}` pieces", inline=False)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
@@ -61,13 +61,13 @@ class EconomyCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="pay", description="Give coins to another user")
+    @commands.slash_command(name="pay", description="Paye un utilisateur")
     async def pay(self, ctx, amount: int, user: disnake.Member):
         try:
             if amount <= 0:
                 embed = disnake.Embed(
-                    title="Invalid Amount",
-                    description="The amount must be greater than zero.",
+                    title="Montant invalide",
+                    description="Le montant doit être supérieur à 0.",
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -76,8 +76,8 @@ class EconomyCommands(commands.Cog):
 
             if user.bot:
                 embed = disnake.Embed(
-                    title="Invalid User",
-                    description="You cannot give coins to a bot.",
+                    title="Utilisateur invalide",
+                    description="Tu ne peux pas payer un bot.",
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -93,8 +93,8 @@ class EconomyCommands(commands.Cog):
 
             if sender_balance < amount:
                 embed = disnake.Embed(
-                    title="Insufficient Balance",
-                    description="You do not have enough coins to make this transaction.",
+                    title="Solde insuffisant",
+                    description="Tu n'as pas assez d'argent pour effectuer cette transaction.",
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -115,8 +115,8 @@ class EconomyCommands(commands.Cog):
                 file.truncate()
 
             embed = disnake.Embed(
-                title="💸 Coins Transferred 💸",
-                description=f"You have successfully transferred `{amount}` coins to {user.mention}.",
+                title="💸 Transfere réussit 💸",
+                description=f"Tu a bien donnée `{amount}` de piece a  {user.mention}.",
                 color=disnake.Color.green()
             )
             await ctx.response.defer()
