@@ -18,7 +18,7 @@ class OtherCommands(commands.Cog):
         print('🔩 /poll has been loaded')
         print()
 
-    @commands.slash_command(name="help", description="Show the list of available commands")
+    @commands.slash_command(name="help", description="Regardez toutes les commandes")
     async def help(self, ctx):
         try:
             embeds = []
@@ -34,8 +34,12 @@ class OtherCommands(commands.Cog):
 
                 help_text = '\n'.join(f'**`{prefix}{command.name}`** - ```{command.description}```' for command in commands)
 
-                embed = disnake.Embed(title=f"{self.bot.user.display_name} Help", description=f"All command:", color=disnake.Color.blurple())
-                embed.add_field(name=f"Commands for {cog_name.capitalize()}", value=help_text, inline=False)
+                embed = disnake.Embed(
+                    title=f"Menue d'aide de {self.bot.user.display_name}",
+                    description=f"Toutes les commandes:",
+                    color=disnake.Color.blurple()
+                    )
+                embed.add_field(name=f"Commandes pour {cog_name.capitalize()}", value=help_text, inline=False)
                 embeds.append(embed)
             for embed in embeds:
                 await ctx.send(embed=embed)
@@ -43,22 +47,22 @@ class OtherCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="ping", description="Get the bot's latency",)
+    @commands.slash_command(name="ping", description="Regarde la latence du bot",)
     async def ping(self, ctx):
         try:
             embed = disnake.Embed(
                 title=f"🏓 Pong!",
-                description=f"The ping is around `{round(self.bot.latency * 1000)}ms` ⏳",
+                description=f"Le ping du bot est `{round(self.bot.latency * 1000)}ms` ⏳",
                 color=disnake.Color.blurple()
                 )
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
+            embed.set_footer(text=f'Commandes executer par {ctx.author}', icon_url=ctx.author.avatar.url)
             await ctx.response.defer()
             await ctx.send(ephemeral=True, embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name="poll", description="Create a poll")
+    @commands.slash_command(name="poll", description="Créez un sondage")
     async def poll(self, ctx, question: str):
         try:
             with open("config.json", 'r') as config_file:
@@ -66,20 +70,20 @@ class OtherCommands(commands.Cog):
             channel_id = config.get("POLL_ID")
 
             if not channel_id:
-                await ctx.send("Poll channel ID is not specified in the configuration.")
+                await ctx.send("Le channel de sondage n'a pas été configuré.")
                 return
 
             channel = self.bot.get_channel(channel_id)
             if not channel:
-                await ctx.send("Invalid poll channel ID.")
+                await ctx.send("Le channel de sondage n'a pas été trouvé.")
                 return
 
             embed = disnake.Embed(
-                title="🗳 New Poll 🗳",
+                title="🗳 Nouveau Sondage 🗳",
                 description=f"```{question}```",
                 color=disnake.Color.blurple()
             )
-            embed.set_footer(text=f"New poll from {ctx.author}")
+            embed.set_footer(text=f"Sondage proposer par {ctx.author}")
             
             message = await channel.send(embed=embed)
             await message.add_reaction("👍")
@@ -87,7 +91,7 @@ class OtherCommands(commands.Cog):
             await message.add_reaction("👎")
 
             await ctx.response.defer()
-            await ctx.send("Poll created successfully.", ephemeral=True)
+            await ctx.send("Sondage crée avec succes", ephemeral=True)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
