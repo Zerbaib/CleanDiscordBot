@@ -5,6 +5,7 @@ ffmpeg
 spotipy
 colored
 termcolor
+pillow 
 yfinance
 matplotlib
 finnhub-python

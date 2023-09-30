@@ -1,10 +1,13 @@
+import json
+
+import aiohttp
 import disnake
 from disnake.ext import commands
-import json
-import aiohttp
-from utils import error
 
-class ModsCog(commands.Cog):
+from lang.en.utils import error
+
+
+class ModsCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -86,10 +89,12 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="nick", description="Change the nickname of a member")
-    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str):
+    async def nick(self, ctx, member: disnake.Member = None, *, nickname: str = None):
         try:
             if member is None:
                 member = ctx.author
+            if nickname is None:
+                nickname = member.name
 
             if member == ctx.author or ctx.author.guild_permissions.manage_nicknames:
                 if nickname is not None:
@@ -142,20 +147,35 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.slash_command(name="ban", description="Ban a user from the server")
-    @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
         try:
-            await ctx.guild.ban(user, reason=reason)
-
-            embed = disnake.Embed(
-                title="🔨 User Banned 🔨",
-                description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
-                color=disnake.Color.dark_red()
-            )
-            embed.add_field(name="Reason", value=f"```{reason}```")
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
-
+            member = ctx.guild.get_member(ctx.author.id)
+            bot = ctx.guild.get_member(self.bot.user.id)
+            if member.guild_permissions.ban_members:
+                if bot.guild_permissions.ban_members:
+                    await ctx.guild.ban(user, reason=reason)
+                    embed = disnake.Embed(
+                        title="🔨 User Banned 🔨",
+                        description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
+                        color=disnake.Color.dark_red()
+                        )
+                    embed.add_field(name="Reason", value=f"`{reason}`")
+                    await ctx.response.defer()
+                    await ctx.send(embed=embed)
+                else:
+                    embed = disnake.Embed(
+                        title="Error",
+                        description="I don't have the permission to ban users.",
+                        color=disnake.Color.red()
+                    )
+                    await ctx.send(embed=embed)
+            else:
+                embed = disnake.Embed(
+                    title="Error",
+                    description="You don't have the permission to ban users.",
+                    color=disnake.Color.red()
+                )
+                await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
@@ -193,4 +213,4 @@ class ModsCog(commands.Cog):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(ModsCog(bot))
+    bot.add_cog(ModsCommands(bot))
