@@ -5,3 +5,4 @@ ffmpeg
 spotipy
 colored
 termcolor
+pillow

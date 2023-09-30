@@ -1,6 +1,7 @@
+import asyncio
+
 import disnake
 from disnake.ext import commands
-import asyncio
 
 status_messages = [
     {"name": "Version", "value": "", "type": disnake.ActivityType.watching},
