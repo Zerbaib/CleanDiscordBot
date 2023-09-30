@@ -5,4 +5,5 @@ ffmpeg
 spotipy
 colored
 termcolor
+pillow
 pynacl
