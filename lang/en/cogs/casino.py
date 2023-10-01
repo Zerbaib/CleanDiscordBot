@@ -74,7 +74,7 @@ class CasinoCommands(commands.Cog):
                         json.dump(cooldown_data, cooldown_file, indent=4)
 
                     embed = disnake.Embed(
-                        title="💸 Earn Coins💸 ",
+                        title="💸 Earn Coins 💸",
                         description=f"You earned 100 coins 🪙!\nYour total balance: ``{earnings}`` coins.",
                         color=disnake.Color.green()
                     )
