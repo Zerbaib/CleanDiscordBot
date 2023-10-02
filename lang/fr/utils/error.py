@@ -1,4 +1,6 @@
 import disnake
+import datetime
+from lang.fr.utils.logger import log_writer
 
 def error_embed(e):
     """
@@ -10,14 +12,17 @@ def error_embed(e):
     Renvoie :
         disnake.Embed : L'embed d'erreur.
     """
+    head = "Une erreur s'est produite !"
+    body = f"L'exception est\n\n```{e}```"
     issue_link = "https://github.com/Zerbaib/CleanDiscordBot/issues/new?assignees=Zerbaib&labels=bug&projects=&template=bug_report.md&title=%5BBUG%5D"
     embed = disnake.Embed(
-        title=f"Une erreur s'est produite !",
-        description=f"L'exception est\n\n```{e}```",
+        title=head,
+        description=body,
         color=disnake.Color.red()
     )
     embed.add_field(
         name="Vous pouvez maintenant créer un ticket sur GitHub",
         value=f"Dites-nous quelle commande a provoqué cette exception [**ici**]({issue_link})"
     )
+    print(f"\n\n{head}\n{body}\n\n")
     return embed

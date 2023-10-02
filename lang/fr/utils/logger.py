@@ -6,6 +6,11 @@ import disnake
 from disnake.ext import commands
 from termcolor import colored
 
+def log_writer(time_str, channel, user, content):
+    log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
+    
+    with open('log.txt', 'a') as log_file:
+        log_file.write(log_message + '\n')
 
 class LoggerUtils(commands.Cog):
     def __init__(self, bot):
@@ -25,12 +30,10 @@ class LoggerUtils(commands.Cog):
             channel = message.channel
             user = message.author
             content = message.content
-
             current_time = datetime.datetime.utcnow()
             time_str = current_time.strftime("%d/%m/%Y, %H:%M:%S")
-
+    
             log_printed_message = f"UTC - {time_str} > #{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
-            log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
             print(log_printed_message)
             
             log_channel_id = config["LOG_ID"]
@@ -58,9 +61,7 @@ class LoggerUtils(commands.Cog):
                 inline=False
             )
             await log_channel.send(embed=embed)
-
-            with open('log.txt', 'a') as log_file:
-                log_file.write(log_message + '\n')
+            log_writer(time_str, channel, user, content)
 
 def setup(bot):
     bot.add_cog(LoggerUtils(bot))
