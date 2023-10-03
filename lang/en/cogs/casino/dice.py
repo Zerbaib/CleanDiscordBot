@@ -23,17 +23,19 @@ class DiceCommand(commands.Cog):
             dice1 = random.randint(1, 6)
             dice2 = random.randint(1, 6)
             payout = 0
-            embed = None
+            embed = disnake.Embed()
             
             with open(self.data_file, 'r') as file:
                 data = json.load(file)
                 bal = data[user_id]
+            
             if bet > 0:
                 if bet < bal:
                     if dice1 == dice2:
                         payout = bet * dice1
                         
-                        embed = disnake.Embed(title="🎲 Dice Game 🎲", color=disnake.Color.blue())
+                        embed.title = "🎲 Dice Game 🎲"
+                        embed.color = disnake.Color.blue()
                         embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
                         
                         if payout > 0:
@@ -48,10 +50,12 @@ class DiceCommand(commands.Cog):
                         await ctx.response.defer()
                         await ctx.send(embed=embed)
                 else:
-                    embed = disnake.Embed(title="You cant play", color=disnake.Color.red())
+                    embed.title = "You cant play"
+                    embed.color = disnake.Color.red()
                     embed.add_field(name="Error", value="You don't have enough money")
             else:
-                embed = disnake.Embed(title="You cant play", color=disnake.Color.red())
+                embed.title = "You cant play"
+                embed.color = disnake.Color.red()
                 embed.add_field(name="Error", value="You can't play with a negative number")
 
             await ctx.response.defer()
