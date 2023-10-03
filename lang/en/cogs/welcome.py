@@ -36,7 +36,7 @@ class WelcomeCog(commands.Cog):
                 config = json.load(config_file)
 
             filename = "assets/banner_finish.png"
-            background = Image.open("assets/banner.png")
+            background = Image.open("assets/join_banner.png")
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
             pfp = Image.open(data).convert("RGBA")
