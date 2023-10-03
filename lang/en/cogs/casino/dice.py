@@ -53,13 +53,12 @@ class DiceCommand(commands.Cog):
                     embed.title = "You cant play"
                     embed.color = disnake.Color.red()
                     embed.add_field(name="Error", value="You don't have enough money")
+                    await ctx.send(embed=embed)
             else:
                 embed.title = "You cant play"
                 embed.color = disnake.Color.red()
                 embed.add_field(name="Error", value="You can't play with a negative number")
-
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
             with open(self.data_file, 'w') as file:
                 json.dump(data, file, indent=4)
