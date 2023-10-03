@@ -39,27 +39,25 @@ class DiceCommand(commands.Cog):
                         embed.color = disnake.Color.blue()
                         embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
                         
-                        if payout > 0:
-                            data[user_id] += payout
-                            embed.add_field(name="Result", value=f"You won `{payout}` coin!")
-                            embed.color = disnake.Color.green()
-                        else:
-                            data[user_id] -= bet
-                            embed.add_field(name="Bet", value=f"`{bet}`")
-                            embed.add_field(name="Result", value="You lost your bet.")
-                            embed.color = disnake.Color.red()
-                        await ctx.send(embed=embed)
+                        data[user_id] += payout
+                        embed.add_field(name="Result", value=f"You won `{payout}` coin!")
+                        embed.color = disnake.Color.green()
                     else:
                         embed = disnake.Embed()
-                        embed.title = "You cant play"
+                        embed.title = "🎲 Dice Game 🎲"
+                        embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
+                        embed.add_field(name="Bet", value=f"`{bet}`")
+                        embed.add_field(name="Result", value="You lost your bet.")
                         embed.color = disnake.Color.red()
-                        embed.add_field(name="Error", value="You don't have enough money")
+                        
+                        data[user_id] -= bet
+                        
                         await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed()
                     embed.title = "You cant play"
                     embed.color = disnake.Color.red()
-                    embed.add_field(name="Error", value="You can't play with a negative number")
+                    embed.add_field(name="Error", value="YYou don't have enough money")
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed()
