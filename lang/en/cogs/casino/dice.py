@@ -44,6 +44,8 @@ class DiceCommand(commands.Cog):
                             embed.add_field(name="Bet", value=f"`{bet}`")
                             embed.add_field(name="Result", value="You lost your bet.")
                             embed.color = disnake.Color.red()
+                        await ctx.response.defer()
+                        await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed(title="You cant play", color=disnake.Color.red())
                     embed.add_field(name="Error", value="You don't have enough money")
