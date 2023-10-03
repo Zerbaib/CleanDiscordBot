@@ -125,24 +125,29 @@ async def on_ready():
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
 
-if ln == "en":
-    bot.load_extension('lang.en.utils.logger')
-    bot.load_extension('lang.en.utils.automod')
-    bot.load_extension('lang.en.utils.status')
-    bot.load_extension('lang.en.utils.voice')
-else:
+if ln == "fr":
     bot.load_extension('lang.fr.utils.logger')
     bot.load_extension('lang.fr.utils.automod')
     bot.load_extension('lang.fr.utils.status')
     bot.load_extension('lang.fr.utils.voice')
+else:
+    bot.load_extension('lang.en.utils.logger')
+    bot.load_extension('lang.en.utils.automod')
+    bot.load_extension('lang.en.utils.status')
+    bot.load_extension('lang.en.utils.voice')
 
-
-for filename in os.listdir(f'lang/{ln}/cogs'):
-    if filename.endswith('.py'):
-        cog_name = filename[:-3]
-        try:
-            bot.load_extension(f'lang.{ln}.cogs.{cog_name}')
-        except Exception as e:
-            print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
+for element in os.listdir(f'lang/{ln}/cogs'):
+    try:
+        element_dir = f"lang/{ln}/cogs/{element}"
+        if os.path.isdir(element_dir):
+            for filename in os.listdir(element_dir):
+                if filename.endswith('.py'):
+                    cog_name = filename[:-3]
+                    try:
+                        bot.load_extension(f'lang.{ln}.cogs.{element}.{cog_name}')
+                    except Exception as e:
+                        print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
+    except Exception as e:
+        print(f"🌪️  Error during '{element}' loading:\n\n{e}")
 
 bot.run(token)
