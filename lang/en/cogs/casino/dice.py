@@ -23,6 +23,7 @@ class DiceCommand(commands.Cog):
             dice1 = random.randint(1, 6)
             dice2 = random.randint(1, 6)
             payout = 0
+            embed = None
             
             with open(self.data_file, 'r') as file:
                 data = json.load(file)
