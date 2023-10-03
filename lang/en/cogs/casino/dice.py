@@ -30,6 +30,7 @@ class DiceCommand(commands.Cog):
             
             if bet > 0:
                 if bet < bal:
+                    await ctx.response.defer()
                     if dice1 == dice2:
                         payout = bet * dice1
                         
@@ -47,13 +48,18 @@ class DiceCommand(commands.Cog):
                             embed.add_field(name="Bet", value=f"`{bet}`")
                             embed.add_field(name="Result", value="You lost your bet.")
                             embed.color = disnake.Color.red()
-                        await ctx.response.defer()
+                        await ctx.send(embed=embed)
+                    else:
+                        embed = disnake.Embed()
+                        embed.title = "You cant play"
+                        embed.color = disnake.Color.red()
+                        embed.add_field(name="Error", value="You don't have enough money")
                         await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed()
                     embed.title = "You cant play"
                     embed.color = disnake.Color.red()
-                    embed.add_field(name="Error", value="You don't have enough money")
+                    embed.add_field(name="Error", value="You can't play with a negative number")
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed()
