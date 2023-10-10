@@ -7,7 +7,7 @@ from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
 
 
-class WelcomeCog(commands.Cog):
+class JoinMessageUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -24,10 +24,7 @@ class WelcomeCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('========== ⚙️ Join and leave ⚙️ ==========')
         print('🧰 Join has been loaded')
-        print('🧰 Leave has been loaded')
-        print()
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
@@ -40,7 +37,7 @@ class WelcomeCog(commands.Cog):
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
             pfp = Image.open(data).convert("RGBA")
-            pfp = WelcomeCog.circle(pfp)
+            pfp = JoinMessageUtils.circle(pfp)
             background.paste(pfp, (29, 12), pfp)
             background.save(filename)
 
@@ -62,19 +59,5 @@ class WelcomeCog(commands.Cog):
             except:
                 pass
 
-    @commands.Cog.listener()
-    async def on_member_remove(self, member):
-        with open('config.json', 'r') as config_file:
-            config = json.load(config_file)
-        leave_channel_id = config["LEAVE_ID"]
-        leave_channel = self.bot.get_channel(leave_channel_id)
-        if leave_channel:
-            embed = disnake.Embed(
-                title=f"Say goodbye to {member.display_name}",
-                description=f"We are sad to see you leave {member.mention}!\n\nWith you, we are now {len(member.guild.members)} members!\n\nWe hope to see you again lat",
-                color=disnake.Color.brand_red()
-                )
-            await leave_channel.send(embed=embed)
-
 def setup(bot):
-    bot.add_cog(WelcomeCog(bot))
+    bot.add_cog(JoinMessageUtils(bot))
