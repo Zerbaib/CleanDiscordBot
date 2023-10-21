@@ -8,7 +8,7 @@ from disnake.ext import commands
 from lang.en.utils import error
 
 
-class RankCommands(commands.Cog):
+class RankCommand(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
         self.bot = bot
         self.data_path = 'data/ranks.json'
@@ -22,10 +22,7 @@ class RankCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('========== ⚙️ Rank ⚙️ ==========')
         print('🔩 /rank has been loaded')
-        print('🔩 /leaderboard has been loaded')
-        print()
 
     def load_data(self):
         if os.path.exists(self.data_path):
@@ -44,54 +41,6 @@ class RankCommands(commands.Cog):
                 self.config = json.load(config_file)
         else:
             self.config = {}
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author.bot:
-            return
-
-        user_id = str(message.author.id)
-        if user_id not in self.ranks:
-            self.ranks[user_id] = {"xp": 0, "level": 0}
-
-        self.ranks[user_id]["xp"] += random.randint(1, 5)
-        xp = self.ranks[user_id]["xp"]
-        lvl = self.ranks[user_id]["level"]
-
-        xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
-
-        if xp >= xp_required:
-            lvl = lvl + 1
-            self.ranks[user_id]["level"] = lvl
-            self.save_data()
-            xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
-            embed = disnake.Embed(
-                title=f'👏 Congratulations, {message.author.name}! 👏',
-                description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
-                color=disnake.Color.brand_green()
-            )
-            
-            if 'level_roles' in self.config:
-                for level_threshold, role_id in self.config['level_roles'].items():
-                    if lvl >= int(level_threshold):
-                        role = message.author.guild.get_role(role_id)
-                        if role and role not in message.author.roles:
-                            await message.author.add_roles(role)
-                            embed.add_field(name="Nice you get a new role !", value=f"You win ✨ {role.mention} ! ✨")
-                            self.role_added = True
-                        else:
-                            self.role_added = False
-
-            msg = await message.channel.send(embed=embed)
-            
-            if self.role_added == True:
-                await msg.delete(delay=15)
-            elif self.role_added == False:
-                await msg.delete(delay=10)
-            else:
-                await msg.delete(delay=3)
-
-        self.save_data()
 
     @commands.slash_command(name='rank', description='Displays your current rank or the rank of a user')
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
@@ -121,24 +70,6 @@ class RankCommands(commands.Cog):
             embed = error.error_embed(e)
             await inter.send(embed=embed)
 
-    @commands.slash_command(name='leaderboard', description='Show the top 10 xp leaderboard')
-    async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
-        try:
-            sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-            embed = disnake.Embed(title="💯 Leaderboard 💯", color=disnake.Color.blurple())
-            for i, (user_id, user_data) in enumerate(sorted_users):
-                try:
-                    user = await self.bot.fetch_user(int(user_id))
-                    embed.add_field(name=f"{i+1}. {user.name}", value=f"```Level: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
-                except disnake.NotFound:
-                    pass
-                if i == 9:
-                    break
-            await inter.send(embed=embed)
-        except Exception as e:
-            embed = error.error_embed(e)
-            await inter.send(embed=embed)
-
     def get_user_rank(self, user_id):
         sorted_ranks = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
         for i, (id, _) in enumerate(sorted_ranks):
@@ -148,4 +79,4 @@ class RankCommands(commands.Cog):
         return -1
 
 def setup(bot):
-    bot.add_cog(RankCommands(bot, base_level=1, level_factor=0.1))
+    bot.add_cog(RankCommand(bot, base_level=1, level_factor=0.1))

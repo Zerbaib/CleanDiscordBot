@@ -66,3 +66,6 @@ class RankSystem(commands.Cog):
                 await msg.delete(delay=3)
 
         save_data()
+
+def setup(bot):
+    bot.add_cog(RankSystem(bot))
