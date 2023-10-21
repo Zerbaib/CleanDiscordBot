@@ -65,4 +65,4 @@ class LeaderboardCommand(commands.Cog):
         return -1
     
 def setup(bot):
-    bot.add_cog(LeaderboardCommand(bot))
+    bot.add_cog(LeaderboardCommand(bot, base_level=1, level_factor=0.1))
