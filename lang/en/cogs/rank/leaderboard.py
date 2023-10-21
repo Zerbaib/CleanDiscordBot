@@ -7,7 +7,33 @@ from lang.en.utils import error
 class LeaderboardCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+        self.data_path = 'data/ranks.json'
+        self.config_path = 'config.json'
+        self.base_level = base_level
+        self.level_factor = level_factor
+        self.data = {}
+        self.role_added = None
+        self.load_data()
+        self.load_config()
+
+    def load_data(self):
+        if os.path.exists(self.data_path):
+            with open(self.data_path, 'r') as data_file:
+                self.ranks = json.load(data_file)
+        else:
+            self.ranks = {}
+
+    def save_data(self):
+        with open(self.data_path, 'w') as data_file:
+            json.dump(self.ranks, data_file, indent=4)
+
+    def load_config(self):
+        if os.path.exists(self.config_path):
+            with open(self.config_path, 'r') as config_file:
+                self.config = json.load(config_file)
+        else:
+            self.config = {}
+
     @commands.Cog.listener()
     async def on_ready(self):
         print('🔩 /leaderboard has been loaded')
