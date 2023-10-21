@@ -9,8 +9,6 @@ class LeaderboardCommand(commands.Cog):
         self.bot = bot
         self.data_path = 'data/ranks.json'
         self.config_path = 'config.json'
-        self.base_level = base_level
-        self.level_factor = level_factor
         self.data = {}
         self.role_added = None
         self.load_data()
@@ -65,4 +63,4 @@ class LeaderboardCommand(commands.Cog):
         return -1
     
 def setup(bot):
-    bot.add_cog(LeaderboardCommand(bot, base_level=1, level_factor=0.1))
+    bot.add_cog(LeaderboardCommand(bot))
