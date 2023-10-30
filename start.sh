@@ -1,7 +1,7 @@
 #!/bin/bash
 
-python3 -m venv .venv
-source .venv/bin/activate
+git fetch && git pull
 pip3 install --upgrade pip
 pip3 install -r requirements.txt
+
 python3 main.py
