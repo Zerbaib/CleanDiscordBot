@@ -7,7 +7,7 @@ Clean Discord Bot is a bot developed using the Disnake framework library. It is 
 - Custom Commands: The bot has several custom commands to interact with server users.
 - Member Management: The bot can perform actions such as kick, ban, and nickname modification for server members.
 - Server Statistics: The bot can display server information such as member count and channel count.
-- Automatic Updates: The bot can check for available updates and perform automatic updates.
+- Automatic Updates: The bot can check for available updates and perform automatic updates. (you need to use the install and the startup script for that or use hosted solution)
 
 Go check all command in [CMD.md](CMD.md)
 
