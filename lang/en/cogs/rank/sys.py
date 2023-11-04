@@ -15,6 +15,7 @@ class RankSystem(commands.Cog):
         self.bot = bot
         self.data_path = 'data/ranks.json'
         self.config_path = 'config.json'
+        self.load_data()
     
     def load_data(self):
         if os.path.exists(self.data_path):
