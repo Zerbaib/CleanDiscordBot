@@ -1,5 +1,6 @@
 import random
 import json
+import os
 
 import disnake
 from disnake.ext import commands
@@ -14,6 +15,13 @@ class RankSystem(commands.Cog):
         self.bot = bot
         self.data_path = 'data/ranks.json'
         self.config_path = 'config.json'
+    
+    def load_data(self):
+        if os.path.exists(self.data_path):
+            with open(self.data_path, 'r') as data_file:
+                self.ranks = json.load(data_file)
+        else:
+            self.ranks = {}
     
     @commands.Cog.listener()
     async def on_ready(self):
