@@ -14,7 +14,6 @@ class ModsCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Moderation ⚙️ ==========')
-        print('🔩 /clear has been loaded')
         print('🔩 /mute has been loaded')
         print('🔩 /unmute has been loaded')
         print('🔩 /nick has been loaded')
@@ -22,24 +21,6 @@ class ModsCommands(commands.Cog):
         print('🔩 /ban has been loaded')
         print('🔩 /addemoji has been loaded')
         print()
-
-    @commands.slash_command(name="clear", description="Clear a specified number of messages in the channel")
-    @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount: int):
-        try:
-            await ctx.channel.purge(limit=amount)
-
-            embed = disnake.Embed(
-                title="🌪 Messages Cleared 🌪",
-                description=f"``{amount}`` messages have been cleared in this channel.",
-                color=disnake.Color.brand_green()
-            )
-            await ctx.response.defer()
-            await ctx.send(embed=embed, delete_after=3)
-
-        except Exception as e:
-            embed = error.error_embed(e)
-            await ctx.send(embed=embed)
 
     @commands.slash_command(name="mute", description="Mute a member")
     @commands.has_permissions(manage_messages=True)
