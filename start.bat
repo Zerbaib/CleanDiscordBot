@@ -1,7 +1,7 @@
 @echo off
 
 REM Fetch and pull the latest changes from the Git repository.
-git.cmd fetch && git.cmd pull
+git.exe fetch && git.exe pull
 
 REM Upgrade pip.
 pip.exe install --upgrade pip

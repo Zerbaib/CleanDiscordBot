@@ -1,7 +1,7 @@
 @echo off
 
 REM Clone the CleanDiscordBot repository from GitHub.
-git.cmd clone https://github.com/Zerbaib/CleanDiscordBot.git
+git.exe clone https://github.com/Zerbaib/CleanDiscordBot.git
 
 REM Install the requirements.
 pip.exe install -r CleanDiscordBot/requirements.txt
