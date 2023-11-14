@@ -14,36 +14,12 @@ class ModsCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Moderation ⚙️ ==========')
-        print('🔩 /mute has been loaded')
         print('🔩 /unmute has been loaded')
         print('🔩 /nick has been loaded')
         print('🔩 /kick has been loaded')
         print('🔩 /ban has been loaded')
         print('🔩 /addemoji has been loaded')
         print()
-
-    @commands.slash_command(name="mute", description="Mute a member")
-    @commands.has_permissions(manage_messages=True)
-    async def mute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
-        try:
-            with open("config.json", 'r') as config_file:
-                config = json.load(config_file)
-            role_id = config.get("MUTE_ROLE_ID")
-
-            role = disnake.utils.get(ctx.guild.roles, id=role_id)
-            await member.add_roles(role)
-
-            embed = disnake.Embed(
-                title="😶 Member Muted 😶",
-                description=f"{member.mention} has been muted.",
-                color=disnake.Color.dark_red()
-            ) 
-            embed.add_field(name="Reason", value=f"```{reason}```")
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
-        except Exception as e:
-            embed = error.error_embed(e)
-            await ctx.send(embed=embed)
 
     @commands.slash_command(name="unmute", description="Unmute a member")
     @commands.has_permissions(manage_messages=True)
