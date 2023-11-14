@@ -25,6 +25,9 @@ class InfoCommands(commands.Cog):
     @commands.slash_command(name="botinfo", description="Optient les informations du bot")
     async def botinfo(self, ctx):
         try:
+            
+            await ctx.response.defer()
+            
             with open('version.txt', 'r') as version_file:
                 bot_version = version_file.read().strip()
             
