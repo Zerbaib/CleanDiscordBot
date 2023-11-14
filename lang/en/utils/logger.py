@@ -33,9 +33,11 @@ class LoggerUtils(commands.Cog):
             time_str = current_time.strftime("%d/%m/%Y, %H:%M:%S")
 
             if message.attachments:
-                content += f" | more content: {message.attachments[0].url}"
+                for attachment in message.attachments:
+                    content += f" | more content: {attachment.url}"
             elif message.embeds:
-                content += f" | more content: {message.embeds[0].url}"
+                for embed in message.embeds:
+                    content += f" | more content: {embed.url}"
             
             log_printed_message = f"UTC - {time_str} > #{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
             print(log_printed_message)
