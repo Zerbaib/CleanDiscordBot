@@ -14,7 +14,6 @@ class ModsCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Moderation ⚙️ ==========')
-        print('🔩 /unmute has been loaded')
         print('🔩 /nick has been loaded')
         print('🔩 /kick has been loaded')
         print('🔩 /ban has been loaded')
