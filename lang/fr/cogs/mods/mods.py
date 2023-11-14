@@ -13,33 +13,12 @@ class ModsCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('========== ⚙️ Moderation ⚙️ ==========')
-        print('🔩 /clear has been loaded')
         print('🔩 /mute has been loaded')
         print('🔩 /unmute has been loaded')
         print('🔩 /nick has been loaded')
         print('🔩 /kick has been loaded')
         print('🔩 /ban has been loaded')
         print('🔩 /addemoji has been loaded')
-        print()
-
-    @commands.slash_command(name="clear", description="Efface un nombre spécifié de messages dans le salon")
-    @commands.has_permissions(manage_messages=True)
-    async def clear(self, ctx, amount: int):
-        try:
-            await ctx.channel.purge(limit=amount)
-
-            embed = disnake.Embed(
-                title="🌪 Messages Effacés 🌪",
-                description=f"``{amount}`` messages ont été effacés dans ce salon.",
-                color=disnake.Color.brand_green()
-            )
-            await ctx.response.defer()
-            await ctx.send(embed=embed, delete_after=3)
-
-        except Exception as e:
-            embed = error.error_embed(e)
-            await ctx.send(embed=embed)
 
     @commands.slash_command(name="mute", description="Mute un membre")
     @commands.has_permissions(manage_messages=True)
