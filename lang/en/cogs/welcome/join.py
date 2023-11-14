@@ -32,7 +32,7 @@ class JoinMessageUtils(commands.Cog):
             with open('config.json', 'r') as config_file:
                 config = json.load(config_file)
 
-            filename = "assets/banner_finish.png"
+            filename = "assets/jbanner_finish.png"
             background = Image.open("assets/join_banner.png")
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
