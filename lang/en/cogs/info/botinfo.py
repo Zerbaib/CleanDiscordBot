@@ -21,7 +21,7 @@ class BotInfoCommand(commands.Cog):
     @commands.slash_command(name="botinfo", description="Get the bot's info")
     async def botinfo(self, ctx):
         try:
-            await ctx.defer()
+            await ctx.response.defer()
             
             with open('version.txt', 'r') as version_file:
                 bot_version = version_file.read().strip()
