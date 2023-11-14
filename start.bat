@@ -3,6 +3,10 @@
 REM Fetch and pull the latest changes from the Git repository.
 git.exe fetch && git.exe pull
 
+REM Create and active the env
+python -m venv .venv
+.venv\Scripts\activate.bat
+
 REM Upgrade pip.
 pip.exe install --upgrade pip
 
