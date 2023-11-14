@@ -14,29 +14,9 @@ class EconomyCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Economy ⚙️ ==========')
-        print('🔩 /balance has been loaded')
         print('🔩 /baltop has been loaded')
         print('🔩 /pay has been loaded')
         print()
-
-    @commands.slash_command(name="balance", description="Regarde ton porte-monnaie")
-    async def balance(self, ctx):
-        try:
-            user_id = str(ctx.author.id)
-            with open(self.data_file, 'r') as file:
-                data = json.load(file)
-                balance = data.get(user_id, 0)
-            
-            embed = disnake.Embed(
-                title="💰 Pore-monnaie 💰",
-                description=f"Ton solde: ``{balance}`` pieces 🪙",
-                color=disnake.Color.blue()
-            )
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
-        except Exception as e:
-            embed = error.error_embed(e)
-            await ctx.send(embed=embed)
 
     @commands.slash_command(name="baltop", description="Top 10 des utilisateurs les plus riches")
     async def baltop(self, ctx):
