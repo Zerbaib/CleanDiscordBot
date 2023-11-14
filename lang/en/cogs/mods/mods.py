@@ -14,30 +14,9 @@ class ModsCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('========== ⚙️ Moderation ⚙️ ==========')
-        print('🔩 /kick has been loaded')
         print('🔩 /ban has been loaded')
         print('🔩 /addemoji has been loaded')
         print()
-
-
-    @commands.slash_command(name="kick", description="Kick a user from the server")
-    @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, user: disnake.Member, reason: str = "No reason provided"):
-        try:
-            await user.kick(reason=reason)
-
-            embed = disnake.Embed(
-                title="🏌️‍♀️ User Kicked 🏌️‍♀️",
-                description=f"**{user.name}** *aka ``{user.display_name}``* has been kicked from the server.",
-                color=disnake.Color.dark_red()
-            )
-            embed.add_field(name="Reason", value=f"```{reason}```")
-            await ctx.response.defer()
-            await ctx.send(embed=embed)
-
-        except Exception as e:
-            embed = error.error_embed(e)
-            await ctx.send(embed=embed)
 
     @commands.slash_command(name="ban", description="Ban a user from the server")
     async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
