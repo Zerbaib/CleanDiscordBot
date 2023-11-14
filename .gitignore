@@ -3,5 +3,6 @@ config.json
 bad_words.json
 data/*.json
 .venv/*
+env/*
 .vs/*
 log.txt
