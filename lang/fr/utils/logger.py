@@ -1,15 +1,14 @@
 import datetime
 import json
 import time
-
 import disnake
 from disnake.ext import commands
 from termcolor import colored
 
 def log_writer(time_str, channel, user, content):
     log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
-    
-    with open('log.txt', 'a') as log_file:
+
+    with open('log.txt', 'a', encoding='utf-8') as log_file:  # Specify 'utf-8' encoding
         log_file.write(log_message + '\n')
 
 class LoggerUtils(commands.Cog):
@@ -26,16 +25,21 @@ class LoggerUtils(commands.Cog):
         if not message.author.bot:
             with open('config.json', 'r') as config_file:
                 config = json.load(config_file)
-            
+
             channel = message.channel
             user = message.author
             content = message.content
             current_time = datetime.datetime.utcnow()
             time_str = current_time.strftime("%d/%m/%Y, %H:%M:%S")
-    
+
+            if message.attachments:
+                content += f" | more content: {message.attachments[0].url}"
+            elif message.embeds:
+                content += f" | more content: {message.embeds[0].url}"
+            
             log_printed_message = f"UTC - {time_str} > #{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
             print(log_printed_message)
-            
+
             log_channel_id = config["LOG_ID"]
             log_channel = self.bot.get_channel(log_channel_id)
 
