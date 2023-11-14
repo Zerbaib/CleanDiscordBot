@@ -46,7 +46,7 @@ class RankSystem(commands.Cog):
         if xp >= xp_required:
             lvl = lvl + 1
             self.ranks[user_id]["level"] = lvl
-            save_data()
+            save_data(self)
             xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
             embed = disnake.Embed(
                 title=f'👏 Congratulations, {message.author.name}! 👏',
