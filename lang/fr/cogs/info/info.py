@@ -25,6 +25,9 @@ class InfoCommands(commands.Cog):
     @commands.slash_command(name="botinfo", description="Optient les informations du bot")
     async def botinfo(self, ctx):
         try:
+            
+            await ctx.response.defer()
+            
             with open('version.txt', 'r') as version_file:
                 bot_version = version_file.read().strip()
             
@@ -88,8 +91,7 @@ class InfoCommands(commands.Cog):
             )
             embed.set_thumbnail(url=self.bot.user.avatar.url)
             embed.set_footer(text=f'Commandes demander par {ctx.author}', icon_url=ctx.author.avatar.url)
-            
-            await ctx.response.defer()
+
             await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
