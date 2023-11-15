@@ -10,6 +10,8 @@ from disnake.ext import commands
 
 if not os.path.exists(".env"):
     token = input("Enter the bot's token:\n")
+    prefix = input("Enter the bot's prefix:\n")
+    adminid = int(input("Enter your Discord ID:\n"))
     lang_choice = input("Enter the bot's language (en / fr):\n")
     lang_possible = ["en", "fr", "EN", "FR"]
     if lang_choice in lang_possible:
@@ -20,6 +22,8 @@ if not os.path.exists(".env"):
     with open(".env", 'w') as env_file:
         env = f'LANGUAGE="{lang_choice}"'
         env += f'\nTOKEN="{token}"'
+        env += f'\nPREFIX="{prefix}"'
+        env += f'\nADMINID="{adminid}"'
         env_file.write(env)
 
 config_file_path = "config.json"
@@ -51,29 +55,23 @@ if not os.path.exists(badWord_file_path):
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
-        prefix = input("Enter the bot's prefix:\n")
         log_id = int(input("Enter the log's channel ID:\n"))
         poll_id = int(input("Enter the poll's channel ID:\n"))
         join_id = int(input("Enter the join's channel ID:\n"))
         leave_id = int(input("Enter the leave's channel ID:\n"))
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
-        id_client = int(input("Enter your Discord ID:\n"))
         print("Available languages is English, the french is not done yet")
         mute_id = int(input("Enter role id of muted role:\n"))
         rank1 = int(input("Enter role id of level 10 role:\n"))
         rank2 = int(input("Enter role id of level 25 role:\n"))
         rank3 = int(input("Enter role id of level 50 role:\n"))
         config_data = {
-            "TOKEN": token,
-            "PREFIX": prefix,
             "LOG_ID": log_id,
             "POLL_ID": poll_id,
             "JOIN_ID": join_id,
             "LEAVE_ID": leave_id,
             "AUTO_VOICE_ID": voice_id,
-            "YOUR_ID": id_client,
             "MUTE_ROLE_ID": mute_id,
-            "LANGUAGE": lang_choice,
             "del_time": 3,
             "level_roles": {
                 "10": rank1,
