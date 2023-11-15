@@ -76,7 +76,7 @@ class LoggerUtils(commands.Cog):
 
         channel = ctx.channel
         user = ctx.author
-        content = f"{ctx.name} command used"
+        content = f"command used"
         current_time = datetime.datetime.utcnow()
         time_str = current_time.strftime("%d/%m/%Y, %H:%M:%S")
 
