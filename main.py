@@ -146,7 +146,7 @@ else:
     bot.load_extension('lang.en.utils.status')
     bot.load_extension('lang.en.utils.voice')
 
-for element in os.listdir(f'lang/{ln}/cogs'):
+for element in os.listdir(f'lang/{ln.lower}/cogs'):
     try:
         element_dir = f"lang/{ln}/cogs/{element}"
         if os.path.isdir(element_dir):
