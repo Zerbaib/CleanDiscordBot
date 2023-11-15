@@ -1,4 +1,4 @@
-from i18n import t
+import i18n
 import os
 import json
 import random
@@ -21,7 +21,7 @@ class BetCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /bet has been loaded')
 
-    @commands.slash_command(name="bet", description=t('casino.BET_DESCRIPTION', locale=lang))
+    @commands.slash_command(name="bet", description=i18n.t('casino.BET_DESCRIPTION', locale=lang))
     async def bet(self, ctx, amount: int):
         try:
             user_id = str(ctx.author.id)
@@ -35,16 +35,16 @@ class BetCommand(commands.Cog):
                         if outcome:
                             winnings = amount * 2
                             data[user_id] += winnings
-                            embed = create_embed(t('casino.WIN_TITLE', locale=lang))
+                            embed = create_embed(i18n.t('casino.WIN_TITLE', locale=lang))
                             
                             embed.add_field(
-                                name=t('casino.OUTCOME_TITLE', locale=lang),
-                                value=t('casino.WIN_OUTCOME', locale=lang),
+                                name=i18n.t('casino.OUTCOME_TITLE', locale=lang),
+                                value=i18n.t('casino.WIN_OUTCOME', locale=lang),
                                 inline=False
                                 )
                             embed.add_field(
-                                name=t('casino.WINNINGS', locale=lang),
-                                value=t("casino.WIN_DESCRIPTION", locale=lang, win_bet=winnings),
+                                name=i18n.t('casino.WINNINGS', locale=lang),
+                                value=i18n.t("casino.WIN_DESCRIPTION", locale=lang, win_bet=winnings),
                                 inline=False
                                 )
                             await ctx.response.defer()
@@ -52,12 +52,12 @@ class BetCommand(commands.Cog):
                         else:
                             data[user_id] -= amount
                             embed = disnake.Embed(
-                                title=t('casino.LOST_TITLE', locale=lang),
+                                title=i18n.t('casino.LOST_TITLE', locale=lang),
                                 color=disnake.Color.red()
                                 )
                             embed.add_field(
-                                name=t('casino.OUTCOME_TITLE', locale=lang),
-                                value=t('casino.LOST_OUTCOME', locale=lang)
+                                name=i18n.t('casino.OUTCOME_TITLE', locale=lang),
+                                value=i18n.t('casino.LOST_OUTCOME', locale=lang)
                                 )
                             await ctx.response.defer()
                             await ctx.send(embed=embed)
