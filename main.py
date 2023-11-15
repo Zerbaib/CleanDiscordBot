@@ -22,7 +22,7 @@ casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
-env = [f"LANGUAGE={lang_choice}"]
+env = LANGUAGE=f"{lang_choice}"
 
 if not os.path.exists(casino_data_file_path):
     with open(casino_data_file_path, 'w') as casino_file:
