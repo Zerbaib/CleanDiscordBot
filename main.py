@@ -8,28 +8,28 @@ import disnake
 from disnake.ext import commands
 
 
-lang_choice = input("Enter the bot's language (en / fr):\n")
-if lang_choice == "en" or "fr" or "EN" or "FR":
-    lang_choice = lang_choice.upper()
-else:
-    print("Invalid language, default language is English")
-    lang_choice = "EN"
+
+if not os.path.exists(".env"):
+    env = LANGUAGE=f"{lang_choice}"
+    lang_choice = input("Enter the bot's language (en / fr):\n")
+    if lang_choice == "en" or "fr" or "EN" or "FR":
+        lang_choice = lang_choice.upper()
+    else:
+        print("Invalid language, default language is English")
+        lang_choice = "EN"
+    with open(".env", 'w') as env_file:
+        json.dump(env, env_file)
 
 config_file_path = "config.json"
-env_file_path = ".env"
 badWord_file_path = "bad_words.json"
 casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
-env = LANGUAGE=f"{lang_choice}"
 
 if not os.path.exists(casino_data_file_path):
     with open(casino_data_file_path, 'w') as casino_file:
         json.dump({}, casino_file)
-if not os.path.exists(env_file_path):
-    with open(env_file_path, 'w') as env_file:
-        json.dump(env, env_file)
 if not os.path.exists(casino_cooldown_data_file_path):
     with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
         json.dump({}, casino_cooldown_file)
