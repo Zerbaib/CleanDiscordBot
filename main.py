@@ -134,7 +134,7 @@ async def on_ready():
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
 
-if ln == "fr":
+if ln == "FR":
     bot.load_extension('lang.FR.utils.logger')
     bot.load_extension('lang.FR.utils.automod')
     bot.load_extension('lang.FR.utils.status')
