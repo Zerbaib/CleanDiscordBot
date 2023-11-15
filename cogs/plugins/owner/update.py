@@ -4,7 +4,9 @@ import subprocess
 import disnake
 from disnake.ext import commands
 
-from lang.en.utils import error
+from cogs.utils import error
+from cogs.utils.color import hex_to_discord_color
+from cogs.utils.embed import create_embed
 
 
 class UpdateCommand(commands.Cog):
