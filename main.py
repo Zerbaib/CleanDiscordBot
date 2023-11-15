@@ -92,7 +92,7 @@ load_dotenv()
 
 token = config["TOKEN"]
 prefix = config["PREFIX"]
-ln = os.getenv(LANGUAGE)
+ln = os.environ["LANGUAGE"]
 
 bot = commands.Bot(
     command_prefix=prefix,
