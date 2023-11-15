@@ -143,26 +143,20 @@ async def on_ready():
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
 
-#if ln == "FR":
-    #bot.load_extension('lang.fr.utils.logger')
-    #bot.load_extension('lang.fr.utils.automod')
-    #bot.load_extension('lang.fr.utils.status')
-    #bot.load_extension('lang.fr.utils.voice')
-#else:
-    #bot.load_extension('lang.en.utils.logger')
-    #bot.load_extension('lang.en.utils.automod')
-    #bot.load_extension('lang.en.utils.status')
-    #bot.load_extension('lang.en.utils.voice')
+bot.load_extension('cogs.utils.logger')
+bot.load_extension('cogs.utils.automod')
+bot.load_extension('cogs.utils.status')
+bot.load_extension('cogs.utils.voice')
 
-for element in os.listdir(f'lang/{ln_lower}/cogs'):
+for element in os.listdir(f'cogs'):
     try:
-        element_dir = f"lang/{ln_lower}/cogs/{element}"
+        element_dir = f"cogs/plugins/{element}"
         if os.path.isdir(element_dir):
             for filename in os.listdir(element_dir):
                 if filename.endswith('.py'):
                     cog_name = filename[:-3]
                     try:
-                        bot.load_extension(f'lang.{ln_lower}.cogs.{element}.{cog_name}')
+                        bot.load_extension(f'cogs.plugins.{element}.{cog_name}')
                     except Exception as e:
                         print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
     except Exception as e:
