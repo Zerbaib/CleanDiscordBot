@@ -60,7 +60,6 @@ if not os.path.exists(config_file_path):
         join_id = int(input("Enter the join's channel ID:\n"))
         leave_id = int(input("Enter the leave's channel ID:\n"))
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
-        print("Available languages is English, the french is not done yet")
         mute_id = int(input("Enter role id of muted role:\n"))
         rank1 = int(input("Enter role id of level 10 role:\n"))
         rank2 = int(input("Enter role id of level 25 role:\n"))
