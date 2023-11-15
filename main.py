@@ -1,6 +1,7 @@
 import json
 import os
 import platform
+import i18n
 from dotenv import load_dotenv
 
 import aiohttp
@@ -91,6 +92,12 @@ token = os.environ["TOKEN"]
 prefix = config["PREFIX"]
 ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
+i18n.load_path.append("locales")
+i18n.set("file_format", "json")
+i18n.set("filename_format", "{namespace}.{format}")
+i18n.set("namespace_delimiter", ":")
+i18n.set("skip_locale_root_data", True)
+i18n.set("use_locale_dirs", True)
 
 bot = commands.Bot(
     command_prefix=prefix,

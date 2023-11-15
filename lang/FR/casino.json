@@ -1,0 +1,40 @@
+{
+    "WIN_TITLE": "💰 Vous avez gagné !",
+    "LOST_TITLE": "😢 Vous avez perdu !",
+    "ERROR_TITLE": "🤔 Vous ne pouvez pas jouer !",
+
+    "WIN_OUTCOME": "Félicitations !",
+    "LOST_OUTCOME": "Désolé, vous avez perdu votre mise.",
+    "WIN_DESCRIPTION": "Vous avez gagné `{win_bet}` pièces !",
+    "REMAINING_BALANCE": "Votre solde est maintenant de `{bal}` pièces.",
+
+    "ERROR_NO_MONEY": "Vous n'avez pas assez d'argent pour jouer.",
+    "ERROR_NO_BET": "Vous devez parier quelque chose.",
+    "ERROR_NO_NUMBER": "Vous devez parier un nombre.",
+    "ERROR_NEGATIVE_BET": "Vous ne pouvez pas parier des nombres négatifs.",
+    "ERROR_IVALID_OPTION": "Option de pari invalide.\n\nVeuillez choisir parmi ``rouge``, ``noir``, ``pair``, ``impair``.",
+    "ERROR_NOT_REGISTERED": "Vous n'êtes pas encore enregistré.\n\nVeuillez utiliser ``/earn`` pour être dans la base de données.",
+
+    "BET_TITLE": "🎲 Pari 🎲",
+    "BET_DESCRIPTION": "Miser des pièces | x2 ou perdu",
+    "BET_USAGE": "/bet `<montant>`",
+
+    "CASTER_TITLE": "🎲 Caster 🎲",
+    "CASTER_DESCRIPTION": "Jouez à un jeu de caster",
+    "CASTER_USAGE": "/caster `<couleur>` `<montant>`",
+
+    "DICE_TITLE": "🎲 Jeu de dés 🎲",
+    "DICE_DESCRIPTION": "Jouez au jeu de dés",
+    "DICE_USAGE": "/dice `<montant>`",
+    "DICE_ROLL": "Résultat du lancer de dés",
+
+    "SLOTS_TITLE": "🎰 Machines à sous 🎰",
+    "SLOTS_DESCRIPTION": "Jouez au jeu de machines à sous",
+    "SLOTS_USAGE": "/slots `<montant>`",
+
+    "EARN_TITLE": "💸 Gagnez des pièces 💸",
+    "EARN_DESCRIPTION": "Gagnez des pièces toutes les 2 heures.",
+    "EARN_TEXE": "Vous avez gagné `100` pièces 🪙 !\nVotre solde total : ``{earnings}`` pièces.",
+    "EARN_COOLDOWN_TITLE": "🕰 Gagnez des pièces 🕰",
+    "EARN_COOLDOWN_DESCRIPTION": "Vous pouvez gagner des pièces à nouveau dans `{cooldown_time}` secondes."
+}
