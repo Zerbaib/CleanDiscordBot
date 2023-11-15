@@ -6,19 +6,23 @@ from dotenv import load_dotenv
 import aiohttp
 import disnake
 from disnake.ext import commands
+from dotenv import load_dotenv
+import os
+
 
 
 
 if not os.path.exists(".env"):
     lang_choice = input("Enter the bot's language (en / fr):\n")
-    if lang_choice == "en" or "fr" or "EN" or "FR":
+    lang_possible = ["en", "fr", "EN", "FR"]
+    if lang_choice in lang_possible:
         lang_choice = lang_choice.upper()
     else:
         print("Invalid language, default language is English")
         lang_choice = "EN"
     with open(".env", 'w') as env_file:
-        env = LANGUAGE=f"{lang_choice}"
-        json.dump(env, env_file)
+        env = f"LANGUAGE={lang_choice}"
+        env_file.write(env)
 
 config_file_path = "config.json"
 badWord_file_path = "bad_words.json"
@@ -83,8 +87,6 @@ if not os.path.exists(config_file_path):
         json.dump(config_data, config_file, indent=4)
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
-    with open(env_file_path, 'w') as env_file:
-        json.dump(env, env_file)
 else:
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
