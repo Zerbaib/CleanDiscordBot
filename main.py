@@ -135,15 +135,15 @@ async def on_ready():
     print('===============================================')
 
 if ln == "FR":
-    bot.load_extension('lang.FR.utils.logger')
-    bot.load_extension('lang.FR.utils.automod')
-    bot.load_extension('lang.FR.utils.status')
-    bot.load_extension('lang.FR.utils.voice')
+    bot.load_extension('lang.fr.utils.logger')
+    bot.load_extension('lang.fr.utils.automod')
+    bot.load_extension('lang.fr.utils.status')
+    bot.load_extension('lang.fr.utils.voice')
 else:
-    bot.load_extension('lang.EN.utils.logger')
-    bot.load_extension('lang.EN.utils.automod')
-    bot.load_extension('lang.EN.utils.status')
-    bot.load_extension('lang.EN.utils.voice')
+    bot.load_extension('lang.en.utils.logger')
+    bot.load_extension('lang.en.utils.automod')
+    bot.load_extension('lang.en.utils.status')
+    bot.load_extension('lang.en.utils.voice')
 
 for element in os.listdir(f'lang/{ln}/cogs'):
     try:
@@ -158,5 +158,6 @@ for element in os.listdir(f'lang/{ln}/cogs'):
                         print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
     except Exception as e:
         print(f"🌪️  Error during '{element}' loading:\n\n{e}")
+
 
 bot.run(token)
