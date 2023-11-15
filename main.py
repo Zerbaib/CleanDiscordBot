@@ -8,6 +8,13 @@ import disnake
 from disnake.ext import commands
 
 
+lang_choice = input("Enter the bot's language (en / fr):\n")
+if lang_choice == "en" or "fr" or "EN" or "FR":
+    lang_choice = lang_choice.upper()
+else:
+    print("Invalid language, default language is English")
+    lang_choice = "EN"
+
 config_file_path = "config.json"
 env_file_path = ".env"
 badWord_file_path = "bad_words.json"
@@ -51,12 +58,6 @@ if not os.path.exists(config_file_path):
         voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
         id_client = int(input("Enter your Discord ID:\n"))
         print("Available languages is English, the french is not done yet")
-        lang_choice = input("Enter the bot's language (en / fr):\n")
-        if lang_choice == "en" or "fr" or "EN" or "FR":
-            lang_choice = lang_choice.upper()
-        else:
-            print("Invalid language, default language is English")
-            lang_choice = "EN"
         mute_id = int(input("Enter role id of muted role:\n"))
         rank1 = int(input("Enter role id of level 10 role:\n"))
         rank2 = int(input("Enter role id of level 25 role:\n"))
