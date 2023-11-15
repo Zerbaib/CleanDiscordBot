@@ -148,7 +148,7 @@ bot.load_extension('cogs.utils.automod')
 bot.load_extension('cogs.utils.status')
 bot.load_extension('cogs.utils.voice')
 
-for element in os.listdir(f'cogs'):
+for element in os.listdir(f'cogs/plugins/'):
     try:
         element_dir = f"cogs/plugins/{element}"
         if os.path.isdir(element_dir):
