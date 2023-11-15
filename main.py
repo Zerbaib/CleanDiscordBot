@@ -93,6 +93,7 @@ load_dotenv()
 token = config["TOKEN"]
 prefix = config["PREFIX"]
 ln = os.environ["LANGUAGE"]
+ln_lower = ln.lower()
 
 bot = commands.Bot(
     command_prefix=prefix,
@@ -146,15 +147,15 @@ else:
     bot.load_extension('lang.en.utils.status')
     bot.load_extension('lang.en.utils.voice')
 
-for element in os.listdir(f'lang/{ln.lower}/cogs'):
+for element in os.listdir(f'lang/{ln_lower}/cogs'):
     try:
-        element_dir = f"lang/{ln.lower}/cogs/{element}"
+        element_dir = f"lang/{ln_lower}/cogs/{element}"
         if os.path.isdir(element_dir):
             for filename in os.listdir(element_dir):
                 if filename.endswith('.py'):
                     cog_name = filename[:-3]
                     try:
-                        bot.load_extension(f'lang.{ln.lower}.cogs.{element}.{cog_name}')
+                        bot.load_extension(f'lang.{ln_lower}.cogs.{element}.{cog_name}')
                     except Exception as e:
                         print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
     except Exception as e:
