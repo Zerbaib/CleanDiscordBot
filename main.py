@@ -1,6 +1,7 @@
 import json
 import os
 import platform
+from dotenv import load_dotenv
 
 import aiohttp
 import disnake
@@ -8,6 +9,7 @@ from disnake.ext import commands
 
 
 config_file_path = "config.json"
+env_file_path = ".env"
 badWord_file_path = "bad_words.json"
 casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
@@ -17,6 +19,9 @@ online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main
 if not os.path.exists(casino_data_file_path):
     with open(casino_data_file_path, 'w') as casino_file:
         json.dump({}, casino_file)
+if not os.path.exists(env_file_path):
+    with open(env_file_path, 'w') as env_file:
+        json.dump("", env_file)
 if not os.path.exists(casino_cooldown_data_file_path):
     with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
         json.dump({}, casino_cooldown_file)
@@ -47,10 +52,10 @@ if not os.path.exists(config_file_path):
         print("Available languages is English, the french is not done yet")
         lang_choice = input("Enter the bot's language (en / fr):\n")
         if lang_choice == "en" or "fr" or "EN" or "FR":
-            lang_choice = lang_choice.lower()
+            lang_choice = lang_choice.upper()
         else:
             print("Invalid language, default language is English")
-            lang_choice = "en"
+            lang_choice = "EN"
         mute_id = int(input("Enter role id of muted role:\n"))
         rank1 = int(input("Enter role id of level 10 role:\n"))
         rank2 = int(input("Enter role id of level 25 role:\n"))
@@ -76,13 +81,17 @@ if not os.path.exists(config_file_path):
         json.dump(config_data, config_file, indent=4)
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
+    with open(env_file_path, 'w') as env_file:
+        json.dump(f'LANGUAGE=\"{lang_choice}\"', env_file)
 else:
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
 
+load_dotenv()
+
 token = config["TOKEN"]
 prefix = config["PREFIX"]
-ln = config["LANGUAGE"]
+ln = os.getenv("LANGUAGE")
 
 bot = commands.Bot(
     command_prefix=prefix,
@@ -126,15 +135,15 @@ async def on_ready():
     print('===============================================')
 
 if ln == "fr":
-    bot.load_extension('lang.fr.utils.logger')
-    bot.load_extension('lang.fr.utils.automod')
-    bot.load_extension('lang.fr.utils.status')
-    bot.load_extension('lang.fr.utils.voice')
+    bot.load_extension('lang.FR.utils.logger')
+    bot.load_extension('lang.FR.utils.automod')
+    bot.load_extension('lang.FR.utils.status')
+    bot.load_extension('lang.FR.utils.voice')
 else:
-    bot.load_extension('lang.en.utils.logger')
-    bot.load_extension('lang.en.utils.automod')
-    bot.load_extension('lang.en.utils.status')
-    bot.load_extension('lang.en.utils.voice')
+    bot.load_extension('lang.EN.utils.logger')
+    bot.load_extension('lang.EN.utils.automod')
+    bot.load_extension('lang.EN.utils.status')
+    bot.load_extension('lang.EN.utils.voice')
 
 for element in os.listdir(f'lang/{ln}/cogs'):
     try:
