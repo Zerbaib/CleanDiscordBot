@@ -82,7 +82,7 @@ if not os.path.exists(config_file_path):
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
     with open(env_file_path, 'w') as env_file:
-        env = LANGUAGE=lang_choice
+        env = f"LANGUAGE={lang_choice}"
         json.dump(env, env_file)
 else:
     with open(config_file_path, 'r') as config_file:
