@@ -3,10 +3,12 @@
     "LOST_TITLE": "😢 You Lost!",
     "ERROR_TITLE": "🤔 You can't play!",
 
+    "OUTCOME_TITLE": "Outcome",
     "WIN_OUTCOME": "Congratulations!",
     "LOST_OUTCOME": "Sorry, you lost your bet.",
-    "WIN_DESCRIPTION": "You won `{win_bet}` coins!",
-    "REMAINING_BALANCE": "Your balance is now `{bal}` coins.",
+    "WINNING": "Winnings",
+    "WIN_DESCRIPTION": "You won `%{win_bet}` coins!",
+    "REMAINING_BALANCE": "Your balance is now `%{bal}` coins.",
 
     "ERROR_NO_MONEY": "You don't have enough money to play.",
     "ERROR_NO_BET": "You need to bet something.",
@@ -34,7 +36,7 @@
 
     "EARN_TITLE": "💸 Earn Coins 💸",
     "EARN_DESCRIPTION": "Earn coins every 2 hours.",
-    "EARN_TEXE": "You earned `100` coins 🪙!\nYour total balance: ``{earnings}`` coins.",
+    "EARN_TEXE": "You earned `100` coins 🪙!\nYour total balance: ``%{earnings}`` coins.",
     "EARN_COOLDOWN_TITLE": "🕰 Earn Coins 🕰",
-    "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `{cooldown_time}` seconds."
+    "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `%{cooldown_time}` seconds."
 }

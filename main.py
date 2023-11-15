@@ -95,7 +95,7 @@ ln_lower = ln.lower()
 i18n.load_path.append("locales")
 i18n.set("file_format", "json")
 i18n.set("filename_format", "{namespace}.{format}")
-i18n.set("namespace_delimiter", ":")
+i18n.set("namespace_delimiter", ".")
 i18n.set("skip_locale_root_data", True)
 i18n.set("use_locale_dirs", True)
 
