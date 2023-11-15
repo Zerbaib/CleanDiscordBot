@@ -6,10 +6,6 @@ from dotenv import load_dotenv
 import aiohttp
 import disnake
 from disnake.ext import commands
-from dotenv import load_dotenv
-import os
-
-
 
 
 if not os.path.exists(".env"):
