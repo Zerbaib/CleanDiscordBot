@@ -23,7 +23,7 @@ class BetCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /bet has been loaded')
 
-    @commands.slash_command(name="bet", description=i18n.t('casino.BET_DESCRIPTION', locale=lang))
+    @commands.slash_command(name="bet", description=i18n.t('casino:BET_DESCRIPTION', locale=lang))
     async def bet(self, ctx, amount: int):
         try:
             user_id = str(ctx.author.id)
@@ -37,17 +37,17 @@ class BetCommand(commands.Cog):
                         if outcome:
                             winnings = amount * 2
                             data[user_id] += winnings
-                            embed = create_embed(i18n.t('casino.WIN_TITLE', locale=lang))
+                            embed = create_embed(i18n.t('casino:WIN_TITLE', locale=lang))
                             embed.color(hex_to_discord_color(discord_blue))
                             
                             embed.add_field(
-                                name=i18n.t('casino.OUTCOME_TITLE', locale=lang),
-                                value=i18n.t('casino.WIN_OUTCOME', locale=lang),
+                                name=i18n.t('casino:OUTCOME_TITLE', locale=lang),
+                                value=i18n.t('casino:WIN_OUTCOME', locale=lang),
                                 inline=False
                                 )
                             embed.add_field(
-                                name=i18n.t('casino.WINNINGS', locale=lang),
-                                value=i18n.t("casino.WIN_DESCRIPTION", locale=lang, win_bet=winnings),
+                                name=i18n.t('casino:WINNINGS', locale=lang),
+                                value=i18n.t("casino:WIN_DESCRIPTION", locale=lang, win_bet=winnings),
                                 inline=False
                                 )
                             await ctx.response.defer()
@@ -55,24 +55,24 @@ class BetCommand(commands.Cog):
                         else:
                             data[user_id] -= amount
                             embed = disnake.Embed(
-                                title=i18n.t('casino.LOST_TITLE', locale=lang),
+                                title=i18n.t('casino:LOST_TITLE', locale=lang),
                                 color=disnake.Color.red()
                                 )
                             embed.add_field(
-                                name=i18n.t('casino.OUTCOME_TITLE', locale=lang),
-                                value=i18n.t('casino.LOST_OUTCOME', locale=lang)
+                                name=i18n.t('casino:OUTCOME_TITLE', locale=lang),
+                                value=i18n.t('casino:LOST_OUTCOME', locale=lang)
                                 )
                             await ctx.response.defer()
                             await ctx.send(embed=embed)
                     else:
-                        embed = create_embed(i18n.t('casino.ERROR_TITLE', locale=lang))
+                        embed = create_embed(i18n.t('casino:ERROR_TITLE', locale=lang))
                         embed.color(hex_to_discord_color(discord_red))
-                        embed.add_field(name=i18n.t('casino.ERROR_TITLE', local=lang), value=i18n.t('casino.ERROR_NO_MONEY', local=lang))
+                        embed.add_field(name=i18n.t('casino:ERROR_TITLE', local=lang), value=i18n.t('casino:ERROR_NO_MONEY', local=lang))
                         await ctx.response.send_message(embed=embed)
                 else:
-                    embed = create_embed(i18n.t('casino.ERROR_TITLE', locale=lang))
+                    embed = create_embed(i18n.t('casino:ERROR_TITLE', locale=lang))
                     embed.color(hex_to_discord_color(discord_red))
-                    embed.add_field(name=i18n.t('casino.ERROR_TITLE', local=lang), value=i18n.t('casino.ERROR_NEGATIVE_BET', local=lang))
+                    embed.add_field(name=i18n.t('casino:ERROR_TITLE', local=lang), value=i18n.t('casino:ERROR_NEGATIVE_BET', local=lang))
                     await ctx.response.send_message(embed=embed)
                 file.seek(0)
                 json.dump(data, file, indent=4)

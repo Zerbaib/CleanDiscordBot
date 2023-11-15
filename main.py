@@ -97,7 +97,7 @@ i18n.load_path = ["lang"]
 i18n.set = ({
     "file_format": "json",
     "filename_format": "{namespace}.{format}",
-    "namespace_delimiter": ".",
+    "namespace_delimiter": ":",
     "skip_locale_root_data": True,
     "use_locale_dirs": True,
 })
