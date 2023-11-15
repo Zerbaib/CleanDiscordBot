@@ -62,12 +62,12 @@ class BetCommand(commands.Cog):
                             await ctx.response.defer()
                             await ctx.send(embed=embed)
                     else:
-                        embed = disnake.Embed(title="You cant play", color=disnake.Color.red())
-                        embed.add_field(name="Error", value="You don't have enough money")
+                        embed = disnake.Embed(title=i18n.t('casino.ERROR_TITLE', local=lang), color=disnake.Color.red())
+                        embed.add_field(name=i18n.t('casino.ERROR_TITLE', local=lang), value=i18n.t('casino.ERROR_NO_MONEY', local=lang))
                         await ctx.response.send_message(embed=embed)
                 else:
-                    embed = disnake.Embed(title="You cant play", color=disnake.Color.red())
-                    embed.add_field(name="Error", value="You can't play with a negative number")
+                    embed = disnake.Embed(title=i18n.t('casino.ERROR_TITLE', local=lang), color=disnake.Color.red())
+                    embed.add_field(name=i18n.t('casino.ERROR_TITLE', local=lang), value=i18n.t('casino.ERROR_NEGATIVE_BET', local=lang))
                     await ctx.response.send_message(embed=embed)
                 file.seek(0)
                 json.dump(data, file, indent=4)
