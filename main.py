@@ -94,7 +94,7 @@ ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
 
 i18n.load_path = ["lang"]
-i18n.set({
+i18n.set = ({
     "file_format": "json",
     "filename_format": "{namespace}.{format}",
     "namespace_delimiter": ".",
