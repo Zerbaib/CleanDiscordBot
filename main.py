@@ -94,11 +94,13 @@ ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
 
 i18n.load_path = ["lang"]
-i18n.set("file_format", "json")
-i18n.set("filename_format", "{namespace}.{format}")
-i18n.set("namespace_delimiter", ".")
-i18n.set("skip_locale_root_data", True)
-i18n.set("use_locale_dirs", True)
+i18n.set({
+    "file_format": "json",
+    "filename_format": "{namespace}.{format}",
+    "namespace_delimiter": ".",
+    "skip_locale_root_data": True,
+    "use_locale_dirs": True,
+})
 
 bot = commands.Bot(
     command_prefix=prefix,
