@@ -9,6 +9,7 @@ from disnake.ext import commands
 
 
 if not os.path.exists(".env"):
+    token = input("Enter the bot's token:\n")
     lang_choice = input("Enter the bot's language (en / fr):\n")
     lang_possible = ["en", "fr", "EN", "FR"]
     if lang_choice in lang_possible:
@@ -17,7 +18,8 @@ if not os.path.exists(".env"):
         print("Invalid language, default language is English")
         lang_choice = "EN"
     with open(".env", 'w') as env_file:
-        env = f"LANGUAGE={lang_choice}"
+        env = f'LANGUAGE="{lang_choice}"'
+        env += f'\nTOKEN="{token}"'
         env_file.write(env)
 
 config_file_path = "config.json"
@@ -49,7 +51,6 @@ if not os.path.exists(badWord_file_path):
 
 if not os.path.exists(config_file_path):
     with open(config_file_path, 'w') as config_file:
-        token = input("Enter the bot's token:\n")
         prefix = input("Enter the bot's prefix:\n")
         log_id = int(input("Enter the log's channel ID:\n"))
         poll_id = int(input("Enter the poll's channel ID:\n"))
@@ -89,7 +90,7 @@ else:
 
 load_dotenv()
 
-token = config["TOKEN"]
+token = os.environ["TOKEN"]
 prefix = config["PREFIX"]
 ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
