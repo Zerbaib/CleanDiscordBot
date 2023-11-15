@@ -15,13 +15,14 @@ casino_data_file_path = "data/casino.json"
 rank_data_file_path = "data/ranks.json"
 casino_cooldown_data_file_path = "data/cooldown.json"
 online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
+env = [f"LANGUAGE={lang_choice}"]
 
 if not os.path.exists(casino_data_file_path):
     with open(casino_data_file_path, 'w') as casino_file:
         json.dump({}, casino_file)
 if not os.path.exists(env_file_path):
     with open(env_file_path, 'w') as env_file:
-        json.dump("", env_file)
+        json.dump(env, env_file)
 if not os.path.exists(casino_cooldown_data_file_path):
     with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
         json.dump({}, casino_cooldown_file)
@@ -82,7 +83,6 @@ if not os.path.exists(config_file_path):
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
     with open(env_file_path, 'w') as env_file:
-        env = [f"LANGUAGE={lang_choice}"]
         json.dump(env, env_file)
 else:
     with open(config_file_path, 'r') as config_file:
