@@ -104,7 +104,7 @@ class LoggerUtils(commands.Cog):
         )
         embed.add_field(
             name="Command",
-            value=f"```{ctx.name}```",
+            value=f"```{content}```",
             inline=False
         )
         await log_channel.send(embed=embed)
