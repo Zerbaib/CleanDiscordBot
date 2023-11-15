@@ -10,7 +10,6 @@ from disnake.ext import commands
 
 
 if not os.path.exists(".env"):
-    env = LANGUAGE=f"{lang_choice}"
     lang_choice = input("Enter the bot's language (en / fr):\n")
     if lang_choice == "en" or "fr" or "EN" or "FR":
         lang_choice = lang_choice.upper()
@@ -18,6 +17,7 @@ if not os.path.exists(".env"):
         print("Invalid language, default language is English")
         lang_choice = "EN"
     with open(".env", 'w') as env_file:
+        env = LANGUAGE=f"{lang_choice}"
         json.dump(env, env_file)
 
 config_file_path = "config.json"
