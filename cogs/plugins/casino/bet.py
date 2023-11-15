@@ -37,8 +37,10 @@ class BetCommand(commands.Cog):
                         if outcome:
                             winnings = amount * 2
                             data[user_id] += winnings
-                            embed = create_embed(i18n.t('casino:WIN_TITLE', locale=lang))
-                            embed.color(hex_to_discord_color(discord_blue))
+                            embed = disnake.Embed(
+                                title=i18n.t('casino:WIN_TITLE', locale=lang),
+                                color=hex_to_discord_color(discord_blue)
+                                )
                             
                             embed.add_field(
                                 name=i18n.t('casino:OUTCOME_TITLE', locale=lang),
@@ -65,13 +67,17 @@ class BetCommand(commands.Cog):
                             await ctx.response.defer()
                             await ctx.send(embed=embed)
                     else:
-                        embed = create_embed(i18n.t('casino:ERROR_TITLE', locale=lang))
-                        embed.color(hex_to_discord_color(discord_red))
+                        embed = disnake.Embed(
+                            title=i18n.t('casino:ERROR_TITLE', locale=lang),
+                            color=hex_to_discord_color(discord_red)
+                            )
                         embed.add_field(name=i18n.t('casino:ERROR_TITLE', local=lang), value=i18n.t('casino:ERROR_NO_MONEY', local=lang))
                         await ctx.response.send_message(embed=embed)
                 else:
-                    embed = create_embed(i18n.t('casino:ERROR_TITLE', locale=lang))
-                    embed.color(hex_to_discord_color(discord_red))
+                    embed = disnake.Embed(
+                        title=i18n.t('casino:ERROR_TITLE', locale=lang),
+                        color=hex_to_discord_color(discord_red)
+                        )
                     embed.add_field(name=i18n.t('casino:ERROR_TITLE', local=lang), value=i18n.t('casino:ERROR_NEGATIVE_BET', local=lang))
                     await ctx.response.send_message(embed=embed)
                 file.seek(0)
