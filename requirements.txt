@@ -15,5 +15,4 @@ urllib3==2.0.7
 yarl==1.9.2
 python-dotenv==1.0.0
 i18n==0.2
-i18n.lang
 python-i18n==0.3.9
