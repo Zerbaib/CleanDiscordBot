@@ -92,6 +92,7 @@ token = os.environ["TOKEN"]
 prefix = config["PREFIX"]
 ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
+
 i18n.set('locales_path', 'locales')
 i18n.set("file_format", "json")
 i18n.set("filename_format", "{namespace}.{format}")
