@@ -143,16 +143,16 @@ async def on_ready():
     print(f"🔱 Python version: {platform.python_version()}")
     print('===============================================')
 
-if ln == "FR":
-    bot.load_extension('lang.fr.utils.logger')
-    bot.load_extension('lang.fr.utils.automod')
-    bot.load_extension('lang.fr.utils.status')
-    bot.load_extension('lang.fr.utils.voice')
-else:
-    bot.load_extension('lang.en.utils.logger')
-    bot.load_extension('lang.en.utils.automod')
-    bot.load_extension('lang.en.utils.status')
-    bot.load_extension('lang.en.utils.voice')
+#if ln == "FR":
+    #bot.load_extension('lang.fr.utils.logger')
+    #bot.load_extension('lang.fr.utils.automod')
+    #bot.load_extension('lang.fr.utils.status')
+    #bot.load_extension('lang.fr.utils.voice')
+#else:
+    #bot.load_extension('lang.en.utils.logger')
+    #bot.load_extension('lang.en.utils.automod')
+    #bot.load_extension('lang.en.utils.status')
+    #bot.load_extension('lang.en.utils.voice')
 
 for element in os.listdir(f'lang/{ln_lower}/cogs'):
     try:
