@@ -82,7 +82,8 @@ if not os.path.exists(config_file_path):
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
     with open(env_file_path, 'w') as env_file:
-        json.dump(f'LANGUAGE=\"{lang_choice}\"', env_file)
+        env = LANGUAGE=lang_choice
+        json.dump(env, env_file)
 else:
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
@@ -91,7 +92,7 @@ load_dotenv()
 
 token = config["TOKEN"]
 prefix = config["PREFIX"]
-ln = os.getenv("LANGUAGE")
+ln = os.getenv(LANGUAGE)
 
 bot = commands.Bot(
     command_prefix=prefix,
