@@ -93,7 +93,7 @@ prefix = config["PREFIX"]
 ln = os.environ["LANGUAGE"]
 ln_lower = ln.lower()
 
-i18n.load_path.append("lang")
+i18n.load_path = ["lang"]
 i18n.set("file_format", "json")
 i18n.set("filename_format", "{namespace}.{format}")
 i18n.set("namespace_delimiter", ".")
