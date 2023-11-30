@@ -29,19 +29,19 @@ class ServerInfoCommand(commands.Cog):
             boost_tier = guild.premium_tier
             date = "%d-%m-%Y %H:%M:%S"
 
-            embed = disnake.Embed(title="💾 Server Information 💾", color=disnake.Color.blurple())
+            embed = disnake.Embed(title="```💾 Server Information 💾```", color=disnake.Color.blurple())
             if logo:
                 embed.set_thumbnail(url=logo)
-            embed.add_field(name="Name", value=f"```{name}```", inline=False)
+            embed.add_field(name="```Name```", value=f"```{name}```", inline=False)
             if description:
-                embed.add_field(name="Description", value=f"```{description}```", inline=False)
-            embed.add_field(name="Owner", value=f"{owner.mention}", inline=False)
-            embed.add_field(name="Created At", value=f"```{created_at.strftime(date)}```", inline=False)
-            embed.add_field(name="Member Count", value=f"```{str(member_count)}```", inline=True)
-            embed.add_field(name="Channel Count", value=f"```{str(channel_count)}```", inline=True)
-            embed.add_field(name="Role Count", value=f"```{str(role_count)}```", inline=True)
-            embed.add_field(name="Boost Count", value=f"```{str(boost_count)}```", inline=True)
-            embed.add_field(name="Boost Tier", value=f"```{str(boost_tier)}```", inline=True)
+                embed.add_field(name="```Description```", value=f"```{description}```", inline=False)
+            embed.add_field(name="```Owner```", value=f"{owner.mention}", inline=False)
+            embed.add_field(name="```Created At```", value=f"```{created_at.strftime(date)}```", inline=False)
+            embed.add_field(name="```Member Count```", value=f"```{str(member_count)}```", inline=True)
+            embed.add_field(name="```Channel Count```", value=f"```{str(channel_count)}```", inline=True)
+            embed.add_field(name="```Role Count```", value=f"```{str(role_count)}```", inline=True)
+            embed.add_field(name="```Boost Count```", value=f"```{str(boost_count)}```", inline=True)
+            embed.add_field(name="```Boost Tier```", value=f"```{str(boost_tier)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
