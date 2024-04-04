@@ -38,6 +38,7 @@ class RankSystem(commands.Cog):
     
     @commands.Cog.listener()
     async def on_message(self, message):
+        print("coucou")
         if message.author.bot:
             return
 
