@@ -9,8 +9,10 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_casino_lang
 
 lang = os.environ["LANGUAGE"]
+langText = load_casino_lang()
 discord_blue = "#7289da"
 discord_red = "#ed5555"
 
@@ -18,12 +20,12 @@ class BetCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.data_file = "data/casino.json"
-
+        
     @commands.Cog.listener()
     async def on_ready(self):
         print('🔩 /bet has been loaded')
 
-    @commands.slash_command(name="bet", description=i18n.t('casino:BET_DESCRIPTION', locale=lang))
+    @commands.slash_command(name="bet", description=langText.get("BET_DESCRIPTION"))
     async def bet(self, ctx, amount: int):
         try:
             user_id = str(ctx.author.id)
