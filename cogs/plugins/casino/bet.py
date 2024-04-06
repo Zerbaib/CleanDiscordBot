@@ -6,7 +6,6 @@ from disnake.ext import commands
 
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
-from cogs.utils.embed import create_embed
 from cogs.utils.lang_loader import load_casino_lang
 
 langText = load_casino_lang()
