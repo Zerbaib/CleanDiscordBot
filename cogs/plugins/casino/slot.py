@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_casino_lang
+
+langText = load_casino_lang()
 
 class SlotCommand(commands.Cog):
     def __init__(self, bot):
@@ -17,13 +20,13 @@ class SlotCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /slot has been loaded')
 
-    @commands.slash_command(name='slot', description='Play the slot machine')
+    @commands.slash_command(name='slot', description=langText.get("SLOTS_DESCRIPTION"))
     async def slot(self, ctx, bet: int):
         try:
             if bet <= 0:
                 embed = disnake.Embed(
-                    title="Slot Machine",
-                    description="The bet must be greater than zero.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_NEGATIVE_BET"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -35,8 +38,8 @@ class SlotCommand(commands.Cog):
             user_id = str(ctx.author.id)
             if user_id not in data:
                 embed = disnake.Embed(
-                    title="Slot Machine",
-                    description="You are not registered in the casino. Use the `/earn` command to sign up.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_NOT_REGISTERED"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -45,8 +48,8 @@ class SlotCommand(commands.Cog):
             balance = data[user_id]
             if balance < bet:
                 embed = disnake.Embed(
-                    title="Slot Machine",
-                    description="Insufficient balance to place the bet.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_NO_MONEY"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -68,7 +71,7 @@ class SlotCommand(commands.Cog):
             for _ in range(3):
                 symbol = random.choice(reels)  # Select a random symbol for each reel
                 ligne2.append(symbol)
-            embed = disnake.Embed(title="🎰 Slot Machine 🎰", color=disnake.Color.blurple())
+            embed = disnake.Embed(title=langText.get("SLOTS_TITLE"), color=disnake.Color.blurple())
             embed.add_field(name="Reels",
                             value=f"| ``{ligne1[0]} | {ligne1[1]} | {ligne1[2]}`` |\n\n"
                                 f"**>** **``{result[0]} | {result[1]} | {result[2]}``** **<**\n\n"
@@ -79,17 +82,17 @@ class SlotCommand(commands.Cog):
             if result[0] == result[1] == result[2]:
                 win_amount = bet * 10  # Win 10 times the bet amount for matching all 3 reels
                 balance += win_amount
-                embed.add_field(name="Result", value=f"Congratulations! You won ``{win_amount}`` coins.", inline=False)
+                embed.add_field(name=langText.get("WIN_OUTCOME"), value=langText.get("WIN_DESCRIPTION"), inline=False)
             else:
                 balance -= bet
-                embed.add_field(name="Result", value="Sorry! You didn't get a match.", inline=False)
+                embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("LOST_OUTCOME"), inline=False)
 
             data[user_id] = balance
 
             with open('data/casino.json', 'w') as file:
                 json.dump(data, file, indent=4)
 
-            embed.add_field(name="Balance", value=f"Remaining balance: ``{balance}`` coins.", inline=False)
+            embed.add_field(name="Balance", value=langText.get("REMAINING_BALANCE"), inline=False)
             await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)

@@ -7,8 +7,8 @@
     "WIN_OUTCOME": "Congratulations!",
     "LOST_OUTCOME": "Sorry, you lost your bet.",
     "WINNING": "Winnings",
-    "WIN_DESCRIPTION": "You won `%{win_bet}` coins!",
-    "REMAINING_BALANCE": "Your balance is now `%{bal}` coins.",
+    "WIN_DESCRIPTION": "You won `{win_bet}` coins!",
+    "REMAINING_BALANCE": "Your balance is now `{bal}` coins.",
 
     "BET": "Bet",
 
