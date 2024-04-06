@@ -71,21 +71,21 @@ class CasterCommand(commands.Cog):
                         await ctx.send(embed=embed)
                     else:
                         embed = disnake.Embed(
-                            title=langText.get("CASTER_TITLE"),
+                            title=langText.get("ERROR_TITLE"),
                             description=langText.get("ERROR_NO_MONEY"),
                             color=disnake.Color.red()
                         )
                     await ctx.response.send_message(embed=embed)
                 else:
                     embed = disnake.Embed(
-                        title=langText.get("CASTER_TITLE"),
+                        title=langText.get("ERROR_TITLE"),
                         description=langText.get("ERROR_NEGATIVE_BET"),
                         color=disnake.Color.red()
                     )
                     await ctx.response.send_message(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title=langText.get("CASTER_TITLE"),
+                    title=langText.get("ERROR_TITLE"),
                     description=langText.get("ERROR_INVALID_OPTION"),
                     color=disnake.Color.red()
                 )
