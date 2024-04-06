@@ -9,6 +9,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_casino_lang
+
+langText = load_casino_lang()
 
 class EarnCommand(commands.Cog):
     def __init__(self, bot):
@@ -21,7 +24,7 @@ class EarnCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /earn has been loaded')
         
-    @commands.slash_command(name="earn", description="Earn coins")
+    @commands.slash_command(name="earn", description=langText.get("EARN_DESCRIPTION"))
     async def earn(self, ctx):
         try:
             user_id = str(ctx.author.id)
@@ -56,8 +59,8 @@ class EarnCommand(commands.Cog):
                         json.dump(cooldown_data, cooldown_file, indent=4)
 
                     embed = disnake.Embed(
-                        title="💸 Earn Coins 💸",
-                        description=f"You earned 100 coins 🪙!\nYour total balance: ``{earnings}`` coins.",
+                        title=langText.get("EARN_TITLE"),
+                        description=langText.get("EARN_TEXT"),
                         color=disnake.Color.green()
                     )
                     await ctx.response.defer()
@@ -68,8 +71,8 @@ class EarnCommand(commands.Cog):
                     remaining_time_str = str(remaining_time_delta)
 
                     embed = disnake.Embed(
-                        title="🕰 Earn Coins 🕰",
-                        description=f"You are on cooldown.\nTry again in ``{remaining_time_str}`` ⏳.",
+                        title=langText.get("EARN_COOLDOWN_TITLE"),
+                        description=langText.get("EARN_COOLDOWN_DESCRIPTION"),
                         color=disnake.Color.red()
                     )
                     await ctx.response.defer()
