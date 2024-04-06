@@ -1,12 +1,12 @@
 import json
 import os
 import platform
-import i18n
-from dotenv import load_dotenv
 
 import aiohttp
 import disnake
 from disnake.ext import commands
+
+from cogs.utils.load_env import load_enviroment_token, load_enviroment_lang
 
 
 if not os.path.exists(".env"):
@@ -19,9 +19,11 @@ if not os.path.exists(".env"):
         print("Invalid language, default language is English")
         lang_choice = "EN"
     with open(".env", 'w') as env_file:
-        env = f'LANGUAGE="{lang_choice}"'
-        env += f'\nTOKEN="{token}"'
-        env_file.write(env)
+        envData = {
+            "LANGUAGE": lang_choice,
+            "TOKEN": token
+        }
+        json.dump(envData, env_file, indent=4)
 
 config_file_path = "config.json"
 badWord_file_path = "bad_words.json"
@@ -86,21 +88,9 @@ else:
     with open(config_file_path, 'r') as config_file:
         config = json.load(config_file)
 
-load_dotenv()
 
-token = os.environ["TOKEN"]
 prefix = config["PREFIX"]
-ln = os.environ["LANGUAGE"]
-ln_lower = ln.lower()
-
-i18n.load_path = ["lang"]
-i18n.set = ({
-    "file_format": "json",
-    "filename_format": "{namespace}.{format}",
-    "namespace_delimiter": ":",
-    "skip_locale_root_data": True,
-    "use_locale_dirs": True,
-})
+ln = load_enviroment_lang()
 
 bot = commands.Bot(
     command_prefix=prefix,
@@ -135,7 +125,7 @@ async def on_ready():
     print('===============================================')
     print(f"🔱 The bot is ready!")
     print(f'🔱 Logged in as {nbot} | {bot.user.id}')
-    print(f'🔱 Language: {ln.upper()}')
+    print(f'🔱 Language: {ln}')
     print(f'🔱 Bot local version: {bot_version}')
     print(f'🔱 Bot online version: {bot_repo_version}')
     print(f"🔱 Disnake version: {disnake.__version__}")
@@ -163,4 +153,4 @@ for element in os.listdir(f'cogs/plugins/'):
         print(f"🌪️  Error during '{element}' loading:\n\n{e}")
 
 
-bot.run(token)
+bot.run(load_enviroment_token())

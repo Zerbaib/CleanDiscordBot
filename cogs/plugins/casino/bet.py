@@ -1,5 +1,3 @@
-import i18n
-import os
 import json
 import random
 

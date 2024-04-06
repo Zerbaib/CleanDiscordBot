@@ -1,7 +1,7 @@
 import json
-import os
+from cogs.utils.load_env import load_enviroment_lang
 
-lang = os.environ["LANGUAGE"]
+lang = load_enviroment_lang()
 
 def load_casino_lang():
     with open(f"lang/{lang}/casino.json", "r") as file:
