@@ -40,7 +40,7 @@
 
     "EARN_TITLE": "💸 Gagner des pièces 💸",
     "EARN_DESCRIPTION": "Gagner des pièces toutes les 2 heures.",
-    "EARN_TEXT": "Vous avez gagné `100` pièces 🪙 !\nVotre solde total : ``%{earnings}`` pièces.",
+    "EARN_TEXT": "Vous avez gagné `100` pièces 🪙 !\nVotre solde total : ``{earnings}`` pièces.",
     "EARN_COOLDOWN_TITLE": "🕰 Gagner des pièces 🕰",
-    "EARN_COOLDOWN_DESCRIPTION": "Vous pouvez gagner des pièces à nouveau dans `%{cooldown_time}` secondes."
+    "EARN_COOLDOWN_DESCRIPTION": "Vous pouvez gagner des pièces à nouveau dans `{cooldown_time}` secondes."
 }
