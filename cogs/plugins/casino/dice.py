@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_casino_lang
+
+langText = load_casino_lang()
 
 class DiceCommand(commands.Cog):
     def __init__(self, bot):
@@ -17,7 +20,7 @@ class DiceCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /dice has been loaded')
 
-    @commands.slash_command(name="dice", description="Play the dice game")
+    @commands.slash_command(name="dice", description=langText.get("DICE_DESCRIPTION"))
     async def dice(self, ctx, bet: int):
         try:
             user_id = str(ctx.author.id)
@@ -37,19 +40,19 @@ class DiceCommand(commands.Cog):
                         payout = bet * dice1
                         
                         embed = disnake.Embed()
-                        embed.title = "🎲 Dice Game 🎲"
+                        embed.title = langText.get("DICE_TITLE")
                         embed.color = disnake.Color.blue()
-                        embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
+                        embed.add_field(name=langText.get("DICE_ROLL"), value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
                         
                         data[user_id] += payout
-                        embed.add_field(name="Result", value=f"You won `{payout}` coin!")
+                        embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("WIN_DESCRIPTION"))
                         embed.color = disnake.Color.green()
                     else:
                         embed = disnake.Embed()
-                        embed.title = "🎲 Dice Game 🎲"
-                        embed.add_field(name="Dice Roll Result", value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
-                        embed.add_field(name="Bet", value=f"`{bet}`")
-                        embed.add_field(name="Result", value="You lost your bet.")
+                        embed.title = langText.get("DICE_TITLE")
+                        embed.add_field(name=langText.get("DICE_ROLL"), value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
+                        embed.add_field(name=langText.get("BET"), value=f"`{bet}`")
+                        embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("LOST_OUTCOME"))
                         embed.color = disnake.Color.red()
                         
                         data[user_id] -= bet
@@ -57,15 +60,15 @@ class DiceCommand(commands.Cog):
                         await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed()
-                    embed.title = "You cant play"
+                    embed.title = langText.get("ERROR_TITLE")
                     embed.color = disnake.Color.red()
-                    embed.add_field(name="Error", value="YYou don't have enough money")
+                    embed.add_field(name="Error", value=langText.get("ERROR_NO_MONEY"))
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed()
-                embed.title = "You cant play"
+                embed.title = langText.get("ERROR_TITLE")
                 embed.color = disnake.Color.red()
-                embed.add_field(name="Error", value="You can't play with a negative number")
+                embed.add_field(name="Error", value=langText.get("ERROR_NEGATIVE_BET"))
                 await ctx.send(embed=embed)
 
             with open(self.data_file, 'w') as file:

@@ -10,6 +10,8 @@
     "WIN_DESCRIPTION": "You won `%{win_bet}` coins!",
     "REMAINING_BALANCE": "Your balance is now `%{bal}` coins.",
 
+    "BET": "Bet",
+
     "ERROR_NO_MONEY": "You don't have enough money to play.",
     "ERROR_NO_BET": "You need to bet something.",
     "ERROR_NO_NUMBER": "You need to bet a number.",
