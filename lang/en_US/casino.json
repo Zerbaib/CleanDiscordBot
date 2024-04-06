@@ -14,7 +14,7 @@
     "ERROR_NO_BET": "You need to bet something.",
     "ERROR_NO_NUMBER": "You need to bet a number.",
     "ERROR_NEGATIVE_BET": "You can't bet negative numbers.",
-    "ERROR_IVALID_OPTION": "Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
+    "ERROR_INVALID_OPTION": "Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
     "ERROR_NOT_REGISTERED": "You are not registered yet.\n\nPlease use ``/earn`` to be in the database.",
 
     "BET_TITLE": "🎲 Bet 🎲",
@@ -23,6 +23,8 @@
 
     "CASTER_TITLE": "🎲 Caster 🎲",
     "CASTER_DESCRIPTION": "Play a game of caster",
+    "CASTER_WIN_DESCRIPTION": "Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
+    "CASTER_LOSE_DESCRIPTION": "Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
     "CASTER_USAGE": "/caster `<color>` `<amount>`",
 
     "DICE_TITLE": "🎲 Dice game 🎲",
@@ -36,7 +38,7 @@
 
     "EARN_TITLE": "💸 Earn Coins 💸",
     "EARN_DESCRIPTION": "Earn coins every 2 hours.",
-    "EARN_TEXE": "You earned `100` coins 🪙!\nYour total balance: ``%{earnings}`` coins.",
+    "EARN_TEXT": "You earned `100` coins 🪙!\nYour total balance: ``%{earnings}`` coins.",
     "EARN_COOLDOWN_TITLE": "🕰 Earn Coins 🕰",
     "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `%{cooldown_time}` seconds."
 }

@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_casino_lang
+
+langText = load_casino_lang()
 
 class CasterCommand(commands.Cog):
     def __init__(self, bot):
@@ -29,7 +32,7 @@ class CasterCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /caster has been loaded')
         
-    @commands.slash_command(name="caster", description="Play a game of caster")
+    @commands.slash_command(name="caster", description=langText.get("CASTER_DESCRIPTION"))
     async def caster(self, ctx, bet_option: str, bet_amount: int):
         try:
             user_id = str(ctx.author.id)
@@ -47,15 +50,15 @@ class CasterCommand(commands.Cog):
                             winnings = bet_amount * payout
                             balance += winnings
                             embed = disnake.Embed(
-                                title="Caster",
-                                description=f"Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
+                            title=langText.get("CASTER_TITLE"),
+                                description=langText.get("CASTER_WIN_DESCRIPTION"),
                                 color=disnake.Color.green()
                             )
                         else:
                             balance -= bet_amount
                             embed = disnake.Embed(
-                                title="Caster",
-                                description=f"Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
+                                title=langText.get("CASTER_TITLE"),
+                                description=langText.get("CASTER_LOSE_DESCRIPTION"),
                                 color=disnake.Color.red()
                             )
                         
@@ -68,22 +71,22 @@ class CasterCommand(commands.Cog):
                         await ctx.send(embed=embed)
                     else:
                         embed = disnake.Embed(
-                            title="Caster",
-                            description="Insufficient balance.\nYou don't have enough coins to place this bet.",
+                            title=langText.get("CASTER_TITLE"),
+                            description=langText.get("ERROR_NO_MONEY"),
                             color=disnake.Color.red()
                         )
                     await ctx.response.send_message(embed=embed)
                 else:
                     embed = disnake.Embed(
-                        title="Caster",
-                        description="Invalid bet amount.\nPlease enter a positive value.",
+                        title=langText.get("CASTER_TITLE"),
+                        description=langText.get("ERROR_NEGATIVE_BET"),
                         color=disnake.Color.red()
                     )
                     await ctx.response.send_message(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title="Caster",
-                    description="Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
+                    title=langText.get("CASTER_TITLE"),
+                    description=langText.get("ERROR_INVALID_OPTION"),
                     color=disnake.Color.red()
                 )
                 await ctx.response.send_message(embed=embed)
