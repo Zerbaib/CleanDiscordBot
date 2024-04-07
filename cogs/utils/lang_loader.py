@@ -10,3 +10,7 @@ def load_casino_lang():
 def load_economy_lang():
     with open(f"lang/{lang}/economy.json", "r") as file:
         return json.load(file)
+
+def load_games_lang():
+    with open(f"lang/{lang}/games.json", "r") as file:
+        return json.load(file)
