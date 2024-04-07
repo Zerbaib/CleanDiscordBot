@@ -7,8 +7,8 @@
     "WIN_OUTCOME": "Félicitations !",
     "LOST_OUTCOME": "Désolé, vous avez perdu votre mise.",
     "WINNING": "Gains",
-    "WIN_DESCRIPTION": "Vous avez gagné `%{win_bet}` pièces !",
-    "REMAINING_BALANCE": "Votre solde est maintenant de `%{bal}` pièces.",
+    "WIN_DESCRIPTION": "Vous avez gagné `{win_bet}` pièces !",
+    "REMAINING_BALANCE": "Votre solde est maintenant de `{bal}` pièces.",
 
     "BET": "Mise",
 
@@ -40,7 +40,7 @@
 
     "EARN_TITLE": "💸 Gagner des pièces 💸",
     "EARN_DESCRIPTION": "Gagner des pièces toutes les 2 heures.",
-    "EARN_TEXT": "Vous avez gagné `100` pièces 🪙 !\nVotre solde total : ``{earnings}`` pièces.",
+    "EARN_TEXT": "Vous avez gagné `100` pièces 🪙 !\nVotre solde total : ``{bal}`` pièces.",
     "EARN_COOLDOWN_TITLE": "🕰 Gagner des pièces 🕰",
     "EARN_COOLDOWN_DESCRIPTION": "Vous pouvez gagner des pièces à nouveau dans `{cooldown_time}` secondes."
 }

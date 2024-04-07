@@ -45,9 +45,13 @@ class BetCommand(commands.Cog):
                                 value=langText.get('WIN_OUTCOME'),
                                 inline=False
                                 )
+                            
+                            winDescritption = langText.get('WIN_DESCRIPTION')
+                            formatted_win_description = winDescritption.format(win_bet=winnings)
+                            
                             embed.add_field(
                                 name=langText.get('WINNINGS'),
-                                value=langText.get("WIN_DESCRIPTION"),
+                                value=formatted_win_description,
                                 inline=False
                                 )
                             await ctx.response.defer()

@@ -57,7 +57,7 @@ class EarnCommand(commands.Cog):
                         json.dump(cooldown_data, cooldown_file, indent=4)
 
                     earnText = langText.get("EARN_TEXT")
-                    formatted_earn_text = earnText.format(earnings=earnings)
+                    formatted_earn_text = earnText.format(bal=earnings)
                     
                     embed = disnake.Embed(
                         title=langText.get("EARN_TITLE"),
