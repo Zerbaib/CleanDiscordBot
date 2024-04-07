@@ -63,21 +63,21 @@ class BotInfoCommand(commands.Cog):
                 color=disnake.Color.old_blurple()
             )
             embed.add_field(
-                name=f"__Bot profile:__",
+                name=f"```👤 Bot profile:```",
                 value=f"**Name**: ``{self.bot.user.name}``\n"
                       f"**Prefix**: ``{self.bot.command_prefix}``\n"
                       f"**Ping**: ``{round(self.bot.latency * 1000)}ms``",
                 inline=False
             )
             embed.add_field(
-                name=f"__Bot info:__",
+                name=f"```📋 Bot info:```",
                 value=f"**Bot version**: ``{bot_version}``\n"
                       f"**API version**: ``{disnake.__version__}``\n"
                       f"**Python version**: ``{platform.python_version()}``",
                 inline=False
             )
             embed.add_field(
-                name=f"__GitHub Repository:__",
+                name=f"```📊 GitHub Repository:```",
                 value=f"**Commits**: ``{commit_count}``\n"
                       f"**Stars**: ``{stargazer_count}``\n"
                       f"**Online Version**: ``{online_version}\n``"

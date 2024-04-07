@@ -20,7 +20,7 @@ class UserInfoCommand(commands.Cog):
                 user = ctx.author
 
             embed = disnake.Embed(
-                title="User Information 👤",
+                title="```👤 User Information 👤```",
                 color=disnake.Color.blue()
             )
             
@@ -29,16 +29,16 @@ class UserInfoCommand(commands.Cog):
             else:
                 embed.set_thumbnail(url=user.default_avatar.url)
             
-            embed.add_field(name="Username", value=f"```{user.name}```", inline=True)
+            embed.add_field(name="```Username```", value=f"```{user.name}```", inline=True)
             
             if user.discriminator != '0':
-                embed.add_field(name="Discriminator", value=f"```{user.discriminator}```", inline=True)
+                embed.add_field(name="```Discriminator```", value=f"```{user.discriminator}```", inline=True)
             else:
-                embed.add_field(name="Display Name", value=f"```{user.display_name}```", inline=True)
+                embed.add_field(name="```Display Name```", value=f"```{user.display_name}```", inline=True)
             
-            embed.add_field(name="ID", value=f"```{user.id}```", inline=False)
-            embed.add_field(name="Bot", value=f"```{user.bot}```", inline=True)
-            embed.add_field(name="Created At", value=f"```{user.created_at.strftime(time)}```", inline=True)
+            embed.add_field(name="```ID```", value=f"```{user.id}```", inline=False)
+            embed.add_field(name="```Bot```", value=f"```{user.bot}```", inline=True)
+            embed.add_field(name="```Created At```", value=f"```{user.created_at.strftime(time)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)

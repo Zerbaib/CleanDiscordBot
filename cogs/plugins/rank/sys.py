@@ -10,11 +10,19 @@ def save_data(self):
     with open(self.data_path, 'w') as data_file:
         json.dump(self.ranks, data_file, indent=4)
 
+def load_config(self):
+    if os.path.exists(self.config_path):
+        with open(self.config_path, 'r') as config_file:
+            self.config = json.load(config_file)
+    else:
+        self.config = {}
+
 class RankSystem(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.data_path = 'data/ranks.json'
         self.config_path = 'config.json'
+        self.config = load_config(self)
         self.load_data()
     
     def load_data(self):
@@ -53,7 +61,6 @@ class RankSystem(commands.Cog):
                 description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
                 color=disnake.Color.brand_green()
             )
-            
             if 'level_roles' in self.config:
                 for level_threshold, role_id in self.config['level_roles'].items():
                     if lvl >= int(level_threshold):
