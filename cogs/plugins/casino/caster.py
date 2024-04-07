@@ -47,16 +47,24 @@ class CasterCommand(commands.Cog):
                         if result == bet_option:
                             winnings = bet_amount * payout
                             balance += winnings
+                            
+                            casterDescription = langText.get("CASTER_WIN_DESCRIPTION")
+                            formatted_caster_description = casterDescription.format(result=self.bet_options[result], winnings=winnings)
+                            
                             embed = disnake.Embed(
                             title=langText.get("CASTER_TITLE"),
-                                description=langText.get("CASTER_WIN_DESCRIPTION"),
+                                description=formatted_caster_description,
                                 color=disnake.Color.green()
                             )
                         else:
                             balance -= bet_amount
+                            
+                            casterDescription = langText.get("CASTER_LOSE_DESCRIPTION")
+                            formatted_caster_description = casterDescription.format(result=self.bet_options[result])
+                            
                             embed = disnake.Embed(
                                 title=langText.get("CASTER_TITLE"),
-                                description=langText.get("CASTER_LOSE_DESCRIPTION"),
+                                description=formatted_caster_description,
                                 color=disnake.Color.red()
                             )
                         
