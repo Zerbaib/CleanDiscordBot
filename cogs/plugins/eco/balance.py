@@ -6,6 +6,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_economy_lang
+
+langText = load_economy_lang()
 
 class BalanceCommand(commands.Cog):
     def __init__(self, bot):
@@ -16,7 +19,7 @@ class BalanceCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /balance has been loaded')
 
-    @commands.slash_command(name="balance", description="Check your balance")
+    @commands.slash_command(name="balance", description=langText.get("BALANCE_DESCRIPTION"))
     async def balance(self, ctx):
         try:
             user_id = str(ctx.author.id)
@@ -29,8 +32,8 @@ class BalanceCommand(commands.Cog):
                 balance = data.get(user_id, 0)
             
             embed = disnake.Embed(
-                title="💰 Balance 💰",
-                description=f"Your balance: ``{balance}`` coins 🪙",
+                title=langText.get("BALANCE_TITLE"),
+                description=langText.get("BALANCE_TEXT").format(balance=balance),
                 color=disnake.Color.blue()
             )
             await ctx.response.defer()
