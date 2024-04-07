@@ -6,6 +6,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_economy_lang
+
+langText = load_economy_lang()
 
 
 class PayCommand(commands.Cog):
@@ -17,13 +20,13 @@ class PayCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /pay has been loaded')
 
-    @commands.slash_command(name="pay", description="Give coins to another user")
+    @commands.slash_command(name="pay", description=langText.get("PAY_DESCRIPTION"))
     async def pay(self, ctx, amount: int, user: disnake.Member):
         try:
             if amount <= 0:
                 embed = disnake.Embed(
-                    title="Invalid Amount",
-                    description="The amount must be greater than zero.",
+                    title=langText.get("ERROR_INVALID_AMOUNT_TITLE"),
+                    description=langText.get("ERROR_INVALID_AMOUNT_DESCRIPTION"),
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -32,8 +35,8 @@ class PayCommand(commands.Cog):
 
             if user.bot:
                 embed = disnake.Embed(
-                    title="Invalid User",
-                    description="You cannot give coins to a bot.",
+                    title=langText.get("ERROR_INVALID_USER_TITLE"),
+                    description=langText.get("ERROR_INVALID_USER_DESCRIPTION"),
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -49,8 +52,8 @@ class PayCommand(commands.Cog):
 
             if sender_balance < amount:
                 embed = disnake.Embed(
-                    title="Insufficient Balance",
-                    description="You do not have enough coins to make this transaction.",
+                    title=langText.get("ERROR_INSUFFICIENT_FUNDS_TITLE"),
+                    description=langText.get("ERROR_INSUFFICIENT_FUNDS_DESCRIPTION"),
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
@@ -71,8 +74,8 @@ class PayCommand(commands.Cog):
                 file.truncate()
 
             embed = disnake.Embed(
-                title="💸 Coins Transferred 💸",
-                description=f"You have successfully transferred `{amount}` coins to {user.mention}.",
+                title=langText.get("PAY_TITLE"),
+                description=langText.get("PAY_DESCRIPTION").format(amount=amount, user=user.mention),
                 color=disnake.Color.green()
             )
             await ctx.response.defer()
