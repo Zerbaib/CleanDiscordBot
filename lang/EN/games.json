@@ -1,3 +1,8 @@
 {
+    "FINDNUMBER_DESCRIPTION": "Find the hidden number!",
+
+    "ERROR_TITLE": "Error",
+    "ERROR_EALREADYSTARTED": "You are already playing a game. Use ``/guess`` to make a guess.",
+
     "": ""
 }

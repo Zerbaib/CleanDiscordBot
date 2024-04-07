@@ -6,7 +6,7 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
-from cogs.utils.lang_loader import load_games_lang
+from cogs.utils.lang_loader import lang, load_games_lang
 
 langText = load_games_lang()
 
@@ -21,13 +21,13 @@ class GuessCommands(commands.Cog):
         print('🔩 /findnumber has been loaded')
         print('🔩 /guess has been loaded')
 
-    @commands.slash_command(name='findnumber', description="Find the hidden number!")
+    @commands.slash_command(name='findnumber', description=langText.get("FINDNUMBER_DESCRIPTION"))
     async def findnumber(self, ctx):
         try:
             if ctx.author.id in self.games:
                 embed = disnake.Embed(
-                    title="Error",
-                    description="You are already playing a game. Use ``/guess`` to make a guess.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_EALREADYSTARTED"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
