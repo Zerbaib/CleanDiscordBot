@@ -4,6 +4,8 @@
 # Configuration files
 config.json
 bad_words.json
+
+# Data files
 data/*.json
 .env
 
