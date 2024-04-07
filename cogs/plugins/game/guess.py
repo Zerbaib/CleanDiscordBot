@@ -39,13 +39,13 @@ class GuessCommands(commands.Cog):
                 }
 
                 embed = disnake.Embed(
-                    title="Find the Number",
-                    description="I have chosen a number between ``1`` and ``10000``. Try to guess it!",
+                    title=langText.get("FINDNUMBER_TITLE"),
+                    description=langText.get("FINDNUMBER_TEXT"),
                     color=disnake.Color.blurple()
                 )
-                embed.set_footer(text="Type ``/guess <number>`` to make a guess.")
-                embed.add_field(name="Instructions:", value="Guess the correct number within the given range.", inline=False)
-                embed.add_field(name="Attempts:", value="``0/25``", inline=False)
+                embed.set_footer(langText.get("FINDNUMBER_FOOTER"))
+                embed.add_field(name=langText.get("FINDNUMBER_FIELD1_TITLE"), value=langText.get("FINDNUMBER_FIELD1_VALUE"), inline=False)
+                embed.add_field(name=langText.get("FINDNUMBER_FIELD2_TITLE"), value=langText.get("FINDNUMBER_FIELD2_VALUE"), inline=False)
 
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
@@ -53,13 +53,13 @@ class GuessCommands(commands.Cog):
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
 
-    @commands.slash_command(name='guess', description="Guess the number!")
+    @commands.slash_command(name='guess', description=langText.get("GUESS_DESCRIPTION"))
     async def guess(self, ctx, number: int):
         try:
             if ctx.author.id not in self.games:
                 embed = disnake.Embed(
-                    title="Error",
-                    description="You are not currently playing a game. Use **``/findnumber``** to start a new game.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_NO_GAME"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
@@ -71,38 +71,38 @@ class GuessCommands(commands.Cog):
 
                 if number == correct_number:
                     embed = disnake.Embed(
-                        title="Congratulations! 🎉",
-                        description="You guessed the correct number!",
+                        title=langText.get("GUESS_WIN_TITLE"),
+                        description=langText.get("GUESS_WIN_TEXT"),
                         color=disnake.Color.green()
                     )
-                    embed.add_field(name="Your Guess:", value=f"`{number}`", inline=False)
-                    embed.add_field(name="Correct Number:", value=f"``{correct_number}``", inline=False)
+                    embed.add_field(name=langText.get("GUESS_YOUR_GUESS"), value=f"`{number}`", inline=False)
+                    embed.add_field(name=langText.get("GUESS_CORRECT_NUMBER"), value=f"``{correct_number}``", inline=False)
                     del self.games[ctx.author.id]
                 elif attempts >= 25:
                     embed = disnake.Embed(
-                        title="Game Over",
-                        description="You have reached the maximum number of attempts.",
+                        title=langText.get("GUESS_GAMEOVER_TITLE"),
+                        description=langText.get("GUESS_GAMEOVER_TEXT"),
                         color=disnake.Color.red()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Correct Number:", value=f"`{correct_number}`", inline=False)
+                    embed.add_field(name=langText.get("GUESS_YOUR_GUESS"), value=f"``{number}``", inline=False)
+                    embed.add_field(name=langText.get("GUESS_CORRECT_NUMBER"), value=f"`{correct_number}`", inline=False)
                     del self.games[ctx.author.id]
                 elif number < correct_number:
                     embed = disnake.Embed(
-                        title="Too low! ⬆️",
-                        description="Try a higher number.",
+                        title=langText.get("TOO_LOW_TITLE"),
+                        description=langText.get("TOO_LOW_TEXT"),
                         color=disnake.Color.old_blurple()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Attempts:", value=f"``{attempts}/25``", inline=False)
+                    embed.add_field(name=langText.get("GUESS_YOUR_GUESS"), value=f"``{number}``", inline=False)
+                    embed.add_field(name=langText.get("FINDNUMBER_FIELD2_TITLE"), value=f"``{attempts}/25``", inline=False)
                 else:
                     embed = disnake.Embed(
-                        title="Too high! ⬇️",
-                        description="Try a lower number.",
+                        title=langText.get("TOO_HIGH_TITLE"),
+                        description=langText.get("TOO_HIGH_TEXT"),
                         color=disnake.Color.old_blurple()
                     )
-                    embed.add_field(name="Your Guess:", value=f"``{number}``", inline=False)
-                    embed.add_field(name="Attempts:", value=f"``{attempts}/25``", inline=False)
+                    embed.add_field(name=langText.get("GUESS_YOUR_GUESS"), value=f"``{number}``", inline=False)
+                    embed.add_field(name=langText.get("FINDNUMBER_FIELD2_TITLE"), value=f"``{attempts}/25``", inline=False)
 
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
