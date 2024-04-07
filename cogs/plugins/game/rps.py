@@ -19,7 +19,7 @@ class RPSCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /rps has been loaded')
 
-    @commands.slash_command(name="rps", description="Play rock-paper-scissors versus the bot.")
+    @commands.slash_command(name="rps", description=langText("RPS_DESCRIPTION"))
     async def rock_paper_scissors(self, inter: disnake.ApplicationCommandInteraction):
         try:
             choices = {
@@ -32,7 +32,7 @@ class RPSCommand(commands.Cog):
                 "📜": 1,
                 "✂️": 2
             }
-            embed = disnake.Embed(title="Set your choice, please.")
+            embed = disnake.Embed(title=langText("RPS_TITLE")
             embed.color = disnake.Color.blurple()
             embed.set_author(name=inter.author.display_name, icon_url=inter.author.avatar.url)
 
@@ -61,25 +61,25 @@ class RPSCommand(commands.Cog):
                 await original_response.clear_reactions()
 
                 if user_choice_index == bot_choice_index:
-                    result_embed.description = f"**It's a tie!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = langText.get("RPS_TIE").format(user_choice_emote=user_choice_emote, bot_choice_emote=bot_choice_emote)
                     result_embed.colour = disnake.Color.blurple()
                 elif user_choice_index == 0 and bot_choice_index == 2:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = langText.get("RPS_WIN").format(user_choice_emote=user_choice_emote, bot_choice_emote=bot_choice_emote)
                     result_embed.colour = disnake.Color.brand_green()
                 elif user_choice_index == 1 and bot_choice_index == 0:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = langText.get("RPS_WIN").format(user_choice_emote=user_choice_emote, bot_choice_emote=bot_choice_emote)
                     result_embed.colour = disnake.Color.brand_green()
                 elif user_choice_index == 2 and bot_choice_index == 1:
-                    result_embed.description = f"**You won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = langText.get("RPS_WIN").format(user_choice_emote=user_choice_emote, bot_choice_emote=bot_choice_emote)
                     result_embed.colour = disnake.Color.brand_green()
                 else:
-                    result_embed.description = f"**I won!**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}."
+                    result_embed.description = langText.get("RPS_LOSE").format(user_choice_emote=user_choice_emote, bot_choice_emote=bot_choice_emote)
                     result_embed.colour = disnake.Color.brand_red()
 
                 await original_response.edit(embed=result_embed)
             except asyncio.exceptions.TimeoutError:
                 await original_response.clear_reactions()
-                timeout_embed = disnake.Embed(title="Too late", color=disnake.Color.brand_red())
+                timeout_embed = disnake.Embed(title=langText.get("RPS_TOO_LATE"), color=disnake.Color.brand_red())
                 timeout_embed.set_author(name=inter.author.display_name, icon_url=inter.author.avatar.url)
 
                 await original_response.edit(embed=timeout_embed)

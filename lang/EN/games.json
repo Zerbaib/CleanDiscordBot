@@ -21,6 +21,13 @@
     "TOO_HIGH_TITLE": "Too high! ⬇️",
     "TOO_HIGH_TEXT": "The number is lower than your guess.",
 
+    "RPS_DESCRIPTION": "Play Rock, Paper, Scissors versus the bot.",
+    "RPS_TITLE": "Set your choice, please.",
+    "RPS_TOO_LATE": "Too late",
+    "RPS_WIN": "**You won 🎉 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+    "RPS_LOSE": "**You lose 😢 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+    "RPS_DRAW": "**It's a draw 🤝 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+
     "ERROR_TITLE": "Error",
     "ERROR_EALREADYSTARTED": "You are already playing a game. Use ``/guess`` to make a guess.",
     "ERROR_NO_GAME": "There is no game running. Use ``/findnumber`` to start a new game.",
