@@ -2,6 +2,11 @@
     "BALANCE_DESCRIPTION": "Check your balance",
     "BALANCE_TITLE": "💰 Balance 💰",
     "BALANCE_TEXT": "Your balance: ``{balance}`` coins 🪙",
-    
+
+    "BALTOP_DESCRIPTION": "Top 10 richest users",
+    "BALTOP_TITLE": "💰 Top 10 Richest Users 💰",
+    "BALTOP_TEXT": "Balance: `{balance}` coins 🪙",
+    "BALTOP_NOT_FOUND": "{idx}. User Not Found",
+
     "": ""
 }

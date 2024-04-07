@@ -6,6 +6,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import lang, load_economy_lang
+
+langText = load_economy_lang()
 
 class BaltopCommand(commands.Cog):
     def __init__(self, bot):
@@ -16,7 +19,7 @@ class BaltopCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /baltop has been loaded')
 
-    @commands.slash_command(name="baltop", description="Top 10 richest users")
+    @commands.slash_command(name="baltop", description=langText.get("BALTOP_DESCRIPTION"))
     async def baltop(self, ctx):
         try:
             with open(self.data_file, 'r') as file:
@@ -25,13 +28,13 @@ class BaltopCommand(commands.Cog):
             sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
             top_users = sorted_data[:10]
 
-            embed = disnake.Embed(title="💰 Top 10 Richest Users 💰", color=disnake.Color.blurple())
+            embed = disnake.Embed(title=langText.get("BALTOP_TITLE"), color=disnake.Color.blurple())
             for idx, (user_id, balance) in enumerate(top_users, start=1):
                 user = self.bot.get_user(int(user_id))
                 if user:
-                    embed.add_field(name=f"{idx}. {user.display_name}", value=f"Balance: `{balance}` coins", inline=False)
+                    embed.add_field(name=f"{idx}. {user.display_name}", value=langText.get("BALTOP_TEXT").format(balance=balance), inline=False)
                 else:
-                    embed.add_field(name=f"{idx}. User Not Found", value=f"Balance: `{balance}` coins", inline=False)
+                    embed.add_field(name=langText.get("BALTOP_NOT_FOUND").format(idx=idx), value=langText.get("BALTOP_TEXT").format(balance=balance), inline=False)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
