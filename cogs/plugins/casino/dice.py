@@ -43,7 +43,11 @@ class DiceCommand(commands.Cog):
                         embed.add_field(name=langText.get("DICE_ROLL"), value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
                         
                         data[user_id] += payout
-                        embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("WIN_DESCRIPTION"))
+                        
+                        winDescription = langText.get("WIN_DESCRIPTION")
+                        formatted_win_description = winDescription.format(win_bet=payout)
+                        
+                        embed.add_field(name=langText.get("OUTCOME_TITLE"), value=formatted_win_description)
                         embed.color = disnake.Color.green()
                     else:
                         embed = disnake.Embed()
