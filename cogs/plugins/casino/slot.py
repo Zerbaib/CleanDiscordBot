@@ -82,7 +82,11 @@ class SlotCommand(commands.Cog):
             if result[0] == result[1] == result[2]:
                 win_amount = bet * 10  # Win 10 times the bet amount for matching all 3 reels
                 balance += win_amount
-                embed.add_field(name=langText.get("WIN_OUTCOME"), value=langText.get("WIN_DESCRIPTION"), inline=False)
+                
+                winDescription = langText.get("WIN_DESCRIPTION")
+                formatted_win_description = winDescription.format(win_bet=win_amount)
+                
+                embed.add_field(name=langText.get("WIN_OUTCOME"), value=formatted_win_description, inline=False)
             else:
                 balance -= bet
                 embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("LOST_OUTCOME"), inline=False)
@@ -92,7 +96,10 @@ class SlotCommand(commands.Cog):
             with open('data/casino.json', 'w') as file:
                 json.dump(data, file, indent=4)
 
-            embed.add_field(name="Balance", value=langText.get("REMAINING_BALANCE"), inline=False)
+            balanceDescription = langText.get("REMAINING_BALANCE")
+            formatted_balance_description = balanceDescription.format(bal=balance)
+
+            embed.add_field(name="Balance", value=formatted_balance_description, inline=False)
             await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
