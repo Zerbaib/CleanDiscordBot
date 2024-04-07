@@ -5,8 +5,9 @@
 config.json
 bad_words.json
 
-# JSON data files
+# Data files
 data/*.json
+.env
 
 # Virtual environment folders
 .venv/*

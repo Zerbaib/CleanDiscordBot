@@ -1,0 +1,46 @@
+{
+    "WIN_TITLE": "💰 You Won!",
+    "LOST_TITLE": "😢 You Lost!",
+    "ERROR_TITLE": "🤔 You can't play!",
+
+    "OUTCOME_TITLE": "Outcome",
+    "WIN_OUTCOME": "Congratulations!",
+    "LOST_OUTCOME": "Sorry, you lost your bet.",
+    "WINNING": "Winnings",
+    "WIN_DESCRIPTION": "You won `{win_bet}` coins!",
+    "REMAINING_BALANCE": "Your balance is now `{bal}` coins.",
+
+    "BET": "Bet",
+
+    "ERROR_NO_MONEY": "You don't have enough money to play.",
+    "ERROR_NO_BET": "You need to bet something.",
+    "ERROR_NO_NUMBER": "You need to bet a number.",
+    "ERROR_NEGATIVE_BET": "You can't bet negative numbers.",
+    "ERROR_INVALID_OPTION": "Invalid bet option.\n\nPlease choose from ``red``, ``black``, ``even``, ``odd``.",
+    "ERROR_NOT_REGISTERED": "You are not registered yet.\n\nPlease use ``/earn`` to be in the database.",
+
+    "BET_TITLE": "🎲 Bet 🎲",
+    "BET_DESCRIPTION": "Bet coins | x2 or lost",
+    "BET_USAGE": "/bet `<amount>`",
+
+    "CASTER_TITLE": "🎲 Caster 🎲",
+    "CASTER_DESCRIPTION": "Play a game of caster",
+    "CASTER_WIN_DESCRIPTION": "Congratulations! You won {self.bet_options[result]}\nand **`{winnings}`** coins!",
+    "CASTER_LOSE_DESCRIPTION": "Sorry, you lost your bet.\nThe caster rolled {self.bet_options[result]}.",
+    "CASTER_USAGE": "/caster `<color>` `<amount>`",
+
+    "DICE_TITLE": "🎲 Dice game 🎲",
+    "DICE_DESCRIPTION": "Play the dice game",
+    "DICE_USAGE": "/dice `<amount>`",
+    "DICE_ROLL": "Dice Roll Result",
+
+    "SLOTS_TITLE": "🎰 Slots 🎰",
+    "SLOTS_DESCRIPTION": "Play the slots game",
+    "SLOTS_USAGE": "/slots `<amount>`",
+
+    "EARN_TITLE": "💸 Earn Coins 💸",
+    "EARN_DESCRIPTION": "Earn coins every 2 hours.",
+    "EARN_TEXT": "You earned `100` coins 🪙!\nYour total balance: ``%{earnings}`` coins.",
+    "EARN_COOLDOWN_TITLE": "🕰 Earn Coins 🕰",
+    "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `%{cooldown_time}` seconds."
+}
