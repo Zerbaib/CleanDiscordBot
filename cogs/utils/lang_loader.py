@@ -18,3 +18,7 @@ def load_games_lang():
 def load_info_lang():
     with open(f"lang/{lang}/info.json", "r") as file:
         return json.load(file)
+
+def load_mods_lang():
+    with open(f"lang/{lang}/mods.json", "r") as file:
+        return json.load(file)

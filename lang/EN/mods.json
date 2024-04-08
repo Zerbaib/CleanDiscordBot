@@ -1,0 +1,10 @@
+{
+    "ADDEMOJI_DESCRIPTION": "Add emoji to the server.",
+    "ADDEMOJI_TITLE": "✨ Emoji added ✨",
+    "ADDEMOJI_TEXT": "The emoji {emoji} has been successfully added :tada:",
+
+    "ERROR_TITLE": "❌ Error ❌",
+    "ERROR_TEXT": "An error occurred while adding the emoji. Please try again later.",
+
+    "": ""
+}

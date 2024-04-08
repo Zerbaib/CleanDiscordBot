@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_mods_lang
+
+langText = load_mods_lang()
 
 
 class AddEmojiCommand(commands.Cog):
@@ -17,7 +20,7 @@ class AddEmojiCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /addemoji has been loaded')
 
-    @commands.slash_command(name='addemoji', description="Add emoji to the server.")
+    @commands.slash_command(name='addemoji', description=langText.get("ADDEMOJI_DESCRIPTION"))
     @commands.has_permissions(manage_emojis=True)
     async def addemoji(self, ctx, emoji: disnake.PartialEmoji, name=None):
         try:
@@ -32,16 +35,16 @@ class AddEmojiCommand(commands.Cog):
                             image_data = await resp.read()
                             new_emoji = await guild.create_custom_emoji(name=name, image=image_data)
                             embed = disnake.Embed(
-                                title='✨ Emoji ajouté ✨',
-                                description=f"L'emoji {new_emoji} a été ajouté avec succès :tada:",
+                                title=langText.get("ADDEMOJI_TITLE"),
+                                description=langText.get("ADDEMOJI_TEXT").format(emoji=new_emoji),
                                 color=disnake.Color.green()
                             )
                             await ctx.response.defer()
                             await ctx.send(embed=embed)
             except disnake.HTTPException:
                 embed = disnake.Embed(
-                    title='Erreur',
-                    description="Une erreur s'est produite lors de l'ajout de l'emoji :x:",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_TEXT"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
