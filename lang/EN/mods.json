@@ -15,6 +15,10 @@
     "KICK_TITLE": "🏌️‍♀️ User Kicked 🏌️‍♀️",
     "KICK_TEXT": "**{user}** *aka ``{userDisplay}``* has been kicked from the server.",
 
+    "MUTE_DESCRIPTION": "Mute a user in the server.",
+    "MUTE_TITLE": "😶 Member Muted 😶",
+    "MUTE_TEXT": "**{user}** *aka ``{userDisplay}``* has been muted.",
+
     "ERROR_TITLE": "❌ Error ❌",
     "ERROR_ADDEMOJI_TEXT": "An error occurred while adding the emoji. Please try again later.",
     "ERROR_BAN_BOTNOPERMISSION": "I don't have the permission to ban this user.",
