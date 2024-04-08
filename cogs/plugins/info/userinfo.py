@@ -4,6 +4,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_info_lang
+
+langText = load_info_lang()
 
 
 class UserInfoCommand(commands.Cog):
@@ -14,7 +17,7 @@ class UserInfoCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /userinfo has been loaded')
 
-    @commands.slash_command(name="userinfo", description="Get user information")
+    @commands.slash_command(name="userinfo", description=langText.get("USERINFO_DESCRIPTION"))
     async def userinfo(self, ctx, user: disnake.User = None):
         try:
             time = "%H:%M:%S %Y-%m-%d"
@@ -22,7 +25,7 @@ class UserInfoCommand(commands.Cog):
                 user = ctx.author
 
             embed = disnake.Embed(
-                title="User Information 👤",
+                title=langText.get("USERINFO_TITLE"),
                 color=disnake.Color.blue()
             )
             
@@ -31,16 +34,16 @@ class UserInfoCommand(commands.Cog):
             else:
                 embed.set_thumbnail(url=user.default_avatar.url)
             
-            embed.add_field(name="Username", value=f"```{user.name}```", inline=True)
+            embed.add_field(name=langText.get("USERINFO_NAME"), value=f"```{user.name}```", inline=True)
             
             if user.discriminator != '0':
-                embed.add_field(name="Discriminator", value=f"```{user.discriminator}```", inline=True)
+                embed.add_field(name=langText.get("USERINFO_TAG"), value=f"```{user.discriminator}```", inline=True)
             else:
-                embed.add_field(name="Display Name", value=f"```{user.display_name}```", inline=True)
+                embed.add_field(name=langText.get("USERINFO_DISPLAYNAME"), value=f"```{user.display_name}```", inline=True)
             
-            embed.add_field(name="ID", value=f"```{user.id}```", inline=False)
-            embed.add_field(name="Bot", value=f"```{user.bot}```", inline=True)
-            embed.add_field(name="Created At", value=f"```{user.created_at.strftime(time)}```", inline=True)
+            embed.add_field(name=langText.get("USERINFO_ID"), value=f"```{user.id}```", inline=False)
+            embed.add_field(name=langText.get("USERINFO_BOT"), value=f"```{user.bot}```", inline=True)
+            embed.add_field(name=langText.get("USERINFO_CREATED"), value=f"```{user.created_at.strftime(time)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
