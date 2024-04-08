@@ -8,6 +8,10 @@
     "BAN_TEXT": "**{user}** *aka ``{userDisplay}``* has been banned from the server.",
     "BAN_REASON": "Reason",
 
+    "CLEAR_DESCRIPTION": "Clear a specified number of messages in the channel",
+    "CLEAR_TITLE": "🗑️ Messages cleared 🗑️",
+    "CLEAR_TEXT": "Successfully cleared {amount} messages.",
+
     "ERROR_TITLE": "❌ Error ❌",
     "ERROR_ADDEMOJI_TEXT": "An error occurred while adding the emoji. Please try again later.",
     "ERROR_BAN_BOTNOPERMISSION": "I don't have the permission to ban this user.",
