@@ -19,10 +19,16 @@
     "MUTE_TITLE": "😶 Member Muted 😶",
     "MUTE_TEXT": "**{user}** *aka ``{userDisplay}``* has been muted.",
 
+    "NICK_DESCRIPTION": "Change the nickname of a user.",
+    "NICK_TITLE": "🥸 Nickname Changed 🥸",
+    "NICK_TEXT": "The nickname of **{user}** *aka ``{userDisplay}``* has been changed to **{nickname}**.",
+
     "ERROR_TITLE": "❌ Error ❌",
     "ERROR_ADDEMOJI_TEXT": "An error occurred while adding the emoji. Please try again later.",
     "ERROR_BAN_BOTNOPERMISSION": "I don't have the permission to ban this user.",
     "ERROR_BAN_USERNOPERMISSION": "You don't have the permission to ban this user.",
+    "ERROR_NICK_NONICKNAME": "No nickname specified. The nickname remains unchanged.",
+    "ERROR_NICK_NOPERMISSION": "You do not have the permission to change nicknames of other members.",
 
     "REASON": "Reason",
     "NOREASON": "No reason provided",

@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_mods_lang
+
+langText = load_mods_lang()
 
 
 class NickCommand(commands.Cog):
@@ -17,7 +20,7 @@ class NickCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /nick has been loaded')
         
-    @commands.slash_command(name="nick", description="Change the nickname of a member")
+    @commands.slash_command(name="nick", description=langText.get("NICK_DESCRIPTION"))
     async def nick(self, ctx, member: disnake.Member = None, *, nickname: str = None):
         try:
             if member is None:
@@ -31,22 +34,22 @@ class NickCommand(commands.Cog):
 
                 if nickname is not None:
                     embed = disnake.Embed(
-                        title="🥸 Nickname Changed 🥸",
-                        description=f"The nickname of {member.mention} has been changed to ``{nickname}``.",
+                        title=langText.get("NICK_TITLE"),
+                        description=langText.get("NICK_TEXT").format(user=member.name, userDisplay=member.display_name, nickname=nickname),
                         color=disnake.Color.green()
                     )
                 else:
                     embed = disnake.Embed(
-                        title="No Nickname Specified",
-                        description=f"No nickname specified. The nickname remains unchanged.",
+                        title=langText.get("ERROR_TITLE"),
+                        description=langText.get("ERROR_NICK_NONICKNAME"),
                         color=disnake.Color.orange()
                     )
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title="Permission Denied",
-                    description="You do not have the permission to change nicknames of other members.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_NICK_NOPERMISSION"),
                     color=disnake.Color.red()
                 )
                 await ctx.response.defer()
