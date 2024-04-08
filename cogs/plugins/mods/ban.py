@@ -33,7 +33,7 @@ class BanCommand(commands.Cog):
                         description=langText.get("BAN_TEXT").format(user=user.name, userDisplay=user.display_name),
                         color=disnake.Color.dark_red()
                         )
-                    embed.add_field(name=langText.get("BAN_REASON"), value=f"`{reason}`")
+                    embed.add_field(name=langText.get("REASON"), value=f"`{reason}`")
                     await ctx.response.defer()
                     await ctx.send(embed=embed)
                 else:

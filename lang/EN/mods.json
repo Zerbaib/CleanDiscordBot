@@ -6,17 +6,21 @@
     "BAN_DESCRIPTION": "Ban a user from the server.",
     "BAN_TITLE": "🔨 User banned 🔨",
     "BAN_TEXT": "**{user}** *aka ``{userDisplay}``* has been banned from the server.",
-    "BAN_REASON": "Reason",
 
     "CLEAR_DESCRIPTION": "Clear a specified number of messages in the channel",
     "CLEAR_TITLE": "🗑️ Messages cleared 🗑️",
     "CLEAR_TEXT": "Successfully cleared {amount} messages.",
+
+    "KICK_DESCRIPTION": "Kick a user from the server.",
+    "KICK_TITLE": "🏌️‍♀️ User Kicked 🏌️‍♀️",
+    "KICK_TEXT": "**{user}** *aka ``{userDisplay}``* has been kicked from the server.",
 
     "ERROR_TITLE": "❌ Error ❌",
     "ERROR_ADDEMOJI_TEXT": "An error occurred while adding the emoji. Please try again later.",
     "ERROR_BAN_BOTNOPERMISSION": "I don't have the permission to ban this user.",
     "ERROR_BAN_USERNOPERMISSION": "You don't have the permission to ban this user.",
 
+    "REASON": "Reason",
     "NOREASON": "No reason provided",
 
     "": ""
