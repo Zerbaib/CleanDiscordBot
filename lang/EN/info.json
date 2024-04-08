@@ -1,0 +1,15 @@
+{
+    "BOTINFO_DESCRIPTION": "Get the bot's info",
+    "BOTINFO_TITLE": "Info of ``{b}`` 🤖",
+    "BOTINFO_BOTPROFILE_TITLE": "__Bot profile:__",
+    "BOTINFO_BOTPROFILE_TEXT": "**Name**: ``{botName}``\n**Prefix**: ``{botPrefix}``\n**Ping**: ``{botPing}ms``",
+    "BOTINFO_BOTINFO_TITLE": "__Bot info:__",
+    "BOTINFO_BOTINFO_TEXT": "**Bot version**: ``{botVer}``\n**API version**: ``{apiVer}``\n**Python version**: ``{pyVer}``",
+    "BOTINFO_GITINFO_TITLE": "__GitHub Repository:__",
+    "BOTINFO_GITINFO_TEXT": "**Commits**: ``{commits}``\n**Stars**: ``{stars}``\n**Online Version**: ``{onVer}\n**Repo link**: [**`here`**]({repoLink})",
+    "BOTINFO_FOOTER": "Command executed by {author}",
+
+    "UNKNOWN": "Unknown",
+
+    "": ""
+}
