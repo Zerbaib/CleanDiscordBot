@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_mods_lang
+
+langText = load_mods_lang()
 
 
 class UnmuteCommand(commands.Cog):
@@ -17,9 +20,9 @@ class UnmuteCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /unmute has been loaded')
         
-    @commands.slash_command(name="unmute", description="Unmute a member")
+    @commands.slash_command(name="unmute", description=langText.get("UNMUTE_DESCRIPTION"))
     @commands.has_permissions(manage_messages=True)
-    async def unmute(self, ctx, member: disnake.Member, reason: str = "No reason provided"):
+    async def unmute(self, ctx, member: disnake.Member, reason: str = langText.get("NOREASON")):
         try:
             with open("config.json", 'r') as config_file:
                 config = json.load(config_file)
@@ -30,11 +33,11 @@ class UnmuteCommand(commands.Cog):
                 await member.remove_roles(role)
 
             embed = disnake.Embed(
-                title="😐 Member Unmuted 😐",
-                description=f"{member.mention} has been unmuted.",
+                title=langText.get("UNMUTE_TITLE"),
+                description=langText.get("UNMUTE_TEXT").format(user=member.name, userDisplay=member.display_name),
                 color=disnake.Color.dark_red()
             )
-            embed.add_field(name="Reason", value=f"```{reason}```")
+            embed.add_field(name=langText.get("REASON"), value=f"```{reason}```")
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:

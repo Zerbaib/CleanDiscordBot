@@ -23,6 +23,10 @@
     "NICK_TITLE": "🥸 Nickname Changed 🥸",
     "NICK_TEXT": "The nickname of **{user}** *aka ``{userDisplay}``* has been changed to **{nickname}**.",
 
+    "UNMUTE_DESCRIPTION": "Unmute a user in the server.",
+    "UNMUTE_TITLE": "😐 Member Unmuted 😐",
+    "UNMUTE_TEXT": "**{user}** *aka ``{userDisplay}``* has been unmuted.",
+
     "ERROR_TITLE": "❌ Error ❌",
     "ERROR_ADDEMOJI_TEXT": "An error occurred while adding the emoji. Please try again later.",
     "ERROR_BAN_BOTNOPERMISSION": "I don't have the permission to ban this user.",
