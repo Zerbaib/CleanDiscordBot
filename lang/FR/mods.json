@@ -1,0 +1,41 @@
+{
+    "ADDEMOJI_DESCRIPTION": "Ajouter un emoji au serveur.",
+    "ADDEMOJI_TITLE": "✨ Emoji ajouté ✨",
+    "ADDEMOJI_TEXT": "L'emoji {emoji} a été ajouté avec succès :tada:",
+
+    "BAN_DESCRIPTION": "Bannir un utilisateur du serveur.",
+    "BAN_TITLE": "🔨 Utilisateur banni 🔨",
+    "BAN_TEXT": "**{user}** *alias ``{userDisplay}``* a été banni du serveur.",
+
+    "CLEAR_DESCRIPTION": "Effacer un nombre spécifié de messages dans le canal",
+    "CLEAR_TITLE": "🗑️ Messages effacés 🗑️",
+    "CLEAR_TEXT": "{amount} messages ont été effacés avec succès.",
+
+    "KICK_DESCRIPTION": "Expulser un utilisateur du serveur.",
+    "KICK_TITLE": "🏌️‍♀️ Utilisateur expulsé 🏌️‍♀️",
+    "KICK_TEXT": "**{user}** *alias ``{userDisplay}``* a été expulsé du serveur.",
+
+    "MUTE_DESCRIPTION": "Muter un utilisateur dans le serveur.",
+    "MUTE_TITLE": "😶 Membre muté 😶",
+    "MUTE_TEXT": "**{user}** *alias ``{userDisplay}``* a été muté.",
+
+    "NICK_DESCRIPTION": "Changer le surnom d'un utilisateur.",
+    "NICK_TITLE": "🥸 Surnom changé 🥸",
+    "NICK_TEXT": "Le surnom de **{user}** *alias ``{userDisplay}``* a été changé en **{nickname}**.",
+
+    "UNMUTE_DESCRIPTION": "Démuter un utilisateur dans le serveur.",
+    "UNMUTE_TITLE": "😐 Membre démuté 😐",
+    "UNMUTE_TEXT": "**{user}** *alias ``{userDisplay}``* a été démuté.",
+
+    "ERROR_TITLE": "❌ Erreur ❌",
+    "ERROR_ADDEMOJI_TEXT": "Une erreur s'est produite lors de l'ajout de l'emoji. Veuillez réessayer ultérieurement.",
+    "ERROR_BAN_BOTNOPERMISSION": "Je n'ai pas la permission de bannir cet utilisateur.",
+    "ERROR_BAN_USERNOPERMISSION": "Vous n'avez pas la permission de bannir cet utilisateur.",
+    "ERROR_NICK_NONICKNAME": "Aucun surnom spécifié. Le surnom reste inchangé.",
+    "ERROR_NICK_NOPERMISSION": "Vous n'avez pas la permission de changer les surnoms des autres membres.",
+
+    "REASON": "Raison",
+    "NOREASON": "Aucune raison fournie",
+
+    "": ""
+}
