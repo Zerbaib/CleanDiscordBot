@@ -21,6 +21,15 @@
     "SRVINFO_BOOSTS": "Boosts Count",
     "SRVINFO_BOOSTS_TIER": "Boost Tier",
 
+    "USERINFO_DESCRIPTION": "Display user information.",
+    "USERINFO_TITLE": "👤 User Information 👤",
+    "USERINFO_NAME": "Username",
+    "USERINFO_TAG": "Discriminator",
+    "USERINFO_DISPLAYNAME": "Display Name",
+    "USERINFO_ID": "ID",
+    "USERINFO_BOT": "Bot",
+    "USERINFO_CREATED": "Created At",
+
     "UNKNOWN": "Unknown",
 
     "": ""
