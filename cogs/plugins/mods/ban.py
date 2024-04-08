@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import lang, load_mods_lang
+
+langText = load_mods_lang()
 
 
 class BanCommand(commands.Cog):
@@ -17,8 +20,8 @@ class BanCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /ban has been loaded')
         
-    @commands.slash_command(name="ban", description="Ban a user from the server")
-    async def ban(self, ctx, user: disnake.User, reason: str = "No reason provided"):
+    @commands.slash_command(name="ban", description=langText.get("BAN_DESCRIPTION"))
+    async def ban(self, ctx, user: disnake.User, reason: str = langText.get("NOREASON")):
         try:
             member = ctx.guild.get_member(ctx.author.id)
             bot = ctx.guild.get_member(self.bot.user.id)
@@ -26,24 +29,24 @@ class BanCommand(commands.Cog):
                 if bot.guild_permissions.ban_members:
                     await ctx.guild.ban(user, reason=reason)
                     embed = disnake.Embed(
-                        title="🔨 User Banned 🔨",
-                        description=f"**{user.name}** *aka ``{user.display_name}``* has been banned from the server.",
+                        title=langText.get("BAN_TITLE"),
+                        description=langText.get("BAN_TEXT").format(user=user.name, userDisplay=user.display_name),
                         color=disnake.Color.dark_red()
                         )
-                    embed.add_field(name="Reason", value=f"`{reason}`")
+                    embed.add_field(name=langText.get("BAN_REASON"), value=f"`{reason}`")
                     await ctx.response.defer()
                     await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed(
-                        title="Error",
-                        description="I don't have the permission to ban users.",
+                        title=langText.get("ERROR_TITLE"),
+                        description=langText.get("ERROR_BAN_BOTNOPERMISSION"),
                         color=disnake.Color.red()
                     )
                     await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
-                    title="Error",
-                    description="You don't have the permission to ban users.",
+                    title=langText.get("ERROR_TITLE"),
+                    description=langText.get("ERROR_BAN_USERNOPERMISSION"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)

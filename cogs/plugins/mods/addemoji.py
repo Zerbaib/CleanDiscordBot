@@ -44,7 +44,7 @@ class AddEmojiCommand(commands.Cog):
             except disnake.HTTPException:
                 embed = disnake.Embed(
                     title=langText.get("ERROR_TITLE"),
-                    description=langText.get("ERROR_TEXT"),
+                    description=langText.get("ERROR_ADDEMOJI_TEXT"),
                     color=disnake.Color.red()
                 )
                 await ctx.send(embed=embed)
