@@ -1,5 +1,5 @@
 {
-    "BOTINFO_DESCRIPTION": "Get the bot's info",
+    "BOTINFO_DESCRIPTION": "Get the bot's info.",
     "BOTINFO_TITLE": "Info of ``{b}`` 🤖",
     "BOTINFO_BOTPROFILE_TITLE": "__Bot profile:__",
     "BOTINFO_BOTPROFILE_TEXT": "**Name**: ``{botName}``\n**Prefix**: ``{botPrefix}``\n**Ping**: ``{botPing}ms``",
@@ -8,6 +8,18 @@
     "BOTINFO_GITINFO_TITLE": "__GitHub Repository:__",
     "BOTINFO_GITINFO_TEXT": "**Commits**: ``{commits}``\n**Stars**: ``{stars}``\n**Online Version**: ``{onVer}\n**Repo link**: [**`here`**]({repoLink})",
     "BOTINFO_FOOTER": "Command executed by {author}",
+
+    "SRVINFO_DESCRIPTION": "Display server information.",
+    "SRVINFO_TITLE": "💾 Server Information 💾",
+    "SRVINFO_NAME": "Name",
+    "SRVINFO_DESC": "Description",
+    "SRVINFO_OWNER": "Owner",
+    "SRVINFO_CREATED": "Created At",
+    "SRVINFO_MEMBERS": "Members Count",
+    "SRVINFO_CHANNELS": "Channels Count",
+    "SRVINFO_ROLES": "Roles Count",
+    "SRVINFO_BOOSTS": "Boosts Count",
+    "SRVINFO_BOOSTS_TIER": "Boost Tier",
 
     "UNKNOWN": "Unknown",
 
