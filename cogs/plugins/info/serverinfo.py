@@ -4,6 +4,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_info_lang
+
+langText = load_info_lang()
 
 
 class ServerInfoCommand(commands.Cog):
@@ -14,7 +17,7 @@ class ServerInfoCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /serverinfo has been loaded')
 
-    @commands.slash_command(name="serverinfo", description="Display server information")
+    @commands.slash_command(name="serverinfo", description=langText.get("SRVINFO_DESCRIPTION"))
     async def serverinfo(self, ctx):
         try:
             guild = ctx.guild
@@ -31,19 +34,19 @@ class ServerInfoCommand(commands.Cog):
             boost_tier = guild.premium_tier
             date = "%d-%m-%Y %H:%M:%S"
 
-            embed = disnake.Embed(title="💾 Server Information 💾", color=disnake.Color.blurple())
+            embed = disnake.Embed(title=langText.get("SRVINFO_TITLE"), color=disnake.Color.blurple())
             if logo:
                 embed.set_thumbnail(url=logo)
-            embed.add_field(name="Name", value=f"```{name}```", inline=False)
+            embed.add_field(name=langText.get("SRVINFO_NAME"), value=f"```{name}```", inline=False)
             if description:
-                embed.add_field(name="Description", value=f"```{description}```", inline=False)
-            embed.add_field(name="Owner", value=f"{owner.mention}", inline=False)
-            embed.add_field(name="Created At", value=f"```{created_at.strftime(date)}```", inline=False)
-            embed.add_field(name="Member Count", value=f"```{str(member_count)}```", inline=True)
-            embed.add_field(name="Channel Count", value=f"```{str(channel_count)}```", inline=True)
-            embed.add_field(name="Role Count", value=f"```{str(role_count)}```", inline=True)
-            embed.add_field(name="Boost Count", value=f"```{str(boost_count)}```", inline=True)
-            embed.add_field(name="Boost Tier", value=f"```{str(boost_tier)}```", inline=True)
+                embed.add_field(name=langText.get("SRVINFO_DESC"), value=f"```{description}```", inline=False)
+            embed.add_field(name=langText.get("SRVINFO_OWNER"), value=f"{owner.mention}", inline=False)
+            embed.add_field(name=langText.get("SRVINFO_CREATED"), value=f"```{created_at.strftime(date)}```", inline=False)
+            embed.add_field(name=langText.get("SRVINFO_MEMBERS"), value=f"```{str(member_count)}```", inline=True)
+            embed.add_field(name=langText.get("SRVINFO_CHANNELS"), value=f"```{str(channel_count)}```", inline=True)
+            embed.add_field(name=langText.get("SRVINFO_ROLES"), value=f"```{str(role_count)}```", inline=True)
+            embed.add_field(name=langText.get("SRVINFO_BOOSTS"), value=f"```{str(boost_count)}```", inline=True)
+            embed.add_field(name=langText.get("SRVINFO_BOOSTS_TIER"), value=f"```{str(boost_tier)}```", inline=True)
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
