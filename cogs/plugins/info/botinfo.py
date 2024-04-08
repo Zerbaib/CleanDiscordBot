@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_info_lang
+
+langText = load_info_lang()
 
 
 class BotInfoCommand(commands.Cog):
@@ -20,7 +23,7 @@ class BotInfoCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /botinfo has been loaded')
     
-    @commands.slash_command(name="botinfo", description="Get the bot's info")
+    @commands.slash_command(name="botinfo", description=langText.get("BOTINFO_DESCRIPTION"))
     async def botinfo(self, ctx):
         try:
             await ctx.response.defer()
@@ -32,7 +35,7 @@ class BotInfoCommand(commands.Cog):
             if response.status_code == 200:
                 online_version = response.text.strip()
             else:
-                online_version = "Unknown"
+                online_version = langText.get("UNKNOWN")
 
             response = requests.get(f"{self.github_api_url}/commits?per_page=100&sha=main")
             if response.status_code == 200:
@@ -45,7 +48,7 @@ class BotInfoCommand(commands.Cog):
                         commits += response.json()
                         commit_count += len(response.json())
             else:
-                commit_count = "Unknown"
+                commit_count = langText.get("UNKNOWN")
             
             response = requests.get(f"{self.github_api_url}/stargazers")
             if response.status_code == 200:
@@ -58,36 +61,29 @@ class BotInfoCommand(commands.Cog):
                         stargazers += response.json()
                         stargazer_count += len(response.json())
             else:
-                stargazer_count = "Unknown"
+                stargazer_count = langText.get("UNKNOWN")
 
             embed = disnake.Embed(
-                title=f"Info of ``{self.bot.user.name}`` 🤖",
+                title=langText.get("BOTINFO_TITLE").format(b=self.bot.user.name),
                 color=disnake.Color.old_blurple()
             )
             embed.add_field(
-                name=f"__Bot profile:__",
-                value=f"**Name**: ``{self.bot.user.name}``\n"
-                      f"**Prefix**: ``{self.bot.command_prefix}``\n"
-                      f"**Ping**: ``{round(self.bot.latency * 1000)}ms``",
+                name=langText.get("BOTINFO_BOTPROFILE_TITLE"),
+                value=langText.get("BOTINFO_BOTPROFILE_TEXT").format(botName=self.bot.user.name, botPrefix=self.bot.command_prefix, botPing=round(self.bot.latency * 1000)),
                 inline=False
             )
             embed.add_field(
-                name=f"__Bot info:__",
-                value=f"**Bot version**: ``{bot_version}``\n"
-                      f"**API version**: ``{disnake.__version__}``\n"
-                      f"**Python version**: ``{platform.python_version()}``",
+                name=langText.get("BOTINFO_BOTINFO_TITLE"),
+                value=langText.get("BOTINFO_BOTINFO_TEXT").format(botVer=bot_version, apiVer=disnake.__version__, pyVer=platform.python_version()),
                 inline=False
             )
             embed.add_field(
-                name=f"__GitHub Repository:__",
-                value=f"**Commits**: ``{commit_count}``\n"
-                      f"**Stars**: ``{stargazer_count}``\n"
-                      f"**Online Version**: ``{online_version}\n``"
-                      f"**Repo link**: [**`here`**]({self.github_repo})",
+                name=langText.get("BOTINFO_GITINFO_TITLE"),
+                value=langText.get("BOTINFO_GITINFO_TEXT").format(commits=commit_count, stars=stargazer_count, onVer=online_version, repoLink=self.github_repo),
                 inline=False
             )
             embed.set_thumbnail(url=self.bot.user.avatar.url)
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
+            embed.set_footer(text=langText.get("BOTINFO_FOOTER").format(author=ctx.author), icon_url=ctx.author.avatar.url)
             
             # await ctx.response.defer()
             await ctx.send(embed=embed)
