@@ -14,3 +14,7 @@ def load_economy_lang():
 def load_games_lang():
     with open(f"lang/{lang}/games.json", "r") as file:
         return json.load(file)
+
+def load_info_lang():
+    with open(f"lang/{lang}/info.json", "r") as file:
+        return json.load(file)
