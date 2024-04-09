@@ -4,6 +4,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_other_lang
+
+langText = load_other_lang()
 
 
 class HelpCommand(commands.Cog):
@@ -12,9 +15,9 @@ class HelpCommand(commands.Cog):
         
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🔩 /ping has been loaded')
+        print('🔩 /help has been loaded')
 
-    @commands.slash_command(name="help", description="Show the list of available commands")
+    @commands.slash_command(name="help", description=langText.get("HELP_DESCRIPTION"))
     async def help(self, ctx):
         try:
             embeds = []
@@ -30,8 +33,8 @@ class HelpCommand(commands.Cog):
 
                 help_text = '\n'.join(f'**`{prefix}{command.name}`** - ```{command.description}```' for command in commands)
 
-                embed = disnake.Embed(title=f"{self.bot.user.display_name} Help", description=f"All command:", color=disnake.Color.blurple())
-                embed.add_field(name=f"Commands for {cog_name.capitalize()}", value=help_text, inline=False)
+                embed = disnake.Embed(title=langText.get("HELP_TITLE").format(botName=self.bot.user.display_name), description=langText.get("HELP_TEXT"), color=disnake.Color.blurple())
+                embed.add_field(name=langText.get("HELP_FIELD").format(cogName=cog_name.capitalize), value=help_text, inline=False)
                 embeds.append(embed)
             for embed in embeds:
                 await ctx.send(embed=embed)

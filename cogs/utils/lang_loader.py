@@ -22,3 +22,7 @@ def load_info_lang():
 def load_mods_lang():
     with open(f"lang/{lang}/mods.json", "r") as file:
         return json.load(file)
+
+def load_other_lang():
+    with open(f"lang/{lang}/other.json", "r") as file:
+        return json.load(file)

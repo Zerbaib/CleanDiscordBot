@@ -1,0 +1,8 @@
+{
+    "HELP_DESCRIPTION": "Show the list of available commands",
+    "HELP_TITLE": "{botName} Help",
+    "HELP_TEXT": "All command:",
+    "HELP_FIELD": "Commands for {cogName}",
+
+    "": ""
+}
