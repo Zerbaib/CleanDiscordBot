@@ -4,6 +4,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_other_lang
+
+langText = load_other_lang()
 
 
 class PingCommand(commands.Cog):
@@ -14,15 +17,15 @@ class PingCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /ping has been loaded')
 
-    @commands.slash_command(name="ping", description="Get the bot's latency",)
+    @commands.slash_command(name="ping", description=langText.get("PING_DESCRIPTION"))
     async def ping(self, ctx):
         try:
             embed = disnake.Embed(
-                title=f"🏓 Pong!",
-                description=f"The ping is around `{round(self.bot.latency * 1000)}ms` ⏳",
+                title=langText.get("PING_TITLE"),
+                description=langText.get("PING_TEXT").format(latency=round(self.bot.latency * 1000)),
                 color=disnake.Color.blurple()
                 )
-            embed.set_footer(text=f'Command executed by {ctx.author}', icon_url=ctx.author.avatar.url)
+            embed.set_footer(text=langText.get("PING_FOOTER").format(author=ctx.author), icon_url=ctx.author.avatar.url)
             await ctx.response.defer()
             await ctx.send(ephemeral=True, embed=embed)
         except Exception as e:
