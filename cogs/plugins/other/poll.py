@@ -19,7 +19,7 @@ class PollCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /poll has been loaded')
 
-    @commands.slash_command(name="poll", description="Create a poll")
+    @commands.slash_command(name="poll", description=langText.get("POLL_DESCRIPTION"))
     async def poll(self, ctx, question: str):
         try:
             with open("config.json", 'r') as config_file:
@@ -27,20 +27,20 @@ class PollCommand(commands.Cog):
             channel_id = config.get("POLL_ID")
 
             if not channel_id:
-                await ctx.send("Poll channel ID is not specified in the configuration.")
+                await ctx.send(langText.get("POLL_NOID"))
                 return
 
             channel = self.bot.get_channel(channel_id)
             if not channel:
-                await ctx.send("Invalid poll channel ID.")
+                await ctx.send(langText.get("POLL_INVALIDID"))
                 return
 
             embed = disnake.Embed(
-                title="🗳 New Poll 🗳",
+                title=langText.get("POLL_TITLE"),
                 description=f"```{question}```",
                 color=disnake.Color.blurple()
             )
-            embed.set_footer(text=f"New poll from {ctx.author}")
+            embed.set_footer(text=langText.get("POLL_FOOTER").format(author=ctx.author))
             
             message = await channel.send(embed=embed)
             await message.add_reaction("👍")
@@ -48,7 +48,7 @@ class PollCommand(commands.Cog):
             await message.add_reaction("👎")
 
             await ctx.response.defer()
-            await ctx.send("Poll created successfully.", ephemeral=True)
+            await ctx.send(langText.get("POLL_CREATED_SUCCESS"), ephemeral=True)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)

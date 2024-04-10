@@ -9,5 +9,13 @@
     "PING_TEXT": "The ping is around `{latency}ms` ⏳",
     "PING_FOOTER": "Command executed by {author}",
 
+    "POLL_DESCRIPTION": "Create a poll",
+    "POLL_TITLE": "🗳 New Poll 🗳",
+    "POLL_TEXT": "React with the emojis below to vote",
+    "POLL_FOOTER": "Poll created by {author}",
+    "POLL_NOID": "Poll channel ID is not specified in the configuration.",
+    "POLL_INVALIDID": "Poll channel ID is invalid.",
+    "POLL_CREATED_SUCCESS": "Poll created successfully",
+
     "": ""
 }
