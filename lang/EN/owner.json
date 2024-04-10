@@ -1,0 +1,10 @@
+{
+    "CHECK_DESCRIPTION": "Check if the bot is up to date",
+    "CHECK_TITLE": "🔎 Check of {botName}",
+    "CHECK_UPTODATE": "The bot is up to date. 👍",
+    "CHECK_OUTDATED": "An update is available. 👎",
+    "CHECK_LOCAL": "Local version",
+    "CHECK_REMOTE": "Remote version",
+
+    "": ""
+}

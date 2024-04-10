@@ -5,6 +5,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_owner_lang
+
+langText = load_owner_lang()
 
 
 class OwnerCommands(commands.Cog):
@@ -21,7 +24,7 @@ class OwnerCommands(commands.Cog):
             local_version = version_file.read().strip()
         return local_version
 
-    @commands.slash_command(name="check", description="Check if the bot is up to date")
+    @commands.slash_command(name="check", description=langText.get("CHECK_DESCRIPTION"))
     @commands.is_owner()
     async def check(self, ctx):
         try:
@@ -32,17 +35,17 @@ class OwnerCommands(commands.Cog):
                 local_version = self.get_local_version()
 
                 embed = disnake.Embed(
-                    title=f"🔎 Check of {self.bot.user.name}",
+                    title=langText.get("CHECK_TITLE"),
                 )
                 if online_version == local_version:
-                    embed.description = "The bot is up to date. 👍"
+                    embed.description = langText.get("CHECK_UPTODATE")
                     embed.colour = disnake.Color.brand_green()
                 else:
-                    embed.description = "An update is available. 👎"
+                    embed.description = langText.get("CHECK_OUTDATED")
                     embed.colour = disnake.Color.brand_red()
 
-                embed.add_field(name="Local Version", value=f"```{local_version}```", inline=True)
-                embed.add_field(name="Online Version", value=f"```{online_version}```", inline=True)
+                embed.add_field(name=langText.get("CHECK_LOCAL"), value=f"```{local_version}```", inline=True)
+                embed.add_field(name=langText.get("CHECK_REMOTE"), value=f"```{online_version}```", inline=True)
                 await ctx.response.defer()
                 await ctx.send(embed=embed)
 
