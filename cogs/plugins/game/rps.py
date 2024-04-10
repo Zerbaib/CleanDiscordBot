@@ -32,7 +32,7 @@ class RPSCommand(commands.Cog):
                 "📜": 1,
                 "✂️": 2
             }
-            embed = disnake.Embed(title=langText("RPS_TITLE")
+            embed = disnake.Embed(title=langText("RPS_TITLE"))
             embed.color = disnake.Color.blurple()
             embed.set_author(name=inter.author.display_name, icon_url=inter.author.avatar.url)
 
