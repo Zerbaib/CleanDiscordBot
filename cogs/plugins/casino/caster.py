@@ -41,7 +41,7 @@ class CasterCommand(commands.Cog):
                     with open(self.data_file, 'r') as file:
                         data = json.load(file)
                         balance = data.get(user_id, 0)
-                    if bet_amount > balance:
+                    if bet_amount < balance:
                         result = random.choice(list(self.bet_options.keys()))
                         payout = self.payouts.get(bet_option, 0)
                         if result == bet_option:
