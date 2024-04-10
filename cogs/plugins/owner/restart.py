@@ -20,13 +20,13 @@ class RestartCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /restart has been loaded')
 
-    @commands.slash_command(name="restart", description="Restart the bot")
+    @commands.slash_command(name="restart", description=langText.get("RESTART_DESCRIPTION"))
     @commands.is_owner()
     async def restart(self, ctx):
         try:
             embed = disnake.Embed(
-                title="🔄 Restarting... 🔄",
-                description="The bot is restarting. Please wait...",
+                title=langText.get("RESTART_TITLE"),
+                description=langText.get("RESTART_TEXT"),
                 color=disnake.Color.blurple()
             )
             await ctx.response.defer()
