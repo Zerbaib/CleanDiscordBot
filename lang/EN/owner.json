@@ -10,5 +10,8 @@
     "RESTART_TITLE": "🔄 Restarting... 🔄",
     "RESTART_TEXT": "The bot is restarting. Please wait...",
 
+    "STOP_DESCRIPTION": "Stop the bot",
+    "STOP_TITLE": "🛑 Stopping the bot... 🛑",
+
     "": ""
 }
