@@ -35,7 +35,7 @@ class OwnerCommands(commands.Cog):
                 local_version = self.get_local_version()
 
                 embed = disnake.Embed(
-                    title=langText.get("CHECK_TITLE"),
+                    title=langText.get("CHECK_TITLE").format(botName=self.bot.user.name),
                 )
                 if online_version == local_version:
                     embed.description = langText.get("CHECK_UPTODATE")
