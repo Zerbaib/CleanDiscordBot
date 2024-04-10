@@ -43,37 +43,34 @@ class CasterCommand(commands.Cog):
                         balance = data.get(user_id, 0)
                     if bet_amount < balance:
                         result = random.choice(list(self.bet_options.keys()))
+                        resultEmoji = self.bet_options[result]
+                        
                         payout = self.payouts.get(bet_option, 0)
                         if result == bet_option:
                             winnings = bet_amount * payout
                             balance += winnings
                             
-                            casterDescription = langText.get("CASTER_WIN_DESCRIPTION")
-                            formatted_caster_description = casterDescription.format(result=self.bet_options[result], winnings=winnings)
-                            
                             embed = disnake.Embed(
                             title=langText.get("CASTER_TITLE"),
-                                description=formatted_caster_description,
+                                description=langText.get("CASTER_WIN_DESCRIPTION").format(result=resultEmoji, winnings=winnings),
                                 color=disnake.Color.green()
                             )
+                            
                         else:
                             balance -= bet_amount
                             
-                            casterDescription = langText.get("CASTER_LOSE_DESCRIPTION")
-                            formatted_caster_description = casterDescription.format(result=self.bet_options[result])
-                            
                             embed = disnake.Embed(
                                 title=langText.get("CASTER_TITLE"),
-                                description=formatted_caster_description,
+                                description=langText.get("CASTER_LOSE_DESCRIPTION").format(result=resultEmoji),
                                 color=disnake.Color.red()
                             )
+                            
                         
                         data[user_id] = balance
                         
                         with open(self.data_file, 'w') as file:
                             json.dump(data, file, indent=4)    
                         
-                        await ctx.response.defer()
                         await ctx.send(embed=embed)
                     else:
                         embed = disnake.Embed(
@@ -81,21 +78,21 @@ class CasterCommand(commands.Cog):
                             description=langText.get("ERROR_NO_MONEY"),
                             color=disnake.Color.red()
                         )
-                    await ctx.response.send_message(embed=embed)
+                    await ctx.send(embed=embed)
                 else:
                     embed = disnake.Embed(
                         title=langText.get("ERROR_TITLE"),
                         description=langText.get("ERROR_NEGATIVE_BET"),
                         color=disnake.Color.red()
                     )
-                    await ctx.response.send_message(embed=embed)
+                    await ctx.send(embed=embed)
             else:
                 embed = disnake.Embed(
                     title=langText.get("ERROR_TITLE"),
                     description=langText.get("ERROR_INVALID_OPTION"),
                     color=disnake.Color.red()
                 )
-                await ctx.response.send_message(embed=embed)
+                await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
