@@ -6,5 +6,9 @@
     "CHECK_LOCAL": "Local version",
     "CHECK_REMOTE": "Remote version",
 
+    "RESTART_DESCRIPTION": "Restart the bot",
+    "RESTART_TITLE": "🔄 Restarting... 🔄",
+    "RESTART_TEXT": "The bot is restarting. Please wait...",
+
     "": ""
 }

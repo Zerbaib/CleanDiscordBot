@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_owner_lang
+
+langText = load_owner_lang()
 
 
 class RestartCommand(commands.Cog):
@@ -24,7 +27,7 @@ class RestartCommand(commands.Cog):
             embed = disnake.Embed(
                 title="🔄 Restarting... 🔄",
                 description="The bot is restarting. Please wait...",
-                color=disnake.Color.old_blurple()
+                color=disnake.Color.blurple()
             )
             await ctx.response.defer()
             await ctx.send(embed=embed)
