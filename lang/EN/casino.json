@@ -40,7 +40,7 @@
 
     "EARN_TITLE": "💸 Earn Coins 💸",
     "EARN_DESCRIPTION": "Earn coins every 2 hours.",
-    "EARN_TEXT": "You earned `100` coins 🪙!\nYour total balance: ``%{earnings}`` coins.",
+    "EARN_TEXT": "You earned `100` coins 🪙!\nYour total balance: ``{bal}`` coins.",
     "EARN_COOLDOWN_TITLE": "🕰 Earn Coins 🕰",
-    "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `%{cooldown_time}` seconds."
+    "EARN_COOLDOWN_DESCRIPTION": "You can earn coins again in `{cooldown_time}` seconds."
 }

@@ -56,12 +56,10 @@ class EarnCommand(commands.Cog):
                         cooldown_data[user_id] = current_time
                         json.dump(cooldown_data, cooldown_file, indent=4)
 
-                    earnText = langText.get("EARN_TEXT")
-                    formatted_earn_text = earnText.format(bal=earnings)
                     
                     embed = disnake.Embed(
                         title=langText.get("EARN_TITLE"),
-                        description=formatted_earn_text,
+                        description=langText.get("EARN_TEXT").format(bal=earnings),
                         color=disnake.Color.green()
                     )
                     await ctx.response.defer()
