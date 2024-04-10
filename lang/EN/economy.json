@@ -1,0 +1,23 @@
+{
+    "BALANCE_DESCRIPTION": "Check your balance",
+    "BALANCE_TITLE": "💰 Balance 💰",
+    "BALANCE_TEXT": "Your balance: ``{balance}`` coins 🪙",
+
+    "BALTOP_DESCRIPTION": "Top 10 richest users",
+    "BALTOP_TITLE": "💰 Top 10 Richest Users 💰",
+    "BALTOP_TEXT": "Balance: `{balance}` coins 🪙",
+    "BALTOP_NOT_FOUND": "{idx}. User Not Found",
+
+    "PAY_DESCRIPTION": "Give coins to another user",
+    "PAY_TITLE": "💸 Coins Transferred 💸",
+    "PAY_TEXT": "You have successfully transferred `{amount}` coins to {user}.",
+
+    "ERROR_INVALID_AMOUNT_TITLE": "Invalid Amount",
+    "ERROR_INVALID_AMOUNT_DESCRIPTION": "The amount must be greater than zero.",
+    "ERROR_INVALID_USER_TITLE": "Invalid User",
+    "ERROR_INVALID_USER_DESCRIPTION": "You cannot give coins to a bot.",
+    "ERROR_INSUFFICIENT_FUNDS_TITLE": "Insufficient Funds",
+    "ERROR_INSUFFICIENT_FUNDS_DESCRIPTION": "You do not have enough coins to make this transaction.",
+
+    "": ""
+}

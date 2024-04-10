@@ -1,0 +1,36 @@
+{
+    "FINDNUMBER_DESCRIPTION": "Find the hidden number!",
+    "FINDNUMBER_TITLE": "Find the number",
+    "FINDNUMBER_TEXT": "I have chosen a number between ``1`` and ``10000``. Try to guess it!",
+    "FINDNUMBER_FOOTER": "Use ``/guess <number>`` to make a guess.",
+    "FINDNUMBER_FIELD1_TITLE": "Instructions:",
+    "FINDNUMBER_FIELD1_VALUE": "Guess the correct number within the given range.",
+    "FINDNUMBER_FIELD2_TITLE": "Attempts:",
+    "FINDNUMBER_FIELD2_VALUE": "``0/25``",
+
+    "GUESS_DESCRIPTION": "Make a guess of the hidden number.",
+    "GUESS_WIN_TITLE": "Congratulations! 🎉",
+    "GUESS_WIN_TEXT": "You have guessed the correct number!",
+    "GUESS_YOUR_GUESS": "Your guess:",
+    "GUESS_CORRECT_NUMBER": "Correct number:",
+    "GUESS_GAMEOVER_TITLE": "Game Over",
+    "GUESS_GAMEOVER_TEXT": "You have reached the maximum number of attempts.",
+
+    "TOO_LOW_TITLE": "Too low! ⬆️",
+    "TOO_LOW_TEXT": "The number is higher than your guess.",
+    "TOO_HIGH_TITLE": "Too high! ⬇️",
+    "TOO_HIGH_TEXT": "The number is lower than your guess.",
+
+    "RPS_DESCRIPTION": "Play Rock, Paper, Scissors versus the bot.",
+    "RPS_TITLE": "Set your choice, please.",
+    "RPS_TOO_LATE": "Too late",
+    "RPS_WIN": "**You won 🎉 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+    "RPS_LOSE": "**You lose 😢 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+    "RPS_DRAW": "**It's a draw 🤝 !**\nYou chose {user_choice_emote} and I chose {bot_choice_emote}.",
+
+    "ERROR_TITLE": "Error",
+    "ERROR_EALREADYSTARTED": "You are already playing a game. Use ``/guess`` to make a guess.",
+    "ERROR_NO_GAME": "There is no game running. Use ``/findnumber`` to start a new game.",
+
+    "": ""
+}
