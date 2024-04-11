@@ -7,6 +7,11 @@
     "RANK_TITLE": "🔰 {userName}'s rank -> #{userRank} 🔰",
     "RANK_TEXT": "**Level:** ```{userLVL}```\n**XP:** ``{userXP}``\n*Need* ``{xpRequired}`` *to win one level*",
 
+    "SYS_TITLE": "👏 Congratulations, {userName}! 👏",
+    "SYS_TEXT": "**You reached level **```{userLVL}```\n*You need ``{xpRequired}`` xp for the next level*",
+    "SYS_FIELD_NAME": "Nice you get a new role !",
+    "SYS_FIELD_VALUE": "You win ✨ {role} ! ✨",
+
     "ERROR_NO_RANK_YET": "{userName} does not have a rank yet.",
 
     "": ""

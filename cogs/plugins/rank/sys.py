@@ -5,6 +5,10 @@ import os
 import disnake
 from disnake.ext import commands
 
+from cogs.utils.lang_loader import load_rank_lang
+
+langText = load_rank_lang()
+
 
 def save_data(self):
     with open(self.data_path, 'w') as data_file:
@@ -57,8 +61,8 @@ class RankSystem(commands.Cog):
             save_data(self)
             xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
             embed = disnake.Embed(
-                title=f'👏 Congratulations, {message.author.name}! 👏',
-                description=f'**You reached level **```{lvl}```\n*You need ``{xp_required}`` xp for the next level*',
+                title=langText.get("SYS_TITLE").format(userName=message.author.name),
+                description=langText.get("SYS_TEXT").format(userLVL=lvl, xpRequired=xp_required),
                 color=disnake.Color.brand_green()
             )
             if 'level_roles' in self.config:
@@ -67,7 +71,7 @@ class RankSystem(commands.Cog):
                         role = message.author.guild.get_role(role_id)
                         if role and role not in message.author.roles:
                             await message.author.add_roles(role)
-                            embed.add_field(name="Nice you get a new role !", value=f"You win ✨ {role.mention} ! ✨")
+                            embed.add_field(name=langText.get("SYS_FIELD_NAME"), value=langText.get("SYS_FIELD_VALUE").format(role=role.mention))
                             role_added = True
                         else:
                             role_added = False
