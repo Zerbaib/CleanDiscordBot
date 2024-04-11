@@ -8,6 +8,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_rank_lang
+
+langText = load_rank_lang()
 
 
 class RankCommand(commands.Cog):
@@ -44,7 +47,7 @@ class RankCommand(commands.Cog):
         else:
             self.config = {}
 
-    @commands.slash_command(name='rank', description='Displays your current rank or the rank of a user')
+    @commands.slash_command(name='rank', description=langText.get("RANK_DESCRIPTION"))
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
         try:
             if user is None:
@@ -60,14 +63,14 @@ class RankCommand(commands.Cog):
                 xp_required = 5 * (level ** 2) + 10 * level + 10
                 user_rank = self.get_user_rank(user_id)
                 embed = disnake.Embed(
-                    title=f"🔰 {user_name}'s rank -> #{user_rank} 🔰",
-                    description=f'**Level:** ```{level}```\n**XP:** ``{xp}``\n*Need* ``{xp_required}`` *to win one level*',
+                    title=langText.get("RANK_TITLE").format(userName=user_name, userRank=user_rank),
+                    description=langText.get("RANK_TEXT").format(userLVL=level, userXP=xp, xpRequired=xp_required),
                     color=disnake.Color.blurple()
                 )
 
                 await inter.response.send_message(embed=embed)
             else:
-                await inter.response.send_message(f'{user_name} does not have a rank yet.')
+                await inter.response.send_message(langText.get("ERROR_NO_RANK_YET").format(userName=user_name))
         except Exception as e:
             embed = error.error_embed(e)
             await inter.send(embed=embed)

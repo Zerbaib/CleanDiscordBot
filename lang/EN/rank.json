@@ -3,5 +3,11 @@
     "LEADERBOARD_TITLE": "💯 Leaderboard 💯",
     "LEADERBOARD_TEXT": "```Level: {userLVL} | XP: {userXP}```",
 
+    "RANK_DESCRIPTION": "Displays your current rank or the rank of a user",
+    "RANK_TITLE": "🔰 {userName}'s rank -> #{userRank} 🔰",
+    "RANK_TEXT": "**Level:** ```{userLVL}```\n**XP:** ``{userXP}``\n*Need* ``{xpRequired}`` *to win one level*",
+
+    "ERROR_NO_RANK_YET": "{userName} does not have a rank yet.",
+
     "": ""
 }
