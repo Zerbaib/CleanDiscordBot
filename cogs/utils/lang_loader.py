@@ -24,3 +24,6 @@ def load_owner_lang():
 
 def load_rank_lang():
     return json.load(open(f"lang/{load_enviroment_lang()}/rank.json", "r"))
+
+def load_welcome_lang():
+    return json.load(open(f"lang/{load_enviroment_lang()}/welcome.json", "r"))

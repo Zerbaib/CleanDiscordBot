@@ -6,6 +6,10 @@ import disnake
 from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
 
+from cogs.utils.lang_loader import load_welcome_lang
+
+langText = load_welcome_lang()
+
 
 class JoinMessageUtils(commands.Cog):
     def __init__(self, bot):
@@ -47,8 +51,8 @@ class JoinMessageUtils(commands.Cog):
                 with open(filename, 'rb') as f:
                     file = disnake.File(f, filename=filename)
                     embed = disnake.Embed(
-                        title=f"Say welcome to {member.display_name}!",
-                        description=f"We are happy to have you here **{member.mention}**!\n\nWith you, we are now `{len(member.guild.members)}` members!\n\nBe **happy** and **enjoy** your stay !",
+                        title=langText.get("JOIN_TITLE").format(userName=member.display_name),
+                        description=langText.get("JOIN_TEXT").format(userMention=member.mention, usersCount=len(member.guild.members)),
                         color=disnake.Color.blurple()
                         )
                     embed.set_image(url=f"attachment://{filename}")
