@@ -7,6 +7,9 @@ from disnake.ext import commands
 from cogs.utils import error
 from cogs.utils.color import hex_to_discord_color
 from cogs.utils.embed import create_embed
+from cogs.utils.lang_loader import load_rank_lang
+
+langText = load_rank_lang()
 
 
 class LeaderboardCommand(commands.Cog):
@@ -41,15 +44,22 @@ class LeaderboardCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /leaderboard has been loaded')
 
-    @commands.slash_command(name='leaderboard', description='Show the top 10 xp leaderboard')
+    @commands.slash_command(name='leaderboard', description=langText.get("LEADERBOARD_DESCRIPTION"))
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
             sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-            embed = disnake.Embed(title="💯 Leaderboard 💯", color=disnake.Color.blurple())
+            embed = disnake.Embed(
+                title=langText.get("LEADERBOARD_TITLE"),
+                color=disnake.Color.blurple()
+                )
             for i, (user_id, user_data) in enumerate(sorted_users):
                 try:
                     user = await self.bot.fetch_user(int(user_id))
-                    embed.add_field(name=f"{i+1}. {user.name}", value=f"```Level: {user_data['level']} | XP: {user_data['xp']}```", inline=False)
+                    embed.add_field(
+                        name=f"{i+1}. {user.name}",
+                        value=langText.get("LEADERBOARD_TEXT").format(userLVL=user_data["level"], userXP=user_data["xp"]),
+                        inline=False
+                        )
                 except disnake.NotFound:
                     pass
                 if i == 9:

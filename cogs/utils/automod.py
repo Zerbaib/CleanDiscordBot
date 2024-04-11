@@ -21,7 +21,6 @@ class AutoModUtils(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('🧰 AutoMod has been loaded')
-        print()
 
     @commands.Cog.listener()
     async def on_message(self, message):

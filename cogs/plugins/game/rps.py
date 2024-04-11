@@ -19,7 +19,7 @@ class RPSCommand(commands.Cog):
     async def on_ready(self):
         print('🔩 /rps has been loaded')
 
-    @commands.slash_command(name="rps", description=langText("RPS_DESCRIPTION"))
+    @commands.slash_command(name="rps", description=langText.get("RPS_DESCRIPTION"))
     async def rock_paper_scissors(self, inter: disnake.ApplicationCommandInteraction):
         try:
             choices = {
@@ -86,6 +86,8 @@ class RPSCommand(commands.Cog):
         except Exception as e:
             embed = error.error_embed(e)
             await inter.send(embed=embed)
+
+    
 
 def setup(bot):
     bot.add_cog(RPSCommand(bot))

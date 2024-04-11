@@ -25,8 +25,8 @@
 
     "CASTER_TITLE": "🎲 Caster 🎲",
     "CASTER_DESCRIPTION": "Jouer à un jeu de caster",
-    "CASTER_WIN_DESCRIPTION": "Félicitations ! Vous avez gagné {self.bet_options[result]}\net **`{winnings}`** pièces !",
-    "CASTER_LOSE_DESCRIPTION": "Désolé, vous avez perdu votre mise.\nLe caster a obtenu {self.bet_options[result]}.",
+    "CASTER_WIN_DESCRIPTION": "Félicitations ! Vous avez gagné {result}\net **`{winnings}`** pièces !",
+    "CASTER_LOSE_DESCRIPTION": "Désolé, vous avez perdu votre mise.\nLe caster a obtenu {result}.",
     "CASTER_USAGE": "/caster `<couleur>` `<montant>`",
 
     "DICE_TITLE": "🎲 Jeu de dés 🎲",
