@@ -1,0 +1,7 @@
+{
+    "LEADERBOARD_DESCRIPTION": "Show the top 10 xp leaderboard",
+    "LEADERBOARD_TITLE": "💯 Leaderboard 💯",
+    "LEADERBOARD_TEXT": "```Level: {userLVL} | XP: {userXP}```",
+
+    "": ""
+}
