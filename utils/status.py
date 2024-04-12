@@ -18,7 +18,6 @@ class StatusUtils(commands.Cog):
     async def on_ready(self):
         self.bot.loop.create_task(self.update_status())
         print('🧰 Status has been loaded')
-        print()
 
     async def update_status(self):
         while True:

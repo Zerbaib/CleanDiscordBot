@@ -15,7 +15,6 @@ class CustomVoiceCog(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('🧰 CustomVoice has been loaded')
-        print()
         self.bot.loop.create_task(self.delete_temporary_channels())
 
     def load_config(self):

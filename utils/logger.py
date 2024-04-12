@@ -18,7 +18,6 @@ class LoggerUtils(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print('🧰 Logger has been loaded')
-        print()
 
     @commands.Cog.listener()
     async def on_message(self, message):
