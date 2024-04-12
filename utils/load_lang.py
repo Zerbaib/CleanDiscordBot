@@ -1,5 +1,8 @@
 import json
-from cogs.utils.load_env import load_enviroment_lang
+from utils.load_environement import load_enviroment_lang
+
+def load_main_lang():
+    return json.load(open(f"lang/{load_enviroment_lang()}/main.json", "r"))
 
 def load_casino_lang():
     return json.load(open(f"lang/{load_enviroment_lang()}/casino.json", "r"))

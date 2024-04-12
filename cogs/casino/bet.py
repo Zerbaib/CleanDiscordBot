@@ -4,9 +4,9 @@ import random
 import disnake
 from disnake.ext import commands
 
-from cogs.utils import error
-from cogs.utils.color import hex_to_discord_color
-from cogs.utils.lang_loader import load_casino_lang
+from utils import error
+from utils.color import hex_to_discord_color
+from utils.load_lang import load_casino_lang
 
 langText = load_casino_lang()
 discord_blue = "#7289da"

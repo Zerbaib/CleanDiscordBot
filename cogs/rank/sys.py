@@ -5,7 +5,7 @@ import os
 import disnake
 from disnake.ext import commands
 
-from cogs.utils.lang_loader import load_rank_lang
+from utils.load_lang import load_rank_lang
 
 langText = load_rank_lang()
 
