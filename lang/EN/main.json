@@ -1,0 +1,38 @@
+{
+    "QUESTION_BOT_TOKEN": "Enter the bot's token:\n",
+    "QUESTION_LANGUAGE": "Enter the language of the bot (en, es, fr, ...):\n",
+    "QUESTION_PREFIX": "Enter the prefix of the bot:\n",
+    "QUESTION_OWNER_ID": "Enter the owner's ID:\n",
+    "QUESTION_LOG_CHANNEL_ID": "Enter the log channel's ID:\n",
+    "QUESTION_POLL_CHANNEL_ID": "Enter the poll channel's ID:\n",
+    "QUESTION_WELCOME_CHANNEL_ID": "Enter the welcome channel's ID:\n",
+    "QUESTION_LEAVE_CHANNEL_ID": "Enter the leave channel's ID:\n",
+    "QUESTION_VOICE_CHANNEL_ID": "Enter the voice's channel ID\nUsed for create salon on join:\n",
+    "QUESTION_MUTED_ROLE_ID": "Enter the muted role's ID:\n",
+    "QUESTION_XP_ROLE_10_ID": "Enter the role's ID for 10 XP:\n",
+    "QUESTION_XP_ROLE_25_ID": "Enter the role's ID for 25 XP:\n",
+    "QUESTION_XP_ROLE_50_ID": "Enter the role's ID for 50 XP:\n",
+
+    "HEADER_OUTDATED_LN1": "🛑 You are not using the latest version!",
+    "HEADER_OUTDATED_LN2": "🛑 Please update the bot.",
+    "HEADER_OUTDATED_LN3": "🛑 Use \"git fetch && git pull\" to update your bot.",
+    "HEADER_LN1": "🔱 The bot is ready!",
+    "HEADER_LN2": "🔱 Logged in as {botName} | {botId}",
+    "HEADER_LN3": "🔱 On {amount} guilds",
+    "HEADER_LN4": "🔱 Language: {language}",
+    "HEADER_LN5": "🔱 Prefix: {prefix}",
+    "HEADER_LN6": "🔱 Owner: {owner}",
+    "HEADER_LN7": "🔱 Bot local version: {botVersion}",
+    "HEADER_LN8": "🔱 Bot online version: {botRepoVersion}",
+    "HEADER_LN9": "🔱 Disnake version: {apiVersion}",
+    "HEADER_LN10": "🔱 Running on {platformSystem} {platformVersion} {osName}",
+    "HEADER_LN11": "🔱 Python version: {pythonVersion}",
+    "HEADER_LN12": "🔱 Logged in at {timeNow}",
+
+    "ERROR_INVALID_LANGUAGE": "Invalid language, default language is English",
+    "ERROR_CONFIG_LOAD": "\n🌪️  Error during config loading:\n{e}",
+    "ERROR_COG_LOADING": "\n🌪️  Error during the cog: '{cogName}' loading:\n{e}",
+    "ERROR_ELEMENTS_LOADING": "\n🌪️  Error during the element: '{element}' loading:\n{e}",
+
+    "": ""
+}

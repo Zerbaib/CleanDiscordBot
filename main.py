@@ -1,47 +1,41 @@
 import json
 import os
 import platform
+import datetime
 
 import aiohttp
 import disnake
 from disnake.ext import commands
 
-from cogs.utils.load_env import load_enviroment_token, load_enviroment_lang
+from utils.load_environement import load_enviroment_lang, load_enviroment_token
+from utils.load_lang import load_main_lang
+from data.var import *
 
+lang = load_main_lang()
 
-if not os.path.exists(".env"):
-    token = input("Enter the bot's token:\n")
-    lang_choice = input("Enter the bot's language (en / fr):\n")
+if dataFileLoad:
+    for files in dataFilePath.values():
+        if not os.path.exists(files):
+            with open(files, 'w') as file:
+                json.dump({}, file)
+
+if not os.path.exists(envFilePath):
+    token = input(lang.get("QUESTION_BOT_TOKEN"))
+    lang_choice = input(lang.get("QUESTION_LANGUAGE"))
     lang_possible = ["en", "fr", "EN", "FR"]
     if lang_choice in lang_possible:
         lang_choice = lang_choice.upper()
     else:
-        print("Invalid language, default language is English")
+        print(lang.get("ERROR_INVALID_LANGUAGE"))
         lang_choice = "EN"
-    with open(".env", 'w') as env_file:
+    with open(envFilePath, 'w') as env_file:
         envData = {
             "LANGUAGE": lang_choice,
             "TOKEN": token
         }
         json.dump(envData, env_file, indent=4)
 
-config_file_path = "config.json"
-badWord_file_path = "bad_words.json"
-casino_data_file_path = "data/casino.json"
-rank_data_file_path = "data/ranks.json"
-casino_cooldown_data_file_path = "data/cooldown.json"
-online_version = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
-
-if not os.path.exists(casino_data_file_path):
-    with open(casino_data_file_path, 'w') as casino_file:
-        json.dump({}, casino_file)
-if not os.path.exists(casino_cooldown_data_file_path):
-    with open(casino_cooldown_data_file_path, 'w') as casino_cooldown_file:
-        json.dump({}, casino_cooldown_file)
-if not os.path.exists(rank_data_file_path):
-    with open(rank_data_file_path, 'w') as rank_file:
-        json.dump({}, rank_file)
-if not os.path.exists(badWord_file_path):
+if not os.path.exists(badWordFilePath):
     badword_data = {
         "bad_words": [
             "badword1",
@@ -49,31 +43,31 @@ if not os.path.exists(badWord_file_path):
             "badword3"
         ]
     }
-    with open(badWord_file_path, 'w') as badword_file:
+    with open(badWordFilePath, 'w') as badword_file:
         json.dump(badword_data, badword_file, indent=4)
 
-if not os.path.exists(config_file_path):
-    with open(config_file_path, 'w') as config_file:
-        prefix = input("Enter the bot's prefix:\n")
-        log_id = int(input("Enter the log's channel ID:\n"))
-        poll_id = int(input("Enter the poll's channel ID:\n"))
-        join_id = int(input("Enter the join's channel ID:\n"))
-        leave_id = int(input("Enter the leave's channel ID:\n"))
-        voice_id = int(input("Enter the voice's channel ID\nUsed for create salon on join:\n"))
-        id_client = int(input("Enter your Discord ID:\n"))
-        mute_id = int(input("Enter role id of muted role:\n"))
-        rank1 = int(input("Enter role id of level 10 role:\n"))
-        rank2 = int(input("Enter role id of level 25 role:\n"))
-        rank3 = int(input("Enter role id of level 50 role:\n"))
+if not os.path.exists(configFilePath):
+    with open(configFilePath, 'w') as config_file:
+        prefix = input(lang.get("QUESTION_PREFIX"))
+        logID = int(input(lang.get("QUESTION_LOG_CHANNEL_ID")))
+        pollID = int(input(lang.get("QUESTION_POLL_CHANNEL_ID")))
+        joinID = int(input(lang.get("QUESTION_WELCOME_CHANNEL_ID")))
+        leaveID = int(input(lang.get("QUESTION_LEAVE_CHANNEL_ID")))
+        voiceID = int(input(lang.get("QUESTION_VOICE_CHANNEL_ID")))
+        ownerID = int(input(lang.get("QUESTION_OWNER_ID")))
+        muteID = int(input(lang.get("QUESTION_MUTE_ROLE_ID")))
+        rank1 = int(input(lang.get("QUESTION_XP_ROLE_10_ID")))
+        rank2 = int(input(lang.get("QUESTION_XP_ROLE_25_ID")))
+        rank3 = int(input(lang.get("QUESTION_XP_ROLE_50_ID")))
         config_data = {
             "PREFIX": prefix,
-            "LOG_ID": log_id,
-            "POLL_ID": poll_id,
-            "JOIN_ID": join_id,
-            "LEAVE_ID": leave_id,
-            "AUTO_VOICE_ID": voice_id,
-            "YOUR_ID": id_client,
-            "MUTE_ROLE_ID": mute_id,
+            "LOG_ID": logID,
+            "POLL_ID": pollID,
+            "JOIN_ID": joinID,
+            "LEAVE_ID": leaveID,
+            "AUTO_VOICE_ID": voiceID,
+            "YOUR_ID": ownerID,
+            "MUTE_ROLE_ID": muteID,
             "del_time": 3,
             "level_roles": {
                 "10": rank1,
@@ -82,15 +76,16 @@ if not os.path.exists(config_file_path):
             }
         }
         json.dump(config_data, config_file, indent=4)
-    with open(config_file_path, 'r') as config_file:
-        config = json.load(config_file)
-else:
-    with open(config_file_path, 'r') as config_file:
-        config = json.load(config_file)
 
+try:
+    with open(configFilePath, 'r') as config_file:
+        config = json.load(config_file)
+except Exception as e:
+    print(lang.get("ERROR_CONFIG_FILE").format(e))
+    exit()
 
 prefix = config["PREFIX"]
-ln = load_enviroment_lang()
+botLang = load_enviroment_lang()
 
 bot = commands.Bot(
     command_prefix=prefix,
@@ -102,55 +97,60 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     if bot.user.discriminator == 0:
-        nbot = bot.user.name
+        botName = bot.user.name
     else:
-        nbot = bot.user.name + "#" + bot.user.discriminator
+        botName = bot.user.name + "#" + bot.user.discriminator
 
     async with aiohttp.ClientSession() as session:
-        async with session.get(online_version) as response:
+        async with session.get(onlineVersion) as response:
             if response.status == 200:
-                bot_repo_version = await response.text()
+                botRepoVersion = await response.text()
             else:
-                bot_repo_version = "Unknown"
+                botRepoVersion = "Unknown"
 
-    with open('version.txt', 'r') as version_file:
-        bot_version = version_file.read().strip()
+    with open(localVersionFilePath, 'r') as version_file:
+        botVersion = version_file.read().strip()
 
-    if bot_version != bot_repo_version:
-        print()
+    if botVersion != botRepoVersion:
         print('===============================================')
-        print('🛑 You are not using the latest version!')
-        print('🛑 Please update the bot.')
-        print('🛑 Use "git fetch && git pull" to update your bot.')
+        print(lang.get("HEADER_OUTDATED_LN1"))
+        print(lang.get("HEADER_OUTDATED_LN2"))
+        print(lang.get("HEADER_OUTDATED_LN3"))
     print('===============================================')
-    print(f"🔱 The bot is ready!")
-    print(f'🔱 Logged in as {nbot} | {bot.user.id}')
-    print(f'🔱 Language: {ln}')
-    print(f'🔱 Bot local version: {bot_version}')
-    print(f'🔱 Bot online version: {bot_repo_version}')
-    print(f"🔱 Disnake version: {disnake.__version__}")
-    print(f"🔱 Running on {platform.system()} {platform.release()} {os.name}")
-    print(f"🔱 Python version: {platform.python_version()}")
+    print(lang.get("HEADER_LN1"))
+    print(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id))
+    print(lang.get("HEADER_LN3").format(amount=len(bot.guilds)))
+    print(lang.get("HEADER_LN4").format(language=botLang))
+    print(lang.get("HEADER_LN5").format(prefix=prefix))
+    print(lang.get("HEADER_LN6").format(owner=bot.get_user(config["YOUR_ID"])))
+    print(lang.get("HEADER_LN7").format(botVersion=botVersion))
+    print(lang.get("HEADER_LN8").format(botRepoVersion=botRepoVersion))
+    print(lang.get("HEADER_LN9").format(apiVersion=disnake.__version__))
+    print(lang.get("HEADER_LN10").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name))
+    print(lang.get("HEADER_LN11").format(pythonVersion=platform.python_version()))
+    print(lang.get("HEADER_LN12").format(timeNow=datetime.datetime.now()))
     print('===============================================')
 
-bot.load_extension('cogs.utils.logger')
-bot.load_extension('cogs.utils.automod')
-bot.load_extension('cogs.utils.status')
-bot.load_extension('cogs.utils.voice')
+if utilsLoad:
+    for files in utilsCogPath.values():
+        try:
+            bot.load_extension(files)
+        except Exception as e:
+            print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
 
-for element in os.listdir(f'cogs/plugins/'):
+for element in os.listdir(cogsFolder):
     try:
-        element_dir = f"cogs/plugins/{element}"
+        element_dir = f"{cogsFolder}{element}"
         if os.path.isdir(element_dir):
             for filename in os.listdir(element_dir):
                 if filename.endswith('.py'):
                     cog_name = filename[:-3]
                     try:
-                        bot.load_extension(f'cogs.plugins.{element}.{cog_name}')
+                        bot.load_extension(f'cogs.{element}.{cog_name}')
                     except Exception as e:
-                        print(f"🌪️  Error during '{cog_name}' loading:\n\n{e}")
+                        print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
-        print(f"🌪️  Error during '{element}' loading:\n\n{e}")
+        print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
 
 
 bot.run(load_enviroment_token())
