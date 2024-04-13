@@ -4,6 +4,7 @@ from disnake.ext import commands
 
 from utils import error
 from utils.load_lang import load_owner_lang
+from data.var import onlineVersion
 
 langText = load_owner_lang()
 
@@ -11,7 +12,6 @@ langText = load_owner_lang()
 class OwnerCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.online_version_url = "https://raw.githubusercontent.com/Zerbaib/CleanDiscordBot/main/version.txt"
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -27,7 +27,7 @@ class OwnerCommands(commands.Cog):
     async def check(self, ctx):
         try:
             
-            response = requests.get(self.online_version_url)
+            response = requests.get(onlineVersion)
             if response.status_code == 200:
                 online_version = response.text.strip()
                 local_version = self.get_local_version()
