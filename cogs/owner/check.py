@@ -27,6 +27,7 @@ class OwnerCommands(commands.Cog):
     async def check(self, ctx):
         try:
             
+            print(onlineVersion)
             response = requests.get(onlineVersion)
             if response.status_code == 200:
                 online_version = response.text.strip()

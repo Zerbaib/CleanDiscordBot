@@ -1,3 +1,5 @@
+import subprocess
+
 # Config files
 envFilePath = './.env'
 configFilePath = "./config.json"
@@ -35,7 +37,7 @@ utilsCogPath = {
 # Repos link
 githubLink = "https://github.com"
 githubRawLink = "https://raw.githubusercontent.com"
-gitBranch = "/main"
+gitBranch = f"/{subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).decode().strip()}"
 repoGithub = "/Zerbaib/CleanDiscordBot"
 
 # Version link
