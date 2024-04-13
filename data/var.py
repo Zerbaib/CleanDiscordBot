@@ -6,6 +6,13 @@ badWordFilePath = "./bad_words.json"
 # Parameters
 dataFileLoad = True
 utilsLoad = True
+multiplicator = 65
+
+# Language possible
+langPossible = [
+    "EN",
+    "FR",
+]
 
 # Data files
 dataFilePath = {
