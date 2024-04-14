@@ -1,17 +1,16 @@
-import datetime
 import json
 import re
-import time
 
 import disnake
 from disnake.ext import commands
-from termcolor import colored
+
+from data.var import badWordFilePath, configFilePath
 
 
 class AutoModUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        with open('bad_words.json', 'r') as bad_words_file:
+        with open(badWordFilePath, 'r') as bad_words_file:
             self.bad_words = json.load(bad_words_file)["bad_words"]
             self.bad_word_patterns = [re.compile(rf'\b{re.escape(word)}\b', re.IGNORECASE) for word in self.bad_words]
             self.link_pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+])+')
@@ -26,7 +25,7 @@ class AutoModUtils(commands.Cog):
     async def on_message(self, message):
         if not message.author.bot:
             if not message.author.guild_permissions.administrator:
-                with open('config.json', 'r') as config_file:
+                with open(configFilePath, 'r') as config_file:
                     config = json.load(config_file)
                         
                 content = message.content.lower()
