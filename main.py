@@ -21,9 +21,8 @@ if dataFileLoad:
 
 if not os.path.exists(envFilePath):
     token = input(lang.get("QUESTION_BOT_TOKEN"))
-    lang_choice = input(lang.get("QUESTION_LANGUAGE"))
-    lang_possible = ["en", "fr", "EN", "FR"]
-    if lang_choice in lang_possible:
+    lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
+    if lang_choice in langPossible:
         lang_choice = lang_choice.upper()
     else:
         print(lang.get("ERROR_INVALID_LANGUAGE"))
@@ -112,11 +111,11 @@ async def on_ready():
         botVersion = version_file.read().strip()
 
     if botVersion != botRepoVersion:
-        print('===============================================')
+        print('='*multiplicator)
         print(lang.get("HEADER_OUTDATED_LN1"))
         print(lang.get("HEADER_OUTDATED_LN2"))
         print(lang.get("HEADER_OUTDATED_LN3"))
-    print('===============================================')
+    print('='*multiplicator)
     print(lang.get("HEADER_LN1"))
     print(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id))
     print(lang.get("HEADER_LN3").format(amount=len(bot.guilds)))
@@ -129,7 +128,7 @@ async def on_ready():
     print(lang.get("HEADER_LN10").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name))
     print(lang.get("HEADER_LN11").format(pythonVersion=platform.python_version()))
     print(lang.get("HEADER_LN12").format(timeNow=datetime.datetime.now()))
-    print('===============================================')
+    print('='*multiplicator)
 
 if utilsLoad:
     for files in utilsCogPath.values():

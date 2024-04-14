@@ -1,6 +1,5 @@
 import datetime
 import json
-import time
 import disnake
 from disnake.ext import commands
 from termcolor import colored

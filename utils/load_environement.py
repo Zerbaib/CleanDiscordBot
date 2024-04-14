@@ -1,11 +1,12 @@
 import json
+from data.var import envFilePath
 
 def load_enviroment():
-    with open(".env", "r") as file:
+    with open(envFilePath, "r") as file:
         return json.load(file)
 
 def load_enviroment_lang():
-    return json.load(open(".env", "r"))["LANGUAGE"].upper()
+    return json.load(open(envFilePath, "r"))["LANGUAGE"].upper()
 
 def load_enviroment_token():
-    return json.load(open(".env", "r"))["TOKEN"]
+    return json.load(open(envFilePath, "r"))["TOKEN"]

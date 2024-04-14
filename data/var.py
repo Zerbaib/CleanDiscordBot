@@ -1,3 +1,5 @@
+import subprocess
+
 # Config files
 envFilePath = './.env'
 configFilePath = "./config.json"
@@ -6,6 +8,13 @@ badWordFilePath = "./bad_words.json"
 # Parameters
 dataFileLoad = True
 utilsLoad = True
+multiplicator = 65
+
+# Language possible
+langPossible = [
+    "EN",
+    "FR",
+]
 
 # Data files
 dataFilePath = {
@@ -28,7 +37,7 @@ utilsCogPath = {
 # Repos link
 githubLink = "https://github.com"
 githubRawLink = "https://raw.githubusercontent.com"
-gitBranch = "/main"
+gitBranch = f"/{subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).decode().strip()}"
 repoGithub = "/Zerbaib/CleanDiscordBot"
 
 # Version link
