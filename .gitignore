@@ -1,6 +1,22 @@
+# Python bytecode
 *.pyc
+
+# Configuration files
 config.json
 bad_words.json
+
+# Data files
 data/*.json
+.env
+
+# Virtual environment folders
 .venv/*
+venv/*
+env/*
+
+# Visual Studio folders and files
+.vs/*
+.vscode/*
+
+# Log file
 log.txt

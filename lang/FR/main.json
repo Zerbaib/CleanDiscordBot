@@ -1,0 +1,38 @@
+{
+    "QUESTION_BOT_TOKEN": "Entrez le jeton du bot :\n",
+    "QUESTION_LANGUAGE": "Entrez la langue du bot (en, es, fr, ...) :\n",
+    "QUESTION_PREFIX": "Entrez le préfixe du bot :\n",
+    "QUESTION_OWNER_ID": "Entrez l'ID du propriétaire :\n",
+    "QUESTION_LOG_CHANNEL_ID": "Entrez l'ID du canal de journalisation :\n",
+    "QUESTION_POLL_CHANNEL_ID": "Entrez l'ID du canal de sondage :\n",
+    "QUESTION_WELCOME_CHANNEL_ID": "Entrez l'ID du canal de bienvenue :\n",
+    "QUESTION_LEAVE_CHANNEL_ID": "Entrez l'ID du canal de départ :\n",
+    "QUESTION_VOICE_CHANNEL_ID": "Entrez l'ID du canal vocal\nUtilisé pour créer un salon lors de la connexion :\n",
+    "QUESTION_MUTED_ROLE_ID": "Entrez l'ID du rôle de sourdine :\n",
+    "QUESTION_XP_ROLE_10_ID": "Entrez l'ID du rôle pour 10 XP :\n",
+    "QUESTION_XP_ROLE_25_ID": "Entrez l'ID du rôle pour 25 XP :\n",
+    "QUESTION_XP_ROLE_50_ID": "Entrez l'ID du rôle pour 50 XP :\n",
+
+    "HEADER_OUTDATED_LN1": "🛑 Vous n'utilisez pas la dernière version !",
+    "HEADER_OUTDATED_LN2": "🛑 Veuillez mettre à jour le bot.",
+    "HEADER_OUTDATED_LN3": "🛑 Utilisez \"git fetch && git pull\" pour mettre à jour votre bot.",
+    "HEADER_LN1": "🔱 Le bot est prêt !",
+    "HEADER_LN2": "🔱 Connecté en tant que {botName} | {botId}",
+    "HEADER_LN3": "🔱 Sur {amount} serveurs",
+    "HEADER_LN4": "🔱 Langue : {language}",
+    "HEADER_LN5": "🔱 Préfixe : {prefix}",
+    "HEADER_LN6": "🔱 Propriétaire : {owner}",
+    "HEADER_LN7": "🔱 Version locale du bot : {botVersion}",
+    "HEADER_LN8": "🔱 Version en ligne du bot : {botRepoVersion}",
+    "HEADER_LN9": "🔱 Version de Disnake : {apiVersion}",
+    "HEADER_LN10": "🔱 Exécuté sur {platformSystem} {platformVersion} {osName}",
+    "HEADER_LN11": "🔱 Version de Python : {pythonVersion}",
+    "HEADER_LN12": "🔱 Connecté à {timeNow}",
+
+    "ERROR_INVALID_LANGUAGE": "Langue invalide, la langue par défaut est l'anglais",
+    "ERROR_CONFIG_LOAD": "\n🌪️  Erreur lors du chargement de la configuration :\n{e}",
+    "ERROR_COG_LOADING": "\n🌪️  Erreur lors du chargement de '{cogName}' :\n{e}",
+    "ERROR_ELEMENTS_LOADING": "\n🌪️  Erreur lors du chargement de '{element}' :\n{e}",
+
+    "": ""
+}
