@@ -40,7 +40,8 @@ langPossible = [
 dataFilePath = {
     "casino": "./data/casino.json",
     "ranks": "./data/ranks.json",
-    "cooldown": "./data/cooldown.json"
+    "cooldown": "./data/cooldown.json",
+    "giveaway": "./data/giveaway.json"
 }
 
 # Cogs folder

@@ -4,19 +4,19 @@ import json
 import disnake
 from disnake.ext import commands
 
-from data.var import timeUnits
+from data.var import timeUnits, dataFilePath
 
 # Charger les données de giveaway depuis le fichier data/giveaway.json
 def load_giveaway_data():
     try:
-        with open("data/giveaway.json", "r") as file:
+        with open(dataFilePath["giveaway"], "r") as file:
             return json.load(file)
     except FileNotFoundError:
         return {}
 
 # Sauvegarder les données de giveaway dans le fichier data/giveaway.json
 def save_giveaway_data(data):
-    with open("data/giveaway.json", "w") as file:
+    with open(dataFilePath["giveaway"], "w") as file:
         json.dump(data, file)
 
 class GiveawayCog(commands.Cog):
