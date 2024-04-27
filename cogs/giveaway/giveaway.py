@@ -20,7 +20,7 @@ class GiveawayCog(commands.Cog):
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
         if ctx.author.bot:
             return
-            
+
         if not ctx.author.guild_permissions.administrator:
             await ctx.send("You must be an administrator to start a giveaway.")
             return
@@ -59,8 +59,10 @@ class GiveawayCog(commands.Cog):
         }
         save_json(dataFilePath["giveaway"], self.giveaways)
 
+        giveawayMessageID = giveaway_message.id
+        
         # Planifier la fin du giveaway
-        await self.schedule_giveaway_end(giveaway_message.id, duration_seconds)
+        await self.schedule_giveaway_end(giveawayMessageID, duration_seconds)
 
     async def schedule_giveaway_end(self, message_id, duration_seconds):
         # Vérifier si le giveaway existe dans les données
@@ -76,7 +78,7 @@ class GiveawayCog(commands.Cog):
             color=disnake.Color.blurple()
         )
         embed.set_footer(text=f"Ends in {self.format_time_remaining(duration_seconds)}")
-        message = await self.bot.fetch_message(message_id)
+        message = self.bot.get_message(message_id)
         await message.edit(embed=embed)
 
         # Si le temps restant est supérieur à 60 secondes, actualiser l'embed toutes les 60 secondes
@@ -104,7 +106,7 @@ class GiveawayCog(commands.Cog):
         winners_count = giveaway_data["winners"]
 
         # Obtenir tous les participants ayant réagi avec l'emoji 🎉
-        message = await self.bot.fetch_message(message_id)
+        message = self.bot.get_message(message_id)
         participants = [user for reaction in message.reactions if str(reaction.emoji) == "🎉" for user in await reaction.users().flatten() if not user.bot]
 
         # Sélectionner des gagnants au hasard
