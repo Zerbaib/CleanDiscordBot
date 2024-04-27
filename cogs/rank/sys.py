@@ -38,7 +38,7 @@ class RankSystem(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🧰 Rank system as been loaded')
+        print('⚠️ 🧰 Rank system as been loaded')
     
     @commands.Cog.listener()
     async def on_message(self, message):
