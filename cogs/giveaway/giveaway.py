@@ -4,6 +4,8 @@ import json
 import disnake
 from disnake.ext import commands
 
+from data.var import timeUnits
+
 # Charger les données de giveaway depuis le fichier data/giveaway.json
 def load_giveaway_data():
     try:
@@ -24,9 +26,7 @@ class GiveawayCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('========== ⚙️ Giveaway ⚙️ ==========')
-        print('⚠️ 🔩 /giveaway has been loaded ⚠️')
-        print()
+        print('⚠️ 🔩 /giveaway has been loaded')
 
     @commands.slash_command(name='giveaway', description="Start a giveaway.")
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
@@ -41,20 +41,12 @@ class GiveawayCog(commands.Cog):
             return
 
         # Vérifier si l'unité de temps est valide
-        time_units = {
-            "s": 1,
-            "m": 60,
-            "h": 3600,
-            "D": 86400,
-            "M": 2592000,
-            "A": 31536000
-        }
-        if unit not in time_units:
-            await ctx.send("Invalid time unit. Use 's' for seconds, 'm' for minutes, 'h' for hours, 'D' for days, 'M' for months, or 'A' for years.")
+        if unit not in timeUnits:
+            await ctx.send("Invalid time unit. Use 's' for seconds, 'm' for minutes, 'h' for hours, 'D' for days, 'W' for week, 'M' for months, or 'A' for years.")
             return
 
         # Convertir la durée en secondes
-        duration_seconds = duration * time_units[unit]
+        duration_seconds = duration * timeUnits[unit]
 
         # Créer l'embed initial du giveaway
         embed = disnake.Embed(
