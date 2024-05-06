@@ -90,12 +90,11 @@ class GiveawayCog(commands.Cog):
             await asyncio.sleep(10)
             await self.schedule_giveaway_end(message_id, duration_seconds - 10)
         # Si le temps restant est inférieur à 25 secondes, actualiser l'embed toutes les secondes
-        else:
+        elif duration_seconds > 0:
             await asyncio.sleep(1)
             await self.schedule_giveaway_end(message_id, duration_seconds - 1)
-
-        # Une fois que le temps est écoulé, terminer le giveaway
-        await self.end_giveaway(message_id)
+        else:
+            await self.end_giveaway(message_id)
 
     async def end_giveaway(self, message_id):
         # Vérifier si le giveaway existe dans les données
