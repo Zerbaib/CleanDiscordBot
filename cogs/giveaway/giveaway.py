@@ -1,3 +1,4 @@
+import datetime
 import random
 import asyncio
 import json
@@ -5,7 +6,9 @@ import disnake
 from disnake.ext import commands
 
 from data.var import timeUnits, dataFilePath
+import time
 from utils.json_manager import load_json, save_json
+from cogs.casino.bet import langText
 
 class GiveawayCog(commands.Cog):
     def __init__(self, bot):
@@ -117,7 +120,10 @@ class GiveawayCog(commands.Cog):
 
         # Mettre à jour l'embed du giveaway avec les gagnants
         embed = message.embeds[0]
+        embed.title = "🎉 Giveaway finish 🎉"
+        embed.description = f"Prize: {giveaway_data['prize']}\nWinners: {giveaway_data['winners']}"
         embed.description += f"\n\nWinners:\n" + "\n".join([f"{winner.mention}" for winner in winners])
+        embed.set_footer(text="Finish")
         await message.edit(embed=embed)
 
         # Mettre à jour les données du giveaway et sauvegarder
