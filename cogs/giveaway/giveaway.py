@@ -6,9 +6,7 @@ import disnake
 from disnake.ext import commands
 
 from data.var import timeUnits, dataFilePath
-import time
 from utils.json_manager import load_json, save_json
-from cogs.casino.bet import langText
 
 class GiveawayCog(commands.Cog):
     def __init__(self, bot):
@@ -17,7 +15,7 @@ class GiveawayCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('⚠️ 🔩 /giveaway has been loaded')
+        print('🔩 /giveaway has been loaded')
 
     @commands.slash_command(name='giveaway', description="Start a giveaway.")
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
