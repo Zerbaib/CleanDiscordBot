@@ -8,7 +8,7 @@
     "QUESTION_WELCOME_CHANNEL_ID": "Entrez l'ID du canal de bienvenue :\n",
     "QUESTION_LEAVE_CHANNEL_ID": "Entrez l'ID du canal de départ :\n",
     "QUESTION_VOICE_CHANNEL_ID": "Entrez l'ID du canal vocal\nUtilisé pour créer un salon lors de la connexion :\n",
-    "QUESTION_MUTED_ROLE_ID": "Entrez l'ID du rôle de sourdine :\n",
+    "QUESTION_MUTE_ROLE_ID": "Entrez l'ID du rôle de sourdine :\n",
     "QUESTION_XP_ROLE_10_ID": "Entrez l'ID du rôle pour 10 XP :\n",
     "QUESTION_XP_ROLE_25_ID": "Entrez l'ID du rôle pour 25 XP :\n",
     "QUESTION_XP_ROLE_50_ID": "Entrez l'ID du rôle pour 50 XP :\n",
@@ -33,6 +33,7 @@
     "ERROR_CONFIG_LOAD": "\n🌪️  Erreur lors du chargement de la configuration :\n{e}",
     "ERROR_COG_LOADING": "\n🌪️  Erreur lors du chargement de '{cogName}' :\n{e}",
     "ERROR_ELEMENTS_LOADING": "\n🌪️  Erreur lors du chargement de '{element}' :\n{e}",
+    "ERROR_BOT_RUN": "\n🌪️  Erreur lors du chargement du token\nChange ton token\n",
 
     "": ""
 }

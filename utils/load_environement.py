@@ -6,7 +6,10 @@ def load_enviroment():
         return json.load(file)
 
 def load_enviroment_lang():
-    return json.load(open(envFilePath, "r"))["LANGUAGE"].upper()
+    try:
+        return json.load(open(envFilePath, "r"))["LANGUAGE"].upper()
+    except:
+        return "EN"
 
 def load_enviroment_token():
     return json.load(open(envFilePath, "r"))["TOKEN"]
