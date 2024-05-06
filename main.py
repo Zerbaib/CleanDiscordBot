@@ -34,6 +34,8 @@ if not os.path.exists(envFilePath):
         }
         json.dump(envData, env_file, indent=4)
 
+lang = load_main_lang()
+
 if not os.path.exists(badWordFilePath):
     badword_data = {
         "bad_words": [
@@ -80,7 +82,7 @@ try:
     with open(configFilePath, 'r') as config_file:
         config = json.load(config_file)
 except Exception as e:
-    print(lang.get("ERROR_CONFIG_FILE").format(e))
+    print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
 
 prefix = config["PREFIX"]
@@ -151,5 +153,8 @@ for element in os.listdir(cogsFolder):
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
 
-
-bot.run(load_enviroment_token())
+try:
+    bot.run(load_enviroment_token())
+except Exception as e:
+    print(lang.get("ERROR_BOT_RUN"))
+    exit()
