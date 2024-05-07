@@ -2,7 +2,7 @@
     "GIVEAWAY_DESCRIPTION": "Start a giveaway.",
     "GIVEAWAY_TITLE": "🎉 Giveaway 🎉",
     "GIVEAWAY_TEXT": "Prize: ```{prize}```\nWinners: `{winners}`\n**React with 🎉 to enter!**\n\nTime remaining: {duration} {unit}",
-    "GIVEAWAY_FOOTER": "Ends at {duration} {unit}",
+    "GIVEAWAY_FOOTER": "Ends at <t:{timestamp}:f>",
 
     "ERROR_NOT_ADMIN": "You must be an administrator to start a giveaway.",
     "ERROR_WINNER_AMOUNT": "The number of winners must be at least 1.",

@@ -51,7 +51,7 @@ class GiveawayCog(commands.Cog):
                 description=langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit),
                 color=disnake.Color.blurple()
             )
-            embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
+            embed.set_footer(text=langText["GIVEAWAY_FOOTER"].format(timestamp=int(datetime.datetime.now().timestamp() + duration_seconds)))
             giveaway_message = await ctx.channel.send(embed=embed)
 
             # Ajouter l'emoji 🎉 à l'embed du giveaway
@@ -89,7 +89,7 @@ class GiveawayCog(commands.Cog):
         message = self.bot.get_message(message_id)
         embed = message.embeds[0]
         embed.description = langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit)
-        embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
+        embed.set_footer(text=langText["GIVEAWAY_FOOTER"].format(timestamp=int(datetime.datetime.now().timestamp() + duration_seconds)))
         await message.edit(embed=embed)
 
         # Si le temps restant est supérieur à 60 secondes, actualiser l'embed toutes les 60 secondes
