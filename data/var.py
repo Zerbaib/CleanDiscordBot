@@ -1,4 +1,5 @@
 import subprocess
+import time
 
 # Config files
 envFilePath = './.env'
@@ -10,6 +11,25 @@ dataFileLoad = True
 utilsLoad = True
 multiplicator = 65
 
+# Time gestion
+timeSeconds = 1
+timeMinutes = timeSeconds * 60
+timeHours = timeMinutes * 60
+timeDays = timeHours * 24
+timeWeeks = timeDays * 7
+timeMonths = timeDays * 30
+timeYears = timeDays * 365
+
+timeUnits = {
+    "s": timeSeconds,
+    "m": timeMinutes,
+    "h": timeHours,
+    "D": timeDays,
+    "W": timeWeeks,
+    "M": timeMonths,
+    "A": timeYears
+}
+
 # Language possible
 langPossible = [
     "EN",
@@ -20,7 +40,8 @@ langPossible = [
 dataFilePath = {
     "casino": "./data/casino.json",
     "ranks": "./data/ranks.json",
-    "cooldown": "./data/cooldown.json"
+    "cooldown": "./data/cooldown.json",
+    "giveaway": "./data/giveaway.json"
 }
 
 # Cogs folder

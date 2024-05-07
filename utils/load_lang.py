@@ -30,3 +30,6 @@ def load_rank_lang():
 
 def load_welcome_lang():
     return json.load(open(f"lang/{load_enviroment_lang()}/welcome.json", "r"))
+
+def load_giveaway_lang():
+    return json.load(open(f"lang/{load_enviroment_lang()}/giveaway.json", "r"))
