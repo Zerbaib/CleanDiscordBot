@@ -1,0 +1,20 @@
+{
+    "HELP_DESCRIPTION": "Afficher la liste des commandes disponibles",
+    "HELP_TITLE": "Aide de {botName}",
+    "HELP_TEXT": "Toutes les commandes :",
+    "HELP_FIELD": "Commandes pour {cogName}",
+
+    "PING_DESCRIPTION": "Vérifier la latence du bot",
+    "PING_TITLE": "🏓 Pong !",
+    "PING_TEXT": "Le ping est d'environ `{latency}ms` ⏳",
+    "PING_FOOTER": "Commande exécutée par {author}",
+
+    "POLL_DESCRIPTION": "Créer un sondage",
+    "POLL_TITLE": "🗳 Nouveau sondage 🗳",
+    "POLL_FOOTER": "Sondage créé par {author}",
+    "POLL_NOID": "L'ID du canal de sondage n'est pas spécifié dans la configuration.",
+    "POLL_INVALIDID": "L'ID du canal de sondage est invalide.",
+    "POLL_CREATED_SUCCESS": "Sondage créé avec succès",
+
+    "": ""
+}

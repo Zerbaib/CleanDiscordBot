@@ -1,0 +1,17 @@
+{
+    "CHECK_DESCRIPTION": "Check if the bot is up to date",
+    "CHECK_TITLE": "🔎 Check of {botName}",
+    "CHECK_UPTODATE": "The bot is up to date. 👍",
+    "CHECK_OUTDATED": "An update is available. 👎",
+    "CHECK_LOCAL": "Local version",
+    "CHECK_REMOTE": "Remote version",
+
+    "RESTART_DESCRIPTION": "Restart the bot",
+    "RESTART_TITLE": "🔄 Restarting... 🔄",
+    "RESTART_TEXT": "The bot is restarting. Please wait...",
+
+    "STOP_DESCRIPTION": "Stop the bot",
+    "STOP_TITLE": "🛑 Stopping the bot... 🛑",
+
+    "": ""
+}

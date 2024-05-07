@@ -1,0 +1,9 @@
+{
+    "JOIN_TITLE": "Say welcome to {userName}!",
+    "JOIN_TEXT": "We are happy to have you here **{userMention}**!\n\nWith you, we are now `{usersCount}` members!\n\nBe **happy** and **enjoy** your stay !",
+
+    "LEAVE_TITLE": "Say goodbye to {userName}",
+    "LEAVE_TEXT": "We are sad to see you leave {userMention}!\n\nWith you, we are now {usersCount} members!\n\nWe hope to see you again later!",
+
+    "": ""
+}

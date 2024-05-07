@@ -1,0 +1,23 @@
+{
+    "BALANCE_DESCRIPTION": "Vérifiez votre solde",
+    "BALANCE_TITLE": "💰 Solde 💰",
+    "BALANCE_TEXT": "Votre solde : ``{balance}`` pièces 🪙",
+
+    "BALTOP_DESCRIPTION": "Top 10 des utilisateurs les plus riches",
+    "BALTOP_TITLE": "💰 Top 10 des Utilisateurs les Plus Riches 💰",
+    "BALTOP_TEXT": "Solde : `{balance}` pièces 🪙",
+    "BALTOP_NOT_FOUND": "{idx}. Utilisateur non trouvé",
+
+    "PAY_DESCRIPTION": "Donner des pièces à un autre utilisateur",
+    "PAY_TITLE": "💸 Pièces Transférées 💸",
+    "PAY_TEXT": "Vous avez transféré avec succès `{amount}` pièces à {user}.",
+
+    "ERROR_INVALID_AMOUNT_TITLE": "Montant invalide",
+    "ERROR_INVALID_AMOUNT_DESCRIPTION": "Le montant doit être supérieur à zéro.",
+    "ERROR_INVALID_USER_TITLE": "Utilisateur invalide",
+    "ERROR_INVALID_USER_DESCRIPTION": "Vous ne pouvez pas donner de pièces à un bot.",
+    "ERROR_INSUFFICIENT_FUNDS_TITLE": "Fonds insuffisants",
+    "ERROR_INSUFFICIENT_FUNDS_DESCRIPTION": "Vous n'avez pas suffisamment de pièces pour effectuer cette transaction.",
+
+    "": ""
+}

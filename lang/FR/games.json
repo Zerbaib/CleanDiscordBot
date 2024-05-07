@@ -1,0 +1,36 @@
+{
+    "FINDNUMBER_DESCRIPTION": "Trouvez le nombre caché !",
+    "FINDNUMBER_TITLE": "Trouver le nombre",
+    "FINDNUMBER_TEXT": "J'ai choisi un nombre entre ``1`` et ``10000``. Essayez de deviner !",
+    "FINDNUMBER_FOOTER": "Utilisez ``/guess <nombre>`` pour faire une proposition.",
+    "FINDNUMBER_FIELD1_TITLE": "Instructions :",
+    "FINDNUMBER_FIELD1_VALUE": "Devinez le bon nombre dans la plage donnée.",
+    "FINDNUMBER_FIELD2_TITLE": "Tentatives :",
+    "FINDNUMBER_FIELD2_VALUE": "``0/25``",
+
+    "GUESS_DESCRIPTION": "Faites une proposition pour le nombre caché.",
+    "GUESS_WIN_TITLE": "Félicitations ! 🎉",
+    "GUESS_WIN_TEXT": "Vous avez deviné le bon nombre !",
+    "GUESS_YOUR_GUESS": "Votre proposition :",
+    "GUESS_CORRECT_NUMBER": "Nombre correct :",
+    "GUESS_GAMEOVER_TITLE": "Fin du jeu",
+    "GUESS_GAMEOVER_TEXT": "Vous avez atteint le nombre maximum de tentatives.",
+
+    "TOO_LOW_TITLE": "Trop bas ! ⬆️",
+    "TOO_LOW_TEXT": "Le nombre est plus élevé que votre proposition.",
+    "TOO_HIGH_TITLE": "Trop haut ! ⬇️",
+    "TOO_HIGH_TEXT": "Le nombre est plus bas que votre proposition.",
+
+    "RPS_DESCRIPTION": "Jouez à Pierre, Papier, Ciseaux contre le bot.",
+    "RPS_TITLE": "Choisissez votre option, s'il vous plaît.",
+    "RPS_TOO_LATE": "Trop tard",
+    "RPS_WIN": "**Vous avez gagné 🎉 !**\nVous avez choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}.",
+    "RPS_LOSE": "**Vous avez perdu 😢 !**\nVous avez choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}.",
+    "RPS_DRAW": "**C'est un match nul 🤝 !**\nVous avez choisi {user_choice_emote} et j'ai choisi {bot_choice_emote}.",
+
+    "ERROR_TITLE": "Erreur",
+    "ERROR_EALREADYSTARTED": "Vous jouez déjà à un jeu. Utilisez ``/guess`` pour faire une proposition.",
+    "ERROR_NO_GAME": "Il n'y a pas de jeu en cours. Utilisez ``/findnumber`` pour commencer un nouveau jeu.",
+
+    "": ""
+}

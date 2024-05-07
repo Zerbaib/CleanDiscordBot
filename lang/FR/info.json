@@ -1,0 +1,36 @@
+{
+    "BOTINFO_DESCRIPTION": "Obtenir les informations du bot.",
+    "BOTINFO_TITLE": "Info de ``{b}`` 🤖",
+    "BOTINFO_BOTPROFILE_TITLE": "__Profil du bot :__",
+    "BOTINFO_BOTPROFILE_TEXT": "**Nom** : ``{botName}``\n**Préfixe** : ``{botPrefix}``\n**Ping** : ``{botPing}ms``",
+    "BOTINFO_BOTINFO_TITLE": "__Informations du bot :__",
+    "BOTINFO_BOTINFO_TEXT": "**Version du bot** : ``{botVer}``\n**Version de l'API** : ``{apiVer}``\n**Version de Python** : ``{pyVer}``",
+    "BOTINFO_GITINFO_TITLE": "__Dépôt GitHub :__",
+    "BOTINFO_GITINFO_TEXT": "**Commits** : ``{commits}``\n**Étoiles** : ``{stars}``\n**Version en ligne** : ``{onVer}\n**Lien du dépôt** : [**`ici`**]({repoLink})",
+    "BOTINFO_FOOTER": "Commande exécutée par {author}",
+
+    "SRVINFO_DESCRIPTION": "Afficher les informations du serveur.",
+    "SRVINFO_TITLE": "💾 Informations du serveur 💾",
+    "SRVINFO_NAME": "Nom",
+    "SRVINFO_DESC": "Description",
+    "SRVINFO_OWNER": "Propriétaire",
+    "SRVINFO_CREATED": "Créé le",
+    "SRVINFO_MEMBERS": "Nombre de membres",
+    "SRVINFO_CHANNELS": "Nombre de canaux",
+    "SRVINFO_ROLES": "Nombre de rôles",
+    "SRVINFO_BOOSTS": "Nombre de boosts",
+    "SRVINFO_BOOSTS_TIER": "Niveau de boost",
+
+    "USERINFO_DESCRIPTION": "Afficher les informations de l'utilisateur.",
+    "USERINFO_TITLE": "👤 Informations de l'utilisateur 👤",
+    "USERINFO_NAME": "Nom d'utilisateur",
+    "USERINFO_TAG": "Discriminateur",
+    "USERINFO_DISPLAYNAME": "Nom d'affichage",
+    "USERINFO_ID": "ID",
+    "USERINFO_BOT": "Bot",
+    "USERINFO_CREATED": "Créé le",
+
+    "UNKNOWN": "Inconnu",
+
+    "": ""
+}
