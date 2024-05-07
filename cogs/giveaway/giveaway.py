@@ -20,7 +20,7 @@ class GiveawayCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🔩 /giveaway has been loaded')
+        print('⚠️ 🔩 /giveaway has been loaded')
 
     @commands.slash_command(name='giveaway', description=langText["GIVEAWAY_DESCRIPTION"])
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
