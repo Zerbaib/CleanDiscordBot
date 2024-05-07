@@ -135,7 +135,7 @@ class GiveawayCog(commands.Cog):
         embed.description = langText["FINISHED_TEXT"].format(prize=prize)
         embed.description += langText["FINISHED_WINNERS"].format(winners=winners)
         embed.description += f"\n\nWinners:\n" + "\n".join([f"{winner.mention}" for winner in winners])
-        embed.set_footer(text="Finish")
+        embed.set_footer(text=langText["FINISHED_FOOTER"].format(timestamp=int(datetime.datetime.now().timestamp())))
         await message.edit(embed=embed)
 
         # Mettre à jour les données du giveaway et sauvegarder
