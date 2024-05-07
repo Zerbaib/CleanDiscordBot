@@ -45,11 +45,11 @@ class GiveawayCog(commands.Cog):
 
         # Créer l'embed initial du giveaway
         embed = disnake.Embed(
-            title="🎉 Giveaway 🎉",
-            description=f"Prize: {prize}\nWinners: {winners}\nReact with 🎉 to enter!\n\nTime remaining: {duration} {unit}",
+            title=langText["GIVEAWAY_TITLE"],
+            description=langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit),
             color=disnake.Color.blurple()
         )
-        embed.set_footer(text=f"Ends in {duration} {unit}")
+        embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
         giveaway_message = await ctx.channel.send(embed=embed)
 
         # Ajouter l'emoji 🎉 à l'embed du giveaway
@@ -76,14 +76,15 @@ class GiveawayCog(commands.Cog):
 
         giveaway_data = self.giveaways[message_id]
 
-        # Mettre à jour l'embed du giveaway avec le temps restant
-        embed = disnake.Embed(
-            title="🎉 Giveaway 🎉",
-            description=f"Prize: {giveaway_data['prize']}\nWinners: {giveaway_data['winners']}\nReact with 🎉 to enter!\n\nTime remaining: {self.format_time_remaining(duration_seconds)}",
-            color=disnake.Color.blurple()
-        )
-        embed.set_footer(text=f"Ends in {self.format_time_remaining(duration_seconds)}")
+        prize = giveaway_data["prize"]
+        winners = giveaway_data["winners"]
+        duration = self.format_time_remaining(duration_seconds)
+        unit = "!"
+        
         message = self.bot.get_message(message_id)
+        embed = message.embeds[0]
+        embed.description = langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit)
+        embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
         await message.edit(embed=embed)
 
         # Si le temps restant est supérieur à 60 secondes, actualiser l'embed toutes les 60 secondes
@@ -135,7 +136,9 @@ class GiveawayCog(commands.Cog):
         save_json(dataFilePath["giveaway"], self.giveaways)
 
     def format_time_remaining(self, seconds):
-        if seconds >= 3600:
+        if seconds >= 86400:
+            return f"{seconds // 86400} days"
+        elif seconds >= 3600:
             return f"{seconds // 3600} hours"
         elif seconds >= 60:
             return f"{seconds // 60} minutes"
