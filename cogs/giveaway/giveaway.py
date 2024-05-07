@@ -8,6 +8,7 @@ from disnake.ext import commands
 from data.var import timeUnits, dataFilePath
 from utils.json_manager import load_json, save_json
 from utils.load_lang import load_giveaway_lang
+from utils import error
 
 
 langText = load_giveaway_lang()
@@ -23,51 +24,55 @@ class GiveawayCog(commands.Cog):
 
     @commands.slash_command(name='giveaway', description=langText["GIVEAWAY_DESCRIPTION"])
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
-        if ctx.author.bot:
-            return
+        try:
+            if ctx.author.bot:
+                return
 
-        if not ctx.author.guild_permissions.administrator:
-            await ctx.send(langText["ERROR_NOT_ADMIN"])
-            return
+            if not ctx.author.guild_permissions.administrator:
+                await ctx.send(langText["ERROR_NOT_ADMIN"])
+                return
 
-        # Vérifier si le nombre de gagnants est valide
-        if winners < 1:
-            await ctx.send(langText["ERROR_WINNER_AMOUNT"])
-            return
+            # Vérifier si le nombre de gagnants est valide
+            if winners < 1:
+                await ctx.send(langText["ERROR_WINNER_AMOUNT"])
+                return
 
-        # Vérifier si l'unité de temps est valide
-        if unit not in timeUnits:
-            await ctx.send(langText["ERROR_TIME_UNIT"])
-            return
+            # Vérifier si l'unité de temps est valide
+            if unit not in timeUnits:
+                await ctx.send(langText["ERROR_TIME_UNIT"])
+                return
 
-        # Convertir la durée en secondes
-        duration_seconds = duration * timeUnits[unit]
+            # Convertir la durée en secondes
+            duration_seconds = duration * timeUnits[unit]
 
-        # Créer l'embed initial du giveaway
-        embed = disnake.Embed(
-            title=langText["GIVEAWAY_TITLE"],
-            description=langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit),
-            color=disnake.Color.blurple()
-        )
-        embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
-        giveaway_message = await ctx.channel.send(embed=embed)
+            # Créer l'embed initial du giveaway
+            embed = disnake.Embed(
+                title=langText["GIVEAWAY_TITLE"],
+                description=langText["GIVEAWAY_TEXT"].format(prize=prize, winners=winners, duration=duration, unit=unit),
+                color=disnake.Color.blurple()
+            )
+            embed.set_footer(text=f"Ends in <t:{int(datetime.datetime.now().timestamp() + duration_seconds)}:f>")
+            giveaway_message = await ctx.channel.send(embed=embed)
 
-        # Ajouter l'emoji 🎉 à l'embed du giveaway
-        await giveaway_message.add_reaction("🎉")
+            # Ajouter l'emoji 🎉 à l'embed du giveaway
+            await giveaway_message.add_reaction("🎉")
 
-        # Enregistrer les données du giveaway
-        self.giveaways[giveaway_message.id] = {
-            "prize": prize,
-            "winners": winners,
-            "end_time": giveaway_message.created_at.timestamp() + duration_seconds,
-            "participants": []
-        }
-        save_json(dataFilePath["giveaway"], self.giveaways)
+            # Enregistrer les données du giveaway
+            self.giveaways[giveaway_message.id] = {
+                "prize": prize,
+                "winners": winners,
+                "end_time": giveaway_message.created_at.timestamp() + duration_seconds,
+                "participants": []
+            }
+            save_json(dataFilePath["giveaway"], self.giveaways)
 
-        giveawayMessageID = giveaway_message.id
-        
-        # Planifier la fin du giveaway
-        await self.schedule_giveaway_end(giveawayMessageID, duration_seconds)
+            giveawayMessageID = giveaway_message.id
+            
+            # Planifier la fin du giveaway
+            await self.schedule_giveaway_end(giveawayMessageID, duration_seconds)
+        except Exception as e:
+            embed = error.error_embed(e)
+            await ctx.send(embed=embed)
 
     async def schedule_giveaway_end(self, message_id, duration_seconds):
         # Vérifier si le giveaway existe dans les données
