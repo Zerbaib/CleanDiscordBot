@@ -4,6 +4,11 @@
     "GIVEAWAY_TEXT": "Prize: ```{prize}```\nWinners: `{winners}`\n**React with 🎉 to enter!**\n\nTime remaining: {duration} {unit}",
     "GIVEAWAY_FOOTER": "Ends at <t:{timestamp}:f>",
 
+    "FINISHED_TITLE": "🎉 Giveaway Ended 🎉",
+    "FINISHED_TEXT": "Prize: ```{prize}```",
+    "FINISHED_FOOTER": "Ended at <t:{timestamp}:f>",
+    "FINISHED_WINNERS": "\n\nWinners:\n{winners}",
+
     "ERROR_NOT_ADMIN": "You must be an administrator to start a giveaway.",
     "ERROR_WINNER_AMOUNT": "The number of winners must be at least 1.",
     "ERROR_TIME_UNIT": "Invalid time unit. Use 's' for seconds, 'm' for minutes, 'h' for hours, 'D' for days, 'W' for week, 'M' for months, or 'A' for years.",

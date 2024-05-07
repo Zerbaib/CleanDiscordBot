@@ -126,10 +126,14 @@ class GiveawayCog(commands.Cog):
         for winner in winners:
             await winner.send(f"Congratulations! You have won the giveaway for {giveaway_data['prize']}!")
 
+        prize = giveaway_data["prize"]
+        winners = "\n".join([winner.mention for winner in winners])
+
         # Mettre à jour l'embed du giveaway avec les gagnants
         embed = message.embeds[0]
-        embed.title = "🎉 Giveaway finish 🎉"
-        embed.description = f"Prize: {giveaway_data['prize']}\nWinners: {giveaway_data['winners']}"
+        embed.title = langText["FINISHED_TITLE"]
+        embed.description = langText["FINISHED_TEXT"].format(prize=prize)
+        embed.description += langText["FINISHED_WINNERS"].format(winners=winners)
         embed.description += f"\n\nWinners:\n" + "\n".join([f"{winner.mention}" for winner in winners])
         embed.set_footer(text="Finish")
         await message.edit(embed=embed)
