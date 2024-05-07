@@ -122,14 +122,14 @@ class GiveawayCog(commands.Cog):
         # Sélectionner des gagnants au hasard
         winners = random.sample(participants, k=min(winners_count, len(participants)))
 
+        prize = giveaway_data["prize"]
+
         # Envoyer un message privé aux gagnants
         for winner in winners:
-            await winner.send(f"Congratulations! You have won the giveaway for {giveaway_data['prize']}!")
+            await winner.send(langText["CONGRATULATIONS"].format(winner=winner.display_name, prize=prize))
 
-        prize = giveaway_data["prize"]
         winners = "\n".join([winner.mention for winner in winners])
 
-        # Mettre à jour l'embed du giveaway avec les gagnants
         embed = message.embeds[0]
         embed.title = langText["FINISHED_TITLE"]
         embed.description = langText["FINISHED_TEXT"].format(prize=prize)
@@ -137,9 +137,7 @@ class GiveawayCog(commands.Cog):
         embed.set_footer(text=langText["FINISHED_FOOTER"].format(timestamp=int(datetime.datetime.now().timestamp())))
         await message.edit(embed=embed)
 
-        # Mettre à jour les données du giveaway et sauvegarder
         giveaway_data["participants"] = [user.id for user in participants]
-        giveaway_data["winners"] = [winner.id for winner in winners]
         self.giveaways[message_id] = giveaway_data
         save_json(dataFilePath["giveaway"], self.giveaways)
 
