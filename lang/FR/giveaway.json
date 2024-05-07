@@ -1,0 +1,19 @@
+{
+    "GIVEAWAY_DESCRIPTION": "Lancer un concours.",
+    "GIVEAWAY_TITLE": "🎉 Concours 🎉",
+    "GIVEAWAY_TEXT": "Prix : ```{prize}```\nGagnants : `{winners}`\n**Réagissez avec 🎉 pour participer !**\n\nTemps restant : {duration} {unit}",
+    "GIVEAWAY_FOOTER": "Se termine le <t:{timestamp}:f>",
+
+    "FINISHED_TITLE": "🎉 Concours Terminé 🎉",
+    "FINISHED_TEXT": "Prix : ```{prize}```",
+    "FINISHED_FOOTER": "Terminé le <t:{timestamp}:f>",
+    "FINISHED_WINNERS": "\n\nGagnants :\n{winners}",
+
+    "CONGRATULATIONS": "🎉 Félicitations, **{winner}** !\n**Vous avez gagné** le concours pour **`{prize}`** ! 🎉 ",
+
+    "ERROR_NOT_ADMIN": "Vous devez être administrateur pour lancer un concours.",
+    "ERROR_WINNER_AMOUNT": "Le nombre de gagnants doit être d'au moins 1.",
+    "ERROR_TIME_UNIT": "Unité de temps invalide. Utilisez 's' pour les secondes, 'm' pour les minutes, 'h' pour les heures, 'D' pour les jours, 'W' pour les semaines, 'M' pour les mois ou 'A' pour les années.",
+
+    "": ""
+}
