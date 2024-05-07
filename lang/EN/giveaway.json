@@ -1,0 +1,9 @@
+{
+    "GIVEAWAY_DESCRIBTION": "Start a giveaway.",
+
+    "ERROR_NOT_ADMIN": "You must be an administrator to start a giveaway.",
+    "ERROR_WINNER_AMOUNT": "The number of winners must be at least 1.",
+    "ERROR_TIME_UNIT": "Invalid time unit. Use 's' for seconds, 'm' for minutes, 'h' for hours, 'D' for days, 'W' for week, 'M' for months, or 'A' for years.",
+
+    "": ""
+}

@@ -21,23 +21,23 @@ class GiveawayCog(commands.Cog):
     async def on_ready(self):
         print('🔩 /giveaway has been loaded')
 
-    @commands.slash_command(name='giveaway', description="Start a giveaway.")
+    @commands.slash_command(name='giveaway', description=langText["GIVEAWAY_DESCRIPTION"])
     async def giveaway(self, ctx, prize: str, winners: int, duration: int, unit: str):
         if ctx.author.bot:
             return
 
         if not ctx.author.guild_permissions.administrator:
-            await ctx.send("You must be an administrator to start a giveaway.")
+            await ctx.send(langText["ERROR_NOT_ADMIN"])
             return
 
         # Vérifier si le nombre de gagnants est valide
         if winners < 1:
-            await ctx.send("The number of winners must be at least 1.")
+            await ctx.send(langText["ERROR_WINNER_AMOUNT"])
             return
 
         # Vérifier si l'unité de temps est valide
         if unit not in timeUnits:
-            await ctx.send("Invalid time unit. Use 's' for seconds, 'm' for minutes, 'h' for hours, 'D' for days, 'W' for week, 'M' for months, or 'A' for years.")
+            await ctx.send(langText["ERROR_TIME_UNIT"])
             return
 
         # Convertir la durée en secondes
