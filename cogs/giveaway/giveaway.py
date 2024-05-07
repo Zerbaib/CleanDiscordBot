@@ -7,6 +7,10 @@ from disnake.ext import commands
 
 from data.var import timeUnits, dataFilePath
 from utils.json_manager import load_json, save_json
+from utils.load_lang import load_giveaway_lang
+
+
+langText = load_giveaway_lang()
 
 class GiveawayCog(commands.Cog):
     def __init__(self, bot):
