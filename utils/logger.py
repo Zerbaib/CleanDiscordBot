@@ -7,7 +7,7 @@ from termcolor import colored
 def log_writer(time_str, channel, user, content):
     log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
 
-    with open('log.txt', 'a', encoding='utf-8') as log_file:  # Specify 'utf-8' encoding
+    with open('log.txt', 'a', encoding='utf-8') as log_file:
         log_file.write(log_message + '\n')
 
 class LoggerUtils(commands.Cog):
@@ -43,7 +43,6 @@ class LoggerUtils(commands.Cog):
             log_channel_id = config["LOG_ID"]
             log_channel = self.bot.get_channel(log_channel_id)
 
-            # Create and send the embed
             embed = disnake.Embed(
                 title=f"{user.display_name}",
                 description=f"``UTC - {time_str}``\nUser has posted a message\n",
@@ -64,6 +63,7 @@ class LoggerUtils(commands.Cog):
                 value=f"```{content}```",
                 inline=False
             )
+            
             await log_channel.send(embed=embed)
             log_writer(time_str, channel, user, content)
 
