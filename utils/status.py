@@ -3,6 +3,8 @@ import asyncio
 import disnake
 from disnake.ext import commands
 
+from data.var import *
+
 status_messages = [
     {"name": "Version", "value": "", "type": disnake.ActivityType.watching},
     {"name": "Users", "value": "", "type": disnake.ActivityType.listening},
@@ -23,7 +25,7 @@ class StatusUtils(commands.Cog):
         while True:
             for status in status_messages:
                 if status["name"] == "Version":
-                    with open('version.txt', 'r') as version_file:
+                    with open(localVersionFilePath, 'r') as version_file:
                         bot_version = version_file.read().strip()
                     status["value"] = f"{bot_version}"
                 elif status["name"] == "Users":
