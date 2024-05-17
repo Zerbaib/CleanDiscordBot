@@ -28,6 +28,15 @@ if ! command -v pip3 &> /dev/null; then
     sudo apt install -y python3-pip
 fi
 
+if [ -d "CleanDiscordBot" ]; then
+    echo "Go to CleanDiscordBot directory..."
+    cd CleanDiscordBot
+else
+    echo "Clone the CleanDiscordBot repository..."
+    git clone https://github.com/Zerbaib/CleanDiscordBot.git
+    cd CleanDiscordBot
+fi
+
 # Activate virtual environment if it exists, otherwise create and activate it
 if [ -d "venv" ]; then
     echo "Activating existing virtual environment..."

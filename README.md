@@ -15,6 +15,16 @@ Go check all command in [CMD.md](CMD.md)
 
 The bot is automatically configured using a `config.json` file. The configuration file will be created automatically when you run the bot for the first time. You can modify the configuration by editing the `config.json` file directly.
 
+## 🚀 Startup
+
+It's pretty easy to install and start with one command:
+
+```
+curl https://cdn.catdev.fr/startup_script_CleanDiscordBot.sh | bash
+```
+
+
+
 ## 🛠️ Installation
 
 [Go check the wiki](https://github.com/Zerbaib/CleanDiscordBot/wiki/Install)
@@ -47,7 +57,7 @@ The bot is automatically configured using a `config.json` file. The configuratio
 ```
 MIT License
 
-Copyright (c) 2023 Hennetin Hugo
+Copyright (c) 2023-2024 Hennetin Hugo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

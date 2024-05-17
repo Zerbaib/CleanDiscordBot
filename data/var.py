@@ -50,7 +50,7 @@ cogsFolder = "./cogs/"
 # Utils cogs
 utilsCogPath = {
     "logger": "utils.logger",
-    "automod": "utils.automod",
+    #"automod": "utils.automod",
     "status": "utils.status",
     "voice": "utils.voice"
 }
