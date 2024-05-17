@@ -4,11 +4,13 @@ import json
 import disnake
 from disnake.ext import commands
 
+from data.var import *
+
 
 class CustomVoiceCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.config_file = "config.json"
+        self.config_file = configFilePath
         self.temp_channels = {}
         self.load_config()
 
