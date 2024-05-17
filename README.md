@@ -19,9 +19,10 @@ The bot is automatically configured using a `config.json` file. The configuratio
 
 It's pretty easy to install and start with one command:
 
-    ```bas
-    curl https://cdn.catdev.fr/startup_script_CleanDiscordBot.sh | bash
-    ```
+```
+curl https://cdn.catdev.fr/startup_script_CleanDiscordBot.sh | bash
+```
+
 
 
 ## 🛠️ Installation
