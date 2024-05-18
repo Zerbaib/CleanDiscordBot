@@ -7,8 +7,10 @@ from disnake.ext import commands
 
 from utils import error
 from utils.load_lang import load_rank_lang
+from utils.xp_required import xp_required_calc
 
 langText = load_rank_lang()
+xp_required = xp_required_calc()
 
 
 class RankCommand(commands.Cog):
@@ -19,7 +21,6 @@ class RankCommand(commands.Cog):
         self.base_level = base_level
         self.level_factor = level_factor
         self.data = {}
-        self.role_added = None
         self.load_data()
         self.load_config()
 
@@ -58,7 +59,6 @@ class RankCommand(commands.Cog):
             if user_id in self.ranks:
                 xp = self.ranks[user_id]["xp"]
                 level = self.ranks[user_id]["level"]
-                xp_required = 5 * (level ** 2) + 10 * level + 10
                 user_rank = self.get_user_rank(user_id)
                 embed = disnake.Embed(
                     title=langText.get("RANK_TITLE").format(userName=user_name, userRank=user_rank),
