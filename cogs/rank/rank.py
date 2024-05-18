@@ -8,6 +8,7 @@ from disnake.ext import commands
 from utils import error
 from utils.load_lang import load_rank_lang
 from utils.xp_required import xp_required_calc
+from data.var import *
 
 langText = load_rank_lang()
 xp_required = xp_required_calc()
@@ -16,8 +17,8 @@ xp_required = xp_required_calc()
 class RankCommand(commands.Cog):
     def __init__(self, bot, base_level, level_factor):
         self.bot = bot
-        self.data_path = 'data/ranks.json'
-        self.config_path = 'config.json'
+        self.data_path = dataFilePath['ranks']
+        self.config_path = configFilePath
         self.base_level = base_level
         self.level_factor = level_factor
         self.data = {}

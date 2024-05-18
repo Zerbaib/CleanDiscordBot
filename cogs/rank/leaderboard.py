@@ -6,6 +6,7 @@ from disnake.ext import commands
 
 from utils import error
 from utils.load_lang import load_rank_lang
+from data.var import *
 
 langText = load_rank_lang()
 
@@ -13,8 +14,8 @@ langText = load_rank_lang()
 class LeaderboardCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_path = 'data/ranks.json'
-        self.config_path = 'config.json'
+        self.data_path = dataFilePath['ranks']
+        self.config_path = configFilePath
         self.data = {}
         self.role_added = None
         self.load_data()
