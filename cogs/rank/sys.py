@@ -6,27 +6,29 @@ import disnake
 from disnake.ext import commands
 
 from utils.load_lang import load_rank_lang
+from data.var import *
+from utils.json_manager import *
 
 langText = load_rank_lang()
-
 
 def save_data(self):
     with open(self.data_path, 'w') as data_file:
         json.dump(self.ranks, data_file, indent=4)
 
-def load_config(self):
-    if os.path.exists(self.config_path):
-        with open(self.config_path, 'r') as config_file:
-            self.config = json.load(config_file)
+def load_config():
+    if os.path.exists(configFilePath):
+        with open(configFilePath, 'r') as config_file:
+            config = json.load(config_file)
+            return config
     else:
-        self.config = {}
+        config = {}
+        return config
 
 class RankSystem(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_path = 'data/ranks.json'
-        self.config_path = 'config.json'
-        self.config = load_config(self)
+        self.data_path = dataFilePath['ranks']
+        self.config = load_config()
         self.load_data()
     
     def load_data(self):
@@ -38,7 +40,7 @@ class RankSystem(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        print('⚠️ 🧰 Rank system as been loaded')
+        print('🧰 Rank system as been loaded')
     
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -65,6 +67,9 @@ class RankSystem(commands.Cog):
                 description=langText.get("SYS_TEXT").format(userLVL=lvl, xpRequired=xp_required),
                 color=disnake.Color.brand_green()
             )
+            
+            role_added = None
+            
             if 'level_roles' in self.config:
                 for level_threshold, role_id in self.config['level_roles'].items():
                     if lvl >= int(level_threshold):
