@@ -6,6 +6,7 @@ import disnake
 from disnake.ext import commands
 
 from utils.load_lang import load_rank_lang
+from utils.xp_required import xp_required_calc
 from data.var import *
 from utils.json_manager import *
 
@@ -55,13 +56,13 @@ class RankSystem(commands.Cog):
         xp = self.ranks[user_id]["xp"]
         lvl = self.ranks[user_id]["level"]
 
-        xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
+        xp_required = xp_required_calc(lvl)
 
         if xp >= xp_required:
             lvl = lvl + 1
             self.ranks[user_id]["level"] = lvl
             save_data(self)
-            xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
+            xp_required = xp_required_calc(lvl)
             embed = disnake.Embed(
                 title=langText.get("SYS_TITLE").format(userName=message.author.name),
                 description=langText.get("SYS_TEXT").format(userLVL=lvl, xpRequired=xp_required),

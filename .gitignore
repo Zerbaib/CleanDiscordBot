@@ -6,9 +6,9 @@ config/*
 data/*.json
 
 # Virtual environment folders
-.venv/*
-venv/*
-env/*
+.venv/
+venv/
+env/
 
 # Visual Studio folders and files
 .vs/*
