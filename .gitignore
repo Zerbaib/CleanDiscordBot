@@ -2,12 +2,8 @@
 *.pyc
 
 # Configuration files
-config.json
-bad_words.json
-
-# Data files
+config/*
 data/*.json
-.env
 
 # Virtual environment folders
 .venv/*
