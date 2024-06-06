@@ -11,6 +11,9 @@ from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import load_main_lang
 from data.var import *
 
+if not os.path.exists(configFilesFolder):
+    os.mkdir(configFilesFolder)
+
 lang = load_main_lang()
 
 if dataFileLoad:
