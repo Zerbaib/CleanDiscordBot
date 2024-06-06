@@ -2,9 +2,10 @@ import subprocess
 import time
 
 # Config files
-envFilePath = './.env'
-configFilePath = "./config.json"
-badWordFilePath = "./bad_words.json"
+configFilesFolder = "./config/"
+envFilePath = f'{configFilesFolder}.env'
+configFilePath = f"{configFilesFolder}config.json"
+badWordFilePath = f"{configFilesFolder}bad_words.json"
 
 # Parameters
 dataFileLoad = True
