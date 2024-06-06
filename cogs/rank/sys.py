@@ -8,12 +8,8 @@ from disnake.ext import commands
 from utils.load_lang import load_rank_lang
 from data.var import *
 from utils.json_manager import *
-from utils.xp_required import xp_required_calc
 
 langText = load_rank_lang()
-xp_required = xp_required_calc()
-
-
 
 def save_data(self):
     with open(self.data_path, 'w') as data_file:
@@ -58,6 +54,8 @@ class RankSystem(commands.Cog):
         self.ranks[user_id]["xp"] += random.randint(1, 5)
         xp = self.ranks[user_id]["xp"]
         lvl = self.ranks[user_id]["level"]
+
+        xp_required = 5 * (lvl ** 2) + 10 * lvl + 10
 
         if xp >= xp_required:
             lvl = lvl + 1
