@@ -29,13 +29,13 @@ if ! command -v pip3 &> /dev/null; then
 fi
 
 # Activate virtual environment if it exists, otherwise create and activate it
-if [ -d "venv" ]; then
+if [ -d ".venv" ]; then
     echo "Activating existing virtual environment..."
-    source venv/bin/activate
+    source .venv/bin/activate
 else
     echo "Creating and activating new virtual environment..."
-    python3 -m venv venv
-    source venv/bin/activate
+    python3 -m venv .venv
+    source .venv/bin/activate
 fi
 
 # Fetch latest changes from git repository
