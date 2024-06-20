@@ -3,6 +3,7 @@ import json
 import disnake
 from disnake.ext import commands
 from termcolor import colored
+from data.var import configFilePath
 
 def log_writer(time_str, channel, user, content):
     log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
@@ -69,7 +70,7 @@ class LoggerUtils(commands.Cog):
 
     @commands.Cog.listener()
     async def on_slash_command(self, ctx):
-        with open('config.json', 'r') as config_file:
+        with open(configFilePath, 'r') as config_file:
             config = json.load(config_file)
 
         channel = ctx.channel
