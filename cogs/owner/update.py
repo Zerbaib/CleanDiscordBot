@@ -6,6 +6,7 @@ from disnake.ext import commands
 
 from utils import error
 from utils.load_lang import load_owner_lang
+from data.var import configFilePath
 
 langText = load_owner_lang()
 
@@ -22,7 +23,7 @@ class UpdateCommand(commands.Cog):
     @commands.is_owner()
     async def update(self, ctx):
         try:
-            with open("config.json", 'r') as config_file:
+            with open(configFilePath, 'r') as config_file:
                 config = json.load(config_file)
             
             embed = disnake.Embed(
