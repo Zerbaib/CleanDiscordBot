@@ -37,7 +37,7 @@ if not os.path.exists(envFilePath):
         }
         json.dump(envData, env_file, indent=4)
 
-lang = load_main_lang()
+lang = main_lang
 
 if not os.path.exists(badWordFilePath):
     badword_data = {

@@ -6,9 +6,9 @@ from disnake.ext import commands
 
 from utils import error
 from utils.color import hex_to_discord_color
-from utils.load_lang import load_casino_lang
+from utils.load_lang import casino_lang
 
-langText = load_casino_lang()
+langText = casino_lang
 discord_blue = "#7289da"
 discord_red = "#ed5555"
 

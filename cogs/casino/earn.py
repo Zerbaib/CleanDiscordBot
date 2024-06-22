@@ -7,9 +7,9 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_casino_lang
+from utils.load_lang import casino_lang
 
-langText = load_casino_lang()
+langText = casino_lang
 
 class EarnCommand(commands.Cog):
     def __init__(self, bot):
