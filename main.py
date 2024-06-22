@@ -13,6 +13,8 @@ from data.var import *
 
 
 
+lang = main_lang
+
 if not os.path.exists(configFilesFolder):
     os.mkdir(configFilesFolder)
 
