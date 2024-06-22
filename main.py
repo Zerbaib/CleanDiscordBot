@@ -32,7 +32,8 @@ if not os.path.exists(envFilePath):
             if lang_choice in langPossible:
                 lang_choice = lang_choice.upper()
                 break
-        except EOFError:
+        except (EOFError, KeyboardInterrupt):
+            print(lang.get("ERROR_EOF_ERROR"))
             print(lang.get("ERROR_EOF_ERROR"))
             
     with open(envFilePath, 'w') as env_file:
