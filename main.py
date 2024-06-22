@@ -8,10 +8,12 @@ import disnake
 from disnake.ext import commands
 
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
-from utils.load_lang import main_lang as lang
+from utils.load_lang import main_lang
 from data.var import *
 
 
+
+lang = main_lang
 
 if not os.path.exists(configFilesFolder):
     os.mkdir(configFilesFolder)
@@ -37,7 +39,7 @@ if not os.path.exists(envFilePath):
         }
         json.dump(envData, env_file, indent=4)
 
-lang = load_enviroment_lang()
+lang = main_lang
 
 if not os.path.exists(badWordFilePath):
     badword_data = {
