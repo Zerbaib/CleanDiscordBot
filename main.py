@@ -25,13 +25,18 @@ if dataFileLoad:
                 json.dump({}, file)
 
 if not os.path.exists(envFilePath):
-    token = input(lang.get("QUESTION_BOT_TOKEN"))
-    lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
-    if lang_choice in langPossible:
-        lang_choice = lang_choice.upper()
-    else:
-        print(lang.get("ERROR_INVALID_LANGUAGE"))
-        lang_choice = "EN"
+    while True:
+        try:
+            token = input(lang.get("QUESTION_BOT_TOKEN"))
+            lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
+            if lang_choice in langPossible:
+                lang_choice = lang_choice.upper()
+                break
+            else:
+                print(lang.get("ERROR_INVALID_LANGUAGE"))
+        except EOFError:
+            print(lang.get("ERROR_EOF_ERROR"))
+            
     with open(envFilePath, 'w') as env_file:
         envData = {
             "LANGUAGE": lang_choice,
