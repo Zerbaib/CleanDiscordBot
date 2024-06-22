@@ -5,12 +5,12 @@ import os
 import disnake
 from disnake.ext import commands
 
-from utils.load_lang import load_rank_lang
+from utils.load_lang import rank_lang as langText
 from utils.xp_required import xp_required_calc
 from data.var import *
 from utils.json_manager import *
 
-langText = load_rank_lang()
+
 
 def save_data(self):
     with open(self.data_path, 'w') as data_file:

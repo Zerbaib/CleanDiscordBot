@@ -6,10 +6,8 @@ import disnake
 from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
 
-from utils.load_lang import load_welcome_lang
+from utils.load_lang import welcome_lang as langText
 from data.var import configFilePath
-
-langText = load_welcome_lang()
 
 
 class JoinMessageUtils(commands.Cog):

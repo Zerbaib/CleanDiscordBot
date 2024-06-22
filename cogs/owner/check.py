@@ -3,10 +3,9 @@ import requests
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_owner_lang
+from utils.load_lang import owner_lang as langText
 from data.var import onlineVersion
 
-langText = load_owner_lang()
 
 
 class OwnerCommands(commands.Cog):

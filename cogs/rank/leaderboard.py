@@ -5,10 +5,8 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_rank_lang
+from utils.load_lang import rank_lang as langText
 from data.var import *
-
-langText = load_rank_lang()
 
 
 class LeaderboardCommand(commands.Cog):

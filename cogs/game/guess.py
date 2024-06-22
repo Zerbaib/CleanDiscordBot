@@ -4,9 +4,8 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import games_lang
+from utils.load_lang import games_lang as langText
 
-langText = games_lang
 
 
 class GuessCommands(commands.Cog):

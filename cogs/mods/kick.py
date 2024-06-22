@@ -5,9 +5,8 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_mods_lang
+from utils.load_lang import mods_lang as langText
 
-langText = load_mods_lang()
 
 
 class KickCommand(commands.Cog):

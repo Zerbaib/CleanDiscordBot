@@ -5,9 +5,8 @@ import requests
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import info_lang
+from utils.load_lang import info_lang as langText
 
-langText = info_lang
 
 
 class BotInfoCommand(commands.Cog):
