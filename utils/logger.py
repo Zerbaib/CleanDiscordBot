@@ -6,6 +6,18 @@ from termcolor import colored
 from data.var import configFilePath
 
 def log_writer(time_str, channel, user, content):
+    """
+    Write the log message to the log file
+    
+    Parameters:
+        time_str (str): The current time in string format
+        channel (disnake.TextChannel): The channel where the message was sent
+        user (disnake.User): The user who sent the message
+        content (str): The content of the message
+    
+    Returns:
+        None
+    """
     log_message = f"UTC - {time_str} > #{channel} - <#{channel.id}> >>> @{user} - <@{user.id}> >> {content}"
 
     with open('log.txt', 'a', encoding='utf-8') as log_file:
