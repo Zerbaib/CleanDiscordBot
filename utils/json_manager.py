@@ -28,7 +28,7 @@ def save_json(file_path, data):
         data (dict): The data to save
     
     Returns:
-        True if the file was saved successfully, False otherwise
+        bool: True if the file was saved successfully, False otherwise
     """
     try:
         dump(data, open(file_path, 'w'), indent=4)
