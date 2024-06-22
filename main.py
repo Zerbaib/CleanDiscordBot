@@ -25,12 +25,9 @@ if dataFileLoad:
                 json.dump({}, file)
 
 if not os.path.exists(envFilePath):
+    token = input(lang.get("QUESTION_BOT_TOKEN"))
     while True:
         try:
-
-            print(lang.get("QUESTION_BOT_TOKEN"))
-
-            token = input(lang.get("QUESTION_BOT_TOKEN"))
             lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
             if lang_choice in langPossible:
                 lang_choice = lang_choice.upper()
