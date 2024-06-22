@@ -30,7 +30,6 @@
     "HEADER_LN12": "🔱 Python version: {pythonVersion}",
     "HEADER_LN13": "🔱 Logged in at {timeNow}",
 
-    "ERROR_INVALID_LANGUAGE": "Invalid language, default language is English",
     "ERROR_CONFIG_LOAD": "\n🌪️  Error during config loading:\n{e}",
     "ERROR_COG_LOADING": "\n🌪️  Error during the cog: '{cogName}' loading:\n{e}",
     "ERROR_ELEMENTS_LOADING": "\n🌪️  Error during the element: '{element}' loading:\n{e}",
