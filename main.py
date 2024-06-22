@@ -8,12 +8,10 @@ import disnake
 from disnake.ext import commands
 
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
-from utils.load_lang import main_lang
+from utils.load_lang import main_lang as lang
 from data.var import *
 
 
-
-lang = main_lang
 
 if not os.path.exists(configFilesFolder):
     os.mkdir(configFilesFolder)
