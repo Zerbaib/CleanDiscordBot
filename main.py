@@ -32,8 +32,6 @@ if not os.path.exists(envFilePath):
             if lang_choice in langPossible:
                 lang_choice = lang_choice.upper()
                 break
-            else:
-                print(lang.get("ERROR_INVALID_LANGUAGE"))
         except EOFError:
             print(lang.get("ERROR_EOF_ERROR"))
             
