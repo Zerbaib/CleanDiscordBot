@@ -27,6 +27,9 @@ if dataFileLoad:
 if not os.path.exists(envFilePath):
     while True:
         try:
+
+            print(lang.get("QUESTION_BOT_TOKEN"))
+
             token = input(lang.get("QUESTION_BOT_TOKEN"))
             lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
             if lang_choice in langPossible:
