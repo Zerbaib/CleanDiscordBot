@@ -6,10 +6,9 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_rank_lang
+from utils.load_lang import rank_lang as langText
 from utils.xp_required import xp_required_calc
 
-langText = load_rank_lang()
 
 
 class RankCommand(commands.Cog):

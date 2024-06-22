@@ -6,9 +6,10 @@ import disnake
 from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
 
-from utils.load_lang import load_welcome_lang
+from utils.load_lang import welcome_lang as langText
+from data.var import configFilePath
 
-langText = load_welcome_lang()
+
 
 class LeaveMessageUtils(commands.Cog):
     def __init__(self, bot):
@@ -32,7 +33,7 @@ class LeaveMessageUtils(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         if not member.bot:
-            with open('config.json', 'r') as config_file:
+            with open(configFilePath, 'r') as config_file:
                 config = json.load(config_file)
 
             filename = "assets/lbanner_finish.png"

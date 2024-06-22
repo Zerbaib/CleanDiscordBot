@@ -1,9 +1,8 @@
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_owner_lang
+from utils.load_lang import owner_lang as langText
 
-langText = load_owner_lang()
 
 
 class StopCommand(commands.Cog):

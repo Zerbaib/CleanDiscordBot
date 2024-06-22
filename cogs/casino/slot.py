@@ -5,9 +5,9 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_casino_lang
+from utils.load_lang import casino_lang as langText
 
-langText = load_casino_lang()
+
 
 class SlotCommand(commands.Cog):
     def __init__(self, bot):

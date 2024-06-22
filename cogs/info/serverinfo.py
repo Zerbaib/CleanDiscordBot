@@ -2,9 +2,8 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_info_lang
+from utils.load_lang import info_lang as langText
 
-langText = load_info_lang()
 
 
 class ServerInfoCommand(commands.Cog):
