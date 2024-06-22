@@ -7,7 +7,7 @@ from data.var import configFilePath
 
 def log_writer(time_str, channel, user, content):
     """
-    Write the log message to the log file
+    Write the log message to the log file, handling potential exceptions for robustness
     
     Parameters:
         time_str (str): The current time in string format
