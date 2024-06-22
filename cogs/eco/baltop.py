@@ -4,9 +4,9 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
-from utils.load_lang import load_economy_lang
+from utils.load_lang import economy_lang
 
-langText = load_economy_lang()
+langText = economy_lang
 
 class BaltopCommand(commands.Cog):
     def __init__(self, bot):
