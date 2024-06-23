@@ -1,5 +1,4 @@
 from json import dump, load
-from token import OP
 
 def json_load(file_path):
     """

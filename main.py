@@ -88,8 +88,8 @@ if not os.path.exists(configFilePath):
     pass
 
 try:
-    with open(configFilePath, 'r') as config_file:
-        config = json_load(config_file)
+    with open(configFilePath, 'r'):
+        config = json_load(configFilePath)
 except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
@@ -169,7 +169,6 @@ for element in os.listdir(cogsFolder):
 
 
 try:
-    print(load_enviroment_token())
     bot.run(load_enviroment_token())
 except Exception as e:
     print(lang.get("ERROR_BOT_RUN"))

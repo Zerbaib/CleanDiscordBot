@@ -31,5 +31,5 @@ def load_enviroment_token():
     Returns:
         str: The token from the environment file
     """
-    with open(envFilePath.name, "r", encoding="utf-8") as file:
-        return json_load(file)["TOKEN"]
+    with open(envFilePath, "r", encoding="utf-8"):
+        return json_load(envFilePath)["TOKEN"]
