@@ -1,4 +1,3 @@
-import json
 from data.var import envFilePath
 from utils.json_manager import json_load
 
