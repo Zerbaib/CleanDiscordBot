@@ -94,7 +94,7 @@ except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
 
-prefix = input(lang.get("QUESTION_PREFIX"))
+prefix = config["PREFIX"]
 botLang = load_enviroment_lang()
 
 bot = commands.Bot(
