@@ -1,4 +1,5 @@
 from json import dump, load
+from token import OP
 
 def json_load(file_path):
     """
@@ -11,7 +12,8 @@ def json_load(file_path):
         dict: The data from the json file
     """
     try:
-        return load(open(file_path, 'r', encoding='utf-8'))
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return load(file)
     except FileNotFoundError:
         print(f"File not found: {file_path}")
         return {}
@@ -31,7 +33,9 @@ def json_save(file_path, data, intent=4):
         bool: True if the file was saved successfully, False otherwise
     """
     try:
-        dump(data, open(file_path, 'w', encoding='utf-8'), indent=4)
+        with open(file_path, 'w', encoding='utf-8') as file:
+            dump(data, file, indent=intent)
+        file.close()
         return True
     except Exception as e:
         print(f"An error occurred while saving the file {file_path}: {e}")
