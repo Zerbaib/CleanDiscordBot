@@ -147,7 +147,7 @@ async def on_ready():
 if utilsLoad:
     for files in utilsCogPath.values():
         try:
-            bot.load_extension(files)
+            bot.load_exteynsion(files)
         except Exception as e:
             print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
             exit()
