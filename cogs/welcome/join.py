@@ -10,7 +10,7 @@ from utils.load_lang import welcome_lang as langText
 from data.var import configFilePath
 
 
-class JoinMessageUtils(commands.Cog):
+#class JoinMessageUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -29,7 +29,7 @@ class JoinMessageUtils(commands.Cog):
     async def on_ready(self):
         print('🧰 Join has been loaded')
 
-    #@commands.Cog.listener()
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         if not member.bot:
             with open(configFilePath, 'r') as config_file:
