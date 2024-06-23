@@ -90,13 +90,15 @@ if not os.path.exists(configFilePath):
 try:
     with open(configFilePath, 'r') as config_file:
         config = json_load(config_file)
+        print(config)
 except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
 
-print(config)
-
-prefix = config["PREFIX"]
+if "PREFIX" not in config:
+    prefix = input(lang.get("QUESTION_PREFIX"))
+else:
+    prefix = config["PREFIX"]
 botLang = load_enviroment_lang()
 
 bot = commands.Bot(
