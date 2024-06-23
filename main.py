@@ -162,6 +162,8 @@ for element in os.listdir(cogsFolder):
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
 
+
+
 try:
     bot.run(load_enviroment_token())
 except Exception as e:
