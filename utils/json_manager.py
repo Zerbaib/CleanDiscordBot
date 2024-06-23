@@ -12,7 +12,7 @@ def json_load(file_path):
         dict: The data from the json file
     """
     try:
-        with open(file_path.name, 'r', encoding='utf-8') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             return load(file)
     except FileNotFoundError:
         print(f"File not found: {file_path}")
