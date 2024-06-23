@@ -1,6 +1,6 @@
 from json import dump, load
 
-def load_json(file_path):
+def json_load(file_path):
     """
     Load a json file and return the data as a dictionary
     
@@ -19,7 +19,7 @@ def load_json(file_path):
         print(f"An error occurred while loading the file {file_path}: {e}")
         return {}
 
-def save_json(file_path, data):
+def json_save(file_path, data, intent=4):
     """
     Save a dictionary to a json file
     
