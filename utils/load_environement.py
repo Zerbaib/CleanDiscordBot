@@ -8,7 +8,7 @@ def load_enviroment():
     Returns:
         dict: The data from the environment file
     """
-    with open(envFilePath, "r", encoding="utf-8") as file:
+    with open(envFilePath.name, "r", encoding="utf-8") as file:
         return json_load(file)
 
 def load_enviroment_lang():
@@ -19,7 +19,7 @@ def load_enviroment_lang():
         str: The language from the environment file
     """
     try:
-        with open(envFilePath, "r", encoding="utf-8") as file:
+        with open(envFilePath.name, "r", encoding="utf-8") as file:
             return json_load(file)["LANGUAGE"].upper()
     except:
         return "EN"
@@ -31,5 +31,5 @@ def load_enviroment_token():
     Returns:
         str: The token from the environment file
     """
-    with open(envFilePath, "r", encoding="utf-8") as file:
+    with open(envFilePath.name, "r", encoding="utf-8") as file:
         return json_load(file)["TOKEN"]
