@@ -12,7 +12,7 @@ def load_language_file(file_name):
         dict: The loaded language data.
     """
     try:
-        return json.load(open(f"lang/{load_enviroment_lang()}/{file_name}.json", "r"))
+        return json.load(open(f"lang/{load_enviroment_lang()}/{file_name}.json", "r", encoding="utf-8"))
     except Exception as e:
         print(f"An error occurred while loading the {file_name} language file")
         print(e)
