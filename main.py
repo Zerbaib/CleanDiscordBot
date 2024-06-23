@@ -86,6 +86,7 @@ if not os.path.exists(configFilePath):
             }
         }
         json.dump(config_data, config_file, indent=4)
+    pass
 
 try:
     with open(configFilePath, 'r') as config_file:
@@ -141,6 +142,7 @@ async def on_ready():
     print(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version()))
     print(lang.get("HEADER_LN13").format(timeNow=datetime.datetime.now()))
     print('='*multiplicator)
+    return
 
 if utilsLoad:
     for files in utilsCogPath.values():
@@ -148,10 +150,11 @@ if utilsLoad:
             bot.load_extension(files)
         except Exception as e:
             print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
+            exit()
 
 for element in os.listdir(cogsFolder):
     try:
-        element_diri = f"{cogsFolder}{element}"
+        element_dir = f"{cogsFolder}{element}"
         if os.path.isdir(element_dir):
             for filename in os.listdir(element_dir):
                 if filename.endswith('.py'):
@@ -162,7 +165,7 @@ for element in os.listdir(cogsFolder):
                         print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
-        exit
+        exit()
 
 
 
