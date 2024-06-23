@@ -10,7 +10,7 @@ from utils.load_lang import welcome_lang as langText
 from data.var import configFilePath
 
 
-#class JoinMessageUtils(commands.Cog):
+class JoinMessageUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -62,5 +62,5 @@ from data.var import configFilePath
             except:
                 pass
 
-def setup(bot):
+ ""def setup(bot):
     bot.add_cog(JoinMessageUtils(bot))
