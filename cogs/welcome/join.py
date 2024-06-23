@@ -29,7 +29,7 @@ class JoinMessageUtils(commands.Cog):
     async def on_ready(self):
         print('🧰 Join has been loaded')
 
-    @commands.Cog.listener()
+    #@commands.Cog.listener()
     async def on_member_join(self, member):
         if not member.bot:
             with open(configFilePath, 'r') as config_file:

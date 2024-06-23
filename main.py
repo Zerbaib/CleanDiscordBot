@@ -2,6 +2,7 @@ import json
 import os
 import platform
 import datetime
+import re
 
 import aiohttp
 import disnake
@@ -161,6 +162,7 @@ for element in os.listdir(cogsFolder):
                         print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
+        exit
 
 
 
