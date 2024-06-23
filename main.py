@@ -151,7 +151,7 @@ if utilsLoad:
 
 for element in os.listdir(cogsFolder):
     try:
-        element_dir = f"{cogsFolder}{element}"
+        element_diri = f"{cogsFolder}{element}"
         if os.path.isdir(element_dir):
             for filename in os.listdir(element_dir):
                 if filename.endswith('.py'):
