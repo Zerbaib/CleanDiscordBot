@@ -1,9 +1,8 @@
 import subprocess
-import time
 
 # Config files
 configFilesFolder = "./config/"
-envFilePath = f'{configFilesFolder}.env'
+envFilePath = f"{configFilesFolder}.env"
 configFilePath = f"{configFilesFolder}config.json"
 badWordFilePath = f"{configFilesFolder}bad_words.json"
 

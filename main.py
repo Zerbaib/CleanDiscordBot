@@ -1,4 +1,3 @@
-import json
 import os
 import platform
 import datetime
@@ -7,6 +6,7 @@ import aiohttp
 import disnake
 from disnake.ext import commands
 
+from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
 from data.var import *
@@ -22,7 +22,7 @@ if dataFileLoad:
     for files in dataFilePath.values():
         if not os.path.exists(files):
             with open(files, 'w') as file:
-                json.dump({}, file)
+                json_save({}, file)
 
 if not os.path.exists(envFilePath):
     token = input(lang.get("QUESTION_BOT_TOKEN"))
@@ -34,14 +34,13 @@ if not os.path.exists(envFilePath):
                 break
         except (EOFError, KeyboardInterrupt):
             print(lang.get("ERROR_EOF_ERROR"))
-            print(lang.get("ERROR_EOF_ERROR"))
             
     with open(envFilePath, 'w') as env_file:
         envData = {
             "LANGUAGE": lang_choice,
             "TOKEN": token
         }
-        json.dump(envData, env_file, indent=4)
+        json_save(envData, env_file, indent=4)
 
 lang = main_lang
 
@@ -54,7 +53,7 @@ if not os.path.exists(badWordFilePath):
         ]
     }
     with open(badWordFilePath, 'w') as badword_file:
-        json.dump(badword_data, badword_file, indent=4)
+        json_save(badword_data, badword_file, indent=4)
 
 if not os.path.exists(configFilePath):
     with open(configFilePath, 'w') as config_file:
@@ -85,11 +84,12 @@ if not os.path.exists(configFilePath):
                 "50": rank3
             }
         }
-        json.dump(config_data, config_file, indent=4)
+        json_save(config_data, config_file, indent=4)
+    pass
 
 try:
-    with open(configFilePath, 'r') as config_file:
-        config = json.load(config_file)
+    with open(configFilePath, 'r'):
+        config = json_load(configFilePath)
 except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
@@ -141,6 +141,7 @@ async def on_ready():
     print(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version()))
     print(lang.get("HEADER_LN13").format(timeNow=datetime.datetime.now()))
     print('='*multiplicator)
+    return
 
 if utilsLoad:
     for files in utilsCogPath.values():
@@ -148,6 +149,7 @@ if utilsLoad:
             bot.load_extension(files)
         except Exception as e:
             print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
+            exit()
 
 for element in os.listdir(cogsFolder):
     try:
@@ -162,6 +164,9 @@ for element in os.listdir(cogsFolder):
                         print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
+        exit()
+
+
 
 try:
     bot.run(load_enviroment_token())

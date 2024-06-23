@@ -6,7 +6,7 @@ import disnake
 from disnake.ext import commands
 
 from data.var import timeUnits, dataFilePath
-from utils.json_manager import load_json, save_json
+from utils.json_manager import json_load, json_save
 from utils.load_lang import giveaway_lang as langText
 from utils import error
 
@@ -15,7 +15,7 @@ from utils import error
 class GiveawayCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.giveaways = load_json(dataFilePath["giveaway"])
+        self.giveaways = json_load(dataFilePath["giveaway"])
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -63,7 +63,7 @@ class GiveawayCog(commands.Cog):
                 "end_time": giveaway_message.created_at.timestamp() + duration_seconds,
                 "participants": []
             }
-            save_json(dataFilePath["giveaway"], self.giveaways)
+            json_save(dataFilePath["giveaway"], self.giveaways)
 
             giveawayMessageID = giveaway_message.id
             
@@ -138,7 +138,7 @@ class GiveawayCog(commands.Cog):
 
         giveaway_data["participants"] = [user.id for user in participants]
         self.giveaways[message_id] = giveaway_data
-        save_json(dataFilePath["giveaway"], self.giveaways)
+        json_save(dataFilePath["giveaway"], self.giveaways)
 
     def format_time_remaining(self, seconds):
         if seconds >= 86400:

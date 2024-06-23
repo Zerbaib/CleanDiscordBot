@@ -62,5 +62,6 @@ class JoinMessageUtils(commands.Cog):
             except:
                 pass
 
+
 def setup(bot):
     bot.add_cog(JoinMessageUtils(bot))
