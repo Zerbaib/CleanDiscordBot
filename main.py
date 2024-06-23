@@ -94,6 +94,8 @@ except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
 
+print(config)
+
 prefix = config["PREFIX"]
 botLang = load_enviroment_lang()
 
