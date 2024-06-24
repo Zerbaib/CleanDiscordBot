@@ -5,6 +5,8 @@ from disnake.ext import commands
 from termcolor import colored
 from data.var import configFilePath
 
+
+
 def log_writer(time_str, channel, user, content):
     """
     Write the log message to the log file, handling potential exceptions for robustness

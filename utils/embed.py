@@ -1,5 +1,7 @@
 import disnake
 
+
+
 def create_embed(title, description=None):
     """
     Create a discord.Embed object

@@ -5,6 +5,8 @@ from disnake.ext import commands
 
 from data.var import *
 
+
+
 status_messages = [
     {"name": "Version", "value": "", "type": disnake.ActivityType.watching},
     {"name": "Users", "value": "", "type": disnake.ActivityType.listening},
