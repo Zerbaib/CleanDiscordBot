@@ -13,10 +13,6 @@ from utils.json_manager import *
 
 
 
-def save_data(self):
-    with open(self.data_path, 'w') as data_file:
-        json.dump(self.ranks, data_file, indent=4)
-
 def load_config():
     if os.path.exists(configFilePath):
         with open(configFilePath, 'r') as config_file:
@@ -31,14 +27,6 @@ class RankSystem(commands.Cog):
         self.bot = bot
         self.data_path = dataFilePath['ranks']
         self.config = load_config()
-        self.load_data()
-    
-    def load_data(self):
-        if os.path.exists(self.data_path):
-            with open(self.data_path, 'r') as data_file:
-                self.ranks = json.load(data_file)
-        else:
-            self.ranks = {}
     
     @commands.Cog.listener()
     async def on_ready(self):
