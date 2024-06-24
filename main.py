@@ -21,8 +21,7 @@ if not os.path.exists(configFilesFolder):
 if dataFileLoad:
     for files in dataFilePath.values():
         if not os.path.exists(files):
-            with open(files, 'w') as file:
-                json_save({}, file)
+            json_save(files, {})
 
 if not os.path.exists(envFilePath):
     token = input(lang.get("QUESTION_BOT_TOKEN"))
@@ -35,12 +34,12 @@ if not os.path.exists(envFilePath):
         except (EOFError, KeyboardInterrupt):
             print(lang.get("ERROR_EOF_ERROR"))
             
-    with open(envFilePath, 'w') as env_file:
+    with open(envFilePath, 'w'):
         envData = {
             "LANGUAGE": lang_choice,
             "TOKEN": token
         }
-        json_save(envData, env_file, indent=4)
+        json_save(envFilePath, envData)
 
 lang = main_lang
 
@@ -52,11 +51,10 @@ if not os.path.exists(badWordFilePath):
             "badword3"
         ]
     }
-    with open(badWordFilePath, 'w') as badword_file:
-        json_save(badword_data, badword_file, indent=4)
+    json_save(badWordFilePath, badword_data)
 
 if not os.path.exists(configFilePath):
-    with open(configFilePath, 'w') as config_file:
+    with open(configFilePath, 'w'):
         prefix = input(lang.get("QUESTION_PREFIX"))
         logID = int(input(lang.get("QUESTION_LOG_CHANNEL_ID")))
         pollID = int(input(lang.get("QUESTION_POLL_CHANNEL_ID")))
@@ -84,12 +82,11 @@ if not os.path.exists(configFilePath):
                 "50": rank3
             }
         }
-        json_save(config_data, config_file, indent=4)
+        json_save(configFilePath, config_data)
     pass
 
 try:
-    with open(configFilePath, 'r'):
-        config = json_load(configFilePath)
+    config = json_load(configFilePath)
 except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
     exit()
