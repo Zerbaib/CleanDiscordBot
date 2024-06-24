@@ -3,6 +3,9 @@
 
 # Configuration files
 config/*
+
+# Data files
+data/*.db*
 data/*.json
 
 # Virtual environment folders

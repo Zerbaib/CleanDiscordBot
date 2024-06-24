@@ -6,6 +6,7 @@ import aiohttp
 import disnake
 from disnake.ext import commands
 
+from utils.sql_manager import *
 from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
@@ -13,6 +14,7 @@ from data.var import *
 
 
 
+initDB()
 lang = main_lang
 
 if not os.path.exists(configFilesFolder):
@@ -89,7 +91,7 @@ try:
     config = json_load(configFilePath)
 except Exception as e:
     print(lang.get("ERROR_CONFIG_LOAD").format(e))
-    exit()
+    exit(1)
 
 prefix = config["PREFIX"]
 botLang = load_enviroment_lang()
@@ -146,7 +148,7 @@ if utilsLoad:
             bot.load_extension(files)
         except Exception as e:
             print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
-            exit()
+            exit(1)
 
 for element in os.listdir(cogsFolder):
     try:
@@ -161,7 +163,7 @@ for element in os.listdir(cogsFolder):
                         print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
         print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
-        exit()
+        exit(1)
 
 
 
@@ -169,4 +171,4 @@ try:
     bot.run(load_enviroment_token())
 except Exception as e:
     print(lang.get("ERROR_BOT_RUN"))
-    exit()
+    exit(1)

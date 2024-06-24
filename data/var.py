@@ -43,6 +43,7 @@ dataFilePath = {
     "cooldown": "./data/cooldown.json",
     "giveaway": "./data/giveaway.json"
 }
+dataDbFilePath = "./data/data.db"
 
 # Cogs folder
 cogsFolder = "./cogs/"

@@ -34,7 +34,7 @@ class LoggerUtils(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         if not message.author.bot:
-            with open('config.json', 'r') as config_file:
+            with open(configFilePath, 'r') as config_file:
                 config = json.load(config_file)
 
             channel = message.channel
