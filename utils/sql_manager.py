@@ -69,28 +69,28 @@ def insertCasinoData(table, data):
         print(e)
         exit("1")
 
-def insertRankData(table, data):
+def insertRankData(dataInsert):
     try:
-        userID = data[0]
-        if readData(table, userID):
+        userID = dataInsert
+        if readData("rankData", userID):
             print(f"User {userID} already exists in the database")
             return True
         conn, cur = connectDB()
-        cur.execute(f"""INSERT INTO {table} (userID, xp, level) VALUES {data}""")
+        cur.execute(f"INSERT INTO rankData (userID, xp, level) VALUES {dataInsert}")  # Supply the correct number of bindings
         conn.commit()
         conn.close()
     except Exception as e:
         print(e)
-        exit("1")
+        exit()
 
-def updateRankData(table, data):
+def updateRankData(data):
     try:
         userID = data[0]
-        if not readData(table, userID):
+        if not readData("rankData", userID):
             print(f"User {userID} does not exist in the database")
             return False
         conn, cur = connectDB()
-        cur.execute(f"""UPDATE {table} SET xp = {data[1]}, level = {data[2]} WHERE userID = {userID}""")
+        cur.execute(f"""UPDATE rankData SET xp = {data[1]}, level = {data[2]} WHERE userID = {userID}""")
         conn.commit()
         conn.close()
     except Exception as e:
@@ -128,10 +128,10 @@ def updateCooldownData(table, data):
 def readData(table, userID):
     try:
         conn, cur = connectDB()
-        cur.execute(f"SELECT * FROM {table} WHERE userID = {userID}")
+        cur.execute(f"SELECT * FROM {table} WHERE userID = ?", (str(userID),))  # Convert userID to string
         data = cur.fetchall()
         conn.close()
-        return data[0]
+        return data
     except Exception as e:
         print(e)
-        exit("1")
+        exit()

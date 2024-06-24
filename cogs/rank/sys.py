@@ -5,6 +5,7 @@ import os
 import disnake
 from disnake.ext import commands
 
+from utils.sql_manager import insertRankData, updateRankData, readData
 from utils.load_lang import rank_lang as langText
 from utils.xp_required import xp_required_calc
 from data.var import *
@@ -48,24 +49,25 @@ class RankSystem(commands.Cog):
         if message.author.bot:
             return
 
-        user_id = str(message.author.id)
-        if user_id not in self.ranks:
-            self.ranks[user_id] = {"xp": 0, "level": 0}
+        userID = str(message.author.id)
+  
+        if readData("rankData", userID) == []:
+            insertRankData((userID, 0, 0))
 
-        self.ranks[user_id]["xp"] += random.randint(1, 5)
-        xp = self.ranks[user_id]["xp"]
-        lvl = self.ranks[user_id]["level"]
+        ranksData = readData("rankData", userID)[0]
 
-        xp_required = xp_required_calc(lvl)
+        userXP = ranksData[2] + random.randint(1, 5)
+        userLVL = ranksData[3]
 
-        if xp >= xp_required:
-            lvl = lvl + 1
-            self.ranks[user_id]["level"] = lvl
-            save_data(self)
-            xp_required = xp_required_calc(lvl)
+        xpRequired = xp_required_calc(userLVL)
+
+        if userXP >= xpRequired:
+            userLVL += 1
+            updateRankData((userID, userXP, userLVL))
+            xpRequired = xp_required_calc(userLVL)
             embed = disnake.Embed(
                 title=langText.get("SYS_TITLE").format(userName=message.author.name),
-                description=langText.get("SYS_TEXT").format(userLVL=lvl, xpRequired=xp_required),
+                description=langText.get("SYS_TEXT").format(userLVL=userLVL, xpRequired=xpRequired),
                 color=disnake.Color.brand_green()
             )
             
@@ -73,7 +75,7 @@ class RankSystem(commands.Cog):
             
             if 'level_roles' in self.config:
                 for level_threshold, role_id in self.config['level_roles'].items():
-                    if lvl >= int(level_threshold):
+                    if userLVL >= int(level_threshold):
                         role = message.author.guild.get_role(role_id)
                         if role and role not in message.author.roles:
                             await message.author.add_roles(role)
@@ -91,7 +93,7 @@ class RankSystem(commands.Cog):
             else:
                 await msg.delete(delay=3)
 
-        save_data(self)
+        updateRankData((userID, userXP, userLVL))
 
 def setup(bot):
     bot.add_cog(RankSystem(bot))
