@@ -19,7 +19,7 @@ def load_enviroment_lang():
     """
     try:
         return json_load(envFilePath)["LANGUAGE"].upper()
-    except:
+    except Exception:
         return "EN"
 
 def load_enviroment_token():
