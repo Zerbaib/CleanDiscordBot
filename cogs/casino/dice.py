@@ -21,16 +21,16 @@ class DiceCommand(commands.Cog):
     @commands.slash_command(name="dice", description=langText.get("DICE_DESCRIPTION"))
     async def dice(self, inter: disnake.ApplicationCommandInteraction, bet: int):
         try:
-            userID = str(inter.author.id)
+            userID = int(inter.author.id)
             dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
             dice1 = random.randint(1, 6)
             dice2 = random.randint(1, 6)
             payout = 0
 
-            if readData("casinoAccount", user_id) == []:
-                insertCasinoData((user_id, 0))
+            if readData("casinoAccount", userID) == []:
+                insertCasinoData((userID, 0))
 
-            casinoAccount = readData("casinoAccount", user_id)[0]
+            casinoAccount = readData("casinoAccount", userID)[0]
             userBalance = casinoAccount[2]
 
             if bet < 0:
