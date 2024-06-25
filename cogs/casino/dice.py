@@ -1,4 +1,3 @@
-import json
 import random
 
 import disnake
@@ -7,7 +6,6 @@ from disnake.ext import commands
 from utils import error
 from utils.sql_manager import insertCasinoData, updateCasinoData, readData
 from utils.load_lang import casino_lang as langText
-
 
 
 class DiceCommand(commands.Cog):
@@ -68,7 +66,7 @@ class DiceCommand(commands.Cog):
                 embed.color = disnake.Color.red()
 
             updateCasinoData((userID, userBalance))
-            await inter.response.send_message(embed=embed)
+            await inter.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await inter.response.send_message(embed=embed)
