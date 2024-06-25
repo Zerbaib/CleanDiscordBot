@@ -39,7 +39,6 @@ langPossible = [
 # Data files
 dataFilePath = {
     "casino": "./data/casino.json",
-    "ranks": "./data/ranks.json",
     "cooldown": "./data/cooldown.json",
     "giveaway": "./data/giveaway.json"
 }
