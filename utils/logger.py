@@ -8,13 +8,13 @@ from data.var import configFilePath
 def log_writer(time_str, channel, user, content):
     """
     Write the log message to the log file, handling potential exceptions for robustness
-    
+
     Parameters:
         time_str (str): The current time in string format
         channel (disnake.TextChannel): The channel where the message was sent
         user (disnake.User): The user who sent the message
         content (str): The content of the message
-    
+
     Returns:
         None
     """
@@ -49,7 +49,7 @@ class LoggerUtils(commands.Cog):
             elif message.embeds:
                 for embed in message.embeds:
                     content += f" | more content: {embed.url}"
-            
+
             log_printed_message = f"UTC - {time_str} > #{colored(channel, 'green')} >>> @{colored(user, 'blue')} >> {content}"
             print(log_printed_message)
 
@@ -76,7 +76,7 @@ class LoggerUtils(commands.Cog):
                 value=f"```{content}```",
                 inline=False
             )
-            
+
             await log_channel.send(embed=embed)
             log_writer(time_str, channel, user, content)
 

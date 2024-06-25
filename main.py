@@ -35,7 +35,7 @@ if not os.path.exists(envFilePath):
                 break
         except (EOFError, KeyboardInterrupt):
             print(lang.get("ERROR_EOF_ERROR"))
-            
+
     with open(envFilePath, 'w'):
         envData = {
             "LANGUAGE": lang_choice,

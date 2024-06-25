@@ -3,10 +3,10 @@ from json import dump, load
 def json_load(file_path):
     """
     Load a json file and return the data as a dictionary
-    
+
     Parameters:
         file_path (str): The path to the json file
-    
+
     Returns:
         dict: The data from the json file
     """
@@ -23,11 +23,11 @@ def json_load(file_path):
 def json_save(file_path, data, intent=4):
     """
     Save a dictionary to a json file
-    
+
     Parameters:
         file_path (str): The path to the json file
         data (dict): The data to save
-    
+
     Returns:
         bool: True if the file was saved successfully, False otherwise
     """
