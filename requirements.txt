@@ -1,5 +1,5 @@
 aiohttp==3.9.5
-disnake==2.9.1
+disnake==2.9.2
 termcolor==2.4.0
-requests==2.32.0
+requests==2.32.3
 pillow==10.3.0
