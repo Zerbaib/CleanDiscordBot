@@ -58,14 +58,10 @@ class RankCommand(commands.Cog):
 
             if readData("rankData", userID) != []:
                 ranksData = readData("rankData", userID)[0]
-                print('3')
                 xp = ranksData[2]
                 level = ranksData[3]
-                print('3')
                 xp_required = xp_required_calc(level)
-                print('3')
                 user_rank = self.get_user_rank(userID)
-                print('3')
                 embed = disnake.Embed(
                     title=langText.get("RANK_TITLE").format(userName=userName, userRank=user_rank),
                     description=langText.get("RANK_TEXT").format(userLVL=level, userXP=xp, xpRequired=xp_required),

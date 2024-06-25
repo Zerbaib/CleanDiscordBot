@@ -135,3 +135,14 @@ def readData(table, userID):
     except Exception as e:
         print(e)
         exit()
+        
+def executeQuery(query):
+    try:
+        conn, cur = connectDB()
+        cur.execute(query)
+        result = cur.fetchall()
+        conn.close()
+        return result
+    except Exception as e:
+        print(e)
+        exit("1")

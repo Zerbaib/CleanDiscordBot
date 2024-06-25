@@ -5,6 +5,7 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
+from utils.sql_manager import executeQuery
 from utils.load_lang import rank_lang as langText
 from data.var import *
 
@@ -44,14 +45,19 @@ class LeaderboardCommand(commands.Cog):
     @commands.slash_command(name='leaderboard', description=langText.get("LEADERBOARD_DESCRIPTION"))
     async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
-            sorted_users = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
+            print("3")
+            query = "SELECT * FROM rankData ORDER BY level DESC, xp DESC"
+            print("3")
+            sorted_users = executeQuery(query)
+            print("3")
             embed = disnake.Embed(
                 title=langText.get("LEADERBOARD_TITLE"),
                 color=disnake.Color.blurple()
-                )
-            for i, (user_id, user_data) in enumerate(sorted_users):
+            )
+            print("3")
+            for i, user_data in enumerate(sorted_users):
                 try:
-                    user = await self.bot.fetch_user(int(user_id))
+                    user = await self.bot.fetch_user(int(user_data["user_id"]))
                     embed.add_field(
                         name=f"{i+1}. {user.name}",
                         value=langText.get("LEADERBOARD_TEXT").format(userLVL=user_data["level"], userXP=user_data["xp"]),
@@ -66,13 +72,6 @@ class LeaderboardCommand(commands.Cog):
             embed = error.error_embed(e)
             await inter.send(embed=embed)
 
-    def get_user_rank(self, user_id):
-        sorted_ranks = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-        for i, (id, _) in enumerate(sorted_ranks):
-            if id == user_id:
-                return i + 1
 
-        return -1
-    
 def setup(bot):
     bot.add_cog(LeaderboardCommand(bot))
