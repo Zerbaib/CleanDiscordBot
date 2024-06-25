@@ -16,12 +16,12 @@ class DiceCommand(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🔩 /dice has been loaded')
+        print('⚠️🔩 /dice has been loaded')
 
     @commands.slash_command(name="dice", description=langText.get("DICE_DESCRIPTION"))
-    async def dice(self, ctx, bet: int):
+    async def dice(self, inter: disnake.ApplicationCommandInteraction, bet: int):
         try:
-            userID = str(ctx.author.id)
+            userID = str(inter.author.id)
             dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
             dice1 = random.randint(1, 6)
             dice2 = random.randint(1, 6)
@@ -38,14 +38,14 @@ class DiceCommand(commands.Cog):
                 embed.title = langText.get("ERROR_TITLE")
                 embed.color = disnake.Color.red()
                 embed.add_field(name="Error", value=langText.get("ERROR_NEGATIVE_BET"))
-                await ctx.send(embed=embed)
+                await inter.response.send_message(embed=embed)
                 return
             if bet > bal:
                 embed = disnake.Embed()
                 embed.title = langText.get("ERROR_TITLE")
                 embed.color = disnake.Color.red()
                 embed.add_field(name="Error", value=langText.get("ERROR_NO_MONEY"))
-                await ctx.send(embed=embed)
+                await inter.response.send_message(embed=embed)
                 return
 
             await ctx.response.defer()
@@ -70,11 +70,11 @@ class DiceCommand(commands.Cog):
                 embed.color = disnake.Color.red()
 
             updateCasinoData((userID, userBalance))
-            await ctx.send(embed=embed)
+            await inter.response.send_message(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
-            await ctx.send(embed=embed)
-        
+            await inter.response.send_message(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(DiceCommand(bot))
