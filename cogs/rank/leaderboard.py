@@ -20,7 +20,7 @@ class LeaderboardCommand(commands.Cog):
         print('🔩 /leaderboard has been loaded')
 
     @commands.slash_command(name='leaderboard', description=langText.get("LEADERBOARD_DESCRIPTION"))
-    async def leaderboard(self, ctx):
+    async def leaderboard(self, inter: disnake.ApplicationCommandInteraction):
         try:
             query = "SELECT * FROM rankData ORDER BY level DESC, xp DESC"
             sorted_users = executeQuery(query)
@@ -28,23 +28,22 @@ class LeaderboardCommand(commands.Cog):
                 title=langText.get("LEADERBOARD_TITLE"),
                 color=disnake.Color.blurple()
             )
-            print("3")
             for i, user_data in enumerate(sorted_users):
                 try:
-                    user = await self.bot.fetch_user(int(user_data["user_id"]))
+                    user = await self.bot.fetch_user(int(user_data[1]))
                     embed.add_field(
                         name=f"{i+1}. {user.name}",
-                        value=langText.get("LEADERBOARD_TEXT").format(userLVL=user_data["level"], userXP=user_data["xp"]),
+                        value=langText.get("LEADERBOARD_TEXT").format(userLVL=user_data[3], userXP=user_data[2]),
                         inline=False
                         )
                 except disnake.NotFound:
                     pass
                 if i == 9:
                     break
-            await ctx.send(embed=embed)
+            await inter.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
-            await ctx.send(embed=embed)
+            await inter.send(embed=embed)
 
 
 def setup(bot):

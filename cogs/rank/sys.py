@@ -25,7 +25,6 @@ def load_config():
 class RankSystem(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_path = dataFilePath['ranks']
         self.config = load_config()
     
     @commands.Cog.listener()
