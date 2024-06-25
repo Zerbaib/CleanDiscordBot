@@ -41,28 +41,28 @@ def initDB():
         print(e)
         exit("1")
 
-def insertCooldownData(table, data):
+def insertCooldownData(data):
     try:
         userID = data[0]
-        if readData(table, userID):
+        if readData("cooldownTime", userID):
             print(f"User {userID} already exists in the database")
             return True
         conn, cur = connectDB()
-        cur.execute(f"""INSERT INTO {table} (userID, utcTime) VALUES {data}""")
+        cur.execute(f"""INSERT INTO cooldownTime (userID, utcTime) VALUES {data}""")
         conn.commit()
         conn.close()
     except Exception as e:
         print(e)
         exit("1")
 
-def insertCasinoData(table, data):
+def insertCasinoData(data):
     try:
         userID = data[0]
-        if readData(table, userID):
+        if readData("casinoAccount", userID):
             print(f"User {userID} already exists in the database")
             return True
         conn, cur = connectDB()
-        cur.execute(f"""INSERT INTO {table} (userID, balance) VALUES {data}""")
+        cur.execute(f"""INSERT INTO casinoAccount (userID, balance) VALUES {data}""")
         conn.commit()
         conn.close()
     except Exception as e:
@@ -97,28 +97,28 @@ def updateRankData(data):
         print(e)
         exit("1")
 
-def updateCasinoData(table, data):
+def updateCasinoData(data):
     try:
         userID = data[0]
-        if not readData(table, userID):
+        if not readData("casinoAccount", userID):
             print(f"User {userID} does not exist in the database")
             return False
         conn, cur = connectDB()
-        cur.execute(f"""UPDATE {table} SET balance = {data[1]} WHERE userID = {userID}""")
+        cur.execute(f"""UPDATE casinoAccount SET balance = {data[1]} WHERE userID = {userID}""")
         conn.commit()
         conn.close()
     except Exception as e:
         print(e)
         exit("1")
 
-def updateCooldownData(table, data):
+def updateCooldownData(data):
     try:
         userID = data[0]
-        if not readData(table, userID):
+        if not readData("cooldownTime", userID):
             print(f"User {userID} does not exist in the database")
             return False
         conn, cur = connectDB()
-        cur.execute(f"""UPDATE {table} SET utcTime = {data[1]} WHERE userID = {userID}""")
+        cur.execute(f"""UPDATE cooldownTime SET utcTime = {data[1]} WHERE userID = {userID}""")
         conn.commit()
         conn.close()
     except Exception as e:
@@ -126,6 +126,16 @@ def updateCooldownData(table, data):
         exit("1")
 
 def readData(table, userID):
+    """
+    Simple solution to read data of a db table
+
+    Args:
+        table (str): the name of the table
+        userID (int): user discord id
+
+    Returns:
+        data (csv): return (id, userID, value1, value2, ...)
+    """
     try:
         conn, cur = connectDB()
         cur.execute(f"SELECT * FROM {table} WHERE userID = ?", (str(userID),))  # Convert userID to string

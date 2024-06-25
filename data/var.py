@@ -20,6 +20,8 @@ timeWeeks = timeDays * 7
 timeMonths = timeDays * 30
 timeYears = timeDays * 365
 
+cooldownTime = timeHours * 2
+
 timeUnits = {
     "s": timeSeconds,
     "m": timeMinutes,
