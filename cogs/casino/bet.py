@@ -34,7 +34,6 @@ class BetCommand(commands.Cog):
 
             if readData("casinoAccount", user_id) == []:
                 insertCasinoData((user_id, 0))
-                return
 
             casinoData = readData("casinoAccount", user_id)[0]
             userBalance = casinoData[2]
