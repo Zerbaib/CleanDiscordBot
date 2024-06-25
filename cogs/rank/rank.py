@@ -6,6 +6,7 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
+from utils.sql_manager import readData, connectDB
 from utils.load_lang import rank_lang as langText
 from utils.xp_required import xp_required_calc
 
@@ -49,37 +50,54 @@ class RankCommand(commands.Cog):
     async def rank(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User = None):
         try:
             if user is None:
-                user_id = str(inter.author.id)
-                user_name = str(inter.author.name)
+                userID = int(inter.author.id)
+                userName = str(inter.author.name)
             else:
-                user_id = str(user.id)
-                user_name = str(user)
-            
-            if user_id in self.ranks:
-                xp = self.ranks[user_id]["xp"]
-                level = self.ranks[user_id]["level"]
+                userID = int(user.id)
+                userName = str(user)
+
+            if readData("rankData", userID) != []:
+                ranksData = readData("rankData", userID)[0]
+                print('3')
+                xp = ranksData[2]
+                level = ranksData[3]
+                print('3')
                 xp_required = xp_required_calc(level)
-                user_rank = self.get_user_rank(user_id)
+                print('3')
+                user_rank = self.get_user_rank(userID)
+                print('3')
                 embed = disnake.Embed(
-                    title=langText.get("RANK_TITLE").format(userName=user_name, userRank=user_rank),
+                    title=langText.get("RANK_TITLE").format(userName=userName, userRank=user_rank),
                     description=langText.get("RANK_TEXT").format(userLVL=level, userXP=xp, xpRequired=xp_required),
                     color=disnake.Color.blurple()
                 )
 
                 await inter.response.send_message(embed=embed)
             else:
-                await inter.response.send_message(langText.get("ERROR_NO_RANK_YET").format(userName=user_name))
+                await inter.response.send_message(langText.get("ERROR_NO_RANK_YET").format(userName=userName))
         except Exception as e:
             embed = error.error_embed(e)
             await inter.send(embed=embed)
 
-    def get_user_rank(self, user_id):
-        sorted_ranks = sorted(self.ranks.items(), key=lambda x: (x[1]["level"], x[1]["xp"]), reverse=True)
-        for i, (id, _) in enumerate(sorted_ranks):
-            if id == user_id:
+    def get_user_rank(self, userID):
+        query = "SELECT * FROM rankData ORDER BY level DESC, xp DESC"
+        result = self.execute_query(query)
+        for i, row in enumerate(result):
+            if row[0] == userID:
                 return i + 1
 
         return -1
+
+    def execute_query(self, query):
+        try:
+            conn, cur = connectDB()
+            cur.execute(query)
+            result = cur.fetchall()
+            conn.close()
+            return result
+        except Exception as e:
+            print(e)
+            return []
 
 def setup(bot):
     bot.add_cog(RankCommand(bot, base_level=1, level_factor=0.1))
