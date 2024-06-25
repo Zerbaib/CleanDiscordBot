@@ -29,8 +29,6 @@ class EarnCommand(commands.Cog):
             user_id = str(ctx.author.id)
             current_time = int(time.time())
 
-            print(readData("cooldownTime", user_id))
-
             if readData("cooldownTime", user_id) == []:
                 insertCooldownData((user_id, 0))
             if readData("casinoAccount", user_id) == []:
