@@ -81,8 +81,8 @@ class CasterCommand(commands.Cog):
                     description=langText.get("CASTER_LOSE_DESCRIPTION").format(result=resultEmoji),
                     color=disnake.Color.red())
 
-            await ctx.send(embed=embed)
             updateCasinoData((userID, userBalance))
+            await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)

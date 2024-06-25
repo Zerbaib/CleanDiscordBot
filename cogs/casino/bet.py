@@ -71,9 +71,6 @@ class BetCommand(commands.Cog):
                     name=langText.get('WINNINGS'),
                     value=langText.get('WIN_DESCRIPTION').format(win_bet=winnings),
                     inline=False)
-
-                await ctx.response.defer()
-                await ctx.send(embed=embed)
             else:
                 userBalance -= amount
 
@@ -83,10 +80,10 @@ class BetCommand(commands.Cog):
                 embed.add_field(
                     name=langText.get('OUTCOME_TITLE'),
                     value=langText.get('LOST_OUTCOME'))
-                await ctx.response.defer()
-                await ctx.send(embed=embed)
 
             updateCasinoData((userID, userBalance))
+            await ctx.response.defer()
+            await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
