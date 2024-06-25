@@ -40,7 +40,7 @@ class DiceCommand(commands.Cog):
                 embed.add_field(name="Error", value=langText.get("ERROR_NEGATIVE_BET"))
                 await inter.response.send_message(embed=embed)
                 return
-            if bet > bal:
+            if bet > userBalance:
                 embed = disnake.Embed()
                 embed.title = langText.get("ERROR_TITLE")
                 embed.color = disnake.Color.red()
