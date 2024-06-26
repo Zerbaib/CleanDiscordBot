@@ -17,7 +17,7 @@ class DiceCommand(commands.Cog):
         print('⚠️ 🔩 /dice has been loaded')
 
     @commands.slash_command(name="dice", description=langText.get("DICE_DESCRIPTION"))
-    async def dice(self, inter: disnake.ApplicationCommandInteraction, bet: int):
+    async def dice(self, inter, bet: int):
         try:
             userID = int(inter.author.id)
             dice_emojis = [':one:', ':two:', ':three:', ':four:', ':five:', ':six:']
