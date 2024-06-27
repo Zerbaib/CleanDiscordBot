@@ -10,6 +10,8 @@ badWordFilePath = f"{configFilesFolder}bad_words.json"
 dataFileLoad = True
 utilsLoad = True
 multiplicator = 65
+minXpIncrement = 1
+maxXpIncrement = 5
 
 # Time gestion
 timeSeconds = 1

@@ -43,7 +43,7 @@ class RankSystem(commands.Cog):
 
         ranksData = readData("rankData", userID)[0]
 
-        userXP = ranksData[2] + random.randint(1, 5)
+        userXP = ranksData[2] + random.randint(minXpIncrement, maxXpIncrement)
         userLVL = ranksData[3]
 
         xpRequired = xp_required_calc(userLVL)
