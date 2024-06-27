@@ -37,7 +37,6 @@ class CasterCommand(commands.Cog):
 
             if readData("casinoAccount", userID) == []:
                 insertCasinoData((userID, 0))
-                pass
 
             casinoAccount = readData("casinoAccount", userID)[0]
             userBalance = casinoAccount[2]
@@ -76,14 +75,12 @@ class CasterCommand(commands.Cog):
                     title=langText.get("CASTER_TITLE"),
                     description=langText.get("CASTER_WIN_DESCRIPTION").format(result=resultEmoji, winnings=winnings),
                     color=disnake.Color.green())
-                pass
             else:
                 userBalance -= bet_amount
                 embed = disnake.Embed(
                     title=langText.get("CASTER_TITLE"),
                     description=langText.get("CASTER_LOSE_DESCRIPTION").format(result=resultEmoji),
                     color=disnake.Color.red())
-                pass
 
             updateCasinoData((userID, userBalance))
             await ctx.send(embed=embed)

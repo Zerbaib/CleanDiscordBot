@@ -24,7 +24,6 @@ class BalanceCommand(commands.Cog):
 
             if readData("casinoAccount", userID) == []:
                 insertCasinoData((userID, 0))
-                pass
 
             casinoAccount = readData("casinoAccount", userID)[0]
             userBalance = casinoAccount[2]

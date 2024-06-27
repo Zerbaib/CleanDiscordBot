@@ -26,17 +26,14 @@ class BetCommand(commands.Cog):
     @commands.slash_command(name="bet", description=langText.get("BET_DESCRIPTION"))
     async def bet(self, ctx, amount: int):
         try:
-            user_id = str(ctx.author.id)
             userID = str(ctx.author.id)
-            win_chance = 25
             winChance = 25
-            outcome = random.choices([True, False], weights=[win_chance, 100 - win_chance], k=1)[0]
+            outcome = random.choices([True, False], weights=[winChance, 100 - winChance], k=1)[0]
 
-            if readData("casinoAccount", user_id) == []:
-                insertCasinoData((user_id, 0))
-                pass
+            if readData("casinoAccount", userID) == []:
+                insertCasinoData((userID, 0))
 
-            casinoData = readData("casinoAccount", user_id)[0]
+            casinoData = readData("casinoAccount", userID)[0]
             userBalance = casinoData[2]
 
             if amount < 0:
@@ -72,7 +69,6 @@ class BetCommand(commands.Cog):
                     name=langText.get('WINNINGS'),
                     value=langText.get('WIN_DESCRIPTION').format(win_bet=winnings),
                     inline=False)
-                pass
             else:
                 userBalance -= amount
 
@@ -82,7 +78,6 @@ class BetCommand(commands.Cog):
                 embed.add_field(
                     name=langText.get('OUTCOME_TITLE'),
                     value=langText.get('LOST_OUTCOME'))
-                pass
 
             updateCasinoData((userID, userBalance))
             await ctx.response.defer()

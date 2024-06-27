@@ -33,10 +33,8 @@ class PayCommand(commands.Cog):
 
             if readData("casinoAccount", localUserID) == []:
                 insertCasinoData((localUserID, 0))
-                pass
             if readData("casinoAccount", exernUserID) == []:
                 insertCasinoData((exernUserID, 0))
-                pass
 
             localCasinoAccount = readData("casinoAccount", localUserID)[0]
             localUserBalance = localCasinoAccount[2]

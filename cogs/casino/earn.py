@@ -31,10 +31,8 @@ class EarnCommand(commands.Cog):
 
             if readData("cooldownTime", user_id) == []:
                 insertCooldownData((user_id, 0))
-                pass
             if readData("casinoAccount", user_id) == []:
                 insertCasinoData((user_id, 0))
-                pass
 
             cooldownData = readData("cooldownTime", user_id)[0]
             casinoData = readData("casinoAccount", user_id)[0]
@@ -50,7 +48,6 @@ class EarnCommand(commands.Cog):
                     title=langText.get("EARN_TITLE"),
                     description=langText.get("EARN_TEXT").format(bal=newBalance),
                     color=disnake.Color.green())
-                pass
             else:
                 remaining_time = cooldownTime - (current_time - last_earn_time)
                 remaining_time_delta = datetime.timedelta(seconds=remaining_time)
@@ -63,7 +60,6 @@ class EarnCommand(commands.Cog):
                     title=langText.get("EARN_COOLDOWN_TITLE"),
                     description=formatted_cooldown_text,
                     color=disnake.Color.red())
-                pass
 
             await ctx.response.defer()
             await ctx.send(embed=embed)
