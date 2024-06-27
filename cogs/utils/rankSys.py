@@ -26,18 +26,18 @@ class RankSystem(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = load_config()
-    
+
     @commands.Cog.listener()
     async def on_ready(self):
         print('🧰 Rank system as been loaded')
-    
+
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot:
             return
 
         userID = str(message.author.id)
-  
+
         if readData("rankData", userID) == []:
             insertRankData((userID, 0, 0))
 
