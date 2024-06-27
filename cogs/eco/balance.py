@@ -4,6 +4,7 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
+from utils.sql_manager import readData
 from utils.load_lang import economy_lang as langText
 
 
@@ -11,7 +12,6 @@ from utils.load_lang import economy_lang as langText
 class BalanceCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_file = "data/casino.json"
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -20,20 +20,20 @@ class BalanceCommand(commands.Cog):
     @commands.slash_command(name="balance", description=langText.get("BALANCE_DESCRIPTION"))
     async def balance(self, ctx):
         try:
-            user_id = str(ctx.author.id)
-            with open(self.data_file, 'r') as file:
-                data = json.load(file)
-                if user_id not in data:
-                    data[user_id] = 0
-                    with open(self.data_file, 'w') as file:
-                        json.dump(data, file, indent=4)
-                balance = data.get(user_id, 0)
-            
+            userID = str(ctx.author.id)
+
+            if readData("casinoAccount", userID) == []:
+                insertCasinoData((userID, 0))
+                pass
+
+            casinoAccount = readData("casinoAccount", userID)[0]
+            userBalance = casinoAccount[2]
+
             embed = disnake.Embed(
                 title=langText.get("BALANCE_TITLE"),
-                description=langText.get("BALANCE_TEXT").format(balance=balance),
-                color=disnake.Color.blue()
-            )
+                description=langText.get("BALANCE_TEXT").format(balance=userBalance),
+                color=disnake.Color.blue())
+
             await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:

@@ -20,6 +20,8 @@ timeWeeks = timeDays * 7
 timeMonths = timeDays * 30
 timeYears = timeDays * 365
 
+cooldownTime = timeHours * 2
+
 timeUnits = {
     "s": timeSeconds,
     "m": timeMinutes,
@@ -39,10 +41,10 @@ langPossible = [
 # Data files
 dataFilePath = {
     "casino": "./data/casino.json",
-    "ranks": "./data/ranks.json",
     "cooldown": "./data/cooldown.json",
     "giveaway": "./data/giveaway.json"
 }
+dataDbFilePath = "./data/data.db"
 
 # Cogs folder
 cogsFolder = "./cogs/"

@@ -1,18 +1,18 @@
 {
-    "LEADERBOARD_DESCRIPTION": "Affiche le top 10 du classement xp",
-    "LEADERBOARD_TITLE": "💯 Classement 💯",
-    "LEADERBOARD_TEXT": "```Niveau : {userLVL} | XP : {userXP}```",
+  "LEADERBOARD_DESCRIPTION": "Affiche le top 10 du classement xp",
+  "LEADERBOARD_TITLE": "💯 Classement 💯",
+  "LEADERBOARD_TEXT": "```Niveau : {userLVL} | XP : {userXP}```",
 
-    "RANK_DESCRIPTION": "Affiche votre classement actuel ou celui d'un utilisateur",
-    "RANK_TITLE": "🔰 Classement de {userName} -> #{userRank} 🔰",
-    "RANK_TEXT": "**Niveau :** ```{userLVL}```\n**XP :** ``{userXP}``\n*Il vous faut ``{xpRequired}`` xp pour gagner un niveau*",
+  "RANK_DESCRIPTION": "Affiche votre classement actuel ou celui d'un utilisateur",
+  "RANK_TITLE": "🔰 Classement de {userName} -> #{userRank} 🔰",
+  "RANK_TEXT": "**Niveau :** ```{userLVL}```\n**XP :** ``{userXP}``\n*Il vous faut ``{xpRequired}`` xp pour gagner un niveau*",
 
-    "SYS_TITLE": "👏 Félicitations, {userName} ! 👏",
-    "SYS_TEXT": "**Vous avez atteint le niveau **```{userLVL}```\n*Il vous faut ``{xpRequired}`` xp pour le prochain niveau*",
-    "SYS_FIELD_NAME": "Bravo, vous avez obtenu un nouveau rôle !",
-    "SYS_FIELD_VALUE": "Vous avez gagné ✨ {role} ! ✨",
+  "SYS_TITLE": "👏 Félicitations, {userName} ! 👏",
+  "SYS_TEXT": "**Vous avez atteint le niveau **```{userLVL}```\n*Il vous faut ``{xpRequired}`` xp pour le prochain niveau*",
+  "SYS_FIELD_NAME": "Bravo, vous avez obtenu un nouveau rôle !",
+  "SYS_FIELD_VALUE": "Vous avez gagné ✨ {role} ! ✨",
 
-    "ERROR_NO_RANK_YET": "{userName} n'a pas encore de classement.",
+  "ERROR_NO_RANK_YET": "{userName} n'a pas encore de classement.",
 
-    "": ""
+  "": ""
 }
