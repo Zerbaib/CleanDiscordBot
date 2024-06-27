@@ -1,6 +1,7 @@
 import disnake
 
 
+
 def error_embed(e):
     """
     Create an embed with an error message.

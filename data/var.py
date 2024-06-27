@@ -10,6 +10,8 @@ badWordFilePath = f"{configFilesFolder}bad_words.json"
 dataFileLoad = True
 utilsLoad = True
 multiplicator = 65
+minXpIncrement = 1
+maxXpIncrement = 5
 
 # Time gestion
 timeSeconds = 1
@@ -19,6 +21,8 @@ timeDays = timeHours * 24
 timeWeeks = timeDays * 7
 timeMonths = timeDays * 30
 timeYears = timeDays * 365
+
+cooldownTime = timeHours * 2
 
 timeUnits = {
     "s": timeSeconds,
@@ -39,10 +43,10 @@ langPossible = [
 # Data files
 dataFilePath = {
     "casino": "./data/casino.json",
-    "ranks": "./data/ranks.json",
     "cooldown": "./data/cooldown.json",
     "giveaway": "./data/giveaway.json"
 }
+dataDbFilePath = "./data/data.db"
 
 # Cogs folder
 cogsFolder = "./cogs/"

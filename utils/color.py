@@ -1,12 +1,14 @@
 import disnake
 
+
+
 def hex_to_discord_color(hex_color):
     """
     Convert a hex color to a discord.Color object
-    
+
     Parameters:
         hex_color (str): The hex color to convert
-    
+
     Returns:
         disnake.Color: The discord.Color object
     """

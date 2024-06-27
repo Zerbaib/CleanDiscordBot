@@ -1,6 +1,8 @@
 import json
 from utils.load_environement import load_enviroment_lang
 
+
+
 def load_language_file(file_name):
     """
     Load a language file.
