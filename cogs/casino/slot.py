@@ -31,6 +31,7 @@ class SlotCommand(commands.Cog):
 
             if readData("casinoAccount", userID) == []:
                 insertCasinoData((userID, 0))
+                pass
 
             casinoAccount = readData("casinoAccount", userID)[0]
             userBalance = casinoAccount[2]
@@ -73,9 +74,12 @@ class SlotCommand(commands.Cog):
                 win_amount = bet * 10
                 userBalance += win_amount
                 embed.add_field(name=langText.get("WIN_OUTCOME"), value=langText.get("WIN_DESCRIPTION").format(win_bet=win_amount), inline=False)
+                pass
             else:
                 userBalance -= bet
                 embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("LOST_OUTCOME"), inline=False)
+                pass
+
             embed.add_field(name="Balance", value=langText.get("REMAINING_BALANCE").format(bal=userBalance), inline=False)
 
             updateCasinoData((userID, userBalance))

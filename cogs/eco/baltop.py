@@ -4,6 +4,7 @@ import disnake
 from disnake.ext import commands
 
 from utils import error
+from utils.sql_manager import executeQuery
 from utils.load_lang import economy_lang as langText
 
 
@@ -20,19 +21,18 @@ class BaltopCommand(commands.Cog):
     @commands.slash_command(name="baltop", description=langText.get("BALTOP_DESCRIPTION"))
     async def baltop(self, ctx):
         try:
-            with open(self.data_file, 'r') as file:
-                data = json.load(file)
-
-            sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
-            top_users = sorted_data[:10]
+            query = "SELECT * FROM casinoAccount ORDER BY balance DESC"
+            sorted_users = executeQuery(query)
 
             embed = disnake.Embed(title=langText.get("BALTOP_TITLE"), color=disnake.Color.blurple())
-            for idx, (user_id, balance) in enumerate(top_users, start=1):
-                user = self.bot.get_user(int(user_id))
+            for idx, user_data in enumerate(sorted_users, start=1):
+                user = await self.bot.fetch_user(int(user_data[1]))
                 if user:
-                    embed.add_field(name=f"{idx}. {user.display_name}", value=langText.get("BALTOP_TEXT").format(balance=balance), inline=False)
+                    embed.add_field(name=f"{idx}. {user.display_name}", value=langText.get("BALTOP_TEXT").format(balance=user_data[2]), inline=False)
                 else:
                     embed.add_field(name=langText.get("BALTOP_NOT_FOUND").format(idx=idx), value=langText.get("BALTOP_TEXT").format(balance=balance), inline=False)
+                if idx == 10:
+                    break
 
             await ctx.response.defer()
             await ctx.send(embed=embed)

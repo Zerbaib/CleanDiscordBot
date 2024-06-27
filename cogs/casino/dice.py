@@ -27,6 +27,7 @@ class DiceCommand(commands.Cog):
 
             if readData("casinoAccount", userID) == []:
                 insertCasinoData((userID, 0))
+                pass
 
             casinoAccount = readData("casinoAccount", userID)[0]
             userBalance = casinoAccount[2]
@@ -56,6 +57,7 @@ class DiceCommand(commands.Cog):
                 embed.add_field(name=langText.get("DICE_ROLL"), value=f"{dice_emojis[dice1 - 1]}  {dice_emojis[dice2 - 1]}", inline=False)
                 embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("WIN_DESCRIPTION").format(win_bet=payout))
                 embed.color = disnake.Color.green()
+                pass
             else:
                 userBalance -= bet
                 embed = disnake.Embed()
@@ -64,6 +66,7 @@ class DiceCommand(commands.Cog):
                 embed.add_field(name=langText.get("BET"), value=f"`{bet}`")
                 embed.add_field(name=langText.get("OUTCOME_TITLE"), value=langText.get("LOST_OUTCOME"))
                 embed.color = disnake.Color.red()
+                pass
 
             updateCasinoData((userID, userBalance))
             await inter.send(embed=embed)
