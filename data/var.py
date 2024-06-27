@@ -8,7 +8,6 @@ badWordFilePath = f"{configFilesFolder}bad_words.json"
 
 # Parameters
 dataFileLoad = True
-utilsLoad = True
 multiplicator = 65
 minXpIncrement = 1
 maxXpIncrement = 5
@@ -42,22 +41,12 @@ langPossible = [
 
 # Data files
 dataFilePath = {
-    "casino": "./data/casino.json",
-    "cooldown": "./data/cooldown.json",
     "giveaway": "./data/giveaway.json"
 }
 dataDbFilePath = "./data/data.db"
 
 # Cogs folder
 cogsFolder = "./cogs/"
-
-# Utils cogs
-utilsCogPath = {
-    "logger": "utils.logger",
-    #"automod": "utils.automod",
-    "status": "utils.status",
-    "voice": "utils.voice"
-}
 
 # Repos link
 githubLink = "https://github.com"

@@ -142,14 +142,6 @@ async def on_ready():
     print('='*multiplicator)
     return
 
-if utilsLoad:
-    for files in utilsCogPath.values():
-        try:
-            bot.load_extension(files)
-        except Exception as e:
-            print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
-            exit(1)
-
 for element in os.listdir(cogsFolder):
     try:
         element_dir = f"{cogsFolder}{element}"

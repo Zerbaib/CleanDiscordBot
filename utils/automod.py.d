@@ -27,7 +27,7 @@ class AutoModUtils(commands.Cog):
             if not message.author.guild_permissions.administrator:
                 with open(configFilePath, 'r') as config_file:
                     config = json.load(config_file)
-                        
+
                 content = message.content.lower()
 
                 for pattern, word in zip(self.bad_word_patterns, self.bad_words):
