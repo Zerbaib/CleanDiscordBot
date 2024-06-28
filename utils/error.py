@@ -1,4 +1,5 @@
 import disnake
+from utils.logger import printError
 
 
 
@@ -25,5 +26,5 @@ def error_embed(e):
         name="You can now create a Issue on GitHub",
         value=f"Tell us what command and the exeption [**here**]({issue_link})"
     )
-    print(f"/n/n{head}\n{body}\n/n/n")
+    printError(e)
     return embed
