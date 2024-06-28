@@ -43,9 +43,7 @@ class StatusUtils(commands.Cog):
             await self.bot.change_presence(
                 activity=disnake.Activity(
                     type=current_status["type"],
-                    name=current_status["value"]
-                )
-            )
+                    name=current_status["value"]))
             await asyncio.sleep(4)
 
 def setup(bot):
