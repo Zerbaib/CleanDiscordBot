@@ -5,6 +5,14 @@ configFilesFolder = "./config/"
 envFilePath = f"{configFilesFolder}.env"
 configFilePath = f"{configFilesFolder}config.json"
 badWordFilePath = f"{configFilesFolder}bad_words.json"
+log_folder_path = "./logs/"
+
+# Color code
+reset = "\033[0m"
+green = f"{reset}\033[32m"
+red = f"{reset}\033[31m"
+orange = f"{reset}\033[33m"
+blue = f"{reset}\033[34m"
 
 # Parameters
 dataFileLoad = True
