@@ -47,16 +47,6 @@ if not os.path.exists(envFilePath):
 
 lang = main_lang
 
-if not os.path.exists(badWordFilePath):
-    badword_data = {
-        "bad_words": [
-            "badword1",
-            "badword2",
-            "badword3"
-        ]
-    }
-    json_save(badWordFilePath, badword_data)
-
 if not os.path.exists(configFilePath):
     with open(configFilePath, 'w'):
         prefix = input(lang.get("QUESTION_PREFIX"))

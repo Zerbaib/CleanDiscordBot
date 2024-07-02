@@ -35,6 +35,13 @@ def initDB():
                 utcTime INTEGER
             );"""
         )
+        cur.execute(
+                """
+                CREATE TABLE IF NOT EXISTS badwordDatabase (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    words STRING
+                );"""
+            )
         conn.commit()
         conn.close()
     except Exception as e:

@@ -4,7 +4,6 @@ import subprocess
 configFilesFolder = "./config/"
 envFilePath = f"{configFilesFolder}.env"
 configFilePath = f"{configFilesFolder}config.json"
-badWordFilePath = f"{configFilesFolder}bad_words.json"
 log_folder_path = "./logs/"
 
 # Color code
