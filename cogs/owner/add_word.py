@@ -19,7 +19,8 @@ class AddWordCommand(commands.Cog):
     async def stop(self, ctx, badword: str):
         try:
             if badword:
-                insertBadWordData((badword))
+                if badword and ' ' not in badword:
+                    insertBadWordData((badword))
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
