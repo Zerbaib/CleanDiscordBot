@@ -21,14 +21,13 @@ class ClearCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount: int):
         try:
+            await ctx.response.defer()
             await ctx.channel.purge(limit=amount)
 
             embed = disnake.Embed(
                 title=langText.get("CLEAR_TITLE"),
                 description=langText.get("CLEAR_TEXT").format(amount=amount),
-                color=disnake.Color.brand_green()
-            )
-            await ctx.response.defer()
+                color=disnake.Color.brand_green())
             await ctx.send(embed=embed, delete_after=3)
 
         except Exception as e:
