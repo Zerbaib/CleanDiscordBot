@@ -87,7 +87,7 @@ def insertRankData(dataInsert):
         exit()
 def insertBadWordData(dataInsert):
     try:
-        if readBadWord():
+        if readBadWord(dataInsert):
             print(f"Word {dataInsert} already exists in the database")
             return True
         conn, cur = connectDB()
@@ -156,10 +156,10 @@ def readData(table, userID):
     except Exception as e:
         print(e)
         exit()
-def readBadWord():
+def readBadWord(dataInsert):
     try:
         conn, cur = connectDB()
-        cur.execute(f"SELECT * FROM badwordDatabase WHERE words = ?", dataInsert)  # Convert userID to string
+        cur.execute(f"SELECT * FROM badwordDatabase WHERE words = ?", dataInsert,)  # Convert userID to string
         data = cur.fetchall()
         conn.close()
         return data
