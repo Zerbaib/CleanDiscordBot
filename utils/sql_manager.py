@@ -6,7 +6,6 @@ def connectDB():
     conn = sqlite3.connect(dataDbFilePath)
     cur = conn.cursor()
     return conn, cur
-
 def initDB():
     try:
         conn, cur = connectDB()
@@ -47,7 +46,6 @@ def initDB():
     except Exception as e:
         print(e)
         exit("1")
-
 def insertCooldownData(data):
     try:
         userID = data[0]
@@ -61,7 +59,6 @@ def insertCooldownData(data):
     except Exception as e:
         print(e)
         exit("1")
-
 def insertCasinoData(data):
     try:
         userID = data[0]
@@ -75,7 +72,6 @@ def insertCasinoData(data):
     except Exception as e:
         print(e)
         exit("1")
-
 def insertRankData(dataInsert):
     try:
         userID = dataInsert
@@ -89,7 +85,18 @@ def insertRankData(dataInsert):
     except Exception as e:
         print(e)
         exit()
-
+def insertBadWordData(dataInsert):
+    try:
+        if readBadWord():
+            print(f"Word {dataInsert} already exists in the database")
+            return True
+        conn, cur = connectDB()
+        cur.execute(f"INSERT INTO badwordDatabase (words) VALUES {dataInsert}")
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(e)
+        exit()
 def updateRankData(data):
     try:
         userID = data[0]
@@ -103,7 +110,6 @@ def updateRankData(data):
     except Exception as e:
         print(e)
         exit("1")
-
 def updateCasinoData(data):
     try:
         userID = data[0]
@@ -117,7 +123,6 @@ def updateCasinoData(data):
     except Exception as e:
         print(e)
         exit("1")
-
 def updateCooldownData(data):
     try:
         userID = data[0]
@@ -131,7 +136,6 @@ def updateCooldownData(data):
     except Exception as e:
         print(e)
         exit("1")
-
 def readData(table, userID):
     """
     Simple solution to read data of a db table
@@ -152,7 +156,16 @@ def readData(table, userID):
     except Exception as e:
         print(e)
         exit()
-
+def readBadWord():
+    try:
+        conn, cur = connectDB()
+        cur.execute(f"SELECT * FROM badwordDatabase WHERE words = ?", dataInsert)  # Convert userID to string
+        data = cur.fetchall()
+        conn.close()
+        return data
+    except Exception as e:
+        print(e)
+        exit()
 def executeQuery(query):
     try:
         conn, cur = connectDB()

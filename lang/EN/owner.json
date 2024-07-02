@@ -13,5 +13,7 @@
     "STOP_DESCRIPTION": "Stop the bot",
     "STOP_TITLE": "🛑 Stopping the bot... 🛑",
 
+    "ADDWORD_DESCRIPTION": "Add word to ban list.",
+
     "": ""
 }

@@ -13,5 +13,7 @@
     "STOP_DESCRIPTION": "Arrête le bot",
     "STOP_TITLE": "🛑 Arrêt du bot en cours... 🛑",
 
+    "ADDWORD_DESCRIPTION": "Ajouter un mot a la liste banni",
+
     "": ""
 }
