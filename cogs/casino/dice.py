@@ -14,7 +14,7 @@ class DiceCommand(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('⚠️ 🔩 /dice has been loaded')
+        print('🔩 /dice has been loaded')
 
     @commands.slash_command(name="dice", description=langText.get("DICE_DESCRIPTION"))
     async def dice(self, inter, bet: int):

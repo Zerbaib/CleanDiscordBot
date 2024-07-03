@@ -19,3 +19,4 @@ env/
 
 # Log file
 log.txt
+*.log

@@ -1,12 +1,13 @@
 import os
 import platform
-import datetime
 
 import aiohttp
 import disnake
 from disnake.ext import commands
+from datetime import datetime
 
 from utils.sql_manager import *
+from utils.logger import *
 from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
@@ -14,6 +15,7 @@ from data.var import *
 
 
 
+get_next_log_file()
 initDB()
 lang = main_lang
 
@@ -34,7 +36,7 @@ if not os.path.exists(envFilePath):
                 lang_choice = lang_choice.upper()
                 break
         except (EOFError, KeyboardInterrupt):
-            print(lang.get("ERROR_EOF_ERROR"))
+            printError(lang.get("ERROR_EOF_ERROR"))
 
     with open(envFilePath, 'w'):
         envData = {
@@ -122,33 +124,25 @@ async def on_ready():
 
     if botVersion != botRepoVersion:
         print('='*multiplicator)
-        print(lang.get("HEADER_OUTDATED_LN1"))
-        print(lang.get("HEADER_OUTDATED_LN2"))
-        print(lang.get("HEADER_OUTDATED_LN3"))
+        printWarn(lang.get("HEADER_OUTDATED_LN1"))
+        printWarn(lang.get("HEADER_OUTDATED_LN2"))
+        printWarn(lang.get("HEADER_OUTDATED_LN3"))
     print('='*multiplicator)
-    print(lang.get("HEADER_LN1"))
-    print(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id))
-    print(lang.get("HEADER_LN3").format(amount=len(bot.guilds)))
-    print(lang.get("HEADER_LN4").format(language=botLang))
-    print(lang.get("HEADER_LN5").format(prefix=prefix))
-    print(lang.get("HEADER_LN6").format(owner=bot.get_user(config["YOUR_ID"])))
-    print(lang.get("HEADER_LN7").format(gitBranch=gitBranch))
-    print(lang.get("HEADER_LN8").format(botVersion=botVersion))
-    print(lang.get("HEADER_LN9").format(botRepoVersion=botRepoVersion))
-    print(lang.get("HEADER_LN10").format(apiVersion=disnake.__version__))
-    print(lang.get("HEADER_LN11").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name))
-    print(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version()))
-    print(lang.get("HEADER_LN13").format(timeNow=datetime.datetime.now()))
+    printInfo(lang.get("HEADER_LN1").format(reset=reset))
+    printInfo(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN3").format(amount=len(bot.guilds), reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN4").format(language=botLang, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN5").format(prefix=prefix, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN6").format(owner=bot.get_user(config["YOUR_ID"]), reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN7").format(gitBranch=gitBranch, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN8").format(botVersion=botVersion, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN9").format(botRepoVersion=botRepoVersion, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN10").format(apiVersion=disnake.__version__, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN11").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name, reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version(), reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN13").format(timeNow=datetime.utcnow().strftime("%d-%m-%Y %H:%M:%S"), reset=reset, blue=blue))
     print('='*multiplicator)
     return
-
-if utilsLoad:
-    for files in utilsCogPath.values():
-        try:
-            bot.load_extension(files)
-        except Exception as e:
-            print(lang.get("ERROR_COG_LOADING").format(cogName=files, e=e))
-            exit(1)
 
 for element in os.listdir(cogsFolder):
     try:
@@ -160,9 +154,9 @@ for element in os.listdir(cogsFolder):
                     try:
                         bot.load_extension(f'cogs.{element}.{cog_name}')
                     except Exception as e:
-                        print(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
+                        printError(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
-        print(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
+        printError(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
         exit(1)
 
 
