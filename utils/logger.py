@@ -3,26 +3,20 @@ from data.var import *
 from datetime import datetime
 
 
+timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+log_file = os.path.join(log_folder_path, f"{timestamp}.log")
+
 def get_next_log_file():
-    log_folder = log_folder_path
-    if not os.path.exists(log_folder):
-        os.makedirs(log_folder)
-    for i in range(10000):
-        log_file = os.path.join(log_folder, f"{i}.log")
-        if not os.path.exists(log_file):
-            os.mknod(log_file)
-            return log_file
-    raise Exception("Maximum number of log files reached.")
+    if not os.path.exists(log_folder_path):
+        os.makedirs(log_folder_path)
+    if not os.path.exists(log_file):
+        os.mknod(log_file)
+        return log_file
 
 def get_last_log_file():
-    log_folder = log_folder_path
-    if not os.path.exists(log_folder):
-        os.makedirs(log_folder)
-    for i in range(10000):
-        log_file = os.path.join(log_folder, f"{i}.log")
-        if not os.path.exists(log_file):
-            return os.path.join(log_folder, f"{i-1}.log")
-    raise Exception("Maximum number of log files reached.")
+    if not os.path.exists(log_folder_path):
+        os.makedirs(log_folder_path)
+    return log_file
 
 def write_log(log):
     log_file = get_last_log_file()

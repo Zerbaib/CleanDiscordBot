@@ -33,6 +33,6 @@ class ClearCommand(commands.Cog):
         except Exception as e:
             embed = error.error_embed(e)
             await ctx.send(embed=embed)
-            
+
 def setup(bot):
     bot.add_cog(ClearCommand(bot))
