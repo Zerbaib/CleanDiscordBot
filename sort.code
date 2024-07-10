@@ -1,0 +1,13 @@
+# Generic error
+0 = Default Error
+
+# Failed
+101 = Failed to create File
+102 = Failed to create Folder
+
+# Warning
+301 = Settings
+302 = Unsatbility
+
+# Config
+404 = Not found

@@ -12,6 +12,7 @@ from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
 from data.var import *
+from auto.creator import Creator
 
 
 
@@ -19,13 +20,9 @@ get_next_log_file()
 initDB()
 lang = main_lang
 
-if not os.path.exists(configFilesFolder):
-    os.mkdir(configFilesFolder)
-
-if dataFileLoad:
-    for files in dataFilePath.values():
-        if not os.path.exists(files):
-            json_save(files, {})
+printInfo("Starting")
+Creator.config_folder()
+Creator.data_files()
 
 if not os.path.exists(envFilePath):
     token = input(lang.get("QUESTION_BOT_TOKEN"))
