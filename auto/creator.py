@@ -1,4 +1,4 @@
-from data.var import configFilesFolder
+from data.var import *
 from utils.json_manager import json_save
 from utils.logger import *
 
@@ -24,13 +24,35 @@ class Creator():
         if dataFileLoad:
             for files in dataFilePath.values():
                 if not os.path.exists(files):
+                    printWarn("Code: 404")
+                    printWarn(f"No {files} was found")
                     try:
                         json_save(files, {})
                         printLog(f"{files} was created")
                     except Exception as e:
                         printError("Code: 101")
                         printError(f"During creation of {files}")
+                        printError(e)
                         exit(code=101)
         else:
             printWarn("Code: 301")
             printWarn("The data files creation was desactivate")
+    def badword_file():
+        if not os.path.exists(badWordFilePath):
+            printWarn("Code: 404")
+            printWarn(f"No {badWordFilePath} was found")
+            try:
+                badword_data = {
+                    "bad_words": [
+                        "badword1",
+                        "badword2",
+                        "badword3"
+                    ]
+                }
+                json_save(badWordFilePath, badword_data)
+                printLog(f"{badWordFilePath} was created")
+            except Exception as e:
+                printError("Code: 101")
+                printError(f"During creation of {badWordFilePath}")
+                printError(e)
+                exit(code=101)
