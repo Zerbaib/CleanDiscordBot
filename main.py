@@ -32,9 +32,11 @@ printLog("Configuration step")
 
 Configurator.env_file(lang)
 
-printInfo("Config files done")
-
+printLog("Reload lang")
 lang = main_lang
+printLog("lang Reloaded")
+
+printInfo("Config files done")
 
 if not os.path.exists(configFilePath):
     with open(configFilePath, 'w'):
