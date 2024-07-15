@@ -30,7 +30,7 @@ class BaltopCommand(commands.Cog):
                 if user:
                     embed.add_field(name=f"{idx}. {user.display_name}", value=langText.get("BALTOP_TEXT").format(balance=user_data[2]), inline=False)
                 else:
-                    embed.add_field(name=langText.get("BALTOP_NOT_FOUND").format(idx=idx), value=langText.get("BALTOP_TEXT").format(balance=balance), inline=False)
+                    embed.add_field(name=langText.get("BALTOP_NOT_FOUND").format(idx=idx), value=langText.get("BALTOP_TEXT").format(balance=user_data[2]), inline=False)
                 if idx == 10:
                     break
 

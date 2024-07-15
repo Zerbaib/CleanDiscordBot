@@ -12,6 +12,8 @@ from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
 from data.var import *
+from auto.creator import Creator
+from auto.configurator import Configurator
 
 
 
@@ -19,43 +21,22 @@ get_next_log_file()
 initDB()
 lang = main_lang
 
-if not os.path.exists(configFilesFolder):
-    os.mkdir(configFilesFolder)
+printInfo("Starting")
 
-if dataFileLoad:
-    for files in dataFilePath.values():
-        if not os.path.exists(files):
-            json_save(files, {})
+Creator.config_folder()
+Creator.data_files()
+Creator.badword_file()
 
-if not os.path.exists(envFilePath):
-    token = input(lang.get("QUESTION_BOT_TOKEN"))
-    while True:
-        try:
-            lang_choice = input(lang.get("QUESTION_LANGUAGE")).upper()
-            if lang_choice in langPossible:
-                lang_choice = lang_choice.upper()
-                break
-        except (EOFError, KeyboardInterrupt):
-            printError(lang.get("ERROR_EOF_ERROR"))
+printInfo("Created files done")
+printLog("Configuration step")
 
-    with open(envFilePath, 'w'):
-        envData = {
-            "LANGUAGE": lang_choice,
-            "TOKEN": token
-        }
-        json_save(envFilePath, envData)
+Configurator.env_file(lang)
 
+printLog("Reload lang")
 lang = main_lang
+printLog("lang Reloaded")
 
-if not os.path.exists(badWordFilePath):
-    badword_data = {
-        "bad_words": [
-            "badword1",
-            "badword2",
-            "badword3"
-        ]
-    }
-    json_save(badWordFilePath, badword_data)
+printInfo("Config files done")
 
 if not os.path.exists(configFilePath):
     with open(configFilePath, 'w'):

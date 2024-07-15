@@ -22,7 +22,7 @@ class ClearCommand(commands.Cog):
     async def clear(self, ctx, amount: int):
         try:
             await ctx.response.defer()
-            await ctx.channel.purge(limit=amount)
+            await ctx.channel.purge(limit=amount+1)
 
             embed = disnake.Embed(
                 title=langText.get("CLEAR_TITLE"),
