@@ -18,7 +18,7 @@ class StopCommand(commands.Cog):
     async def stop(self, ctx):
         try:
             await ctx.send(langText.get("STOP_TITLE"), ephemeral=True)
-            await self.bot.close()
+            # await self.bot.close()
             exit(code=1)
         except Exception as e:
             embed = error.error_embed(e)
