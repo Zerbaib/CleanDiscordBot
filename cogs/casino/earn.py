@@ -60,8 +60,6 @@ class EarnCommand(commands.Cog):
                     title=langText.get("EARN_COOLDOWN_TITLE"),
                     description=formatted_cooldown_text,
                     color=disnake.Color.red())
-
-            await ctx.response.defer()
             await ctx.send(embed=embed)
         except Exception as e:
             embed = error.error_embed(e)

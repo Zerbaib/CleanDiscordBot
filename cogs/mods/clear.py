@@ -8,7 +8,6 @@ from utils import error
 from utils.load_lang import mods_lang as langText
 
 
-
 class ClearCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -21,7 +20,6 @@ class ClearCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def clear(self, ctx, amount: int):
         try:
-            await ctx.response.defer()
             await ctx.channel.purge(limit=amount+1)
 
             embed = disnake.Embed(
