@@ -1,4 +1,4 @@
-aiohttp==3.9.5
+aiohttp==3.10.2
 disnake==2.9.2
 termcolor==2.4.0
 requests==2.32.3
