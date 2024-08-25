@@ -11,6 +11,7 @@ from utils.logger import *
 from utils.json_manager import json_save, json_load
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
 from utils.load_lang import main_lang
+from data.code import Code
 from data.var import *
 from auto.creator import Creator
 from auto.configurator import Configurator
@@ -147,4 +148,4 @@ except Exception as e:
     printError("Code: 301")
     printError("Error during the token loading")
     printError("Change the token")
-    exit(code=301)
+    exit(code=Code.SETTINGS_WARNING)
