@@ -21,22 +21,21 @@ get_next_log_file()
 initDB()
 lang = main_lang
 
-printInfo("Starting")
+printInfo("Starting ...")
 
 Creator.config_folder()
 Creator.data_files()
 Creator.badword_file()
 
-printInfo("Created files done")
-printLog("Configuration step")
+printInfo("Files creation done")
 
 Configurator.env_file(lang)
 
-printLog("Reload lang")
+printLog("Reload lang ...")
 lang = main_lang
 printLog("lang Reloaded")
 
-printInfo("Config files done")
+printInfo("Files configuration done")
 
 if not os.path.exists(configFilePath):
     with open(configFilePath, 'w'):
@@ -145,5 +144,7 @@ for element in os.listdir(cogsFolder):
 try:
     bot.run(load_enviroment_token())
 except Exception as e:
-    print(lang.get("ERROR_BOT_RUN"))
-    exit(1)
+    printError("Code: 301")
+    printError("Error during the token loading")
+    printError("Change the token")
+    exit(code=301)
