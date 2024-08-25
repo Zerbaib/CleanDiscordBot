@@ -1,3 +1,4 @@
+from data.code import Code
 from data.var import *
 from utils.json_manager import json_save
 from utils.logger import *
@@ -14,12 +15,12 @@ class Creator():
                 printError("Code: 102")
                 printError(f"During creation of {configFilesFolder}")
                 printError(e)
-                exit(code=102)
+                exit(code=Code.FAILED_TO_CREATE_FOLDER)
             except Exception as e:
                 printError("Code: 0")
                 printError(f"During creation of {configFilesFolder}")
                 printError(e)
-                exit(code=0)
+                exit(code=Code.DEFAULT_ERROR)
     def data_files():
         if dataFileLoad:
             for files in dataFilePath.values():
@@ -33,7 +34,7 @@ class Creator():
                         printError("Code: 101")
                         printError(f"During creation of {files}")
                         printError(e)
-                        exit(code=101)
+                        exit(code=Code.FAILED_TO_CREATE_FILE)
         else:
             printWarn("Code: 301")
             printWarn("The data files creation was desactivate")
@@ -55,4 +56,4 @@ class Creator():
                 printError("Code: 101")
                 printError(f"During creation of {badWordFilePath}")
                 printError(e)
-                exit(code=101)
+                exit(code=Code.FAILED_TO_CREATE_FILE)
