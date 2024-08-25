@@ -1,0 +1,63 @@
+name: Build Docker Image and Create Draft Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Le workflow se déclenche pour les tags qui commencent par 'v', comme v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      with:
+        install: true
+
+    - name: Create Docker Buildx builder
+      run: |
+        docker buildx create --use --name mybuilder
+        docker buildx inspect --bootstrap
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Extract version number
+      id: extract_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      
+    - name: Convert actor to lowercase
+      id: lowercase_actor
+      run: echo "LOWERCASE_ACTOR=$(echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+    - name: Build and Push Docker image for multiple architectures
+      id: push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        platforms: linux/amd64  # Spécifiez les architectures cibles
+        push: true
+        tags: |
+          ghcr.io/${{ env.LOWERCASE_ACTOR }}/cleandiscordbot:${{ env.VERSION }}
+          ghcr.io/${{ env.LOWERCASE_ACTOR }}/cleandiscordbot:latest
+
+    - name: Create Draft GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}  # Le tag GitHub
+        release_name: Release ${{ github.ref_name }}  # Le nom de la release
+        body: |
+          Release notes for version ${{ github.ref_name }}.
+        draft: true  # Met la release en mode brouillon
+        prerelease: false  # Indique si c'est une pré-release
