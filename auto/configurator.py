@@ -1,3 +1,4 @@
+from data.code import Code
 from data.var import *
 from utils.json_manager import json_save
 from utils.logger import *

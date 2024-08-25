@@ -31,17 +31,17 @@ def printError(error):
     print(text)
     write_log(log_text)
 def printInfo(info):
-    text = f"{green} [INFO] {reset}{info}{reset}"
+    text = f"{green} [INFO]  {reset}{info}{reset}"
     log_text = f"[INFO] {info}"
     print(text)
     write_log(log_text)
 def printLog(log):
-    text = f"{reset} [LOG] {reset}{log}{reset}"
-    log_text = f"[LOG] {log}"
+    text = f"{reset} [LOG]   {reset}{log}{reset}"
+    log_text = f"[LOG]  {log}"
     print(text)
     write_log(log_text)
 def printWarn(warn):
-    text = f"{orange} [WARN] {reset}{warn}{reset}"
+    text = f"{orange} [WARN]  {reset}{warn}{reset}"
     log_text = f"[WARN] {warn}"
     print(text)
     write_log(log_text)

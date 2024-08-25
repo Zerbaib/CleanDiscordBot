@@ -16,7 +16,7 @@ blue = f"{reset}\033[34m"
 
 # Parameters
 dataFileLoad = True
-multiplicator = 65
+multiplicator = 70
 minXpIncrement = 1
 maxXpIncrement = 5
 
