@@ -2,7 +2,6 @@ from data.var import envFilePath
 from utils.json_manager import json_load
 
 
-
 def load_enviroment():
     """
     Load the environment file and return the data as a dictionary

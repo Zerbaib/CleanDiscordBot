@@ -2,7 +2,6 @@ import disnake
 from utils.logger import printError
 
 
-
 def error_embed(e):
     """
     Create an embed with an error message.

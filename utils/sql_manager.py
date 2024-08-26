@@ -2,6 +2,7 @@ import sqlite3
 
 from data.var import dataDbFilePath
 
+
 def connectDB():
     conn = sqlite3.connect(dataDbFilePath)
     cur = conn.cursor()

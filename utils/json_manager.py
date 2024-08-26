@@ -1,7 +1,6 @@
 from json import dump, load
 
 
-
 def json_load(file_path):
     """
     Load a json file and return the data as a dictionary

@@ -1,7 +1,7 @@
 import os
-from data.var import *
 from datetime import datetime
 
+from data.var import *
 
 timestamp = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
 log_file = os.path.join(log_folder_path, f"{timestamp}.log")
