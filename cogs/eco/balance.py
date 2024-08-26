@@ -2,11 +2,9 @@ import json
 
 import disnake
 from disnake.ext import commands
-
 from utils import error
-from utils.sql_manager import readData
-from utils.sql_manager import insertCasinoData
 from utils.load_lang import economy_lang as langText
+from utils.sql_manager import insertCasinoData, readData
 
 
 

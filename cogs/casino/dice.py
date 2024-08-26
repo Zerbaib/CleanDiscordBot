@@ -2,10 +2,10 @@ import random
 
 import disnake
 from disnake.ext import commands
-
 from utils import error
-from utils.sql_manager import insertCasinoData, updateCasinoData, readData
 from utils.load_lang import casino_lang as langText
+from utils.sql_manager import insertCasinoData, readData, updateCasinoData
+
 
 
 class DiceCommand(commands.Cog):

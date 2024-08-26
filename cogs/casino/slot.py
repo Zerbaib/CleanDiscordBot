@@ -3,10 +3,9 @@ import random
 
 import disnake
 from disnake.ext import commands
-
 from utils import error
-from utils.sql_manager import insertCasinoData, updateCasinoData, readData
 from utils.load_lang import casino_lang as langText
+from utils.sql_manager import insertCasinoData, readData, updateCasinoData
 
 
 
@@ -48,7 +47,7 @@ class SlotCommand(commands.Cog):
                 embed.title = langText.get("ERROR_TITLE")
                 embed.color = disnake.Color.red()
                 embed.add_field(name="Error", value=langText.get("ERROR_NO_MONEY"))
-                await inter.response.send_message(embed=embed)
+                await ctx.send(embed=embed)
                 return
 
             for _ in range(3):

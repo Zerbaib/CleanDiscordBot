@@ -4,11 +4,12 @@ import random
 
 import disnake
 from disnake.ext import commands
-
 from utils import error
-from utils.sql_manager import readData, connectDB, insertRankData
 from utils.load_lang import rank_lang as langText
+from utils.sql_manager import connectDB, insertRankData, readData
 from utils.xp_required import xp_required_calc
+
+
 
 class RankCommand(commands.Cog):
     def __init__(self, bot, base_level, level_factor):

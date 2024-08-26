@@ -1,9 +1,9 @@
 import disnake
 from disnake.ext import commands
-
 from utils import error
-from utils.sql_manager import executeQuery
 from utils.load_lang import rank_lang as langText
+from utils.sql_manager import executeQuery
+
 
 
 class LeaderboardCommand(commands.Cog):

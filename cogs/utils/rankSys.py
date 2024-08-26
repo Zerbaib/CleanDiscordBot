@@ -1,15 +1,14 @@
-import random
 import json
 import os
+import random
 
 import disnake
-from disnake.ext import commands
-
-from utils.sql_manager import insertRankData, updateRankData, readData
-from utils.load_lang import rank_lang as langText
-from utils.xp_required import xp_required_calc
 from data.var import *
+from disnake.ext import commands
 from utils.json_manager import *
+from utils.load_lang import rank_lang as langText
+from utils.sql_manager import insertRankData, readData, updateRankData
+from utils.xp_required import xp_required_calc
 
 
 

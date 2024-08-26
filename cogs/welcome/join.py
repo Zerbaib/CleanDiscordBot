@@ -3,11 +3,11 @@ import os
 from io import BytesIO
 
 import disnake
+from data.var import configFilePath
 from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
-
 from utils.load_lang import welcome_lang as langText
-from data.var import configFilePath
+
 
 
 class JoinMessageUtils(commands.Cog):
