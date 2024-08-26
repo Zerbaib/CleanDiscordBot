@@ -4,7 +4,7 @@ import platform
 import aiohttp
 import disnake
 from disnake.ext import commands
-from datetime import datetime
+from datetime import datetime, timezone
 
 from utils.sql_manager import *
 from utils.logger import *
@@ -68,7 +68,6 @@ if not os.path.exists(configFilePath):
             }
         }
         json_save(configFilePath, config_data)
-    pass
 
 try:
     config = json_load(configFilePath)
@@ -91,14 +90,11 @@ async def on_ready():
     if bot.user.discriminator == 0:
         botName = bot.user.name
     else:
-        botName = bot.user.name + "#" + bot.user.discriminator
+        botName = f"{bot.user.name}#{bot.user.discriminator}"
 
     async with aiohttp.ClientSession() as session:
         async with session.get(onlineVersion) as response:
-            if response.status == 200:
-                botRepoVersion = await response.text()
-            else:
-                botRepoVersion = "Unknown"
+            botRepoVersion = await response.text() if response.status == 200 else "Unknown"
 
     with open(localVersionFilePath, 'r') as version_file:
         botVersion = version_file.read().strip()
@@ -121,7 +117,7 @@ async def on_ready():
     printInfo(lang.get("HEADER_LN10").format(apiVersion=disnake.__version__, reset=reset, blue=blue))
     printInfo(lang.get("HEADER_LN11").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name, reset=reset, blue=blue))
     printInfo(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version(), reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN13").format(timeNow=datetime.utcnow().strftime("%d-%m-%Y %H:%M:%S"), reset=reset, blue=blue))
+    printInfo(lang.get("HEADER_LN13").format(timeNow=datetime.now(timezone.utc).strftime("%d-%m-%Y %H:%M:%S"), reset=reset, blue=blue))
     print('='*multiplicator)
     return
 
