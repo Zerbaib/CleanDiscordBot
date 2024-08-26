@@ -1,4 +1,5 @@
 # Python bytecode
+__pycache__/
 *.pyc
 
 # Configuration files
