@@ -134,7 +134,7 @@ for element in os.listdir(cogsFolder):
                         printError(lang.get("ERROR_COG_LOADING").format(cogName=cog_name, e=e))
     except Exception as e:
         printError(lang.get("ERROR_ELEMENTS_LOADING").format(element, e))
-        exit(1)
+        exit(code=1)
 
 
 
