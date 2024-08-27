@@ -1,7 +1,7 @@
 import datetime
 import json
 import random
-import time
+import time as tm
 
 import disnake
 from modules.var import *
@@ -26,7 +26,7 @@ class EarnCommand(commands.Cog):
     async def earn(self, ctx):
         try:
             user_id = str(ctx.author.id)
-            current_time = int(time.time())
+            current_time = int(tm.time())
 
             if readData("cooldownTime", user_id) == []:
                 insertCooldownData((user_id, 0))
