@@ -1,5 +1,5 @@
-from data.code import Code
-from data.var import *
+from modules.code import Code
+from modules.var import *
 from utils.json_manager import json_save
 from utils.logger import *
 
@@ -7,45 +7,45 @@ from utils.logger import *
 
 class Creator():
     def config_folder():
-        if os.path.exists(configFilesFolder):
+        if os.path.exists(folders.config):
             return
         printWarn("Code: 404")
         printWarn("No Config Folder found")
         try:
-            os.mkdir(configFilesFolder)
+            os.mkdir(folders.config)
             printLog("Config folder created")
         except OSError as e:
             printError("Code: 102")
-            printError(f"During creation of {configFilesFolder}")
+            printError(f"During creation of {folders.config}")
             printError(e)
             exit(code=Code.FAILED_TO_CREATE_FOLDER)
         except Exception as e:
             printError("Code: 0")
-            printError(f"During creation of {configFilesFolder}")
+            printError(f"During creation of {folders.config}")
             printError(e)
             exit(code=Code.DEFAULT_ERROR)
     def data_files():
-        if dataFileLoad:
-            for files in dataFilePath.values():
-                if not os.path.exists(files):
+        if parameters.dataFileLoad:
+            for fs in files.dataFilePath.values():
+                if not os.path.exists(fs):
                     printWarn("Code: 404")
-                    printWarn(f"No {files} was found")
+                    printWarn(f"No {fs} was found")
                     try:
-                        json_save(files, {})
-                        printLog(f"{files} was created")
+                        json_save(fs, {})
+                        printLog(f"{fs} was created")
                     except Exception as e:
                         printError("Code: 101")
-                        printError(f"During creation of {files}")
+                        printError(f"During creation of {fs}")
                         printError(e)
                         exit(code=Code.FAILED_TO_CREATE_FILE)
         else:
             printWarn("Code: 301")
             printWarn("The data files creation was desactivate")
     def badword_file():
-        if os.path.exists(badWordFilePath):
+        if os.path.exists(files.badWord):
             return
         printWarn("Code: 404")
-        printWarn(f"No {badWordFilePath} was found")
+        printWarn(f"No {files.badWord} was found")
         try:
             badword_data = {
                 "bad_words": [
@@ -54,10 +54,10 @@ class Creator():
                     "badword3"
                 ]
             }
-            json_save(badWordFilePath, badword_data)
-            printLog(f"{badWordFilePath} was created")
+            json_save(files.badWord, badword_data)
+            printLog(f"{files.badWord} was created")
         except Exception as e:
             printError("Code: 101")
-            printError(f"During creation of {badWordFilePath}")
+            printError(f"During creation of {files.badWord}")
             printError(e)
             exit(code=Code.FAILED_TO_CREATE_FILE)

@@ -4,7 +4,7 @@ import random
 import time
 
 import disnake
-from data.var import cooldownTime
+from modules.var import *
 from disnake.ext import commands
 from utils import error
 from utils.load_lang import casino_lang as langText
@@ -16,7 +16,6 @@ from utils.sql_manager import (insertCasinoData, insertCooldownData, readData,
 class EarnCommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.data_file = "data/casino.json"
         self.cooldown_file = "data/cooldown.json"
 
     @commands.Cog.listener()
@@ -38,7 +37,7 @@ class EarnCommand(commands.Cog):
             casinoData = readData("casinoAccount", user_id)[0]
             last_earn_time = cooldownData[2]
 
-            if current_time - last_earn_time >= cooldownTime:
+            if current_time - last_earn_time >= time.cooldown:
                 newBalance = casinoData[2] + 100
 
                 updateCooldownData((user_id, current_time))
@@ -49,7 +48,7 @@ class EarnCommand(commands.Cog):
                     description=langText.get("EARN_TEXT").format(bal=newBalance),
                     color=disnake.Color.green())
             else:
-                remaining_time = cooldownTime - (current_time - last_earn_time)
+                remaining_time = time.cooldown - (current_time - last_earn_time)
                 remaining_time_delta = datetime.timedelta(seconds=remaining_time)
                 remaining_time_str = str(remaining_time_delta)
 

@@ -49,4 +49,4 @@ pip3 install -r requirements.txt
 
 # Run the main.py script
 echo "Running main.py..."
-python3 main.py
+python3 src/main.py

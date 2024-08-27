@@ -1,7 +1,7 @@
 import asyncio
 
 import disnake
-from data.var import *
+from modules.var import *
 from disnake.ext import commands
 
 

@@ -3,7 +3,7 @@ import os
 import random
 
 import disnake
-from data.var import *
+from modules.var import *
 from disnake.ext import commands
 from utils.json_manager import *
 from utils.load_lang import rank_lang as langText
@@ -13,8 +13,8 @@ from utils.xp_required import xp_required_calc
 
 
 def load_config():
-    if os.path.exists(configFilePath):
-        with open(configFilePath, 'r') as config_file:
+    if os.path.exists(files.config):
+        with open(files.config, 'r') as config_file:
             config = json.load(config_file)
             return config
     else:
@@ -42,7 +42,7 @@ class RankSystem(commands.Cog):
 
         ranksData = readData("rankData", userID)[0]
 
-        userXP = ranksData[2] + random.randint(minXpIncrement, maxXpIncrement)
+        userXP = ranksData[2] + random.randint(parameters.minXpIncrement, parameters.minXpIncrement)
         userLVL = ranksData[3]
 
         xpRequired = xp_required_calc(userLVL)

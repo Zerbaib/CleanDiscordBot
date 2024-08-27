@@ -1,5 +1,5 @@
-from data.code import Code
-from data.var import *
+from modules.code import Code
+from modules.var import *
 from utils.json_manager import json_save
 from utils.logger import *
 
@@ -7,7 +7,7 @@ from utils.logger import *
 
 class Configurator():
     def env_file(self, lang):
-        if os.path.exists(envFilePath):
+        if os.path.exists(files.env):
             return
         token = input(lang.get("QUESTION_BOT_TOKEN"))
         while True:
@@ -19,9 +19,9 @@ class Configurator():
             except (EOFError, KeyboardInterrupt):
                 printError(lang.get("ERROR_EOF_ERROR"))
 
-        with open(envFilePath, 'w'):
+        with open(files.envFilePath, 'w'):
             envData = {
                 "LANGUAGE": lang_choice,
                 "TOKEN": token
             }
-            json_save(envFilePath, envData)
+            json_save(files.envFilePath, envData)

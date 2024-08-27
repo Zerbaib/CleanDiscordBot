@@ -3,14 +3,14 @@ import os
 from io import BytesIO
 
 import disnake
-from data.var import configFilePath
+from modules.var import *
 from disnake.ext import commands
 from PIL import Image, ImageChops, ImageDraw
 from utils.load_lang import welcome_lang as langText
 
 
 
-class JoinMessageUtils(commands.Cog):
+class LeaveMessageUtils(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -27,41 +27,40 @@ class JoinMessageUtils(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('🧰 Join has been loaded')
+        print('🧰 Leave has been loaded')
 
     @commands.Cog.listener()
-    async def on_member_join(self, member):
+    async def on_member_remove(self, member):
         if not member.bot:
-            with open(configFilePath, 'r') as config_file:
+            with open(files.config, 'r') as config_file:
                 config = json.load(config_file)
 
-            filename = "assets/jbanner_finish.png"
-            background = Image.open("assets/join_banner.png")
+            filename = "assets/lbanner_finish.png"
+            background = Image.open("assets/leave_banner.png")
             asset = member.display_avatar.with_size(1024)
             data = BytesIO(await asset.read())
             pfp = Image.open(data).convert("RGBA")
-            pfp = JoinMessageUtils.circle(pfp)
+            pfp = LeaveMessageUtils.circle(pfp)
             background.paste(pfp, (29, 12), pfp)
             background.save(filename)
 
-            join_channel_id = config["JOIN_ID"]
-            join_channel = self.bot.get_channel(join_channel_id)
-            if join_channel:
+            leave_channel_id = config["LEAVE_ID"]
+            leave_channel = self.bot.get_channel(leave_channel_id)
+            if leave_channel:
                 with open(filename, 'rb') as f:
                     file = disnake.File(f, filename=filename)
                     embed = disnake.Embed(
-                        title=langText.get("JOIN_TITLE").format(userName=member.display_name),
-                        description=langText.get("JOIN_TEXT").format(userMention=member.mention, usersCount=len(member.guild.members)),
-                        color=disnake.Color.blurple()
+                        title=langText.get("LEAVE_TITLE").format(userName=member.display_name),
+                        description=langText.get("LEAVE_TEXT").format(userMention=member.mention, usersCount=len(member.guild.members)),
+                        color=disnake.Color.brand_red()
                         )
                     embed.set_image(url=f"attachment://{filename}")
-                    msg = await join_channel.send(content=member.mention, file=file, embed=embed)
+                    msg = await leave_channel.send(file=file, embed=embed)
                     await msg.add_reaction("👋")
             try:
                 os.remove(filename)
             except:
                 pass
 
-
 def setup(bot):
-    bot.add_cog(JoinMessageUtils(bot))
+    bot.add_cog(LeaveMessageUtils(bot))

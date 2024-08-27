@@ -4,10 +4,10 @@ from datetime import datetime, timezone
 
 import aiohttp
 import disnake
-from auto.configurator import Configurator
-from auto.creator import Creator
-from data.code import Code
-from data.var import *
+from modules.configurator import Configurator
+from modules.creator import Creator
+from modules.code import Code
+from modules.var import *
 from disnake.ext import commands
 from utils.json_manager import json_load, json_save
 from utils.load_environement import load_enviroment_lang, load_enviroment_token
@@ -38,8 +38,8 @@ printLog("lang Reloaded")
 
 printInfo("Files configuration done")
 
-if not os.path.exists(configFilePath):
-    with open(configFilePath, 'w'):
+if not os.path.exists(files.config):
+    with open(files.config, 'w'):
         prefix = input(lang.get("QUESTION_PREFIX"))
         logID = int(input(lang.get("QUESTION_LOG_CHANNEL_ID")))
         pollID = int(input(lang.get("QUESTION_POLL_CHANNEL_ID")))
@@ -67,13 +67,13 @@ if not os.path.exists(configFilePath):
                 "50": rank3
             }
         }
-        json_save(configFilePath, config_data)
+        json_save(files.config, config_data)
 
 try:
-    config = json_load(configFilePath)
+    config = json_load(files.config)
 except Exception as e:
-    print(lang.get("ERROR_CONFIG_LOAD").format(e))
-    exit(1)
+    print(lang.get("ERROR_CONFIG_LOAD").format(e=e))
+    exit(code=1)
 
 prefix = config["PREFIX"]
 botLang = load_enviroment_lang()
@@ -100,25 +100,25 @@ async def on_ready():
         botVersion = version_file.read().strip()
 
     if botVersion != botRepoVersion:
-        print('='*multiplicator)
+        print('='*Parameters.multiplicator)
         printWarn(lang.get("HEADER_OUTDATED_LN1"))
         printWarn(lang.get("HEADER_OUTDATED_LN2"))
         printWarn(lang.get("HEADER_OUTDATED_LN3"))
-    print('='*multiplicator)
-    printInfo(lang.get("HEADER_LN1").format(reset=reset))
-    printInfo(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN3").format(amount=len(bot.guilds), reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN4").format(language=botLang, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN5").format(prefix=prefix, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN6").format(owner=bot.get_user(config["YOUR_ID"]), reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN7").format(gitBranch=gitBranch, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN8").format(botVersion=botVersion, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN9").format(botRepoVersion=botRepoVersion, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN10").format(apiVersion=disnake.__version__, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN11").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name, reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version(), reset=reset, blue=blue))
-    printInfo(lang.get("HEADER_LN13").format(timeNow=datetime.now(timezone.utc).strftime("%d-%m-%Y %H:%M:%S"), reset=reset, blue=blue))
-    print('='*multiplicator)
+    print('='*Parameters.multiplicator)
+    printInfo(lang.get("HEADER_LN1").format(reset=Color.reset))
+    printInfo(lang.get("HEADER_LN2").format(botName=botName, botId=bot.user.id, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN3").format(amount=len(bot.guilds), reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN4").format(language=botLang, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN5").format(prefix=prefix, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN6").format(owner=bot.get_user(config["YOUR_ID"]), reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN7").format(gitBranch=gitBranch, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN8").format(botVersion=botVersion, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN9").format(botRepoVersion=botRepoVersion, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN10").format(apiVersion=disnake.__version__, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN11").format(platformSystem=platform.system(), platformVersion=platform.release(), osName=os.name, reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN12").format(pythonVersion=platform.python_version(), reset=Color.reset, blue=Color.blue))
+    printInfo(lang.get("HEADER_LN13").format(timeNow=datetime.now(timezone.utc).strftime("%d-%m-%Y %H:%M:%S"), reset=Color.reset, blue=Color.blue))
+    print('='*Parameters.multiplicator)
     return
 
 for element in os.listdir(cogsFolder):

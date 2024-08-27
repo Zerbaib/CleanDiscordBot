@@ -1,6 +1,6 @@
 import disnake
 import requests
-from data.var import onlineVersion
+from modules.var import onlineVersion
 from disnake.ext import commands
 from utils import error
 from utils.load_lang import owner_lang as langText

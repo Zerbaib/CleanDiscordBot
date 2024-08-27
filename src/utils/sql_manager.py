@@ -1,10 +1,10 @@
 import sqlite3
 
-from data.var import dataDbFilePath
+from modules.var import files
 
 
 def connectDB():
-    conn = sqlite3.connect(dataDbFilePath)
+    conn = sqlite3.connect(files.datebase)
     cur = conn.cursor()
     return conn, cur
 

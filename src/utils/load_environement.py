@@ -1,4 +1,4 @@
-from data.var import envFilePath
+from modules.var import files
 from utils.json_manager import json_load
 
 
@@ -9,7 +9,7 @@ def load_enviroment():
     Returns:
         dict: The data from the environment file
     """
-    return json_load(envFilePath)
+    return json_load(files.env)
 
 def load_enviroment_lang():
     """
@@ -19,7 +19,7 @@ def load_enviroment_lang():
         str: The language from the environment file
     """
     try:
-        return json_load(envFilePath)["LANGUAGE"].upper()
+        return json_load(files.env)["LANGUAGE"].upper()
     except Exception:
         return "EN"
 
@@ -30,4 +30,4 @@ def load_enviroment_token():
     Returns:
         str: The token from the environment file
     """
-    return json_load(envFilePath)["TOKEN"]
+    return json_load(files.env)["TOKEN"]

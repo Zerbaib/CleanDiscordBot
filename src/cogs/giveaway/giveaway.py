@@ -5,7 +5,7 @@ import json
 import disnake
 from disnake.ext import commands
 
-from data.var import timeUnits, dataFilePath
+from modules.var import *
 from utils.json_manager import json_load, json_save
 from utils.load_lang import giveaway_lang as langText
 from utils import error
@@ -15,7 +15,7 @@ from utils import error
 class GiveawayCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.giveaways = json_load(dataFilePath["giveaway"])
+        self.giveaways = json_load(files.dataFilePath["giveaway"])
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -37,12 +37,12 @@ class GiveawayCog(commands.Cog):
                 return
 
             # Vérifier si l'unité de temps est valide
-            if unit not in timeUnits:
+            if unit not in time.units:
                 await ctx.send(langText["ERROR_TIME_UNIT"])
                 return
 
             # Convertir la durée en secondes
-            duration_seconds = duration * timeUnits[unit]
+            duration_seconds = duration * time.units[unit]
 
             # Créer l'embed initial du giveaway
             embed = disnake.Embed(
@@ -63,7 +63,7 @@ class GiveawayCog(commands.Cog):
                 "end_time": giveaway_message.created_at.timestamp() + duration_seconds,
                 "participants": []
             }
-            json_save(dataFilePath["giveaway"], self.giveaways)
+            json_save(files.dataFilePath["giveaway"], self.giveaways)
 
             giveawayMessageID = giveaway_message.id
             
@@ -138,7 +138,7 @@ class GiveawayCog(commands.Cog):
 
         giveaway_data["participants"] = [user.id for user in participants]
         self.giveaways[message_id] = giveaway_data
-        json_save(dataFilePath["giveaway"], self.giveaways)
+        json_save(files.dataFilePath["giveaway"], self.giveaways)
 
     def format_time_remaining(self, seconds):
         if seconds >= 86400:

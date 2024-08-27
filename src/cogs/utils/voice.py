@@ -2,7 +2,7 @@ import asyncio
 import json
 
 import disnake
-from data.var import *
+from modules.var import *
 from disnake.ext import commands
 
 
@@ -10,7 +10,7 @@ from disnake.ext import commands
 class CustomVoiceCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.config_file = configFilePath
+        self.config_file = files.config
         self.temp_channels = {}
         self.load_config()
 
