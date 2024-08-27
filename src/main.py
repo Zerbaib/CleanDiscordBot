@@ -143,5 +143,6 @@ try:
 except Exception as e:
     printError("Code: 301")
     printError("Error during the token loading")
-    printError("Change the token")
+    printError(e)
+    printError("Try to check the connection or change the token")
     exit(code=Code.SETTINGS_WARNING)
