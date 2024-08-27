@@ -1,13 +1,11 @@
 # Python bytecode
 __pycache__/
-*.pyc
 
 # Configuration files
-config/*
+config/
 
 # Data files
-data/*.db*
-data/*.json
+data/
 
 # Virtual environment folders
 .venv/
@@ -15,9 +13,8 @@ venv/
 env/
 
 # Visual Studio folders and files
-.vs/*
-.vscode/*
+.vs/
+.vscode/
 
 # Log file
-log.txt
-*.log
+logs/
