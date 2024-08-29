@@ -20,7 +20,6 @@ from utils.sql_manager import *
 get_next_log_file()
 initDB()
 lang = main_lang
-self = None
 
 printInfo("Starting ...")
 
@@ -30,7 +29,7 @@ Creator.badword_file()
 
 printInfo("Files creation done")
 
-Configurator.env_file(self, lang)
+Configurator.env_file(lang)
 
 printLog("Reload lang ...")
 lang = main_lang

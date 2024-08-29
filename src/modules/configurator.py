@@ -6,7 +6,7 @@ from utils.logger import *
 
 
 class Configurator():
-    def env_file(self, lang):
+    def env_file(lang):
         if os.path.exists(files.env):
             return
         token = input(lang.get("QUESTION_BOT_TOKEN"))
