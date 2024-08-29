@@ -5,6 +5,7 @@ import disnake
 from disnake.ext import commands
 from utils import error
 from utils.load_lang import mods_lang as langText
+from modules.var import *
 
 
 
@@ -20,7 +21,7 @@ class MuteCommand(commands.Cog):
     @commands.has_permissions(manage_messages=True)
     async def mute(self, ctx, member: disnake.Member, reason: str = langText.get("NOREASON")):
         try:
-            with open("config.json", 'r') as config_file:
+            with open(files.config, 'r') as config_file:
                 config = json.load(config_file)
             role_id = config.get("MUTE_ROLE_ID")
 
